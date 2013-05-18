@@ -23,19 +23,22 @@ exit-web-framework是对常用的java web开发封装实用功能来提高开发
 
 1. 使用git或者svn下载exit-web-framework
 
-    git地址:git://github.com/exitsoft/exit-web-framework.git
-    svn地址:https://github.com/exitsoft/exit-web-framework.git
+***
+	git地址:git://github.com/exitsoft/exit-web-framework.git
+	svn地址:https://github.com/exitsoft/exit-web-framework.git
+***
 
 1. 点击根目录下的bin/install.bat文件进行安装,当看见该信息时表示安装成功:
 
-    [INFO] ------------------------------------------------------------------------
-    [INFO] BUILD SUCCESS
-    [INFO] ------------------------------------------------------------------------
-    [INFO] Total time: 1.875s
-    [INFO] Finished at: Fri Jan 04 11:08:01 CST 2013
-    [INFO] Final Memory: 6M/16M
-    [INFO] ------------------------------------------------------------------------
-
+***
+	[INFO] ------------------------------------------------------------------------
+	[INFO] BUILD SUCCESS
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Total time: 1.875s
+	[INFO] Finished at: Fri Jan 04 11:08:01 CST 2013
+	[INFO] Final Memory: 6M/16M
+	[INFO] ------------------------------------------------------------------------
+***
 该安装过程会将exit-web-framework中的exit-common和exit-orm生成jar包放入maven的.m2文件夹中,当然,这两个框架使用到的依赖jar包也会下载到.m2文件夹中.
 
 
@@ -62,19 +65,21 @@ vcs-admin或vcs-admin-jpa项目文件夹中的bin文件夹下的jetty.bat文件�
 ##### 导入eclipse或者myeclipse
 在根目录下的bin目录有一个eclipse.bat和myeclipse.bat，点击eclipse.bat/myeclipse.bat会生成project，看见以下信息表示生成成功，可以直接导入eclipse/myclipse
 
-    [INFO] ------------------------------------------------------------------------
-    [INFO] Reactor Summary:
-    [INFO]
-    [INFO] exitsoft parend ................................... SUCCESS [0.797s]
-    [INFO] exitsoft common jar ............................... SUCCESS [55.718s]
-    [INFO] exitsoft orm jar .................................. SUCCESS [5.579s]
-    [INFO] vcs admin panel ................................... SUCCESS [5.734s]
-    [INFO] vcs admin panel use jpa ........................... SUCCESS [0.203s]
-    [INFO] exit web framework project ........................ SUCCESS [0.313s]
-    [INFO] ------------------------------------------------------------------------
-    [INFO] BUILD SUCCESS
-    [INFO] ------------------------------------------------------------------------
-    [INFO] Total time: 1:08.828s
-    [INFO] Finished at: Fri Jan 04 11:11:00 CST 2013
-    [INFO] Final Memory: 9M/22M
-    [INFO] ------------------------------------------------------------------------
+***
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Reactor Summary:
+	[INFO]
+	[INFO] exitsoft parend ................................... SUCCESS [0.797s]
+	[INFO] exitsoft common jar ............................... SUCCESS [55.718s]
+	[INFO] exitsoft orm jar .................................. SUCCESS [5.579s]
+	[INFO] vcs admin panel ................................... SUCCESS [5.734s]
+	[INFO] vcs admin panel use jpa ........................... SUCCESS [0.203s]
+	[INFO] exit web framework project ........................ SUCCESS [0.313s]
+	[INFO] ------------------------------------------------------------------------
+	[INFO] BUILD SUCCESS
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Total time: 1:08.828s
+	[INFO] Finished at: Fri Jan 04 11:11:00 CST 2013
+	[INFO] Final Memory: 9M/22M
+	[INFO] ------------------------------------------------------------------------
+***
