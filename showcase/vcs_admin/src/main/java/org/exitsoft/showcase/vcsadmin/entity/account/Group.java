@@ -31,7 +31,8 @@ import org.hibernate.annotations.NamedQuery;
 @Entity
 @Table(name="TB_GROUP")
 @SuppressWarnings("serial")
-@NamedQuery(name=Group.UserGroups,query="select gl from User u left join u.groupsList gl  where u.id=?1 and gl.type= '03'")
+@NamedQuery(name=Group.UserGroups,
+            query="select gl from User u left join u.groupsList gl  where u.id=?1 and gl.type= '03'")
 public class Group extends UniversallyUniqueIdentifier{
 
 	public static final String UserGroups = "userGroups";

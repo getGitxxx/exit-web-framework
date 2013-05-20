@@ -97,7 +97,7 @@ public class SystemVariableUtils {
 	/**
 	 * 获取当前安全模型
 	 * 
-	 * @return {@link SecurityModel}
+	 * @return {@link CommonVariableModel}
 	 */
 	public static CommonVariableModel getCommonVariableModel() {
 		
