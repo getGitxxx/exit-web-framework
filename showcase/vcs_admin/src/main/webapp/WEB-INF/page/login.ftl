@@ -64,13 +64,13 @@
 			           		<option value="">
 								无
 			                </option>
-			                <option value="60 * 60 * 24 * 7">
+			                <option value="25200">
 								在一周内
 			                </option>
-			                <option value="60 * 60 * 24 * 30">
+			                <option value="2592000">
 								在一个月内
 			                </option>
-			                <option value="60 * 60 * 24 * 365">
+			                <option value="31536000">
 								在一个年内
 			                </option>
 			           </select>

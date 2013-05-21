@@ -4,6 +4,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -13,9 +14,6 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
-import org.springframework.expression.Expression;
-import org.springframework.expression.ExpressionParser;
-import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.stereotype.Component;
 
 /**
@@ -247,10 +245,7 @@ public class CaptchaAuthenticationFilter extends FormAuthenticationFilter{
 	    if(StringUtils.isNotEmpty(rememberMeValue)) {
 	    	rememberMe = true;
 	    	
-	    	ExpressionParser parser = new SpelExpressionParser();
-			Expression expression = parser.parseExpression(rememberMeValue);
-	    	
-	    	rememberMeCookieValue = expression.getValue(Integer.class);
+	    	rememberMeCookieValue = NumberUtils.toInt(rememberMeValue);
 	    }
 	    
 		return new UsernamePasswordTokeExtend(username, password, rememberMe, host,rememberMeCookieValue);
