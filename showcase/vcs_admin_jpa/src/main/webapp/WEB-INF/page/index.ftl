@@ -157,7 +157,7 @@
 				<div id="account">
 					<ul>
 						<li>
-							<a href="#"><span class="user24_icon"><@shiro.principal/></span></a>
+							<a href="#"><span class="user24_icon"><@shiro.principal type="org.exitsoft.showcase.vcsadmin.common.model.CommonVariableModel" property="user"/></span></a>
 						    <ul>
 						    	<@shiro.hasPermission name="security:change-password">
 							        <li>
