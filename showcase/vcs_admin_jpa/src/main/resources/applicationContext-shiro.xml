@@ -14,12 +14,7 @@
 				<property name="hashAlgorithmName" value="MD5" />
 			</bean>
 		</property>
-		<property name="defaultPermissions">
-   			<list>
-   				<value>security:change-password</value>
-   				<value>security:index</value>
-   			</list>
-   		</property>
+		<property name="defaultPermissionString" value="security:change-password,security:index" />
     	<property name="authorizationCacheName" value="shiroAuthorizationCache" />
 	</bean>
 	

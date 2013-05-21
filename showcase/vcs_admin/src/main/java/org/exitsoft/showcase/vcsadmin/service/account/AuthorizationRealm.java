@@ -18,6 +18,8 @@ import org.exitsoft.showcase.vcsadmin.entity.account.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
+import com.google.common.collect.Lists;
+
 /**
  * apache shiro 的公用授权类
  * 
@@ -29,26 +31,46 @@ public abstract class AuthorizationRealm extends AuthorizingRealm{
 	@Autowired
 	private AccountManager accountManager;
 	
-	private List<String> defaultPermissions;
+	private List<String> defaultPermission = Lists.newArrayList();
 	
-	private List<String> defaultRoles;
+	private List<String> defaultRole = Lists.newArrayList();
 	
 	/**
-	 * 默认permission
+	 * 设置默认permission
 	 * 
-	 * @param defaultPermissions permission
+	 * @param defaultPermissionString permission 如果存在多个值，使用逗号","使用逗号分割
 	 */
-	public void setDefaultPermissions(List<String> defaultPermissions) {
-		this.defaultPermissions = defaultPermissions;
+	public void setDefaultPermissionString(String defaultPermissionString) {
+		String[] perms = StringUtils.split(defaultPermissionString,",");
+		CollectionUtils.addAll(defaultPermission, perms);
 	}
 	
 	/**
-	 * 默认role
+	 * 设置默认role
+	 * 
+	 * @param defaultRoleString role 如果存在多个值，使用逗号","使用逗号分割
+	 */
+	public void setDefaultRoleString(String defaultRoleString) {
+		String[] roles = StringUtils.split(defaultRoleString,",");
+		CollectionUtils.addAll(defaultRole, roles);
+	}
+	
+	/**
+	 * 设置默认permission
+	 * 
+	 * @param defaultPermissions permission
+	 */
+	public void setDefaultPermission(List<String> defaultPermission) {
+		this.defaultPermission = defaultPermission;
+	}
+	
+	/**
+	 * 设置默认role
 	 * 
 	 * @param defaultRoles role
 	 */
-	public void setDefaultRoles(List<String> defaultRoles) {
-		this.defaultRoles = defaultRoles;
+	public void setDefaultRole(List<String> defaultRole) {
+		this.defaultRole = defaultRole;
 	}
 
 	/**
@@ -96,8 +118,8 @@ public abstract class AuthorizationRealm extends AuthorizingRealm{
         List<String> roles = getValue(temp,"roles\\[(.*?)\\]");
        
         //添加默认的roles到roels
-        if (CollectionUtils.isNotEmpty(defaultRoles)) {
-        	CollectionUtils.addAll(roles, defaultRoles.iterator());
+        if (CollectionUtils.isNotEmpty(defaultRole)) {
+        	CollectionUtils.addAll(roles, defaultRole.iterator());
         }
         
         //将当前用户拥有的roles设置到SimpleAuthorizationInfo中
@@ -117,8 +139,8 @@ public abstract class AuthorizationRealm extends AuthorizingRealm{
         List<String> permissions = getValue(temp,"perms\\[(.*?)\\]");
        
         //添加默认的permissions到permissions
-        if (CollectionUtils.isNotEmpty(defaultPermissions)) {
-        	CollectionUtils.addAll(permissions, defaultPermissions.iterator());
+        if (CollectionUtils.isNotEmpty(defaultPermission)) {
+        	CollectionUtils.addAll(permissions, defaultPermission.iterator());
         }
         
         //将当前用户拥有的permissions设置到SimpleAuthorizationInfo中
