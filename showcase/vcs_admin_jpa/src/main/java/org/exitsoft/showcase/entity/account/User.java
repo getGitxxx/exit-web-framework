@@ -98,7 +98,7 @@ public class User extends UniversallyUniqueIdentifier{
 	/**
 	 * 设置真实名称
 	 * 
-	 * @param realName 真实姓名
+	 * @param realname 真实姓名
 	 */
 	public void setRealname(String realname) {
 		this.realname = realname;

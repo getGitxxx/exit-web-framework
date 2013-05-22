@@ -84,7 +84,7 @@ public class DictionaryCategoryController {
 	 * 
 	 * 读取字典类别,返回foundation/dictionary-category/read.ftl页面
 	 * 
-	 * @param model Spring mvc的Model接口，主要是将model的属性返回到页面中
+	 * @param request HttpServletRequest
 	 * 
 	 * @return String
 	 */

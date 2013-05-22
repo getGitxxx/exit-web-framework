@@ -70,7 +70,7 @@ public class SystemDictionaryManager {
 	/**
 	 * 获取数据字典分页对象
 	 * 
-	 * @param request 分页参数请求
+	 * @param pageable 分页参数请求
 	 * @param filters 属性过滤器集合
 	 * 
 	 * @return Page
@@ -146,7 +146,7 @@ public class SystemDictionaryManager {
 	/**
 	 * 获取字典列别分页对象
 	 * 
-	 * @param request 分页参数请求
+	 * @param pageable 分页参数请求
 	 * @param filters 属性过滤器集合
 	 * 
 	 * @return {@link Page}

@@ -58,7 +58,7 @@ public abstract class AuthorizationRealm extends AuthorizingRealm{
 	/**
 	 * 设置默认permission
 	 * 
-	 * @param defaultPermissions permission
+	 * @param defaultPermission permission
 	 */
 	public void setDefaultPermission(List<String> defaultPermission) {
 		this.defaultPermission = defaultPermission;
@@ -67,7 +67,7 @@ public abstract class AuthorizationRealm extends AuthorizingRealm{
 	/**
 	 * 设置默认role
 	 * 
-	 * @param defaultRoles role
+	 * @param defaultRole role
 	 */
 	public void setDefaultRole(List<String> defaultRole) {
 		this.defaultRole = defaultRole;

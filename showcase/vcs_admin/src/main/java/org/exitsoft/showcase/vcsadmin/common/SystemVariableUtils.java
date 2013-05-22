@@ -44,7 +44,7 @@ public class SystemVariableUtils {
 	/**
 	 * 获取数据字典名称
 	 * 
-	 * @param categoryCode 列别代码
+	 * @param systemDictionaryCode 类别代码
 	 * @param value 值
 	 * 
 	 * @return String

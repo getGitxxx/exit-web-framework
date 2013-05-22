@@ -253,7 +253,7 @@ public class Group extends UniversallyUniqueIdentifier{
 
 	/**
 	 * 设置shiro role字符串
-	 * @param role字符串
+	 * @param role 字符串
 	 */
 	public void setRole(String role) {
 		this.role = role;

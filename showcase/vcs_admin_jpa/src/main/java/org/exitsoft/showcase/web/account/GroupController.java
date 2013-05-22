@@ -41,7 +41,7 @@ public class GroupController {
 	/**
 	 * 获取资源列表
 	 * 
-	 * @param pageRequest 分页实体信息
+	 * @param pageable 分页实体信息
 	 * @param request HttpServlet请求
 	 * 
 	 * @return {@link Page}
@@ -66,7 +66,7 @@ public class GroupController {
 	 * 保存组,保存成功后重定向到:account/group/view
 	 * 
 	 * @param entity 实体信息
-	 * @param parentId 所对应的父类id
+	 * @param request HttpServletRequest
 	 * @param redirectAttributes spring mvc 重定向属性
 	 * 
 	 * @return String

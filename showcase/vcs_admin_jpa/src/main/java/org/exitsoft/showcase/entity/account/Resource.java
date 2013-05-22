@@ -97,7 +97,7 @@ public class Resource extends UniversallyUniqueIdentifier{
 	/**
 	 * 设置资源操作URL
 	 * 
-	 * @param url 资源操作URL
+	 * @param value 资源操作URL
 	 */
 	public void setValue(String value) {
 		this.value = value;

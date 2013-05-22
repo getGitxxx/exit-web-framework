@@ -41,7 +41,7 @@ public class UserController {
 	/**
 	 * 获取用户列表
 	 * 
-	 * @param pageRequest 分页实体信息
+	 * @param pageable 分页实体信息
 	 * @param request HttpServlet请求
 	 * 
 	 * @return {@link Page}
