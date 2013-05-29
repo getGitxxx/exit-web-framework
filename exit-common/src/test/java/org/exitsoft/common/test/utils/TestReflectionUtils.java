@@ -3,7 +3,6 @@ package org.exitsoft.common.test.utils;
 import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
