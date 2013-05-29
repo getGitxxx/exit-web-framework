@@ -33,6 +33,7 @@ public class CaptchaUtils {
 	 * @param height 高度
 	 * @param num 验证码位数
 	 * @param out OutputStream
+	 * @param delay 没播放一张图片的演示速度,以毫秒为单位
 	 * 
 	 * @return String
 	 */

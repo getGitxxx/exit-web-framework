@@ -275,15 +275,14 @@ public abstract class ReflectionUtils {
 		do {
 			Field[] result = sc.getDeclaredFields();
 
-			if (ArrayUtils.isEmpty(result)) {
-				continue;
-			}
+			if (!ArrayUtils.isEmpty(result)) {
 
-			for (Field field : result) {
-				field.setAccessible(true);
-			}
+				for (Field field : result) {
+					field.setAccessible(true);
+				}
 
-			CollectionUtils.addAll(fields, result);
+				CollectionUtils.addAll(fields, result);
+			}
 
 			sc = sc.getSuperclass();
 
@@ -389,15 +388,15 @@ public abstract class ReflectionUtils {
 		do {
 			Method[] result = superClass.getDeclaredMethods();
 
-			if (ArrayUtils.isEmpty(result)) {
-				continue;
+			if (!ArrayUtils.isEmpty(result)) {
+
+				for (Method method : result) {
+					method.setAccessible(true);
+				}
+
+				CollectionUtils.addAll(methods, result);
 			}
 
-			for (Method method : result) {
-				method.setAccessible(true);
-			}
-
-			CollectionUtils.addAll(methods, result);
 			superClass = superClass.getSuperclass();
 		} while (superClass != Object.class && !ignoreParent);
 
