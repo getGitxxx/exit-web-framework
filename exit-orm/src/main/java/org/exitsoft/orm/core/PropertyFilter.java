@@ -24,8 +24,7 @@ import java.io.Serializable;
  * <p>sql:selete * from table where (propertyName1 = 'a' or propertyName1 = 'b') and (propertyName2 = 'a' or propertyName2 = 'b')</p>
  * 
  * @see PropertyFilters#build(String, String)
- * @see PropertyFilters#build(String[], String[])
- * @see CriterionBuilder
+ * @see org.exitsoft.orm.core.hibernate.CriterionBuilder
  * 
  * @author vincent
  */

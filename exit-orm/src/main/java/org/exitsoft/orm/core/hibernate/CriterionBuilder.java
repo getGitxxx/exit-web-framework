@@ -6,7 +6,7 @@ import org.hibernate.criterion.Criterion;
 
 /**
  * 
- * 辅助{@link HibernateRestrictionBuilder#build(String, String)}
+ * 辅助{@link org.exitsoft.orm.core.PropertyFilters#build(String, String)}
  * 方法创建PropertyFilter后使用哪种约束条件向Hibernate的{@link Criteria}进行条件过滤查询的接口，
  * 
  * @author vincent
