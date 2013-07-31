@@ -100,8 +100,8 @@
 		</dependency>
 		<!-- test -->
 		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
