@@ -47,6 +47,8 @@ public class User extends UniversallyUniqueIdentifier{
 	private String email;
 	//用户所在的组
 	private List<Group> groupsList = new ArrayList<Group>();
+	//用户头像
+	private String portrait;
 	
 	/**
 	 * 构造方法
@@ -188,8 +190,23 @@ public class User extends UniversallyUniqueIdentifier{
 		return CollectionUtils.extractToString(this.groupsList, "name", ",");
 	}
 
-	
-	public String toString() {
-		return username;
+	/**
+	 * 获取用户头像
+	 * 
+	 * @return String
+	 */
+	@Column(length=32)
+	public String getPortrait() {
+		return portrait;
 	}
+
+	/**
+	 * 设置用户头像
+	 * 
+	 * @param portrait 头像
+	 */
+	public void setPortrait(String portrait) {
+		this.portrait = portrait;
+	}
+	
 }

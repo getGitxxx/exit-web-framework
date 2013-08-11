@@ -1,13 +1,15 @@
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#login-form").validationEngine({
-			ajaxFormValidation: true,
-			ajaxFormValidationMethod:"post",
-			onAjaxFormComplete: function(status, form, response, options){
-	        	$("#main-container").append(response);
-	        }
-		
+		$("#login").click(function(){
+			overlayAjax({
+				target:'#main-container',
+				form:'#login-form',
+				onAjaxFormComplete:function(){
+					initMainCompont();
+				}
+			});
 		});
+		
 	});
 </script>
 
@@ -43,7 +45,7 @@
                         </option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-default">登录</button>
+                <button type="submit" class="btn btn-default" id="login">登录</button>
                 <button type="reset" class="btn btn-default">重置</button>
             </form>
         </div>

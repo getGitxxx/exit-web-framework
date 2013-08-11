@@ -17,8 +17,6 @@
 /showcase/*/.classpath
 /showcase/*/.springBeans
 
-generated-sources/
-
 *.class
 *.jar
 *.war

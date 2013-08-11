@@ -56,7 +56,7 @@ public class SystemCommonController {
 	@RequestMapping("/main")
 	public String main(Model model) {
 		
-		model.addAttribute("menusList", SystemVariableUtils.getCommonVariableModel().getMenusList());
+		model.addAttribute("cvm", SystemVariableUtils.getCommonVariableModel());
 		
 		return "main";
 	}

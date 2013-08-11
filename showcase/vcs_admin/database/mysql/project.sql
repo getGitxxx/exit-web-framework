@@ -210,18 +210,18 @@ INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0025', 'perms[dic
 -- Table structure for `tb_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
-CREATE TABLE `tb_user` (
-  `id` char(32) NOT NULL,
-  `email` varchar(256) DEFAULT NULL,
-  `password` char(32) NOT NULL,
-  `realname` varchar(128) NOT NULL,
-  `state` int(11) NOT NULL,
-  `username` varchar(64) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+create table tb_user (
+	id varchar(32) not null, 
+	email varchar(256), 
+	password varchar(32) not null, 
+	portrait varchar(32), 
+	realname varchar(128) not null, 
+	state integer not null, 
+	username varchar(64) not null, 
+	primary key (id)
+) ENGINE=InnoDB ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0001', '27637461@qq.com.cn', '21232f297a57a5a743894a0e4a801fc3', 'vincent.chen', '1', 'admin');
+INSERT INTO `tb_user` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0001', '27637461@qq.com.cn', '21232f297a57a5a743894a0e4a801fc3', 'SJDK3849CKMS3849DJCK2039ZMSK0001', 'vincent.chen', '1', 'admin');

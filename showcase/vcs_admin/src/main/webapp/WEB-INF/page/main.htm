@@ -1,14 +1,16 @@
+<#assign shiro=JspTaglibs["/WEB-INF/taglib/shiro.tld"] />
+
 <div class="left">
     <div class="profile">
         <div class="portrait">
-            <img src="../../upload/portrait/userid.gif" width="40" height="40">
+            <img src="upload/portrait/${cvm.user.id}.gif" width="40" height="40">
         </div>
         <div class="info">
             <span class="username">
-                	用户名
+                	${cvm.user.username}
             </span>
             <span class="realname">
-                	真实姓名
+                	${cvm.user.realname}
             </span>
         </div>
     </div>
@@ -24,23 +26,26 @@
     </div>
     <div class="navbar">
         <ul class="nav navbar-nav">
-            <li class="active">
-                <a href="#">
-                    <i class="icon-mini icon-wall"></i>
-                    <span class="text">权限管理</span>
-                </a>
-                <ul class="nav navbar-nav nav-submenu">
-                    <li><a class="active"><i class="icon-glyphicons-halflings icon-user"></i>用户管理</a></li>
-                    <li><a><i class="icon-glyphicons-halflings icon-th-list"></i>组管理</a></li>
-                    <li><a><i class="icon-glyphicons-halflings icon-lock"></i>资源管理</a></li>
-                </ul>
-            </li>
+        	<#list cvm.menusList as e>
             <li>
-                <a href="#">
-                    <i class="icon-mini icon-system"></i>
-                    <span class="text">系统管理</span>
+                <a href="${e.value}">
+                    <i class="icon-mini ${e.icon}"></i>
+                    <span class="text">${e.name}</span>
                 </a>
+                <#if e.children?has_content>
+                <div class="accordion" id="${e.id}" style="display: none;">
+                	<#list e.children as c>
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#${e.id}" href="${c.value}">
+							<i class="icon-glyphicons-halflings ${c.icon}"></i>
+							${c.name}
+						</a>
+					</div>
+                    </#list>
+                 </div>
+                </#if>
             </li>
+            </#list>
         </ul>
     </div>
 </div>
@@ -48,8 +53,8 @@
     <ul class="breadcrumb">
         <li class="active">首页</li>
     </ul>
-    <h3>更新日志</h3>
-    <hr />
     <div id="module-content">
+	    <h3>更新日志</h3>
+	    <hr />
     </div>
 </div>

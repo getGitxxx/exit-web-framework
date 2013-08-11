@@ -61,6 +61,24 @@ public class CommonVariableModel implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	/**
+	 * 获取用户登录名称
+	 * 
+	 * @return String
+	 */
+	public String getUsername() {
+		return this.user.getUsername();
+	}
+	
+	/**
+	 * 获取用户真实名称
+	 * 
+	 * @return String
+	 */
+	public String getRealname() {
+		return this.user.getRealname();
+	}
 
 	/**
 	 * 获取当前用户所在的组集合

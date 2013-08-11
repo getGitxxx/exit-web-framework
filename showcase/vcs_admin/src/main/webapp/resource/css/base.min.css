@@ -5,6 +5,10 @@ hr {
     margin: 10px 0;
 }
 
+.modal-backdrop.absolute {
+	position: absolute;
+}
+
 .panel {
     border: none;
     box-shadow: 0 0 20px 0 rgba(0,0,0,.9);
