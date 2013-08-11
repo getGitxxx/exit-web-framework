@@ -1,0 +1,51 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#login-form").validationEngine({
+			ajaxFormValidation: true,
+			ajaxFormValidationMethod:"post",
+			onAjaxFormComplete: function(status, form, response, options){
+	        	$("#main-container").append(response);
+	        }
+		
+		});
+	});
+</script>
+
+<div class="login-container">
+    <div class="ring-panel">
+        <div class="paper-ring"></div>
+        <div class="ring-panel-content">
+            <h3><i class="icon-mini icon-key"></i> 用户登录</h3>
+            <hr>
+            <form id="login-form" action="login" method="post">
+                <div class="form-group">
+                    <label for="username">登录帐号</label>
+                    <input type="text" class="form-control validate[required]" name="username" id="username" placeholder="登录帐号">
+                </div>
+                <div class="form-group">
+                    <label for="password">登录密码</label>
+                    <input type="password" class="form-control validate[required]" name="password" id="password" placeholder="登录密码">
+                </div>
+                <div class="form-group">
+                    <label for="rememberMe">记住我</label>
+                    <select class="form-control" name="rememberMe" id="rememberMe">
+                        <option value="">
+                            	无
+                        </option>
+                        <option value="25200">
+                           	 	在一周内
+                        </option>
+                        <option value="2592000">
+                            	在一个月内
+                        </option>
+                        <option value="31536000">
+                            	在一个年内
+                        </option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">登录</button>
+                <button type="reset" class="btn btn-default">重置</button>
+            </form>
+        </div>
+    </div>
+</div>

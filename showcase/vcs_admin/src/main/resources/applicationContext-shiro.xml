@@ -14,7 +14,7 @@
 				<property name="hashAlgorithmName" value="MD5" />
 			</bean>
 		</property>
-		<property name="defaultPermissionString" value="security:change-password,security:index" />
+		<property name="defaultPermissionString" value="security:change-password,security:main" />
     	<property name="authorizationCacheName" value="shiroAuthorizationCache" />
 	</bean>
 	
@@ -43,7 +43,7 @@
 				/login = captchaAuthc
 				/logout = logout
 				/resources/** = anon
-				/index = perms[security:index]
+				/main = perms[security:main]
 				/changePassword = perms[security:change-password]
 			</value>
 		</property>

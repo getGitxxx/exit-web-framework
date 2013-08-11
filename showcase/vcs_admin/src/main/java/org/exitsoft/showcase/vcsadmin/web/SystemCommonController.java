@@ -3,6 +3,7 @@ package org.exitsoft.showcase.vcsadmin.web;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.exitsoft.common.utils.CaptchaUtils;
@@ -38,27 +39,34 @@ public class SystemCommonController {
 	 * @return String
 	 */
 	@RequestMapping("/login")
-	public String login() {
+	public String login(HttpServletResponse response) {
 		if (!SystemVariableUtils.isAuthenticated()) {
 			return "login";
 		}
-		return "redirect:/index";
+		return "redirect:/main";
 	}
 	
 	/**
-	 * 首页C,在request用翻入当前用户的菜单集合给页面循环
+	 * 首页C,在request中获取当前用户的菜单集合给页面循环
 	 * 
 	 * @param model String mvc model 接口
 	 * 
 	 * @return String
 	 */
-	@RequestMapping("/index")
-	public String index(Model model) {
+	@RequestMapping("/main")
+	public String main(Model model) {
 		
 		model.addAttribute("menusList", SystemVariableUtils.getCommonVariableModel().getMenusList());
 		
-		return "index";
+		return "main";
 	}
+
+    /**
+     * 默认进入首页的C，因为使用一个页面去做登录或未登录的功能，所以默认放一个页面在那。
+     * 在index里面会马上去加载main控制器，如果用户没登录时，会跳转到login控制器中。
+     */
+    @RequestMapping("/index")
+    public void index(){}
 	
 	/**
 	 * 当前用户修改密码C.修改成功返回"true"否则返回"false"
