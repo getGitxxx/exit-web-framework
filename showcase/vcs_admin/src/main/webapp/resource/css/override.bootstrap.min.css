@@ -9,19 +9,18 @@ hr {
 	position: absolute;
 }
 
+.modal-backdrop.absolute.in {
+	opacity: 0.2;
+	filter: alpha(opacity=20)
+}
+
 .panel {
     border: none;
     box-shadow: 0 0 20px 0 rgba(0,0,0,.9);
 }
 
-.panel .panel-content,
 .panel .panel-footer {
-    border-left: 1px solid rgba(0,0,0,.8);
-    border-right: 1px solid rgba(0,0,0,.8);
-}
-
-.panel .panel-footer {
-    border-bottom: 1px solid rgba(0,0,0,.8);
+    border-bottom: 1px solid  #dddddd;
 }
 
 .panel .panel-content {
@@ -33,11 +32,11 @@ hr {
 }
 
 .panel .panel-content .panel .panel-content {
-    border-left: 1px solid #DDDDDD;
-    border-right: 1px solid #DDDDDD;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
 }
 .panel .panel-content .panel .panel-footer {
-    border:1px solid #DDDDDD;
+    border:1px solid #dddddd;
 }
 
 .panel .panel-heading {
@@ -65,11 +64,20 @@ hr {
     text-align: left;
 }
 
+.form-group {
+	padding:5px;
+}
+
+.form-group .form-group {
+	overflow: hidden;
+}
+
 .icon-glyphicons-halflings, .icon-mini {
     display: inline-block;
     width: 14px;
     height: 14px;
     margin-top: 1px;
+    margin-right:8px;
     line-height: 14px;
     vertical-align: text-top;
     background-image: url("../image/glyphicons-halflings.png");
@@ -77,7 +85,7 @@ hr {
     background-repeat: no-repeat;
 }
 
-.icon-glyphicons-halflings .icon-white,
+.icon-glyphicons-halflings.icon-white,
 .nav-pills > .active > a > [class^="icon-"],
 .nav-pills > .active > a > [class*=" icon-"],
 .nav-list > .active > a > [class^="icon-"],

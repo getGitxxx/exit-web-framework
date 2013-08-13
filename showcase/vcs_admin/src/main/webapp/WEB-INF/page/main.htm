@@ -1,34 +1,36 @@
 <#assign shiro=JspTaglibs["/WEB-INF/taglib/shiro.tld"] />
 
 <div class="left">
-    <div class="profile">
-        <div class="portrait">
-            <img src="upload/portrait/${cvm.user.id}.gif" width="40" height="40">
-        </div>
-        <div class="info">
-            <span class="username">
-                	${cvm.user.username}
-            </span>
-            <span class="realname">
-                	${cvm.user.realname}
-            </span>
-        </div>
-    </div>
-    <div class="foundation">
-        <a class="foundation-button logout" href="logout">
-            <i class="icon-glyphicons-halflings icon-off"></i>
-            <sapn>注销</sapn>
-        </a>
-        <a class="foundation-button change-password">
-            <i class="icon-glyphicons-halflings icon-cog"></i>
-            <sapn>修改密码</sapn>
-        </a>
-    </div>
+	<div class="top">
+	    <div class="profile">
+	        <div class="portrait">
+	            <img src="upload/portrait/${cvm.user.id}.gif" width="40" height="40">
+	        </div>
+	        <div class="info">
+	            <span class="username">
+	                	${cvm.user.username}
+	            </span>
+	            <span class="realname">
+	                	${cvm.user.realname}
+	            </span>
+	        </div>
+	    </div>
+	    <div class="foundation">
+	        <a class="foundation-button logout" href="logout">
+	            <i class="icon-glyphicons-halflings icon-off"></i>
+	            <sapn>注销</sapn>
+	        </a>
+	        <a class="foundation-button change-password">
+	            <i class="icon-glyphicons-halflings icon-cog"></i>
+	            <sapn>修改密码</sapn>
+	        </a>
+	    </div>
+	</div>
     <div class="navbar">
         <ul class="nav navbar-nav">
         	<#list cvm.menusList as e>
             <li>
-                <a href="${e.value}">
+                <a action="${e.value}">
                     <i class="icon-mini ${e.icon}"></i>
                     <span class="text">${e.name}</span>
                 </a>
@@ -36,7 +38,7 @@
                 <div class="accordion" id="${e.id}" style="display: none;">
                 	<#list e.children as c>
 					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse" data-parent="#${e.id}" href="${c.value}">
+						<a class="accordion-toggle" data-toggle="collapse" title="${c.name}" data-parent="#${e.id}" action="${c.value}">
 							<i class="icon-glyphicons-halflings ${c.icon}"></i>
 							${c.name}
 						</a>
@@ -50,11 +52,16 @@
     </div>
 </div>
 <div class="center">
+	<p>&nbsp;</p>
     <ul class="breadcrumb">
         <li class="active">首页</li>
     </ul>
-    <div id="module-content">
-	    <h3>更新日志</h3>
+    <div id="module-container">
+	    <h3 id="module-name">更新日志</h3>
 	    <hr />
+	    <div id="module-content">
+	    	<div style="height:300px;"></div>
+	    	
+	    </div>
     </div>
 </div>

@@ -1,177 +1,63 @@
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title">用户信息</h3>
+        <h3 class="panel-title">列表信息</h3>
     </div>
     <div class="panel-content">
         <table class="table table-hover table-striped">
             <thead>
             <tr>
                 <th>
-                    登录帐号
+					登录帐号
                 </th>
                 <th>
-                    真实姓名
+					真实姓名
                 </th>
                 <th>
-                    电子邮件
+					电子邮件
                 </th>
                 <th>
-                    状态
+					状态
                 </th>
             </tr>
             </thead>
-            <tr>
-                <td>
-                    username
-                </td>
-                <td>
-                    realname
-                </td>
-                <td>
-                    email
-                </td>
-                <td>
-                    state
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    username
-                </td>
-                <td>
-                    realname
-                </td>
-                <td>
-                    email
-                </td>
-                <td>
-                    state
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    username
-                </td>
-                <td>
-                    realname
-                </td>
-                <td>
-                    email
-                </td>
-                <td>
-                    state
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    username
-                </td>
-                <td>
-                    realname
-                </td>
-                <td>
-                    email
-                </td>
-                <td>
-                    state
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    username
-                </td>
-                <td>
-                    realname
-                </td>
-                <td>
-                    email
-                </td>
-                <td>
-                    state
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    username
-                </td>
-                <td>
-                    realname
-                </td>
-                <td>
-                    email
-                </td>
-                <td>
-                    state
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    username
-                </td>
-                <td>
-                    realname
-                </td>
-                <td>
-                    email
-                </td>
-                <td>
-                    state
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    username
-                </td>
-                <td>
-                    realname
-                </td>
-                <td>
-                    email
-                </td>
-                <td>
-                    state
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    username
-                </td>
-                <td>
-                    realname
-                </td>
-                <td>
-                    email
-                </td>
-                <td>
-                    state
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    username
-                </td>
-                <td>
-                    realname
-                </td>
-                <td>
-                    email
-                </td>
-                <td>
-                    state
-                </td>
-            </tr>
+            <tbody>
+            	<#list page.result as r>
+	            <tr>
+	                <td>
+	                    ${r.username!""}
+	                </td>
+	                <td>
+	                	${r.realname!""}
+	                </td>
+	                <td>
+	                	${r.email!""}
+	                </td>
+	                <td>
+	                	${r.state!""}
+	                </td>
+	            </tr>
+	            </#list>
+           </tbody>
         </table>
     </div>
     <div class="panel-footer">
-        <button type="button" data-toggle="modal" data-target="#user-modal" class="btn btn-default"><i class="icon-glyphicons-halflings icon-file"></i><span>新增</span></button>
+        <button type="button" onclick="overlayAjax({url:'account/user/read',target:'#module-content'})" class="btn btn-default">
+        	<i class="icon-glyphicons-halflings icon-file"></i><span>新增</span>
+        </button>
         <ul class="pagination pull-right">
-            <li><a href="#">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
+        	<#if page.hasPrePage()>
+	    	<li><a href="#">首页</a></li>
+	        <li><a href="#">上一页</a></li>
+	        </#if>
+	        
+	        <#list page.getSlider(page.pageSize) as index>
+        	<li><a href="#">${index}</a></li>
+			</#list>
+			
+            <#if page.hasNextPage()>
+            <li><a href="#">下一页</a></li>
+            <li><a href="#">尾页</a></li>
+            </#if>
         </ul>
     </div>
 </div>

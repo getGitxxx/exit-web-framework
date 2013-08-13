@@ -4,19 +4,21 @@ body {
 
 .layout-container {
     padding: 20px;
-}
-.panel .panel-content.fixed-height {
-    height: 650px;
-    position: relative;
+    width: 1300px;
+    margin: 0 auto;
 }
 .panel .panel-content .left {
     float: left;
-    width:300px;
-    border-right:solid 1px #cccccc;
-    background-color: #eeeeee;
+    width: 299px;
 }
+
+.panel .panel-content .left .top {
+	background-color: #eee;
+}
+
 .panel .panel-content .left .profile {
-    padding: 5px 15px;
+    padding: 10px 15px;
+    background-color: #eee;
 }
 
 .panel .panel-content .left .profile .portrait {
@@ -46,12 +48,13 @@ body {
 
 .panel .panel-content .left .foundation {
     border-top: 1px solid #c5c5c5;
-    box-shadow: inset 0 1px 0 0 rgba(255,255,255,.9);
-    border-bottom: 1px solid rgba(0,0,0,.18);
+    box-shadow: 0 1px 0 0 rgba(255,255,255,.9);
+    border-bottom: 1px solid #c5c5c5;
 }
 
 .panel .panel-content .left .foundation .foundation-button {
     padding: 8px 0;
+    border-top: 1px solid #fdfdfd;
     text-align: center;
     display: block;
     text-decoration: none;
@@ -62,13 +65,12 @@ body {
     color: #333;
 }
 
-.panel .panel-content .left .foundation .foundation-button.logout {
+.panel .panel-content .left .foundation a.foundation-button.logout {
     width: 150px;
     float: left;
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
-    box-shadow: -1px 0 0 0 #FFFFFF inset;
+    border-right: 1px solid #c5c5c5;
 }
-.panel .panel-content .left .foundation .foundation-button.change-password {
+.panel .panel-content .left .foundation a.foundation-button.change-password {
     margin-left: 150px;
 }
 
@@ -76,14 +78,12 @@ body {
     margin-bottom:0px;
     padding:0px;
     border-radius:none;
-    background-color: #f9f9f9;
-
+   	background-color: transparent;
 }
 .panel .panel-content .left .navbar .navbar-nav {
-    background-image: url("../image/black-bg.png");
-    width: 91px;
-    height: 557px;
+    width: 90px;
     position:relative;
+    margin: 0px;
 }
 .panel .panel-content .left .navbar .navbar-nav > li {
     float: none;
@@ -95,12 +95,12 @@ body {
     text-align: center;
     display: block;
     box-sizing: border-box;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #101010;
+    border-top: 1px solid #2e2e2e;
     color: #666666;
     text-decoration: none;
     vertical-align: middle;
+    cursor: pointer;
     outline: none;
 }
 
@@ -110,12 +110,11 @@ body {
 
 .panel .panel-content .left .navbar .navbar-nav > li > a:hover {
     color: #888888;
-    background: rgba(0,0,0,.15);
 }
 
 .panel .panel-content .left .navbar .navbar-nav > .active > a,
 .panel .panel-content .left .navbar .navbar-nav > .active > a:hover {
-    background: linear-gradient(to bottom,rgba(51,51,51,1)0%,rgba(34,34,34,1)100%);
+    background: #222222;
     color: #CCCCCC;
 }
 .panel .panel-content .left .navbar .navbar-nav .accordion{
@@ -129,22 +128,16 @@ body {
 }
 .panel .panel-content .left .navbar .navbar-nav .accordion a {
     background:#F1F1F1;
-    border-color: rgba(255, 255, 255, 0.9) -moz-use-text-color rgba(0, 0, 0, 0.15);
-    border-image: none;
-    border-left: medium none;
-    border-right: medium none;
-    border-style: solid none;
-    border-width: 1px medium;
-    color: #888888;
     padding: 10px 15px;
+	border: none;
+	border-top: 1px solid #fdfdfd;
+	border-bottom: 1px solid #d2d2d2;
+	color: #888;
     text-align: left;
     text-decoration:none;
     width: 208px;
 }
 
-.panel .panel-content .left .navbar .navbar-nav .accordion a i {
-    margin-right: 10px;
-}
 .panel .panel-content .left .navbar .navbar-nav .accordion a:hover {
     background: #f5f5f5;
     color: #444;
@@ -159,8 +152,8 @@ body {
 }
 
 .panel .panel-content .center {
-    margin-left: 300px;
-    padding: 10px;
+    padding: 0px 20px 20px 320px;
+    background: url("../image/nav-bg.png") repeat-y;
 }
 
 .panel .panel-content .center .breadcrumb {
@@ -174,6 +167,10 @@ body {
 
 .panel .panel-content .center .breadcrumb li {
     text-shadow: 0 1px 0 #ffffff;
+}
+
+#module-container, #module-content {
+	position: relative;
 }
 
 .login-container {
