@@ -1,49 +1,92 @@
+<#assign shiro=JspTaglibs["/WEB-INF/taglib/shiro.tld"] />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#selectAll").click(function(){
+			var checkbox = $(this);
+			
+			var children = checkbox.parents("table").find("tbody input[type='checkbox']");
+			
+			children.prop("checked",checkbox.is(":checked"));
+		});
+		
+	});
+</script>
+
 <div class="panel">
     <div class="panel-heading">
         <h3 class="panel-title">列表信息</h3>
     </div>
     <div class="panel-content">
-        <table class="table table-hover table-striped">
-            <thead>
-            <tr>
-                <th>
-					登录帐号
-                </th>
-                <th>
-					真实姓名
-                </th>
-                <th>
-					电子邮件
-                </th>
-                <th>
-					状态
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            	<#list page.result as r>
+    	<form action="account/user/delete" id="user-form" method="post">
+	        <table class="table table-hover table-striped">
+	            <thead>
 	            <tr>
-	                <td>
-	                    ${r.username!""}
-	                </td>
-	                <td>
-	                	${r.realname!""}
-	                </td>
-	                <td>
-	                	${r.email!""}
-	                </td>
-	                <td>
-	                	${r.state!""}
-	                </td>
+	            	<th>
+						<input type="checkbox" id="selectAll"/>
+	                </th>
+	                <th>
+						登录帐号
+	                </th>
+	                <th>
+						真实姓名
+	                </th>
+	                <th>
+						电子邮件
+	                </th>
+	                <th>
+						状态
+	                </th>
+	                <th>
+	                	操作
+	                </th>
 	            </tr>
-	            </#list>
-           </tbody>
-        </table>
+	            </thead>
+	            <tbody>
+	            	<#list page.result as r>
+		            <tr>
+		            	<td>
+		            		<input type="checkbox" name="ids" value="${r.id}"/>
+		            	</td>
+		                <td>
+		                    ${r.username!""}
+		                </td>
+		                <td>
+		                	${r.realname!""}
+		                </td>
+		                <td>
+		                	${r.email!""}
+		                </td>
+		                <td>
+		                	${r.state!""}
+		                </td>
+		                <td>
+		                	<@shiro.hasPermission name="user:read">
+			                	<a class="btn btn-default btn-xs" href="overlayAjax({url:'account/user/read?id=${r.id}',target:'#module-content'});">
+			                		<i class="icon-glyphicons-halflings icon-pencil"></i>
+			                	</a>
+		                	</@shiro.hasPermission>
+		                </td>
+		            </tr>
+		            </#list>
+	           </tbody>
+	        </table>
+    	</form>
     </div>
     <div class="panel-footer">
-        <button type="button" onclick="overlayAjax({url:'account/user/read',target:'#module-content'})" class="btn btn-default">
-        	<i class="icon-glyphicons-halflings icon-file"></i><span>新增</span>
+    
+    	<@shiro.hasPermission name="user:create">
+        <button type="button" onclick="overlayAjax({url:'account/user/read',target:'#module-content'});" class="btn btn-default">
+        	<i class="icon-glyphicons-halflings icon-file margin-right"></i><span>新增</span>
         </button>
+        </@shiro.hasPermission>
+        
+        <@shiro.hasPermission name="user:delete">
+        <button type="button" onclick="overlayAjax({form:'#user-form',target:'#module-content'});" class="btn btn-danger">
+        	<i class="icon-glyphicons-halflings icon-white icon-remove margin-right"></i><span>删除</span>
+        </button>
+        </@shiro.hasPermission>
+        
         <ul class="pagination pull-right">
         	<#if page.hasPrePage()>
 	    	<li><a href="#">首页</a></li>

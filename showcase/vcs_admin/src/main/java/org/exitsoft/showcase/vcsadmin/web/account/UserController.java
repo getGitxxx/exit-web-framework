@@ -14,6 +14,7 @@ import org.exitsoft.showcase.vcsadmin.common.SystemVariableUtils;
 import org.exitsoft.showcase.vcsadmin.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.vcsadmin.common.enumeration.entity.GroupType;
 import org.exitsoft.showcase.vcsadmin.entity.account.User;
+import org.exitsoft.showcase.vcsadmin.entity.foundation.DataDictionary;
 import org.exitsoft.showcase.vcsadmin.service.account.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -107,9 +108,11 @@ public class UserController {
 	 * @return String
 	 */
 	@RequestMapping(value="update")
-	public String update(@ModelAttribute("entity")User entity, @RequestParam(value = "groupIds",required=false)List<String> groupIds,RedirectAttributes redirectAttributes) {
+	public String update(@ModelAttribute("entity")User entity, 
+								 @RequestParam(value = "groupId",required=false)List<String> groupId,
+								 RedirectAttributes redirectAttributes) {
 
-		entity.setGroupsList(accountManager.getGroups(groupIds));
+		entity.setGroupsList(accountManager.getGroups(groupId));
 		
 		accountManager.updateUser(entity);
 		redirectAttributes.addFlashAttribute("message", "修改成功");
@@ -143,7 +146,10 @@ public class UserController {
 	@RequestMapping("read")
 	public String read(@RequestParam(value = "id", required = false)String id,Model model) {
 		
-		model.addAttribute("states", SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.State,"3"));
+		List<DataDictionary> data =null;
+		data = SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.State,"3");
+		
+		model.addAttribute("states", data);
 		model.addAttribute("groupsList", accountManager.getAllGroup(GroupType.RoleGorup));
 		
 		if (StringUtils.isEmpty(id)) {

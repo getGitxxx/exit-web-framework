@@ -1,15 +1,12 @@
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#login").click(function(){
-			overlayAjax({
-				target:'#main-container',
-				form:'#login-form',
-				onAjaxFormComplete:function(){
-					initMainCompont();
-				}
-			});
+		overlayAjax({
+			target:'#main-container',
+			form:'#login-form',
+			success:function(){
+				initMainCompont();
+			}
 		});
-		
 	});
 </script>
 
@@ -20,13 +17,13 @@
             <h3><i class="icon-mini icon-key"></i> 用户登录</h3>
             <hr>
             <form id="login-form" action="login" method="post">
-                <div class="form-group">
+	    		<div class="form-group">
                     <label for="username">登录帐号</label>
-                    <input type="text" class="form-control validate[required]" name="username" id="username" placeholder="登录帐号">
+                    <input type="text" class="form-control required" name="username" id="username" placeholder="登录帐号">
                 </div>
                 <div class="form-group">
                     <label for="password">登录密码</label>
-                    <input type="password" class="form-control validate[required]" name="password" id="password" placeholder="登录密码">
+                    <input type="password" class="form-control required" name="password" id="password" placeholder="登录密码">
                 </div>
                 <div class="form-group">
                     <label for="rememberMe">记住我</label>
@@ -44,10 +41,10 @@
                             	在一个年内
                         </option>
                     </select>
-                </div>
-                <button type="submit" class="btn btn-default" id="login">登录</button>
-                <button type="reset" class="btn btn-default">重置</button>
-            </form>
+		            <button type="submit" class="btn btn-default" id="login">登录</button>
+		            <button type="reset" class="btn btn-default">重置</button>
+                 </div>
+	    	</form>
         </div>
     </div>
 </div>

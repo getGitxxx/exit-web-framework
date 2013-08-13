@@ -5,6 +5,10 @@ hr {
     margin: 10px 0;
 }
 
+i.margin-right {
+	margin-right: 8px;
+}
+
 .modal-backdrop.absolute {
 	position: absolute;
 }
@@ -25,10 +29,12 @@ hr {
 
 .panel .panel-content {
     margin: -15px;
+    background: #fefefe;
 }
 
 .panel .panel-content .panel {
     box-shadow:none;
+    margin-bottom:0px;
 }
 
 .panel .panel-content .panel .panel-content {
@@ -57,27 +63,32 @@ hr {
     margin: 0;
     border-collapse: separate;
 }
-.table thead tr th {
+
+.table thead > tr > th {
     color: #222;
     background: #eee;
     padding: 10px 8px;
     text-align: left;
 }
 
-.form-group {
-	padding:5px;
+.table tbody > tr > td {
+	vertical-align: middle;
 }
 
-.form-group .form-group {
-	overflow: hidden;
+
+.form-row .form-group {
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #eee;
+	margin: 0;
+	padding: 15px 10px;
 }
+
 
 .icon-glyphicons-halflings, .icon-mini {
     display: inline-block;
     width: 14px;
     height: 14px;
     margin-top: 1px;
-    margin-right:8px;
     line-height: 14px;
     vertical-align: text-top;
     background-image: url("../image/glyphicons-halflings.png");

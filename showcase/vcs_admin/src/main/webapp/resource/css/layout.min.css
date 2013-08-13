@@ -138,6 +138,10 @@ body {
     width: 208px;
 }
 
+.panel .panel-content .left .navbar .navbar-nav .accordion a i {
+	margin-right: 8px;
+}
+
 .panel .panel-content .left .navbar .navbar-nav .accordion a:hover {
     background: #f5f5f5;
     color: #444;
