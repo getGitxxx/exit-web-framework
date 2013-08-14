@@ -14,18 +14,18 @@
 <form action="account/user/insert" method="post" class="form-row" data-target="#module-content">
 	<div class="panel">
 	    <div class="panel-heading">
-	        <h3 class="panel-title">创建用户</h3>
+	        <h3 class="panel-title"><i class="icon-mini icon-pen margin-right"></i>基本信息</h3>
 	    </div>
 	    <div class="panel-content">
 	    		<div class="form-group">
 		   			<div class="row">
 		    			<div class="col-lg-6">
 							<label for="username">登录帐号:</label>
-							<input type="text" class="form-control required" id="username" remote="account/user/isUsernameUnique" name="username" placeholder="登录帐号">
+							<input type="text" class="form-control required" id="username" remote="account/user/isUsernameUnique" name="username">
 						</div>
 						<div class="col-lg-6">
 							<label for="realname">真实姓名:</label>
-							<input type="text" class="form-control required" id="realname" name="realname" placeholder="真实姓名">
+							<input type="text" class="form-control required" id="realname" name="realname">
 						</div>
 		   			</div>
 	   			</div>
@@ -34,11 +34,11 @@
 		   			<div class="row">
 		    			<div class="col-lg-6">
 							<label for="password">登录密码:</label>
-							<input type="password" class="form-control required" id="password" name="password" placeholder="登录密码">
+							<input type="password" class="form-control required" id="password" name="password">
 						</div>
 						<div class="col-lg-6">
 							<label for="confirmPassword">确认密码:</label>
-							<input type="password" class="form-control required" equalTo="#password" id="confirmPassword" name="confirmPassword" placeholder="确认密码">
+							<input type="password" class="form-control required" equalTo="#password" id="confirmPassword" name="confirmPassword">
 						</div>
 		   			</div>
 	   			</div>
@@ -48,14 +48,14 @@
 		    			<div class="col-lg-6">
 							<label for="state">用户状态:</label>
 							<select class="form-control required" name="state" id="state">
-								<#list states as d>
-									<option value="${d.value}">${d.name}</option>
+								<#list states as s>
+									<option value="${s.value}">${s.name}</option>
 								</#list>
 							</select>
 						</div>
 						<div class="col-lg-6">
 							<label for="email">电子邮件:</label>
-							<input type="text" class="form-control email" id="email" name="email" placeholder="电子邮件">
+							<input type="text" class="form-control email" id="email" name="email">
 						</div>
 		   			</div>
 	   			</div>
@@ -67,7 +67,7 @@
 							<!-- 组表格 开始 -->
 							<div class="panel">
 							    <div class="panel-heading">
-							        <h3 class="panel-title">用户所在组</h3>
+							        <h3 class="panel-title"><i class="icon-mini icon-shield margin-right"></i>用户所在组</h3>
 							    </div>
 							    <div class="panel-content">
 							    	<table class="table table-hover table-striped">
@@ -79,6 +79,12 @@
 								                <th>
 													组名称
 								                </th>
+								                <th>
+								                	访问允许role
+								            	</th>
+								            	<th>
+								                	所属父类
+								            	</th>
 								                <th>
 													描述
 								                </th>
@@ -93,6 +99,12 @@
 									                <td>
 									                    ${gl.name!""}
 									                </td>
+									                <td>
+								                    	${gl.role!""}
+								                    </td>
+								                    <td>
+								                    	${gl.parentName!""}
+								                    </td>
 									                <td>
 									                	${gl.remark!""}
 									                </td>
@@ -112,10 +124,10 @@
 	    </div>
 	    <div class="panel-footer">
 	    	<button type="submit" class="btn btn-success">
-	        	<i class="icon-glyphicons-halflings icon-white icon-file margin-right"></i><span>保存</span>
+	        	<i class="icon-glyphicons-halflings icon-white icon-ok margin-right"></i><span>保存</span>
 	        </button>
 	        <button type="reset" class="btn btn-primary">
-	        	<i class="icon-glyphicons-halflings icon-white icon-file margin-right"></i><span>重置</span>
+	        	<i class="icon-glyphicons-halflings icon-white icon-repeat margin-right"></i><span>重置</span>
 	        </button>
 	    </div>
 	</div>

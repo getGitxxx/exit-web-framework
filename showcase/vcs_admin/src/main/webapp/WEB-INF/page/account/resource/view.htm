@@ -12,7 +12,7 @@
 		
 	});
 	function loadPage(pageNo) {
-		$.maskload('#module-content','account/user/view',{pageNo:pageNo});
+		$.maskload('#module-content','account/resource/view',{pageNo:pageNo});
 	}
 </script>
 
@@ -23,17 +23,27 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title"><i class="icon-mini icon-search margin-right"></i><span>查询信息</span></h4>
 			</div>
-			<form action="account/user/view" method="post" data-target="#module-content" >
+			<form action="account/resource/view" method="post" data-target="#module-content" >
 				<div class="modal-body">
+				
 					<div class="form-group">
 			   			<div class="row">
 			    			<div class="col-lg-6">
-								<label for="filter_LIKES_username">登录帐号:</label>
-								<input type="text" class="form-control" id="filter_RLIKES_username" name="filter_RLIKES_username" value="${RequestParameters.filter_RLIKES_username!''}">
+								<label for="filter_RLIKES_name">资源名称:</label>
+								<input type="text" class="form-control" id="filter_RLIKES_name" name="filter_RLIKES_name" value="${RequestParameters.filter_RLIKES_name!''}">
 							</div>
 							<div class="col-lg-6">
-								<label for="filter_LIKES_realname">真实姓名:</label>
-								<input type="text" class="form-control" id="filter_RLIKES_realname" name="filter_RLIKES_realname" value="${RequestParameters.filter_RLIKES_realname!''}">
+								<label for="filter_EQS_type">资源类型:</label>
+								<select class="form-control" name="filter_EQS_type" id="filter_EQS_type">
+					        		<option value="">
+										无
+					                </option>
+					           		<#list resourceType as rt>
+						           		<option value="${rt.value}" <#if RequestParameters.filter_EQS_type?has_content && RequestParameters.filter_EQS_type == rt.value >selected="selected"</#if> >
+											${rt.name}
+						                </option>
+					           		</#list>
+					           </select>
 							</div>
 			   			</div>
 		   			</div>
@@ -41,22 +51,34 @@
 		   			<div class="form-group">
 			   			<div class="row">
 			    			<div class="col-lg-6">
-								<label for="filter_EQI_state">用户状态:</label>
-								<select class="form-control" name="filter_EQI_state" id="filter_EQI_state">
-									<option value="">无</option>
-									<#list states as s>
-										<option value="${s.value}" <#if RequestParameters.filter_EQI_state?has_content && s.value == RequestParameters.filter_EQI_state>selected="selected"</#if>>
-											${s.name}
-										</option>
-									</#list>
-								</select>
+								<label for="filter_RLIKES_value">拦截值:</label>
+								<input type="text" class="form-control" id="filter_RLIKES_value" name="filter_RLIKES_value" value="${RequestParameters.filter_RLIKES_value!''}">
 							</div>
 							<div class="col-lg-6">
-								<label for="filter_LIKES_email">电子邮件:</label>
-								<input type="text" class="form-control" id="filter_RLIKES_email" name="filter_RLIKES_email" value="${RequestParameters.filter_RLIKES_email!''}">
+								<label for="filter_RLIKES_permission">访问允许:</label>
+								<input type="text" class="form-control" id="filter_RLIKES_permission" name="filter_RLIKES_permission" value="${RequestParameters.filter_RLIKES_permission!''}">
 							</div>
 			   			</div>
 		   			</div>
+		   			
+		   			<div class="form-group">
+			   			<div class="row">
+			    			<div class="col-lg-12">
+								<label for="filter_EQS_parent.id">所属父类:</label>
+								<select class="form-control" name="filter_EQS_parent.id" id="filter_EQS_parent.id">
+					        		<option value="">
+										无
+					                </option>
+					           		<#list resourcesList as rl>
+						           		<option value="${rl.id}" <#if RequestParameters['filter_EQS_parent.id']?has_content && RequestParameters['filter_EQS_parent.id'] == rl.id >selected="selected"</#if> >
+											${rl.name}
+						                </option>
+					           		</#list>
+					            </select>
+							</div>
+			   			</div>
+		   			</div>
+		   			
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-success">
@@ -74,7 +96,7 @@
 	</div>
 </div>
 
-<form action="account/user/delete" method="post" data-target="#module-content">
+<form action="account/resource/delete" method="post" data-target="#module-content">
 	<div class="panel">
 	    <div class="panel-heading">
 	        <h3 class="panel-title"><i class="icon-mini icon-book margin-right"></i>列表信息</h3>
@@ -93,20 +115,26 @@
 						<input type="checkbox" id="selectAll"/>
 	                </th>
 	                <th>
-						登录帐号
-	                </th>
+	                	资源名称
+	            	</th>
 	                <th>
-						真实姓名
-	                </th>
+	                	拦截值
+	            	</th>
 	                <th>
-						电子邮件
-	                </th>
+	                	访问允许permission
+	            	</th>
 	                <th>
-						状态
-	                </th>
-	                <th>
-	                	操作
-	                </th>
+	                	资源类型
+	            	</th>
+	            	<th>
+	            		所属父类
+	            	</th>
+	            	<th>
+	            		备注
+	            	</th>
+	            	<th>
+	            		操作
+	            	</th>
 	            </tr>
 	            </thead>
 	            <tbody>
@@ -116,20 +144,26 @@
 		            		<input type="checkbox" name="ids" value="${r.id}"/>
 		            	</td>
 		                <td>
-		                    ${r.username!""}
-		                </td>
+	                    	${r.name!""}
+	                    </td>
+	                    <td>
+	                    	${r.value!""}
+	                    </td>
+	                    <td>
+	                    	${r.permission!""}
+	                    </td>
+	                    <td>
+	                    	${r.typeName!""}
+	                    </td>
+	                    <td>
+	                    	${r.parentName!""}
+	                    </td>
+	                    <td>
+	                    	${r.remark!""}
+	                    </td>
 		                <td>
-		                	${r.realname!""}
-		                </td>
-		                <td>
-		                	${r.email!""}
-		                </td>
-		                <td>
-		                	${r.stateName!""}
-		                </td>
-		                <td>
-		                	<@shiro.hasPermission name="user:read">
-			                	<button type="button" class="btn btn-default btn-xs" onclick="$.maskload('#module-content','account/user/read',{id:'${r.id}'})">
+		                	<@shiro.hasPermission name="resource:read">
+			                	<button type="button" class="btn btn-default btn-xs" onclick="$.maskload('#module-content','account/resource/read',{id:'${r.id}'})">
 			                		<i class="icon-glyphicons-halflings icon-edit"></i>
 			                	</button>
 		                	</@shiro.hasPermission>
@@ -140,13 +174,13 @@
 	        </table>
 	    </div>
 	    <div class="panel-footer">
-	    	<@shiro.hasPermission name="user:create">
-	        <button type="button" onclick="$.maskload('#module-content','account/user/read');" class="btn btn-success">
+	    	<@shiro.hasPermission name="resource:save">
+	    	<button type="button" onclick="$.maskload('#module-content','account/resource/read');" class="btn btn-success">
 	        	<i class="icon-glyphicons-halflings icon-white icon-plus margin-right"></i><span>新增</span>
 	        </button>
 	        </@shiro.hasPermission>
 	        
-	        <@shiro.hasPermission name="user:delete">
+	        <@shiro.hasPermission name="resource:delete">
 	        <button type="submit" class="btn btn-danger">
 	        	<i class="icon-glyphicons-halflings icon-white icon-remove margin-right"></i><span>删除</span>
 	        </button>

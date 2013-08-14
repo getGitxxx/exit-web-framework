@@ -176,6 +176,9 @@ body {
 #module-container, #module-content {
 	position: relative;
 }
+#module-content {
+	min-height: 250px;
+}
 
 .login-container {
     width: 600px;

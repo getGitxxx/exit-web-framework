@@ -48,7 +48,7 @@ public class GroupController {
 	@RequestMapping("view")
 	public Page<Group> view(PageRequest pageRequest,HttpServletRequest request) {
 		
-		List<PropertyFilter> filters = PropertyFilters.build(request);
+		List<PropertyFilter> filters = PropertyFilters.build(request,true);
 		
 		request.setAttribute("states", SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.State,"3"));
 		request.setAttribute("groupsList", accountManager.getAllGroup(GroupType.RoleGorup));
@@ -84,7 +84,7 @@ public class GroupController {
 			entity.setParent(accountManager.getGroup(parentId));
 		}
 		
-		List<String> resourceIds = ServletUtils.getParameterValues(request, "resourceIds");
+		List<String> resourceIds = ServletUtils.getParameterValues(request, "resourceId");
 		
 		entity.setResourcesList(accountManager.getResources(resourceIds));
 		

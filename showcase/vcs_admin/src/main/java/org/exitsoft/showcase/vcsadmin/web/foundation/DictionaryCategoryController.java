@@ -44,7 +44,7 @@ public class DictionaryCategoryController {
 	@RequestMapping("view")
 	public Page<DictionaryCategory> view(PageRequest pageRequest,HttpServletRequest request) {
 		
-		List<PropertyFilter> filters = PropertyFilters.build(request);
+		List<PropertyFilter> filters = PropertyFilters.build(request,true);
 		
 		if (!pageRequest.isOrderBySetted()) {
 			pageRequest.setOrderBy("id");

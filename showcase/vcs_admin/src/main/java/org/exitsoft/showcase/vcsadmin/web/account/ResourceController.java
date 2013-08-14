@@ -46,7 +46,7 @@ public class ResourceController {
 	@RequestMapping("view")
 	public Page<Resource> view(PageRequest pageRequest,HttpServletRequest request) {
 		
-		List<PropertyFilter> filters = PropertyFilters.build(request);
+		List<PropertyFilter> filters = PropertyFilters.build(request,true);
 		
 		request.setAttribute("resourceType", SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.ResourceType));
 		request.setAttribute("resourcesList", accountManager.getAllResources());
@@ -130,6 +130,8 @@ public class ResourceController {
 	public Resource bindingModel(@RequestParam(value = "id", required = false)String id) {
 		
 		Resource resource = new Resource();
+		
+		resource.setSort(accountManager.getAllResources().size() + 1);
 		
 		if (StringUtils.isNotEmpty(id)) {
 			resource = accountManager.getResource(id);
