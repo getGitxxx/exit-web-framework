@@ -31,7 +31,6 @@ i.margin-right {
     margin: -15px;
     background: #fefefe;
 }
-
 .panel .panel-content .panel {
     box-shadow:none;
     margin-bottom:0px;
@@ -41,6 +40,11 @@ i.margin-right {
     border-left: 1px solid #dddddd;
     border-right: 1px solid #dddddd;
 }
+
+.panel .panel-content .modal-footer {
+	margin-top: 0px;
+}
+
 .panel .panel-content .panel .panel-footer {
     border:1px solid #dddddd;
 }
@@ -55,6 +59,11 @@ i.margin-right {
 .panel .panel-footer .pagination{
     margin: 0px;
     vertical-align: middle;
+}
+
+.panel .panel-content .alert {
+	border-radius : 0px;
+	margin: 0px;
 }
 
 .table {

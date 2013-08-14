@@ -1,4 +1,43 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".nav.navbar-nav").find("li").children("a").click(function() {
+			$(".nav.navbar-nav").find(".accordion").fadeOut("fast");
+			$(".nav.navbar-nav").find("li.active").removeClass("active");
+			
+			var li = $(this).parent();
+			li.children(".accordion").fadeIn("fast");
+			li.addClass("active");
+			
+		});
+		
+		$(".nav.navbar-nav").find(".accordion a").click(function(e){
+			var a = $(this);
+			a.parents(".accordion").find(".active").removeClass("active");
+			a.addClass("active");
+			
+			var action = a.attr("action"),url = action.substring(1,action.length);
+			
+			$.maskload("#module-content",url.substring(0,url.length -3),function(){
+				var title = a.attr("title");
+				
+				$("#module-name").html(title);
+				
+				var crumb = $(".breadcrumb"),
+				li = $("<li>");
 
+				crumb.empty();
+
+				a.parents("li").each(function(i,o){
+					var html = $(o).children("a").find("span.text").html();
+					
+					crumb.append(li.clone().html(html));
+				});
+
+				crumb.append(li.clone().addClass("active").html(title));
+			});
+		});
+	});
+</script>
 
 <div class="left">
 	<div class="top">

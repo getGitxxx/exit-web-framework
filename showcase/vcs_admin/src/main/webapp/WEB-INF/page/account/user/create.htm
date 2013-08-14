@@ -11,7 +11,7 @@
 	});
 </script>
 
-<form id="user-insert-form" action="account/user/insert" method="post" class="form-row">
+<form action="account/user/insert" method="post" class="form-row" data-target="#module-content">
 	<div class="panel">
 	    <div class="panel-heading">
 	        <h3 class="panel-title">创建用户</h3>
@@ -47,7 +47,7 @@
 		   			<div class="row">
 		    			<div class="col-lg-6">
 							<label for="state">用户状态:</label>
-							<select class="form-control" name="state">
+							<select class="form-control required" name="state" id="state">
 								<#list states as d>
 									<option value="${d.value}">${d.name}</option>
 								</#list>
@@ -85,16 +85,16 @@
 								            </tr>
 								            </thead>
 								            <tbody>
-								            	<#list groupsList as l>
+								            	<#list groupsList as gl>
 									            <tr>
 									            	<td>
-									                    <input type="checkbox" name="groupId"/>
+									                    <input type="checkbox" value="${gl.id}" name="groupId"/>
 									                </td>
 									                <td>
-									                    ${l.name!""}
+									                    ${gl.name!""}
 									                </td>
 									                <td>
-									                	${l.remark!""}
+									                	${gl.remark!""}
 									                </td>
 									            </tr>
 									            </#list>

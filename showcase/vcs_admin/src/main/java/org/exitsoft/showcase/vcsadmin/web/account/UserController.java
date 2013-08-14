@@ -49,7 +49,7 @@ public class UserController {
 	@RequestMapping("view")
 	public Page<User> view(PageRequest pageRequest,HttpServletRequest request) {
 		
-		List<PropertyFilter> filters = PropertyFilters.build(request);
+		List<PropertyFilter> filters = PropertyFilters.build(request, true);
 
 		request.setAttribute("states", SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.State,"3"));
 		
