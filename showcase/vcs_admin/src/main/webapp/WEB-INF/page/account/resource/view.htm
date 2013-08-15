@@ -29,14 +29,14 @@
 					<div class="form-group">
 			   			<div class="row">
 			    			<div class="col-lg-6">
-								<label for="filter_RLIKES_name">资源名称:</label>
-								<input type="text" class="form-control" id="filter_RLIKES_name" name="filter_RLIKES_name" value="${RequestParameters.filter_RLIKES_name!''}">
+								<label for="filter_LIKES_name">资源名称:</label>
+								<input type="text" class="form-control" id="filter_LIKES_name" name="filter_LIKES_name" value="${RequestParameters.filter_LIKES_name!''}">
 							</div>
 							<div class="col-lg-6">
 								<label for="filter_EQS_type">资源类型:</label>
 								<select class="form-control" name="filter_EQS_type" id="filter_EQS_type">
 					        		<option value="">
-										无
+										全部
 					                </option>
 					           		<#list resourceType as rt>
 						           		<option value="${rt.value}" <#if RequestParameters.filter_EQS_type?has_content && RequestParameters.filter_EQS_type == rt.value >selected="selected"</#if> >
@@ -51,12 +51,12 @@
 		   			<div class="form-group">
 			   			<div class="row">
 			    			<div class="col-lg-6">
-								<label for="filter_RLIKES_value">拦截值:</label>
-								<input type="text" class="form-control" id="filter_RLIKES_value" name="filter_RLIKES_value" value="${RequestParameters.filter_RLIKES_value!''}">
+								<label for="filter_LIKES_value">拦截值:</label>
+								<input type="text" class="form-control" id="filter_LIKES_value" name="filter_LIKES_value" value="${RequestParameters.filter_LIKES_value!''}">
 							</div>
 							<div class="col-lg-6">
-								<label for="filter_RLIKES_permission">访问允许:</label>
-								<input type="text" class="form-control" id="filter_RLIKES_permission" name="filter_RLIKES_permission" value="${RequestParameters.filter_RLIKES_permission!''}">
+								<label for="filter_LIKES_permission">访问允许:</label>
+								<input type="text" class="form-control" id="filter_LIKES_permission" name="filter_LIKES_permission" value="${RequestParameters.filter_LIKES_permission!''}">
 							</div>
 			   			</div>
 		   			</div>

@@ -27,7 +27,7 @@
 						</div>
 						<div class="col-lg-6">
 							<label for="state">状态:</label>
-							<select class="form-control required" name="state" id="state">
+							<select class="form-control" name="state" id="state">
 				           		<#list states as d>
 					           		<option value="${d.value}" <#if entity.state == d.value?number >selected="selected"</#if> >
 										${d.name}
@@ -43,7 +43,7 @@
 		    			<div class="col-lg-6">
 							<label for="parentId">所属父类:</label>
 							<select class="form-control" name="parentId" id="parentId">
-								<option value="">无</option>
+								<option value="">请选择...</option>
 				                <#list groupsList as gl>
 				                	<option value="${gl.id}" <#if entity.parentId==gl.id> selected="selected" </#if> >${gl.name}</option>
 				                </#list>

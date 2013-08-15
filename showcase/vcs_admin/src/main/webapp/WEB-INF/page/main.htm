@@ -36,8 +36,75 @@
 				crumb.append(li.clone().addClass("active").html(title));
 			});
 		});
+		
 	});
+	
+	function onChangePasswordSuccess(r){
+		if (r.booleanValue() == true) {
+			$("#change-password-message").show().children("strong").html("修改成功");
+		}
+		return false;
+	}
+	
 </script>
+<div class="modal fade" id="change-password-modal">
+	<div class="modal-dialog">
+		<div class="modal-content" id="change-password-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"><i class="icon-mini icon-setting margin-right"></i><span>修改密码</span></h4>
+			</div>
+			<div class="alert alert-info" id="change-password-message" style="display: none;">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  <strong></strong>
+			</div>
+ 			<form id="change-password-form" action="changePassword" data-target="#change-password-content" onsuccess="onChangePasswordSuccess"  method="post">
+				<div class="modal-body">
+				
+					<div class="form-group">
+			   			<div class="row">
+			    			<div class="col-lg-12">
+								<label for="oldPassword">旧密码:</label>
+								<input type="password" class="form-control required" id="oldPassword" name="oldPassword">
+							</div>
+			   			</div>
+		   			</div>
+		   			
+		   			<div class="form-group">
+			   			<div class="row">
+			    			<div class="col-lg-12">
+								<label for="newPassword">新密码:</label>
+								<input type="password" class="form-control required" id="newPassword" name="newPassword" >
+							</div>
+			   			</div>
+		   			</div>
+		   			
+		   			<div class="form-group">
+			   			<div class="row">
+			    			<div class="col-lg-12">
+								<label for="confirmPassword">确认密码:</label>
+								<input type="password" class="form-control required" id="confirmPassword" equalTo="#newPassword" name="confirmPassword">
+							</div>
+			   			</div>
+		   			</div>
+		   			
+		   			
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-success">
+						<i class="icon-glyphicons-halflings icon-white icon-search margin-right"></i>确定
+					</button>
+					<button type="reset" class="btn btn-primary">
+			        	<i class="icon-glyphicons-halflings icon-white icon-repeat margin-right"></i>重置
+			        </button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">
+						<i class="icon-glyphicons-halflings icon-white icon-minus-sign margin-right"></i>取消
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
 <div class="left">
 	<div class="top">
@@ -59,7 +126,7 @@
 	            <i class="icon-glyphicons-halflings icon-off"></i>
 	            <sapn>注销</sapn>
 	        </a>
-	        <a class="foundation-button change-password">
+	        <a class="foundation-button change-password" href="javascript:void(0);" data-toggle="modal" data-target="#change-password-modal">
 	            <i class="icon-glyphicons-halflings icon-cog"></i>
 	            <sapn>修改密码</sapn>
 	        </a>

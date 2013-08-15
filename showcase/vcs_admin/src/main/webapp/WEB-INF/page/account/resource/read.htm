@@ -27,6 +27,7 @@
 						<div class="col-lg-6">
 							<label for="type">资源类型:</label>
 							<select class="form-control" name="type" id="type">
+								<option value="">请选择...</option>
 				           		<#list resourceType as rt>
 					           		<option value="${rt.value}" <#if entity.type?has_content && entity.type == rt.value >selected="selected"</#if> >
 										${rt.name}
@@ -68,7 +69,7 @@
 		    			<div class="col-lg-12">
 							<label for="parentId">所属父类:</label>
 							<select class="form-control" name="parentId" id="parentId">
-								<option value="">无</option>
+								<option value="">请选择...</option>
 				                <#list resourcesList as rl>
 				                	<option value="${rl.id}" <#if entity.parentId==rl.id> selected="selected" </#if> >${rl.name}</option>
 				                </#list>
