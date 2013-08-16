@@ -16,7 +16,7 @@ i.margin-right {
 
 .modal-backdrop.absolute .loading-container {
 	margin: 0 auto;
-    padding-top: 7%;
+    padding: 5% 0px;
     text-align: center;
     width: 120px;
 }

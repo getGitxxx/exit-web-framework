@@ -47,7 +47,7 @@
 	}
 	
 </script>
-<div class="modal fade" id="change-password-modal">
+<div class="modal fade" id="change-password-modal" data-search='false'>
 	<div class="modal-dialog">
 		<div class="modal-content" id="change-password-content">
 			<div class="modal-header">
@@ -58,7 +58,7 @@
 			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			  <strong></strong>
 			</div>
- 			<form id="change-password-form" action="changePassword" data-target="#change-password-content" onsuccess="onChangePasswordSuccess"  method="post">
+ 			<form id="change-password-form" action="changePassword" data-target="#change-password-content" data-onsuccess="onChangePasswordSuccess"  method="post">
 				<div class="modal-body">
 				
 					<div class="form-group">
