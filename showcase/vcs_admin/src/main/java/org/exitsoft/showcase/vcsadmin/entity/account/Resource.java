@@ -73,7 +73,7 @@ public class Resource extends UniversallyUniqueIdentifier{
 	 * 
 	 * @return String
 	 */
-	@Column(length=64,nullable=false,unique=true)
+	@Column(length=32,nullable=false,unique=true)
 	public String getName() {
 		return name;
 	}
@@ -92,11 +92,8 @@ public class Resource extends UniversallyUniqueIdentifier{
 	 * 
 	 * @return String
 	 */
-	@Column(length=512)
+	@Column(length=256)
 	public String getValue() {
-		if(StringUtils.isEmpty(value)) {
-			return "#";
-		}
 		return value;
 	}
 
@@ -173,7 +170,7 @@ public class Resource extends UniversallyUniqueIdentifier{
 	 * 
 	 * @return String
 	 */
-	@Column(columnDefinition="text")
+	@Column(length=512)
 	public String getRemark() {
 		return remark;
 	}
@@ -279,7 +276,7 @@ public class Resource extends UniversallyUniqueIdentifier{
 	 * 
 	 * @return String
 	 */
-	@Column(length=64)
+	@Column(length=32)
 	public String getIcon() {
 		return icon;
 	}

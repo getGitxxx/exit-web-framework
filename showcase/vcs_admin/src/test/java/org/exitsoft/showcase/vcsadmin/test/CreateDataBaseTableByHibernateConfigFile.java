@@ -21,9 +21,9 @@ public class CreateDataBaseTableByHibernateConfigFile {
 		
 		export.setFormat(false);
 		
-		export.setOutputFile("src/test/resources/h2schma.sql");
+		//export.setOutputFile("src/test/resources/h2schma.sql");
 		
-		export.create(true, false);
+		export.create(true, true);
 	}
 	
 }

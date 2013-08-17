@@ -61,7 +61,7 @@ public class User extends UniversallyUniqueIdentifier{
 	 * 
 	 * @return String
 	 */
-	@Column(length=64,unique=true,nullable=false,updatable=false)
+	@Column(length=32,unique=true,nullable=false,updatable=false)
 	public String getUsername() {
 		return username;
 	}
@@ -99,7 +99,7 @@ public class User extends UniversallyUniqueIdentifier{
 	 * 
 	 * @return String
 	 */
-	@Column(length=128,nullable=false)
+	@Column(length=64,nullable=false)
 	public String getRealname() {
 		return realname;
 	}
@@ -119,7 +119,7 @@ public class User extends UniversallyUniqueIdentifier{
 	 * 
 	 * @return {@link State}
 	 */
-	@Column(nullable=false)
+	@Column(nullable=false, length = 1)
 	public Integer getState() {
 		return state;
 	}
@@ -137,7 +137,7 @@ public class User extends UniversallyUniqueIdentifier{
 	 * 获取邮件
 	 * @return String
 	 */
-	@Column(length=256)
+	@Column(length=128)
 	public String getEmail() {
 		return email;
 	}

@@ -86,7 +86,7 @@ public class DictionaryCategory extends UniversallyUniqueIdentifier{
 	 * 
 	 * @return String
 	 */
-	@Column(columnDefinition="text")
+	@Column(length=512)
 	public String getRemark() {
 		return remark;
 	}

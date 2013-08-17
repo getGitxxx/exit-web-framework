@@ -70,7 +70,7 @@ public class Group extends UniversallyUniqueIdentifier{
 	 * 
 	 * @return String
 	 */
-	@Column(length=64,nullable=false,unique=true)
+	@Column(length=32,nullable=false,unique=true)
 	public String getName() {
 		return name;
 	}
@@ -190,7 +190,7 @@ public class Group extends UniversallyUniqueIdentifier{
 	 * 
 	 * @return String
 	 */
-	@Column(columnDefinition="text")
+	@Column(length=512)
 	public String getRemark() {
 		return remark;
 	}
@@ -208,7 +208,7 @@ public class Group extends UniversallyUniqueIdentifier{
 	 * 获取组状态
 	 * @return
 	 */
-	@Column(nullable=false)
+	@Column(nullable=false,length = 1)
 	public int getState() {
 		return state;
 	}
@@ -246,7 +246,7 @@ public class Group extends UniversallyUniqueIdentifier{
 	 * 获取shiro role字符串
 	 * @return String
 	 */
-	@Column(unique=true,length=64)
+	@Column(length=64)
 	public String getRole() {
 		return role;
 	}
@@ -263,7 +263,7 @@ public class Group extends UniversallyUniqueIdentifier{
 	 * 获取shiro role连定义的值
 	 * @return String
 	 */
-	@Column(length=512)
+	@Column(length=256)
 	public String getValue() {
 		return value;
 	}

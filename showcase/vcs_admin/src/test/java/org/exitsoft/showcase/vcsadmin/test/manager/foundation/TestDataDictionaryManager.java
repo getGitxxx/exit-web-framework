@@ -1,6 +1,6 @@
 package org.exitsoft.showcase.vcsadmin.test.manager.foundation;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,23 +30,14 @@ public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 	@Test
 	public void testGetDataDictionariesByCategoryCode() {
 		
-		assertEquals("启用", SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "1"));
-		assertEquals("启用", SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "1"));
-		assertEquals("启用", SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "1"));
+		String valueNoCache = SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "1");
+		String valueCache = SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "1");
+
+		assertEquals(valueCache.hashCode(), valueNoCache.hashCode());
 		
-		testSaveDataDictionary();
-		
-		assertEquals("a1b2c3d4e5f6g7h8i9j0k中文输入法a1b2c3d4e5f6g7h8i9j0k", SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "4"));
-		assertEquals("a1b2c3d4e5f6g7h8i9j0k中文输入法a1b2c3d4e5f6g7h8i9j0k", SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "4"));
-		assertEquals("a1b2c3d4e5f6g7h8i9j0k中文输入法a1b2c3d4e5f6g7h8i9j0k", SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "4"));
-		
-		testDeleteDataDictionary();
-		
-		assertEquals("删除", SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "3"));
-		assertEquals("删除", SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "3"));
-		assertEquals("删除", SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "3"));
 	}
 	
+	@Test
 	public void testDeleteDataDictionary() {
 		
 		List<String> ids = new ArrayList<String>();
@@ -59,13 +50,14 @@ public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 		assertEquals(afterRow, beforeRow - 2);
 	}
 	
+	@Test
 	public void testSaveDataDictionary() {
 		
 		DictionaryCategory category = systemDictionaryManager.getDictionaryCategory("SJDK3849CKMS3849DJCK2039ZMSK0015");
 		
 		DataDictionary dataDictionary = new DataDictionary();
 		dataDictionary.setCategory(category);
-		dataDictionary.setName("a1b2c3d4e5f6g7h8i9j0k中文输入法a1b2c3d4e5f6g7h8i9j0k");
+		dataDictionary.setName("test");
 		dataDictionary.setValue("4");
 		dataDictionary.setType(PropertyType.I.toString());
 		dataDictionary.setRemark("*");
@@ -76,9 +68,7 @@ public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 		
 		assertEquals(afterRow, beforeRow + 1);
 		
-		assertEquals(dataDictionary.getWubiCode(), "A1B2C3D4E5F6G7H8I9J0KKYLTIA1B2C3D4E5F6G7H8I9J0K");
-		assertEquals(dataDictionary.getPinYinCode(), "A1B2C3D4E5F6G7H8I9J0KZWSRFA1B2C3D4E5F6G7H8I9J0K");
-		
 	}
+	
 	
 }
