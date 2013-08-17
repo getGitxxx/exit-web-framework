@@ -9,10 +9,21 @@
 			
 			children.prop("checked",checkbox.is(":checked"));
 		});
-		
 	});
 	function loadPage(pageNo) {
 		$.maskload('#module-content','account/group/view',{pageNo:pageNo});
+	}
+	function beforeDelete(formData, jqForm, options) {
+		if (formData.length == 0) {
+			alert("您还没有选择任何要删除的记录");
+			return false;
+		}
+		
+		var flag = confirm("确定要删除" + formData.length + "条记录吗?");
+		
+		if (!flag){
+			return false;
+		}
 	}
 </script>
 
@@ -81,16 +92,16 @@
 	</div>
 </div>
 
-<form action="account/group/delete" method="post" data-target="#module-content">
+<form action="account/group/delete" method="post" onbeforesubmit="beforeDelete" data-target="#module-content">
 	<div class="panel">
 	    <div class="panel-heading">
 	        <h3 class="panel-title"><i class="icon-mini icon-book margin-right"></i>列表信息</h3>
 	    </div>
 	    <div class="panel-content">
 	    	<#if message?has_content>
-    		<div class="alert alert-info">
+    		<div class="alert auto-close alert-success fade in">
 			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			  <strong>${message}</strong>
+			  <strong><i class="icon-glyphicons-halflings icon-white icon-ok margin-right"></i>${message}</strong>
 			</div>
 	    	</#if>
 	        <table class="table table-hover table-striped">

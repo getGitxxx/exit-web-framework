@@ -72,8 +72,16 @@ i.margin-right {
 }
 
 .panel .panel-content .alert {
-	border-radius : 0px;
-	margin: 0px;
+	border-radius: 0px;
+    margin: 0;
+}
+
+.panel .panel-content .alert.auto-close {
+	left: 30%;
+    margin: 10% 0;
+    position: absolute;
+    width: 400px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
 }
 
 .table {

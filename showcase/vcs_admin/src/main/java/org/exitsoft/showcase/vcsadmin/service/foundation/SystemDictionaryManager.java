@@ -141,7 +141,7 @@ public class SystemDictionaryManager {
 	}
 	
 	/**
-	 * 获取字典列别分页对象
+	 * 获取字典类别分页对象
 	 * 
 	 * @param request 分页参数请求
 	 * @param filters 属性过滤器集合

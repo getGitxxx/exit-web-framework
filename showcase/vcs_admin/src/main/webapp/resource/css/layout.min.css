@@ -13,7 +13,10 @@ body {
 }
 
 .panel .panel-content .left .top {
-	background-color: #eee;
+	background-color: #EEEEEE;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
 }
 
 .panel .panel-content .left .profile {
@@ -123,7 +126,6 @@ body {
     position: absolute;
     top: 0;
     width: 208px;
-    z-index: 100;
     background-image:none;
 }
 .panel .panel-content .left .navbar .navbar-nav .accordion a {
@@ -180,10 +182,14 @@ body {
 	min-height: 250px;
 }
 
-.login-container {
-    width: 600px;
+#login-container {
+    width: 610px;
     margin: 0 auto;
     padding: 7% 0px;
+}
+
+#login-container .row [class^="col-lg"] {
+	padding-left: 0px;
 }
 
 .ring-panel .paper-ring {
@@ -197,5 +203,5 @@ body {
 
 .ring-panel .ring-panel-content {
     border: 1px solid #e5e5e5;
-    padding: 15px;
+    padding: 15px 10px;
 }

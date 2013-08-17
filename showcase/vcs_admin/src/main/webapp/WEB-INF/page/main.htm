@@ -16,8 +16,9 @@
 			a.addClass("active");
 			
 			var action = a.attr("action"),url = action.substring(1,action.length);
+			action = url.substring(0,url.length -3);
 			
-			$.maskload("#module-content",url.substring(0,url.length -3),function(){
+			$.maskload("#module-content",action,function(){
 				var title = a.attr("title");
 				
 				$("#module-name").html(title);

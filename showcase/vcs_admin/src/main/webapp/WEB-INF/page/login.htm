@@ -4,25 +4,33 @@
 	}
 </script>
 
-<div class="login-container">
+<div id="login-container">
 	<div class="ring-panel">
 		<div class="paper-ring"></div>
 		<div class="ring-panel-content">
-			<h3>
+			<h4>
 				<i class="icon-mini icon-key"></i> 用户登录
-			</h3>
+			</h4>
 			<hr>
-			<form id="login-form" action="login" method="post" data-target="#main-container">
+			
+			<#if shiroLoginFailure?has_content>
+    		<div class="alert alert-danger fade in">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  <strong><i class="icon-glyphicons-halflings icon-remove margin-right"></i>${shiroLoginFailure}</strong>
+			</div>
+	    	</#if>
+	    	
+			<form id="login-form" action="login" method="post" class="form-row" data-target="#main-container">
 				<div class="form-group">
-					<label for="username">登录帐号</label> 
-					<input type="text" class="form-control required" value="admin" name="username" id="username" placeholder="登录帐号">
+					<label for="username">登录帐号:</label> 
+					<input type="text" class="form-control required" value="admin" name="username" id="username">
 				</div>
 				<div class="form-group">
-					<label for="password">登录密码</label> 
-					<input type="password" class="form-control required" value="admin" name="password" id="password" placeholder="登录密码">
+					<label for="password">登录密码:</label> 
+					<input type="password" class="form-control required" value="admin" name="password" id="password" >
 				</div>
 				<div class="form-group">
-					<label for="rememberMe">记住我</label> 
+					<label for="rememberMe">记住我:</label> 
 					<select class="form-control" name="rememberMe" id="rememberMe">
 						<option value="">无</option>
 						<option value="25200">在一周内</option>
@@ -30,6 +38,24 @@
 						<option value="31536000">在一个年内</option>
 					</select>
 				</div>
+				<#if Session.showCaptcha?has_content && Session.showCaptcha == true>
+				<div class="form-group">
+					<label for="captcha">验证码:</label>
+					<div class="row">
+						<div class="col-lg-8">
+						<input type="text" class="form-control required" title="请输入验证码" name="captcha" id="captcha" >
+						</div>
+						<div class="col-lg-2">
+							<img id="captchaImg" src="getCaptcha" />
+						</div>
+						<div class="col-lg-2">
+							<a class="btn btn-link" href="javascript:reloadValidateCode();">看不清?</a>
+						</div>
+					</div>
+				</div>
+				</#if>
+				<p>
+				</p>
 				<button type="submit" class="btn btn-default">登录</button>
 				<button type="reset" class="btn btn-default">重置</button>
 			</form>
