@@ -73,9 +73,11 @@ public class UserController {
 	 * 
 	 */
 	@RequestMapping("insert")
-	public String insert(User entity,@RequestParam(value = "groupIds",required=false)List<String> groupIds,RedirectAttributes redirectAttributes) {
+	public String insert(User entity,
+							   @RequestParam(required=false)List<String> groupId,
+							   RedirectAttributes redirectAttributes) {
 		
-		entity.setGroupsList(accountManager.getGroups(groupIds));
+		entity.setGroupsList(accountManager.getGroups(groupId));
 		
 		accountManager.insertUser(entity);
 		redirectAttributes.addFlashAttribute("message", "新增成功");
@@ -109,7 +111,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="update")
 	public String update(@ModelAttribute("entity")User entity, 
-								 @RequestParam(value = "groupId",required=false)List<String> groupId,
+								 @RequestParam(required=false)List<String> groupId,
 								 RedirectAttributes redirectAttributes) {
 
 		entity.setGroupsList(accountManager.getGroups(groupId));

@@ -16,7 +16,7 @@ i.margin-right {
 
 .modal-backdrop.absolute .loading-container {
 	margin: 0 auto;
-    padding: 5% 0px;
+    padding: 10% 0px;
     text-align: center;
     width: 120px;
 }
@@ -77,11 +77,11 @@ i.margin-right {
 }
 
 .panel .panel-content .alert.auto-close {
-	left: 30%;
-    margin: 10% 0;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    margin: 0 30%;
     position: absolute;
+    top: 30%;
     width: 400px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
 }
 
 .table {

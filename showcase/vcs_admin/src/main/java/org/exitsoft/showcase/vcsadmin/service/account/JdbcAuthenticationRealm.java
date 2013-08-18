@@ -45,7 +45,7 @@ public class JdbcAuthenticationRealm extends AuthorizationRealm{
         }
         
         if (user.getState().equals(State.Disable.getValue())) {
-        	 throw new DisabledAccountException("你的账户是禁用的账户");
+        	 throw new DisabledAccountException("你的账户已被禁用,请联系管理员开通.");
         }
         
         CommonVariableModel model = new CommonVariableModel(user);
