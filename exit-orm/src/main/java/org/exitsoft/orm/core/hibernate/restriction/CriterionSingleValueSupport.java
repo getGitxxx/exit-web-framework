@@ -42,9 +42,9 @@ public abstract class CriterionSingleValueSupport implements CriterionBuilder{
 	 */
 	public Criterion build(PropertyFilter filter) {
 		String matchValue = filter.getMatchValue();
-		Class<?> propertyType = filter.getPropertyType();
+		Class<?> FieldType = filter.getFieldType();
 		
-		MatchValue matchValueModel = getMatchValue(matchValue, propertyType);
+		MatchValue matchValueModel = getMatchValue(matchValue, FieldType);
 		
 		Junction criterion = null;
 		
@@ -76,12 +76,12 @@ public abstract class CriterionSingleValueSupport implements CriterionBuilder{
 	 * 获取值对比模型
 	 * 
 	 * @param matchValue 值
-	 * @param propertyType 值类型
+	 * @param FieldType 值类型
 	 * 
 	 * @return {@link MatchValue}
 	 */
-	public MatchValue getMatchValue(String matchValue,Class<?> propertyType) {
-		return MatchValue.createMatchValueModel(matchValue, propertyType,andValueSeparator,orValueSeparator);
+	public MatchValue getMatchValue(String matchValue,Class<?> FieldType) {
+		return MatchValue.createMatchValueModel(matchValue, FieldType,andValueSeparator,orValueSeparator);
 	}
 
 	/**

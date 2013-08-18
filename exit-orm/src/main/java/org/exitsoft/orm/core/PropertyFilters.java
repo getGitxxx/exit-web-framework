@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.exitsoft.common.type.FieldType;
 import org.exitsoft.common.utils.ServletUtils;
 import org.springframework.util.Assert;
 
@@ -41,9 +42,9 @@ public class PropertyFilters {
 		String restrictionsName = StringUtils.substring(restrictionsNameAndClassType, 0,restrictionsNameAndClassType.length() - 1);
 		String classType = StringUtils.substring(restrictionsNameAndClassType, restrictionsNameAndClassType.length() - 1, restrictionsNameAndClassType.length());
 		
-		PropertyType propertyType = null;
+		FieldType FieldType = null;
 		try {
-			propertyType = PropertyType.valueOf(classType);
+			FieldType = FieldType.valueOf(classType);
 		} catch (Exception e) {
 			throw new IllegalAccessError("[" + expression + "]表达式找不到相应的属性类型,获取的值为:" + classType);
 		}
@@ -58,7 +59,7 @@ public class PropertyFilters {
 			propertyNames[0] = StringUtils.substringAfterLast(expression, "_");
 		}
 		
-		return new PropertyFilter(restrictionsName, propertyType, propertyNames,matchValue);
+		return new PropertyFilter(restrictionsName, FieldType, propertyNames,matchValue);
 	}
 	
 	/**

@@ -47,7 +47,7 @@ public abstract class PredicateMultipleValueSupport extends PredicateSingleValue
 	 * @see org.exitsoft.orm.core.spring.data.jpa.restriction.PredicateSingleValueSupport#build(org.exitsoft.orm.core.PropertyFilter, org.exitsoft.orm.core.spring.data.jpa.JpaBuilderModel)
 	 */
 	public Predicate build(PropertyFilter filter, SpecificationModel model) {
-		Object value = convertMatchValue(filter.getMatchValue(), filter.getPropertyType());
+		Object value = convertMatchValue(filter.getMatchValue(), filter.getFieldType());
 		Predicate predicate = null;
 		
 		if (filter.hasMultiplePropertyNames()) {

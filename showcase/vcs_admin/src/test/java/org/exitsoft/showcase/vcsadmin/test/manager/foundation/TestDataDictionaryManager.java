@@ -1,12 +1,12 @@
 package org.exitsoft.showcase.vcsadmin.test.manager.foundation;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.exitsoft.orm.core.PropertyType;
+import org.exitsoft.common.type.FieldType;
 import org.exitsoft.showcase.vcsadmin.common.SystemVariableUtils;
 import org.exitsoft.showcase.vcsadmin.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.vcsadmin.entity.foundation.DataDictionary;
@@ -59,7 +59,7 @@ public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 		dataDictionary.setCategory(category);
 		dataDictionary.setName("test");
 		dataDictionary.setValue("4");
-		dataDictionary.setType(PropertyType.I.toString());
+		dataDictionary.setType(FieldType.I.toString());
 		dataDictionary.setRemark("*");
 		
 		int beforeRow = countRowsInTable("TB_DATA_DICTIONARY");

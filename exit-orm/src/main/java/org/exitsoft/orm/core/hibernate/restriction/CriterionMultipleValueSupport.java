@@ -45,7 +45,7 @@ public abstract class CriterionMultipleValueSupport extends CriterionSingleValue
 	 * @see org.exitsoft.orm.core.hibernate.restriction.CriterionSingleValueSupport#build(org.exitsoft.orm.core.PropertyFilter)
 	 */
 	public Criterion build(PropertyFilter filter) {
-		Object value = convertMatchValue(filter.getMatchValue(), filter.getPropertyType());
+		Object value = convertMatchValue(filter.getMatchValue(), filter.getFieldType());
 		Criterion criterion = null;
 		if (filter.hasMultiplePropertyNames()) {
 			Disjunction disjunction = Restrictions.disjunction();

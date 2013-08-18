@@ -29,9 +29,9 @@ public class EqRestriction extends CriterionSingleValueSupport {
 	 * (non-Javadoc)
 	 * @see org.exitsoft.orm.core.hibernate.restriction.CriterionSingleValueSupport#getMatchValue(java.lang.String, java.lang.Class)
 	 */
-	public MatchValue getMatchValue(String matchValue, Class<?> propertyType) {
+	public MatchValue getMatchValue(String matchValue, Class<?> FieldType) {
 		
-		MatchValue matchValueModel = super.getMatchValue(matchValue, propertyType);
+		MatchValue matchValueModel = super.getMatchValue(matchValue, FieldType);
 		for (int i = 0; i < matchValueModel.getValues().size(); i++) {
 			Object value = matchValueModel.getValues().get(i);
 			if (value instanceof String && StringUtils.equals(value.toString(),"null")) {

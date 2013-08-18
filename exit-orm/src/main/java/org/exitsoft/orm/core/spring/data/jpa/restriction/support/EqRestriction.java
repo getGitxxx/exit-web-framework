@@ -24,8 +24,8 @@ public class EqRestriction extends PredicateSingleValueSupport{
 	 * (non-Javadoc)
 	 * @see org.exitsoft.orm.core.spring.data.jpa.restriction.PredicateSingleValueSupport#getMatchValue(java.lang.String, java.lang.Class)
 	 */
-	public MatchValue getMatchValue(String matchValue, Class<?> propertyType) {
-		MatchValue matchValueModel = super.getMatchValue(matchValue, propertyType);
+	public MatchValue getMatchValue(String matchValue, Class<?> FieldType) {
+		MatchValue matchValueModel = super.getMatchValue(matchValue, FieldType);
 		for (int i = 0; i < matchValueModel.getValues().size(); i++) {
 			Object value = matchValueModel.getValues().get(i);
 			if (value instanceof String && StringUtils.equals(value.toString(),"null")) {

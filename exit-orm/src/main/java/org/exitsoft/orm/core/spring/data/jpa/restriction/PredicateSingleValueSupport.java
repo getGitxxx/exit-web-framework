@@ -44,9 +44,9 @@ public abstract class PredicateSingleValueSupport implements PredicateBuilder{
 	public Predicate build(PropertyFilter filter,SpecificationModel model) {
 
 		String matchValue = filter.getMatchValue();
-		Class<?> propertyType = filter.getPropertyType();
+		Class<?> FieldType = filter.getFieldType();
 		
-		MatchValue matchValueModel = getMatchValue(matchValue, propertyType);
+		MatchValue matchValueModel = getMatchValue(matchValue, FieldType);
 		
 		Predicate predicate = null;
 		
@@ -94,12 +94,12 @@ public abstract class PredicateSingleValueSupport implements PredicateBuilder{
 	 * 获取值对比模型
 	 * 
 	 * @param matchValue 值
-	 * @param propertyType 值类型
+	 * @param FieldType 值类型
 	 * 
 	 * @return {@link MatchValue}
 	 */
-	public MatchValue getMatchValue(String matchValue,Class<?> propertyType) {
-		return MatchValue.createMatchValueModel(matchValue, propertyType,andValueSeparator,orValueSeparator);
+	public MatchValue getMatchValue(String matchValue,Class<?> FieldType) {
+		return MatchValue.createMatchValueModel(matchValue, FieldType,andValueSeparator,orValueSeparator);
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package org.exitsoft.orm.core;
+package org.exitsoft.common.type;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import java.util.Date;
  * @author vincent
  * 
  */
-public enum PropertyType {
+public enum FieldType {
 	
 	/**
 	 * String
@@ -38,7 +38,7 @@ public enum PropertyType {
 	//类型Class
 	private Class<?> clazz;
 
-	private PropertyType(Class<?> clazz) {
+	private FieldType(Class<?> clazz) {
 		this.clazz = clazz;
 	}
 	

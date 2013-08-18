@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.exitsoft.orm.core.PropertyType;
+import org.exitsoft.common.type.FieldType;
 
 
 
@@ -55,7 +55,7 @@ public @interface StateDelete {
 	/**
 	 * 改变值的类型
 	 * 
-	 * @return {@link PropertyType}
+	 * @return {@link FieldType}
 	 */
-	public PropertyType type() default PropertyType.I;
+	public FieldType type() default FieldType.I;
 }

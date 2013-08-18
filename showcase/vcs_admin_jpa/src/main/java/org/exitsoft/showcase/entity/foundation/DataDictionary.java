@@ -8,8 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.exitsoft.common.type.FieldType;
 import org.exitsoft.common.utils.ConvertUtils;
-import org.exitsoft.orm.core.PropertyType;
 import org.exitsoft.orm.enumeration.ExecuteMehtod;
 import org.exitsoft.orm.strategy.annotation.ConvertCode;
 import org.exitsoft.orm.strategy.annotation.ConvertProperty;
@@ -199,6 +199,6 @@ public class DataDictionary extends UniversallyUniqueIdentifier{
 	 */
 	@Transient
 	public Object getReadValue() {
-		return ConvertUtils.convertToObject(this.value, PropertyType.valueOf(type).getValue());
+		return ConvertUtils.convertToObject(this.value, FieldType.valueOf(type).getValue());
 	}
 }

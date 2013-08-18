@@ -70,12 +70,12 @@ public abstract class ReflectionUtils {
 	 *            目标对象Object
 	 * @param value
 	 *            值
-	 * @param propertyType
+	 * @param FieldType
 	 *            用于查找Setter方法,为空时使用value的Class替代.
 	 */
 	public static void invokeSetterMethod(Object target, String propertyName,
-			Object value, Class<?> propertyType) {
-		Class<?> type = propertyType != null ? propertyType : value.getClass();
+			Object value, Class<?> FieldType) {
+		Class<?> type = FieldType != null ? FieldType : value.getClass();
 		String setterMethodName = "set" + StringUtils.capitalize(propertyName);
 		invokeMethod(target, setterMethodName, new Class[] { type },
 				new Object[] { value });

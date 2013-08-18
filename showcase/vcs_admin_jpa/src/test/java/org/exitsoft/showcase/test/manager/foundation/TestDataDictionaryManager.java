@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.exitsoft.orm.core.PropertyType;
+import org.exitsoft.common.type.FieldType;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.entity.foundation.DataDictionary;
@@ -67,7 +67,7 @@ public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 		dataDictionary.setCategory(category);
 		dataDictionary.setName("a1b2c3d4e5f6g7h8i9j0k中文输入法a1b2c3d4e5f6g7h8i9j0k");
 		dataDictionary.setValue("4");
-		dataDictionary.setType(PropertyType.I.toString());
+		dataDictionary.setType(FieldType.I.toString());
 		dataDictionary.setRemark("*");
 		
 		int beforeRow = countRowsInTable("TB_DATA_DICTIONARY");
