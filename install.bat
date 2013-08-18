@@ -8,22 +8,13 @@ call mvn clean source:jar install -Dmaven.test.skip=true
 
 echo [INFO] create vcs admin archetype
 
-cd %base_path%\showcase\vcs_admin
+cd %base_path%\showcase\basic-curd
 call mvn archetype:create-from-project
 
-cd %base_path%\showcase\vcs_admin\target\generated-sources\archetype
+cd %base_path%\showcase\basic-curd\target\generated-sources\archetype
 call mvn clean install -Dmaven.test.skip=true
 
-cd %base_path%\showcase\vcs_admin_jpa
-call mvn archetype:create-from-project
-
-cd %base_path%\showcase\vcs_admin_jpa\target\generated-sources\archetype
-call mvn clean install -Dmaven.test.skip=true
-
-cd %base_path%\showcase\vcs_admin
-rd /S /Q target
-
-cd %base_path%\showcase\vcs_admin_jpa
+cd %base_path%\showcase\basic-curd
 rd /S /Q target
 
 cd %base_path%
