@@ -36,8 +36,6 @@
 		<module>exit-parent</module>
 		<module>exit-common</module> 
 		<module>exit-orm</module>
-		<module>showcase/vcs_admin</module>
-		<module>showcase/vcs_admin_jpa</module>
 		<module>showcase/basic-curd</module>
 	</modules>
 
