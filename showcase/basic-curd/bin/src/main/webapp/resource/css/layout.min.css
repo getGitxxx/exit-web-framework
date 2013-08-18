@@ -1,0 +1,207 @@
+body {
+    background-image: url("../image/bg.gif");
+}
+
+.layout-container {
+    padding: 20px;
+    width: 1300px;
+    margin: 0 auto;
+}
+.panel .panel-content .left {
+    float: left;
+    width: 299px;
+}
+
+.panel .panel-content .left .top {
+	background-color: #EEEEEE;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.panel .panel-content .left .profile {
+    padding: 10px 15px;
+    background-color: #eee;
+}
+
+.panel .panel-content .left .profile .portrait {
+    float: left;
+    border:solid 1px #cccccc;
+}
+
+.panel .panel-content .left .profile .info {
+    margin-left: 50px;
+    height: 45px;
+}
+
+.panel .panel-content .left .profile .info span {
+    line-height: 1.5;
+}
+
+.panel .panel-content .left .profile .info .username{
+    font-weight:bold ;
+    display: block;
+}
+
+.panel .panel-content .left .profile .info .realname{
+    color: #888;
+    display: block;
+    font-size: 12px;
+}
+
+.panel .panel-content .left .foundation {
+    border-top: 1px solid #c5c5c5;
+    box-shadow: 0 1px 0 0 rgba(255,255,255,.9);
+    border-bottom: 1px solid #c5c5c5;
+}
+
+.panel .panel-content .left .foundation .foundation-button {
+    padding: 8px 0;
+    border-top: 1px solid #fdfdfd;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    color: #666666;
+}
+.panel .panel-content .left .foundation a.foundation-button:hover {
+    background: #eee;
+    color: #333;
+}
+
+.panel .panel-content .left .foundation a.foundation-button.logout {
+    width: 150px;
+    float: left;
+    border-right: 1px solid #c5c5c5;
+}
+.panel .panel-content .left .foundation a.foundation-button.change-password {
+    margin-left: 150px;
+}
+
+.panel .panel-content .left .navbar{
+    margin-bottom:0px;
+    padding:0px;
+    border-radius:none;
+   	background-color: transparent;
+}
+.panel .panel-content .left .navbar .navbar-nav {
+    width: 90px;
+    position:relative;
+    margin: 0px;
+}
+.panel .panel-content .left .navbar .navbar-nav > li {
+    float: none;
+    position: static;
+}
+
+.panel .panel-content .left .navbar .navbar-nav > li > a {
+    width: 90px;
+    text-align: center;
+    display: block;
+    box-sizing: border-box;
+    border-bottom: 1px solid #101010;
+    border-top: 1px solid #2e2e2e;
+    color: #666666;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    outline: none;
+}
+
+.panel .panel-content .left .navbar .navbar-nav > li > a .text {
+    display: block;
+}
+
+.panel .panel-content .left .navbar .navbar-nav > li > a:hover {
+    color: #888888;
+}
+
+.panel .panel-content .left .navbar .navbar-nav > .active > a,
+.panel .panel-content .left .navbar .navbar-nav > .active > a:hover {
+    background: #222222;
+    color: #CCCCCC;
+}
+.panel .panel-content .left .navbar .navbar-nav .accordion{
+    left: 91px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 208px;
+    background-image:none;
+}
+.panel .panel-content .left .navbar .navbar-nav .accordion a {
+    background:#F1F1F1;
+    padding: 10px 15px;
+	border: none;
+	border-top: 1px solid #fdfdfd;
+	border-bottom: 1px solid #d2d2d2;
+	color: #888;
+    text-align: left;
+    text-decoration:none;
+    width: 208px;
+}
+
+.panel .panel-content .left .navbar .navbar-nav .accordion a i {
+	margin-right: 8px;
+}
+
+.panel .panel-content .left .navbar .navbar-nav .accordion a:hover {
+    background: #f5f5f5;
+    color: #444;
+}
+.panel .panel-content .left .navbar .navbar-nav .accordion a.active {
+    background: #3276b1;
+    border: none;
+    border-top: 1px solid rgba(0,0,0,.15);
+    border-bottom: 1px solid rgba(0,0,0,.4);
+    color: #fff;
+    text-shadow: 0 -1px rgba(0,0,0,.3);
+}
+
+.panel .panel-content .center {
+    padding: 0px 20px 20px 320px;
+    background: url("../image/nav-bg.png") repeat-y;
+}
+
+.panel .panel-content .center .breadcrumb {
+    padding: 5w;
+    border: 1px solid #e5e5e5;
+    background: #fafafa;
+    box-shadow: 0 5px 5px -5px rgba(0,0,0,.1);
+    list-style: none;
+    border-radius: 4px;
+}
+
+.panel .panel-content .center .breadcrumb li {
+    text-shadow: 0 1px 0 #ffffff;
+}
+
+#module-container, #module-content {
+	position: relative;
+}
+#module-content {
+	min-height: 250px;
+}
+
+#login-container {
+    width: 610px;
+    margin: 0 auto;
+    padding: 7% 0px;
+}
+
+#login-container .row [class^="col-lg"] {
+	padding-left: 0px;
+}
+
+.ring-panel .paper-ring {
+    background-image: url("../image/paper-ring.png");
+    height: 36px;
+    margin-bottom:  -18px;
+    margin-left:auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.ring-panel .ring-panel-content {
+    border: 1px solid #e5e5e5;
+    padding: 15px 10px;
+}

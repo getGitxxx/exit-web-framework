@@ -1,0 +1,67 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#selectAll").click(function(){
+			var checkbox = $(this);
+			
+			var children = checkbox.parents("table").find("tbody input[type='checkbox']");
+			
+			children.prop("checked",checkbox.is(":checked"));
+		});
+		
+	});
+</script>
+
+<form action="foundation/dictionary-category/save" method="post" class="form-row" data-target="#module-content">
+	<input type="hidden" name="id" value="${entity.id!''}">
+	<div class="panel">
+	    <div class="panel-heading">
+	        <h3 class="panel-title"><i class="icon-mini icon-pen margin-right"></i>基本信息</h3>
+	    </div>
+	    <div class="panel-content">
+	    		<div class="form-group">
+		   			<div class="row">
+		    			<div class="col-lg-6">
+							<label for="name">类别名称:</label>
+							<input type="text" class="form-control required" id="name" name="name" value="${entity.name!''}">
+						</div>
+						<div class="col-lg-6">
+							<label for="code">类别代码:</label>
+							<input type="text" class="form-control required" id="code" name="code" value="${entity.code!''}">
+						</div>
+		   			</div>
+	   			</div>
+	   			
+	   			<div class="form-group">
+		   			<div class="row">
+						<div class="col-lg-12">
+							<label for="parentId">所属父类:</label>
+							<select class="form-control" height="150" search="true" name="parentId" id="parentId">
+								<option value="">请选择...</option>
+				                <#list categoriesList as cl>
+				                	<option value="${cl.id}" <#if entity.parentId==cl.id> selected="selected" </#if> >${cl.name}</option>
+				                </#list>
+				           </select>
+						</div>
+		   			</div>
+	   			</div>
+	   			
+	   			<div class="form-group">
+		   			<div class="row">
+		    			<div class="col-lg-12">
+							<label for="sort">备注:</label>
+							<textarea rows="3" class="form-control" name="remark" id=""remark"">${entity.remark!''}</textarea>
+						</div>
+		   			</div>
+	   			</div>
+	   			
+	    </div>
+	    <div class="panel-footer">
+	    	<button type="submit" class="btn btn-success">
+	        	<i class="icon-glyphicons-halflings icon-white icon-ok margin-right"></i><span>保存</span>
+	        </button>
+	        <button type="reset" class="btn btn-primary">
+	        	<i class="icon-glyphicons-halflings icon-white icon-repeat margin-right"></i><span>重置</span>
+	        </button>
+	    </div>
+	</div>
+</form>
