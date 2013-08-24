@@ -33,6 +33,7 @@ public class PropertyFilters {
 	 * 
 	 * @return {@link PropertyFilter}
 	 */
+	@SuppressWarnings("static-access")
 	public static PropertyFilter build(String expression,String matchValue) {
 		
 		Assert.hasText(expression, "表达式不能为空");
