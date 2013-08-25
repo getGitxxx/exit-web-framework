@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.loader.api.BeanMappingBuilder;
+import org.dozer.util.HibernateProxyResolver;
 import org.exitsoft.common.utils.ReflectionUtils;
 
 /**
@@ -17,7 +18,6 @@ import org.exitsoft.common.utils.ReflectionUtils;
  * @author vincent
  *
  */
-@SuppressWarnings({ "unchecked"})
 public class BeanMapper {
 	
 	private static DozerBeanMapper  dozer = new DozerBeanMapper();
@@ -104,16 +104,20 @@ public class BeanMapper {
 	 * @return Map
 	 */
 	public static <T> Map<String, T> toMap(Object target,boolean ignoreParent,boolean ignoreEmptyValue,String... ignoreProperties) {
-		Map<String, T> map = new HashMap<String, T>();
 		
-		List<Field> fields = ReflectionUtils.getAccessibleFields(target.getClass(), ignoreParent);
+		HibernateProxyResolver resolver = new HibernateProxyResolver();
+		target = resolver.unenhanceObject(target);
+		
+		Map<String, T> map = new HashMap<String, T>();
+		Class<?> targetClass = ReflectionUtils.getTargetClass(target);
+		List<Field> fields = ReflectionUtils.getAccessibleFields(targetClass, ignoreParent);
 		
 		for (Iterator<Field> it = fields.iterator(); it.hasNext();) {
 			Field field = it.next();
 			T value = null;
 			
 			try {
-				value = (T) field.get(target);
+				value = ReflectionUtils.getFieldValue(target, field.getName());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
