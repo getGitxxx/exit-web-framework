@@ -205,3 +205,9 @@ body {
     border: 1px solid #e5e5e5;
     padding: 15px 10px;
 }
+
+.cross-browser {
+	padding: 7% 20px;
+	width: 400px;
+    margin: 0 auto;
+}

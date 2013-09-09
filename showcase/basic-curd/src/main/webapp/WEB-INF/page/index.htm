@@ -13,11 +13,13 @@
     <script type="text/javascript" src="resource/script/jquery.validate.min.js"></script>
     <script type="text/javascript" src="resource/script/jquery.extends.min.js"></script>
     <script type="text/javascript" src="resource/script/default.config.min.js"></script>
+    <#if !crossBrowser>
     <script type="text/javascript">
     	$(document).ready(function(){
     		$("#main-container").maskload("main");
     	});
     </script>
+    </#if>
 </head>
 <body>
     <div class="layout-container">
@@ -26,6 +28,14 @@
                 <h3 class="panel-title">功能演示例子</h3>
             </div>
             <div class="panel-content" id="main-container">
+            	<#if crossBrowser == true>
+            	<div class="cross-browser">
+            		<p><center><img src="resource/image/ie.png"></center></p>
+	            	<h3>浏览器不兼容</h3>
+	            	<hr>
+	            	<p>您的刘浏览器版本过低，<a href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie">请升级IE到最新版本</a></p>
+            	</div>
+            	</#if>
             </div>
             <div class="panel-footer"></div>
         </div>

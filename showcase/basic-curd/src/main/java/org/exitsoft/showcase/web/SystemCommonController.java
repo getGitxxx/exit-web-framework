@@ -3,9 +3,12 @@ package org.exitsoft.showcase.web;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.exitsoft.common.utils.CaptchaUtils;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.service.account.AccountManager;
@@ -66,7 +69,10 @@ public class SystemCommonController {
      * 在index里面会马上去加载main控制器，如果用户没登录时，会跳转到login控制器中。
      */
     @RequestMapping("/index")
-    public void index(){}
+    public void index(HttpServletRequest request){
+    	String ua = request.getHeader("user-agent").toLowerCase();
+    	request.setAttribute("crossBrowser", ua.indexOf("msie") > 0 && NumberUtils.toInt(StringUtils.substringBetween(ua, "msie ", ".")) < 9);
+    }
 	
 	/**
 	 * 当前用户修改密码C.修改成功返回"true"否则返回"false"
