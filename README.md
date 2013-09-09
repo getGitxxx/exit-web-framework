@@ -52,15 +52,11 @@ exit-web-framework是对常用的java web开发封装实用功能来提高开发
 
 ##### 项目功能演示例子
 
-在文件夹的shorcase里有一个vcs-admin项目和vcs-admin-jpa项目。该两个项目是对以上两个框架(exit-common和exit-orm)和其他技术的整合做的例子，vcs-admin使用的是Hibernate 4 做持久化框架,而vcs-admin-jpa使用的是spring data jpa做持久化框架,通过该两个例子使用maven做了一个archetype基础模板。可以通过该archetype来生成一个新的项目。
+在文件夹的shorcase里有一个basic-curd项目。该项目是对以上两个框架(exit-common和exit-orm)和其他技术的整合做的例子，通过该例子使用maven做了一个archetype基础模板。可以通过该archetype来生成一个新的项目。该文件在basic-curd\bin下面。
 
-该两个项目使用了mysql数据库,在vcs-admin或vcs-admin-jpa文件夹中有一个database的文件夹里面有对应该项目使用的数据。导入之后可以通过
-vcs-admin或vcs-admin-jpa项目文件夹中的bin文件夹下的jetty.bat文件运行项目，也可以用eclipse.bat生成项目导入到开发工具中在运行。
-该工程下有一个基于jeety运行的java文件org.exitsoft.showcase.vcsadmin.test.LaunchJetty.你也可以通过该文件运行整个项目.
-
-##### archetype基础模板使用说明
-1. 点击根目录的install.bat进行初始化(如果未点击安装时)
-1. 点击archetype-generate.bat生成你的项目
+项目使用了mysql数据库,在basic-curd文件夹中有一个database的文件夹里面有对应该项目使用的数据。导入之后可以通过
+basic-curd项目文件夹中的bin文件夹下的jetty.bat文件运行项目，也可以用eclipse.bat生成项目导入到开发工具中在运行。
+该工程下有一个基于jeety运行的java文件org.exitsoft.showcase.test.LaunchJetty.你也可以通过该文件运行整个项目.
 
 ##### 导入eclipse或者myeclipse
 在根目录下的bin目录有一个eclipse.bat和myeclipse.bat，点击eclipse.bat/myeclipse.bat会生成project，看见以下信息表示生成成功，可以直接导入eclipse/myclipse
