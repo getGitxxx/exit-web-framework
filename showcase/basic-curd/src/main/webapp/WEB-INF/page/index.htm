@@ -1,44 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>basic curd admin</title>
-    <link rel="stylesheet" type="text/css" href="resource/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="resource/css/layout.min.css" />
-    <link rel="stylesheet" type="text/css" href="resource/css/override.bootstrap.min.css" />
-
-    <script type="text/javascript" src="resource/script/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="resource/script/bootstrap.min.js"></script>
-    <script type="text/javascript" src="resource/script/jquery.form.min.js"></script>
-    <script type="text/javascript" src="resource/script/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="resource/script/jquery.extends.min.js"></script>
-    <script type="text/javascript" src="resource/script/default.config.min.js"></script>
-    <#if !crossBrowser>
-    <script type="text/javascript">
-    	$(document).ready(function(){
-    		$("#main-container").maskload("main");
-    	});
-    </script>
-    </#if>
+<title>首页</title>
 </head>
 <body>
-    <div class="layout-container">
-        <div class="panel">
-            <div class="panel-heading">
-                <h3 class="panel-title">功能演示例子</h3>
-            </div>
-            <div class="panel-content" id="main-container">
-            	<#if crossBrowser == true>
-            	<div class="cross-browser">
-            		<p><center><img src="resource/image/ie.png"></center></p>
-	            	<h3>浏览器不兼容</h3>
-	            	<hr>
-	            	<p>您的刘浏览器版本过低，<a href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie">请升级IE到最新版本</a></p>
-            	</div>
-            	</#if>
-            </div>
-            <div class="panel-footer"></div>
-        </div>
-    </div>
+
+	<div class="data-content">
+	
+		<ol class="breadcrumb">
+			<li class="active">首页</li>
+		</ol>
+		
+		<h3>更新日志</h3>
+		<hr>
+		
+		<h3>1.1.0</h3>
+	    	<hr>
+	    	<ul>
+	    		<li>
+	    			<p>
+	    				修改ReflectionUtils.getAccessibleFields的递归问题,将dozer的log4j默认依赖包移除.<span class="label label-warning">bug</span>
+	    			</p>
+	    		</li>
+	    		<li>
+	    			<p>
+	    				在basic curd项目中删除五笔拼音转码策略类。<span class="label label-danger">delete</span>
+	    			</p>
+	    		</li>
+	    		<li>
+	    			<p>
+	    				删除archetype-generate.bat文件，要生成项目到具体的showcase下选择（现在只有basic-curd）。<span class="label label-danger">delete</span>
+	    			</p>
+	    		</li>
+	    		<li>
+	    			<p>
+	    				删除DateUtils类，使用joda-time已经足够。<span class="label label-danger">delete</span>
+	    			</p>
+	    		</li>
+	    		<li>
+	    			<p>
+	    				删除spring data jpa项目演示，但orm里的类保留。<span class="label label-danger">delete</span>
+	    			</p>
+	    		</li>
+	    		<li>
+	    			<p>
+	    				将实体字段的长度缩短。<span class="label label-default">modify</span>
+	    			</p>
+	    		</li>
+	    		<li>
+	    			<p>
+	    				将PorpertyType改为FieldType,并将该类放到common中。<span class="label label-default">modify</span>
+	    			</p>
+	    		</li>
+	    		<li>
+	    			<p>
+	    				将SpringMvcContextHolder改为SpringMvcHolder,并增加几个常用方法。<span class="label label-default">modify</span>
+	    			</p>
+	    		</li>
+	    		<li>
+	    			<p>
+	    				修改首次登录不成功后显示验证码。<span class="label label-info">enhancement</span>
+	    			</p>
+	    		</li>
+	    		<li>
+	    			<p>
+	    				第三方版本升级:spring->3.2.4.RELEASE、hibernate->4.2.3.Final、cxf->2.7.6、jackson->2.2.2、freemarker->2.3.20、shiro->1.2.2、ehcache->2.6.6。<span class="label label-info">enhancement</span>
+	    			</p>
+	    		</li>
+	    		<li>
+	    			<p>
+	    				使用Bootstrap 3重新设计项目演示页面。<span class="label label-success">new feature</span>
+	    			</p>
+	    		</li>
+	    	</ul>
+	    	<hr>
+		
+	</div>
 </body>
 </html>

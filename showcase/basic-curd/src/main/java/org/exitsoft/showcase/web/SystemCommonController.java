@@ -3,12 +3,9 @@ package org.exitsoft.showcase.web;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.exitsoft.common.utils.CaptchaUtils;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.service.account.AccountManager;
@@ -19,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -48,31 +44,13 @@ public class SystemCommonController {
 		}
 		return "redirect:/main";
 	}
-	
-	/**
-	 * 首页C,在request中获取当前用户的菜单集合给页面循环
-	 * 
-	 * @param model String mvc model 接口
-	 * 
-	 * @return String
-	 */
-	@RequestMapping("/main")
-	public String main(Model model) {
-		
-		model.addAttribute("cvm", SystemVariableUtils.getCommonVariableModel());
-		
-		return "main";
-	}
 
     /**
      * 默认进入首页的C，因为使用一个页面去做登录或未登录的功能，所以默认放一个页面在那。
      * 在index里面会马上去加载main控制器，如果用户没登录时，会跳转到login控制器中。
      */
     @RequestMapping("/index")
-    public void index(HttpServletRequest request){
-    	String ua = request.getHeader("user-agent").toLowerCase();
-    	request.setAttribute("crossBrowser", ua.indexOf("msie") > 0 && NumberUtils.toInt(StringUtils.substringBetween(ua, "msie ", ".")) < 9);
-    }
+    public void index(){}
 	
 	/**
 	 * 当前用户修改密码C.修改成功返回"true"否则返回"false"

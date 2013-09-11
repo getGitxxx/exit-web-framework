@@ -1,24 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>修改用户${entity.username!''}</title>
 <script type="text/javascript">
+
 	$(document).ready(function(){
 		$("#selectAll").click(function(){
-			var checkbox = $(this);
-			
-			var children = checkbox.parents("table").find("tbody input[type='checkbox']");
+			var checkbox = $(this),
+			children = checkbox.parents("table").find("tbody input[type='checkbox']");
 			
 			children.prop("checked",checkbox.is(":checked"));
 		});
-		
 	});
+	
 </script>
-
-<form action="account/user/update" method="post" class="form-row" data-target="#module-content">
-	<input type="hidden" name="id" value="${entity.id}">
-	<div class="panel">
-	    <div class="panel-heading">
-	        <h3 class="panel-title"><i class="icon-mini icon-pen margin-right"></i>基本信息</h3>
-	    </div>
-	    <div class="panel-content">
-	    		<div class="form-group">
+</head>
+<body>
+	
+  
+	<div class="data-content">
+	
+	<ol class="breadcrumb">
+		<li><a href="${request.contextPath}/account/user/view">用户管理</a></li>
+		<li class="active">添加用户</li>
+	</ol>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> 用户管理</h3>
+		</div>
+		<form action="${request.contextPath}/account/user/update" method="post">
+			<input type="hidden" name="id" value="${entity.id!''}">
+			<div class="panel-body">
+			
+				<div class="form-group">
 		   			<div class="row">
 		    			<div class="col-lg-6">
 							<label for="username">登录帐号:</label>
@@ -48,83 +63,94 @@
 						</div>
 		   			</div>
 	   			</div>
-	   			
-	   			<div class="form-group">
+	   		
+				<div class="form-group">
 		   			<div class="row">
 		    			<div class="col-lg-12">
 							
 							<!-- 组表格 开始 -->
-							<div class="panel">
-							    <div class="panel-heading">
-							        <h3 class="panel-title"><i class="icon-mini icon-shield margin-right"></i>用户所在组</h3>
-							    </div>
-							    <div class="panel-content">
-							    	<table class="table table-hover table-striped">
-							            <thead>
+							<div class="panel panel-default">
+							
+								<div class="panel-heading">
+									<h3 class="panel-title"><span class="glyphicon glyphicon-briefcase"></span> 用户所在组</h3>
+								</div>
+								
+								<table class="table table-hover table-striped">
+						            <thead>
+							            <tr>
+							                <th>
+												<input type="checkbox" id="selectAll"/>
+							                </th>
+							                <th>
+												组名称
+							                </th>
+							                <th>
+							                	访问允许role
+							            	</th>
+							            	<th>
+							                	所属父类
+							            	</th>
+							                <th>
+												描述
+							                </th>
+							            </tr>
+							            </thead>
+							            <tbody>
+							            	<#list groupsList as gl>
 								            <tr>
-								                <th>
-													<input type="checkbox" id="selectAll"/>
-								                </th>
-								                <th>
-													组名称
-								                </th>
-								                <th>
-								                	访问允许role
-								            	</th>
-								            	<th>
-								                	所属父类
-								            	</th>
-								                <th>
-													描述
-								                </th>
+								            	<td>
+								            		<#assign isSelected = false />
+								                	<#list entity.groupsList as egl>
+								                		<#if egl.id == gl.id>
+								                			<#assign isSelected = true />
+								                			<#break />
+								                		</#if>
+								                	</#list>
+								                    <input type="checkbox" value="${gl.id}" name="groupId" <#if isSelected>checked="true"</#if>/>
+								                </td>
+								                <td>
+								                    ${gl.name!""}
+								                </td>
+								                <td>
+							                    	${gl.role!""}
+							                    </td>
+							                    <td>
+							                    	${gl.parentName!""}
+							                    </td>
+								                <td>
+								                	${gl.remark!""}
+								                </td>
 								            </tr>
-								            </thead>
-								            <tbody>
-								            	<#list groupsList as gl>
-									            <tr>
-									            	<td>
-									            		<#assign isSelected = false />
-									                	<#list entity.groupsList as egl>
-									                		<#if egl.id == gl.id>
-									                			<#assign isSelected = true />
-									                			<#break />
-									                		</#if>
-									                	</#list>
-									                    <input type="checkbox" value="${gl.id}" name="groupId" <#if isSelected>checked="true"</#if>/>
-									                </td>
-									                <td>
-									                    ${gl.name!""}
-									                </td>
-									                <td>
-								                    	${gl.role!""}
-								                    </td>
-								                    <td>
-								                    	${gl.parentName!""}
-								                    </td>
-									                <td>
-									                	${gl.remark!""}
-									                </td>
-									            </tr>
-									            </#list>
-								           </tbody>
-								        </table>
-							    </div>
-							    <div class="panel-footer">
-							    </div>
-							</div>
-							<!-- 组表格 结束 -->
+								            </#list>
+							           </tbody>
+							        </table>
+								
+								</div>
 							
 						</div>
-		   			</div>
-	   			</div>
-	    </div>
-	    <div class="panel-footer">
-	    	<button type="submit" class="btn btn-success">
-	        	<i class="icon-glyphicons-halflings icon-white icon-ok margin-right"></i><span>保存</span>
-	        </button>
-	        <button type="reset" class="btn btn-primary">
-	        	<i class="icon-glyphicons-halflings icon-white icon-repeat margin-right"></i><span>重置</span>
-	        </button>
-	    </div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="panel-footer">
+									
+				<button type="submit" class="btn btn-success">
+					<span class="glyphicon glyphicon-ok"></span> 保存
+				</button>
+				
+				<button type="reset" class="btn btn-danger">
+					<span class="glyphicon glyphicon-trash"></span> 重置
+				</button>
+				
+				<button type="button" class="btn btn-default" onclick="back();">
+					<span class="glyphicon glyphicon-backward"></span> 返回
+				</button>
+				
+			</div>
+		</form>
+		
 	</div>
-</form>
+</body>
+</html>
+

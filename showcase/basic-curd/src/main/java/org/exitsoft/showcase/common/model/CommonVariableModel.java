@@ -36,8 +36,7 @@ public class CommonVariableModel implements Serializable {
 		this.user = user;
 	}
 
-	public CommonVariableModel(User user, List<Group> groupsList,
-			List<Resource> authorizationInfo, List<Resource> menusList) {
+	public CommonVariableModel(User user, List<Group> groupsList,List<Resource> authorizationInfo, List<Resource> menusList) {
 		this.user = user;
 		this.groupsList = groupsList;
 		this.authorizationInfo = authorizationInfo;

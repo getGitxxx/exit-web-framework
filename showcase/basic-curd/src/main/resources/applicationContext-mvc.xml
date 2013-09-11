@@ -55,7 +55,7 @@
                 <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
                 <prop key="date_format">yyyy-MM-dd</prop>
                 <prop key="number_format">#.##</prop>
-                <prop key="defaultEncoding">UTF-8</prop>  
+                <prop key="defaultEncoding">UTF-8</prop>
             </props>
         </property>
     </bean>

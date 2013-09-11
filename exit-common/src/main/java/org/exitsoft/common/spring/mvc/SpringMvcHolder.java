@@ -34,8 +34,8 @@ public abstract class SpringMvcHolder {
 	 * @param name 属性名称
 	 * @param value 值
 	 */
-	public static void setRequestAttribute(String name,Object value) {
-		setAttribute(name, value, RequestAttributes.SCOPE_REQUEST);
+	public static void addRequestAttribute(String name,Object value) {
+		addAttribute(name, value, RequestAttributes.SCOPE_REQUEST);
 	}
 
 	/**
@@ -55,8 +55,8 @@ public abstract class SpringMvcHolder {
 	 * @param name 属性名称
 	 * @param value 值
 	 */
-	public static void setSessionAttribute(String name,Object value) {
-		setAttribute(name, value, RequestAttributes.SCOPE_SESSION);
+	public static void addSessionAttribute(String name,Object value) {
+		addAttribute(name, value, RequestAttributes.SCOPE_SESSION);
 	}
 	
 	
@@ -79,7 +79,7 @@ public abstract class SpringMvcHolder {
 	 * @param value 值
 	 * @param scope 作用域,参考{@link RequestAttributes}
 	 */
-	public static void  setAttribute(String name,Object value, int scope) {
+	public static void  addAttribute(String name,Object value, int scope) {
 		getNativeWebRequest().setAttribute(name, value, scope);
 	}
 

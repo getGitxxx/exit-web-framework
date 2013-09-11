@@ -1,41 +1,39 @@
 <#assign shiro=JspTaglibs["/WEB-INF/taglib/shiro.tld"] />
 
+<!DOCTYPE html>
+<html>
+<head>
+<title>组管理</title>
 <script type="text/javascript">
+
 	$(document).ready(function(){
+		
 		$("#selectAll").click(function(){
-			var checkbox = $(this);
-			
-			var children = checkbox.parents("table").find("tbody input[type='checkbox']");
+			var checkbox = $(this),
+			children = checkbox.parents("table").find("tbody input[type='checkbox']");
 			
 			children.prop("checked",checkbox.is(":checked"));
 		});
+		$("#group-view-form").submit(function(e){
+			
+		    return $(this).find("input:checked").length > 0 && confirm("确定要删除吗？");
+		});
 	});
-	function loadPage(pageNo) {
-		$.maskload('#module-content','account/group/view',{pageNo:pageNo});
-	}
-	function beforeDelete(formData, jqForm, options) {
-		if (formData.length == 0) {
-			alert("您还没有选择任何要删除的记录");
-			return false;
-		}
-		
-		var flag = confirm("确定要删除" + formData.length + "条记录吗?");
-		
-		if (!flag){
-			return false;
-		}
-	}
+	
 </script>
-
-<div class="modal fade" id="search-modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"><i class="icon-mini icon-search margin-right"></i><span>查询信息</span></h4>
-			</div>
-			<form action="account/group/view" method="post" data-target="#module-content" >
-				<div class="modal-body">
+</head>
+<body>
+	<div class="modal fade" id="search-modal" role="dialog" aria-hidden="true">
+	   <div class="modal-dialog">
+	     <div class="modal-content">
+	     
+	       <div class="modal-header">
+	         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	         <h4 class="modal-title"><span class="glyphicon glyphicon-search"></span> 内容查询</h4>
+	       </div>
+	       <form action="${request.contextPath}/account/group/view" method="post">
+		       <div class="modal-body">
+		       
 					<div class="form-group">
 			   			<div class="row">
 			    			<div class="col-lg-12">
@@ -75,132 +73,116 @@
 							</div>
 			   			</div>
 		   			</div>
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-success">
-						<i class="icon-glyphicons-halflings icon-white icon-search margin-right"></i>查询
-					</button>
-					<button type="reset" class="btn btn-primary">
-			        	<i class="icon-glyphicons-halflings icon-white icon-repeat margin-right"></i><span>重置</span>
-			        </button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">
-						<i class="icon-glyphicons-halflings icon-white icon-minus-sign margin-right"></i>取消
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
-<form action="account/group/delete" method="post" onbeforesubmit="beforeDelete" data-target="#module-content">
-	<div class="panel">
-	    <div class="panel-heading">
-	        <h3 class="panel-title"><i class="icon-mini icon-book margin-right"></i>列表信息</h3>
-	    </div>
-	    <div class="panel-content">
-	    	<#if message?has_content>
-    		<div class="alert auto-close alert-success fade in">
-			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			  <strong><i class="icon-glyphicons-halflings icon-white icon-ok margin-right"></i>${message}</strong>
-			</div>
-	    	</#if>
-	        <table class="table table-hover table-striped">
-	            <thead>
-	            <tr>
-	            	<th>
-						<input type="checkbox" id="selectAll"/>
-	                </th>
-	                <th>
-	                	组名称
-	            	</th>
-	                <th>
-	                	状态
-	            	</th>
-	            	<th>
-	                	访问允许role
-	            	</th>
-	            	<th>
-	                	拦截uri
-	            	</th>
-	                <th>
-	                	所属父类
-	            	</th>
-	            	<th>
-	            		备注
-	            	</th>
-	            	<th>
-	            		操作
-	            	</th>
-	            </tr>
-	            </thead>
-	            <tbody>
-	            	<#list page.result as r>
-		            <tr>
-		            	<td>
-		            		<input type="checkbox" name="ids" value="${r.id}"/>
-		            	</td>
-		                <td>
-	                    	${r.name!""}
-	                    </td>
-	                    <td>
-	                    	${r.stateName!""}
-	                    </td>
-	                    <td>
-	                    	${r.role!""}
-	                    </td>
-	                    <td>
-	                    	${r.value!""}
-	                    </td>
-	                    <td>
-	                    	${r.parentName!""}
-	                    </td>
-	                    <td>
-	                    	${r.remark!""}
-	                    </td>
-		                <td>
-		                	<@shiro.hasPermission name="group:read">
-			                	<button type="button" class="btn btn-default btn-xs" onclick="$.maskload('#module-content','account/group/read',{id:'${r.id}'})">
-			                		<i class="icon-glyphicons-halflings icon-edit"></i>
-			                	</button>
-		                	</@shiro.hasPermission>
-		                </td>
-		            </tr>
-		            </#list>
-	           </tbody>
-	        </table>
-	    </div>
-	    <div class="panel-footer">
-	    	<@shiro.hasPermission name="group:save">
-	    	<button type="button" onclick="$.maskload('#module-content','account/group/read');" class="btn btn-success">
-	        	<i class="icon-glyphicons-halflings icon-white icon-plus margin-right"></i><span>新增</span>
-	        </button>
-	        </@shiro.hasPermission>
-	        
-	        <@shiro.hasPermission name="group:delete">
-	        <button type="submit" class="btn btn-danger">
-	        	<i class="icon-glyphicons-halflings icon-white icon-remove margin-right"></i><span>删除</span>
-	        </button>
-	        </@shiro.hasPermission>
-	        
-	    	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#search-modal">
-	        	<i class="icon-glyphicons-halflings icon-white icon-search margin-right"></i><span>查询</span>
-	        </button>
-	        
-	        <ul class="pagination pull-right">
-	        	<#if page.hasPrePage()>
-		    	<li><a href="javascript:loadPage(1);">首页</a></li>
-		        <li><a href="javascript:loadPage(${page.prePage});">上一页</a></li>
-		        </#if>
-		        
-		        <#list page.getSlider(page.pageSize) as index>
-	        	<li><a href="javascript:loadPage(${index});">${index}</a></li>
-				</#list>
 				
-	            <#if page.hasNextPage()>
-	            <li><a href="javascript:loadPage(${page.nextPage});">下一页</a></li>
-	            <li><a href="javascript:loadPage(${page.totalPages});">尾页</a></li>
-	            </#if>
-	        </ul>
-	    </div>
+				</div>
+		       
+		       <div class="modal-footer">
+					<button type="submit" class="btn btn-success">
+						<span class="glyphicon glyphicon-ok"></span> 确定
+					</button>
+					<button type="reset" class="btn btn-danger">
+						<span class="glyphicon glyphicon-trash"></span> 重置
+					</button>
+		       </div>
+	       </form>
+	     </div>
+	   </div>
 	</div>
-</form>
+  
+	<div class="data-content">
+	
+	<ol class="breadcrumb">
+		<li class="active">组管理</li>
+	</ol>
+	
+	<#if message?has_content>
+	<div class="alert alert-success fade in">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<span class="glyphicon glyphicon-ok"></span> ${message}
+	</div>
+	</#if>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><span class="glyphicon glyphicon-briefcase"></span> 组管理</h3>
+		</div>
+		<form id="group-view-form" action="${request.contextPath}/account/group/delete" valid="false" method="post">
+			<table class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th><input type="checkbox" id="selectAll"/></th>
+						<th>组名称</th>
+						<th>状态</th>
+						<th>访问允许role</th>
+						<th>拦截uri</th>
+						<th>所属父类</th>
+						<th>备注</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<#if page.result?size == 0>
+						<tr><td colspan="6"> 找不到要查询的记录 </td></tr>
+						<#else>
+						<#list page.result as r>
+						<tr>
+							<td><input type="checkbox" name="ids" value="${r.id}" /></td>
+							<td>${r.name!""}</td>
+							<td>${r.stateName!""}</td>
+							<td>${r.role!""}</td>
+							<td>${r.value!""}</td>
+							<td>${r.parentName!""}</td>
+							<td>${r.remark!""}</td>
+							<td>
+								<@shiro.hasPermission name="group:read">
+								<a class="btn btn-default btn-sm" href="${request.contextPath}/account/group/read?id=${r.id}">
+									<span class="glyphicon glyphicon-edit"></span>
+								</a>
+								</@shiro.hasPermission>
+							</td>
+						</tr>
+						</#list>
+					</#if>
+					
+				</tbody>
+			</table>
+	
+			<div class="panel-footer">
+				<a class="btn btn-info" data-toggle="modal" data-target="#search-modal">
+					<span class="glyphicon glyphicon-search"></span> 查询
+				</a>
+				
+				<@shiro.hasPermission name="group:save">
+				<a href="${request.contextPath}/account/group/read" class="btn btn-primary">
+					<span class="glyphicon glyphicon-plus"></span> 添加
+				</a>
+				</@shiro.hasPermission>
+				
+				<@shiro.hasPermission name="group:delete">
+				<button type="submit" class="btn btn-danger">
+					<span class="glyphicon glyphicon-remove"></span> 删除
+				</button>
+				</@shiro.hasPermission>
+				
+				<ul class="pagination pull-right">
+				
+					<li <#if !page.hasPrePage()>class="disabled"</#if>>
+			        	<a href="${request.contextPath}/account/group/view?pageNo=${page.prePage}">&laquo;</a>
+			        </li>
+
+			        <#list page.getSlider(page.pageSize) as index>
+		        		<li <#if page.pageNo == index>class="active"</#if>>
+		        			<a href="${request.contextPath}/account/group/view?pageNo=${index}">${index}</a>
+		        		</li>
+					</#list>
+	
+		            <li <#if !page.hasNextPage()>class="disabled"</#if>>
+		            	<a href="${request.contextPath}/account/group/view?pageNo=${page.nextPage}">&raquo;</a>
+		            </li>
+		            
+				</ul>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

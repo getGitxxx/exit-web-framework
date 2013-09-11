@@ -1,24 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>编辑字典类型${entity.name!''}</title>
 <script type="text/javascript">
+
 	$(document).ready(function(){
 		$("#selectAll").click(function(){
-			var checkbox = $(this);
-			
-			var children = checkbox.parents("table").find("tbody input[type='checkbox']");
+			var checkbox = $(this),
+			children = checkbox.parents("table").find("tbody input[type='checkbox']");
 			
 			children.prop("checked",checkbox.is(":checked"));
 		});
-		
 	});
+	
 </script>
-
-<form action="foundation/dictionary-category/save" method="post" class="form-row" data-target="#module-content">
-	<input type="hidden" name="id" value="${entity.id!''}">
-	<div class="panel">
-	    <div class="panel-heading">
-	        <h3 class="panel-title"><i class="icon-mini icon-pen margin-right"></i>基本信息</h3>
-	    </div>
-	    <div class="panel-content">
-	    		<div class="form-group">
+</head>
+<body>
+	
+  
+	<div class="data-content">
+	
+	<ol class="breadcrumb">
+		<li><a href="${request.contextPath}/foundation/dictionary-category/view">字典类型管理</a></li>
+		<li class="active">编辑字典类型</li>
+	</ol>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><span class="glyphicon glyphicon-folder-close"></span> 字典类型管理</h3>
+		</div>
+		<form action="${request.contextPath}/foundation/dictionary-category/save" method="post">
+		
+			<input type="hidden" name="id" value="${entity.id!''}">
+			
+			<div class="panel-body">
+			
+				<div class="form-group">
 		   			<div class="row">
 		    			<div class="col-lg-6">
 							<label for="name">类别名称:</label>
@@ -53,15 +70,27 @@
 						</div>
 		   			</div>
 	   			</div>
-	   			
-	    </div>
-	    <div class="panel-footer">
-	    	<button type="submit" class="btn btn-success">
-	        	<i class="icon-glyphicons-halflings icon-white icon-ok margin-right"></i><span>保存</span>
-	        </button>
-	        <button type="reset" class="btn btn-primary">
-	        	<i class="icon-glyphicons-halflings icon-white icon-repeat margin-right"></i><span>重置</span>
-	        </button>
-	    </div>
+
+			</div>
+			
+			<div class="panel-footer">
+									
+				<button type="submit" class="btn btn-success">
+					<span class="glyphicon glyphicon-ok"></span> 保存
+				</button>
+				
+				<button type="reset" class="btn btn-danger">
+					<span class="glyphicon glyphicon-trash"></span> 重置
+				</button>
+				
+				<button type="button" class="btn btn-default" onclick="back();">
+					<span class="glyphicon glyphicon-backward"></span> 返回
+				</button>
+				
+			</div>
+		</form>
+		
 	</div>
-</form>
+</body>
+</html>
+

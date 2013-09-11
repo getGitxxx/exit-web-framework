@@ -257,7 +257,7 @@ public class Resource extends UniversallyUniqueIdentifier{
 	 * 
 	 * @return String 
 	 */
-	@Column(unique=true,length=64)
+	@Column(length=64)
 	public String getPermission() {
 		return permission;
 	}
