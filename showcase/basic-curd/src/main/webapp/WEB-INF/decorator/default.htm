@@ -1,13 +1,10 @@
 <#assign shiro=JspTaglibs["/WEB-INF/taglib/shiro.tld"] />
-<#assign sitemesh=JspTaglibs["/WEB-INF/taglib/sitemesh-decorator.tld"] />
-
 <!DOCTYPE html>
 <html>
 <head>
 
-    <title>basic curd admin : <@sitemesh.title/></title>
-    
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>basic curd admin : ${title}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="Cache-Control" content="no-store" />
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
@@ -18,12 +15,15 @@
 
     <script type="text/javascript" src="${request.contextPath}/resource/script/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="${request.contextPath}/resource/script/bootstrap.min.js"></script>
-    <#--<script type="text/javascript" src="${request.contextPath}/resource/script/jquery.form.min.js"></script>-->
+    <!--[if IE 8]>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <script type="text/javascript" src="${request.contextPath}/resource/script/respond.min.js"></script>
+	<![endif]-->
     <script type="text/javascript" src="${request.contextPath}/resource/script/jquery.validate.min.js"></script>
     <script type="text/javascript" src="${request.contextPath}/resource/script/jquery.extends.min.js"></script>
     <script type="text/javascript" src="${request.contextPath}/resource/script/default.config.min.js"></script>
     
-    <@sitemesh.head />
+    ${head}
 </head>
 <body>
 	<div class="main-container">
@@ -38,13 +38,13 @@
 			<div class="content-container">
 				<div class="content-widget">
 					<div class="content-widget">
-						<div class="content-widget">
+						<div class="content-widget" id="content-widget">
 						
 							<@shiro.user>
 								<#include "navbar.htm">
 							</@shiro.user>
 							
-							<@sitemesh.body />
+							${body}
 						</div>
 					</div>
 				</div>

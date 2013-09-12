@@ -59,3 +59,9 @@ body {
 	background-image: url("../image/header-bg.png") !important;
 	height: 67px;
 }
+
+.incompatible {
+	padding: 5% 20px;
+	width: 400px;
+	margin: 0 auto;
+} 

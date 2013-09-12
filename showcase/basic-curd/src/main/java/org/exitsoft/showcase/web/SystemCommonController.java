@@ -3,7 +3,7 @@ package org.exitsoft.showcase.web;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.exitsoft.common.utils.CaptchaUtils;
@@ -38,11 +38,12 @@ public class SystemCommonController {
 	 * @return String
 	 */
 	@RequestMapping("/login")
-	public String login(HttpServletResponse response) {
+	public String login(HttpServletRequest request) {
+		
 		if (!SystemVariableUtils.isAuthenticated()) {
 			return "login";
 		}
-		return "redirect:/main";
+		return "redirect:/index";
 	}
 
     /**
@@ -51,6 +52,14 @@ public class SystemCommonController {
      */
     @RequestMapping("/index")
     public void index(){}
+    
+    /**
+     * 浏览器不兼容C
+     */
+    @RequestMapping("/incompatible")
+    public void incompatible(){
+    	//FIXME 浏览器兼容
+    }
 	
 	/**
 	 * 当前用户修改密码C.修改成功返回"true"否则返回"false"
