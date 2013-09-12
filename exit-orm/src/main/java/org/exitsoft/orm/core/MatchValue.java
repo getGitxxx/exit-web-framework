@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.exitsoft.common.utils.ConvertUtils;
 
 /**
- * 对比值实体,根据该类的信息进行对一个或多个属性值该如何是 or或者and进行条件关联
+ * 对比值实体,根据该类的信息进行对一个或多个属性值该如何or或者and进行条件关联
  * 
  * @author vincent
  *
