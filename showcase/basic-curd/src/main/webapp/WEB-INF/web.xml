@@ -90,11 +90,17 @@
 	<filter-mapping>
 	    <filter-name>shiroSecurityFilter</filter-name>
 	    <url-pattern>/*</url-pattern>
+	    <dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>ERROR</dispatcher> 
 	</filter-mapping>
 	
    <filter-mapping>
         <filter-name>sitemesh</filter-name>
         <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>ERROR</dispatcher> 
    </filter-mapping>
    
 	<servlet-mapping>
@@ -121,18 +127,5 @@
 	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
-	
-	<error-page>
-		<error-code>404</error-code>
-		<location>/WEB-INF/page/error/404.jsp</location>
-	</error-page>
-	<error-page>
-		<error-code>401</error-code>
-		<location>/WEB-INF/page/error/401.jsp</location>
-	</error-page>
-	<error-page>
-		<error-code>500</error-code>
-		<location>/WEB-INF/page/error/500.jsp</location>
-	</error-page>
 	
 </web-app>
