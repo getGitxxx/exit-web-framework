@@ -20,8 +20,8 @@ body {
 	padding: 0 1px 1px;
 	min-height: 400px;
 }
-.shadow-layer {
-	height: 15px;
+#content-widget {
+	padding-top: 15px;
 }
 .content-container {
 	background-color: #FFFFFF;
@@ -60,8 +60,12 @@ body {
 	height: 67px;
 }
 
-.incompatible {
+.server-error {
 	padding: 5% 20px;
 	width: 400px;
 	margin: 0 auto;
-} 
+}
+
+.server-error h1{
+	font-size: 100px;
+}

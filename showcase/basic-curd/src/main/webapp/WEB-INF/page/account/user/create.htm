@@ -1,27 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>添加用户</title>
-<script type="text/javascript">
+<@override name="title">
+	添加用户
+</@override>
 
-	$(document).ready(function(){
-		$("#selectAll").click(function(){
-			var checkbox = $(this),
-			children = checkbox.parents("table").find("tbody input[type='checkbox']");
-			
-			children.prop("checked",checkbox.is(":checked"));
+<@override name="head">
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+			$("#selectAll").click(function(){
+				var checkbox = $(this),
+				children = checkbox.parents("table").find("tbody input[type='checkbox']");
+				
+				children.prop("checked",checkbox.is(":checked"));
+			});
 		});
-	});
-	
-</script>
-</head>
-<body>
-	
-  
+		
+	</script>
+</@override>
+
+<@override name="body">
 	<div class="data-content">
 	
 	<ol class="breadcrumb">
-		<li><a href="${request.contextPath}/account/user/view">用户管理</a></li>
+		<li><a href="${base}/account/user/view">用户管理</a></li>
 		<li class="active">添加用户</li>
 	</ol>
 	
@@ -29,14 +29,14 @@
 		<div class="panel-heading">
 			<h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> 用户管理</h3>
 		</div>
-		<form action="${request.contextPath}/account/user/insert" method="post">
+		<form action="${base}/account/user/insert" method="post">
 			<div class="panel-body">
 			
 				<div class="form-group">
 		   			<div class="row">
 		    			<div class="col-lg-6">
 							<label for="username">登录帐号:</label>
-							<input type="text" class="form-control required" id="username" remote="${request.contextPath}/account/user/isUsernameUnique" name="username">
+							<input type="text" class="form-control required" id="username" remote="${base}/account/user/isUsernameUnique" name="username">
 						</div>
 						<div class="col-lg-6">
 							<label for="realname">真实姓名:</label>
@@ -147,7 +147,7 @@
 					<span class="glyphicon glyphicon-trash"></span> 重置
 				</button>
 				
-				<button type="button" class="btn btn-default" onclick="history.back()">
+				<button type="button" class="btn btn-default" onclick="history.back();">
 					<span class="glyphicon glyphicon-backward"></span> 返回
 				</button>
 				
@@ -155,5 +155,6 @@
 		</form>
 		
 	</div>
-</body>
-</html>
+</@override>
+
+<@extends name="*/basic/default.htm"/>

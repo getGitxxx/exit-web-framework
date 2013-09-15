@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>首页</title>
-</head>
-<body>
+<@override name="title">   
+	首页
+</@override>
 
+<@override name="body">   
 	<div class="data-content">
 	
 		<ol class="breadcrumb">
@@ -44,11 +42,6 @@
 	    		</li>
 	    		<li>
 	    			<p>
-	    				将实体字段的长度缩短。<span class="label label-default">modify</span>
-	    			</p>
-	    		</li>
-	    		<li>
-	    			<p>
 	    				将PorpertyType改为FieldType,并将该类放到common中。<span class="label label-default">modify</span>
 	    			</p>
 	    		</li>
@@ -72,9 +65,16 @@
 	    				使用Bootstrap 3重新设计项目演示页面。<span class="label label-success">new feature</span>
 	    			</p>
 	    		</li>
+	    		<li>
+	    			<p>
+	    				将<a href="https://code.google.com/p/rapid-framework/">rapid-framework</a>的freemarker继承代码加入到common中<span class="label label-success">new feature</span>
+	    			</p>
+	    		</li>
 	    	</ul>
+	    	
 	    	<hr>
 		
 	</div>
-</body>
-</html>
+</@override>
+
+<@extends name="*/basic/default.htm"/>

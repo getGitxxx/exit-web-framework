@@ -205,11 +205,6 @@
 		</dependency>
 		<!-- j2ee web end -->
 		
-		<dependency>
-		    <groupId>opensymphony</groupId>
-		    <artifactId>sitemesh</artifactId>
-		</dependency>
-		
 		<!-- jackson json start -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

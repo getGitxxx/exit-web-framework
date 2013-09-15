@@ -1,36 +1,35 @@
+<@override name="title">
+	编辑组${entity.name!''}
+</@override>
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>编辑组${entity.name!''}</title>
-<script type="text/javascript">
+<@override name="head">
+	<script type="text/javascript">
 
-	$(document).ready(function(){
-		$("#selectAll").click(function(){
-			var checkbox = $(this),
-			children = checkbox.parents("table").find("tbody input[type='checkbox']");
-			
-			children.prop("checked",checkbox.is(":checked"));
+		$(document).ready(function(){
+			$("#selectAll").click(function(){
+				var checkbox = $(this),
+				children = checkbox.parents("table").find("tbody input[type='checkbox']");
+				
+				children.prop("checked",checkbox.is(":checked"));
+			});
 		});
-	});
-	
-</script>
-</head>
-<body>
-	
-  
+		
+	</script>
+</@override>
+
+<@override name="body">
 	<div class="data-content">
 	
 	<ol class="breadcrumb">
-		<li><a href="${request.contextPath}/account/group/view">组管理</a></li>
+		<li><a href="${base}/account/group/view">组管理</a></li>
 		<li class="active">编辑组</li>
 	</ol>
 	
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><span class="glyphicon glyphicon-briefcase"></span> 组管理</h3>
+			<h3 class="panel-title"><span class="glyphicon glyphicon-briefcase"></span> 编辑组</h3>
 		</div>
-		<form action="${request.contextPath}/account/group/save" method="post">
+		<form action="${base}/account/group/save" method="post">
 		
 			<input type="hidden" name="id" value="${entity.id!''}">
 			<input type="hidden" name="type" value="03">
@@ -172,7 +171,7 @@
 					<span class="glyphicon glyphicon-trash"></span> 重置
 				</button>
 				
-				<button type="button" class="btn btn-default" onclick="history.back()">
+				<button type="button" class="btn btn-default" onclick="history.back();">
 					<span class="glyphicon glyphicon-backward"></span> 返回
 				</button>
 				
@@ -180,6 +179,6 @@
 		</form>
 		
 	</div>
-</body>
-</html>
+</@override>
 
+<@extends name="*/basic/default.htm"/>

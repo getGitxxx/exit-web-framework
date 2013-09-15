@@ -1,74 +1,74 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>用户登录</title>
+<@override name="title">   
+	用户登录
+</@override>
 
-<script type="text/javascript">
-	function reloadCaptcha() {
-		$("#captchaImg").attr("src","getCaptcha?date = " + new Date() + Math.floor(Math.random()*24));
-	}
-</script>
+<@override name="head">   
+	<script type="text/javascript">
+		function reloadCaptcha() {
+			$("#captchaImg").attr("src","getCaptcha?date = " + new Date() + Math.floor(Math.random()*24));
+		}
+	</script>
+</@override>
 
-</head>
-<body>
+<@override name="body">
 	<div class="data-content">
-	
-	<div class="login-container">
-	
-		<div class="panel panel-default">
-		
-			<div class="panel-heading">
-				<h3 class="panel-title"><sapn class="glyphicon glyphicon-lock"></sapn> 用户登录</h3>
-			</div>
+		<div class="login-container">
+			<div class="panel panel-default">
 			
-			<form id="login-form" action="login" method="post">
-			
-				<div class="panel-body">
+				<div class="panel-heading">
+					<h3 class="panel-title"><sapn class="glyphicon glyphicon-lock"></sapn> 用户登录</h3>
+				</div>
 				
-					<div class="form-group">
-						<label for="username">登录帐号:</label> 
-						<input type="text" class="form-control required" value="admin" name="username" id="username">
-					</div>
-					<div class="form-group">
-						<label for="password">登录密码:</label> 
-						<input type="password" class="form-control required" value="admin" name="password" id="password" >
-					</div>
-					<div class="form-group">
-						<label for="rememberMe">记住我:</label> 
-						<select class="form-control" name="rememberMe" id="rememberMe">
-							<option value="">无</option>
-							<option value="25200">在一周内</option>
-							<option value="2592000">在一个月内</option>
-							<option value="31536000">在一个年内</option>
-						</select>
-					</div>
-					<#if Session.showCaptcha?has_content && Session.showCaptcha == true>
-					<div class="form-group">
-						<label for="captcha">验证码:</label>
-						<div class="row">
-							<div class="col-xs-8">
-							<input type="text" class="form-control required" title="请输入验证码" name="captcha" id="captcha" >
-							</div>
-							<div class="col-xs-2">
-								<img id="captchaImg" src="getCaptcha" />
-							</div>
-							<div class="col-xs-2">
-								<a class="btn btn-link" href="javascript:reloadValidateCode();">看不清?</a>
+				<form id="login-form" action="login" method="post">
+				
+					<div class="panel-body">
+					
+						<div class="form-group">
+							<label for="username">登录帐号:</label> 
+							<input type="text" class="form-control required" value="admin" name="username" id="username">
+						</div>
+						<div class="form-group">
+							<label for="password">登录密码:</label> 
+							<input type="password" class="form-control required" value="admin" name="password" id="password" >
+						</div>
+						<div class="form-group">
+							<label for="rememberMe">记住我:</label> 
+							<select class="form-control" name="rememberMe" id="rememberMe">
+								<option value="">无</option>
+								<option value="25200">在一周内</option>
+								<option value="2592000">在一个月内</option>
+								<option value="31536000">在一个年内</option>
+							</select>
+						</div>
+						<#if Session.showCaptcha?has_content && Session.showCaptcha == true>
+						<div class="form-group">
+							<label for="captcha">验证码:</label>
+							<div class="row">
+								<div class="col-xs-8">
+								<input type="text" class="form-control required" title="请输入验证码" name="captcha" id="captcha" >
+								</div>
+								<div class="col-xs-2">
+									<img id="captchaImg" src="getCaptcha" />
+								</div>
+								<div class="col-xs-2">
+									<a class="btn btn-link" href="javascript:reloadValidateCode();">看不清?</a>
+								</div>
 							</div>
 						</div>
+						</#if>
+						
 					</div>
-					</#if>
-					
-				</div>
-	
-				<div class="panel-footer">
-					<button type="submit" class="btn btn-success">登录</button>
-					<button type="reset" class="btn btn-danger">重置</button>
-				</div>
-			
-			</form>
-		</div>
 		
+					<div class="panel-footer">
+						<button type="submit" class="btn btn-success">登录</button>
+						<button type="reset" class="btn btn-danger">重置</button>
+					</div>
+					
+				</form>
+				
+			</div>
+		</div>
 	</div>
-</body>
-</html>
+</@override>
+
+<@extends name="*/basic/default.htm"/>

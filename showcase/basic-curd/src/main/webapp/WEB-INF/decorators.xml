@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<decorators defaultdir="/WEB-INF/decorator/">
-	<excludes>
-		<pattern>/resource/*</pattern>
-	</excludes>
-	<decorator name="default" page="default.htm">
-		<pattern>/*</pattern>
-	</decorator>
-</decorators>

@@ -4,7 +4,7 @@ import org.eclipse.jetty.server.Server;
 import org.exitsoft.common.unit.JettyFactory;
 
 /**
- * 启动jetty服务,运行后通过http://localhost:8080/basic-ucrd/来访问项目路径
+ * 启动jetty服务,运行后通过http://localhost:8080/basic-curd/来访问项目路径
  * 
  * @author vincent
  *
@@ -18,7 +18,7 @@ public class LaunchJetty {
 	/**
 	 * 项目名称
 	 */
-	public static final String CONTEXT = "/basic-ucrd";
+	public static final String CONTEXT = "/basic-curd";
 
 	public static void main(String[] args) throws Exception {
 		Server server = JettyFactory.buildNormalServer(PORT, CONTEXT);

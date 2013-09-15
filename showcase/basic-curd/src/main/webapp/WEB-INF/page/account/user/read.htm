@@ -1,35 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>修改用户${entity.username!''}</title>
-<script type="text/javascript">
+<@override name="title">
+	修改用户${entity.username!''}
+</@override>
 
-	$(document).ready(function(){
-		$("#selectAll").click(function(){
-			var checkbox = $(this),
-			children = checkbox.parents("table").find("tbody input[type='checkbox']");
-			
-			children.prop("checked",checkbox.is(":checked"));
+<@override name="head">
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+			$("#selectAll").click(function(){
+				var checkbox = $(this),
+				children = checkbox.parents("table").find("tbody input[type='checkbox']");
+				
+				children.prop("checked",checkbox.is(":checked"));
+			});
 		});
-	});
-	
-</script>
-</head>
-<body>
-	
-  
+		
+	</script>
+</@override>
+
+<@override name="body">
 	<div class="data-content">
 	
 	<ol class="breadcrumb">
-		<li><a href="${request.contextPath}/account/user/view">用户管理</a></li>
+		<li><a href="${base}/account/user/view">用户管理</a></li>
 		<li class="active">添加用户</li>
 	</ol>
 	
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> 用户管理</h3>
+			<h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> 编辑用户</h3>
 		</div>
-		<form action="${request.contextPath}/account/user/update" method="post">
+		<form action="${base}/account/user/update" method="post">
 			<input type="hidden" name="id" value="${entity.id!''}">
 			<div class="panel-body">
 			
@@ -143,7 +143,7 @@
 					<span class="glyphicon glyphicon-trash"></span> 重置
 				</button>
 				
-				<button type="button" class="btn btn-default" onclick="history.back()">
+				<button type="button" class="btn btn-default" onclick="history.back();">
 					<span class="glyphicon glyphicon-backward"></span> 返回
 				</button>
 				
@@ -151,6 +151,6 @@
 		</form>
 		
 	</div>
-</body>
-</html>
+</@override>
 
+<@extends name="*/basic/default.htm"/>
