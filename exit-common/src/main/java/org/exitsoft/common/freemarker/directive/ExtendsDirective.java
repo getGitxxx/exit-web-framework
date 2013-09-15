@@ -1,7 +1,6 @@
 package org.exitsoft.common.freemarker.directive;
 
 import java.io.IOException;
-
 import java.util.Map;
 
 import org.exitsoft.common.freemarker.utils.DirectiveUtils;

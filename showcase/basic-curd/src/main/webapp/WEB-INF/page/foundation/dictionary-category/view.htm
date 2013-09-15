@@ -13,6 +13,7 @@
 				
 				children.prop("checked",checkbox.is(":checked"));
 			});
+			
 			$("#dictionary-category-view-form").submit(function(e){
 				
 			    return $(this).find("input:checked").length > 0 && confirm("确定要删除吗？");
