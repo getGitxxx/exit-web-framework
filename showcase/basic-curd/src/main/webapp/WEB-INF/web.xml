@@ -47,11 +47,6 @@
 	    </init-param>
 	</filter>
 	
-	<filter>
-        <filter-name>sitemesh</filter-name>
-        <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
-   </filter>
-	
 	<!-- spring mvc Servlet -->
 	<servlet>
 		<servlet-name>springMvc</servlet-name>
@@ -61,16 +56,6 @@
 			<param-value>classpath*:/applicationContext-mvc.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-	</servlet>
-	
-	<servlet>
-		<servlet-name>sitemesh-freemarker</servlet-name>
-		<servlet-class>com.opensymphony.module.sitemesh.freemarker.FreemarkerDecoratorServlet</servlet-class>
-		<init-param>
-			<param-name>TemplatePath</param-name>
-			<param-value>/</param-value>
-		</init-param>
-		<load-on-startup>2</load-on-startup>
 	</servlet>
 	
 	<!-- Filter 映射 -->
@@ -94,22 +79,10 @@
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 	
-   <filter-mapping>
-        <filter-name>sitemesh</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-   </filter-mapping>
-   
 	<servlet-mapping>
 		<servlet-name>springMvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>sitemesh-freemarker</servlet-name>
-		<url-pattern>*.htm</url-pattern>
-	</servlet-mapping> 
 	
 	<!-- session超时定义,单位为分钟 -->
 	<session-config>
@@ -128,15 +101,15 @@
 	
 	<error-page>
 		<error-code>404</error-code>
-		<location>/WEB-INF/page/error/404.htm</location>
+		<location>/WEB-INF/page/error/404.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>401</error-code>
-		<location>/WEB-INF/page/error/401.htm</location>
+		<location>/WEB-INF/page/error/401.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/WEB-INF/page/error/500.htm</location>
+		<location>/WEB-INF/page/error/500.jsp</location>
 	</error-page>
 	
 </web-app>

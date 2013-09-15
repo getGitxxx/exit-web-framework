@@ -89,7 +89,7 @@ public class GroupController {
 		entity.setResourcesList(accountManager.getResources(resourceIds));
 		
 		accountManager.saveGroup(entity);
-		redirectAttributes.addFlashAttribute("message", "保存成功");
+		redirectAttributes.addFlashAttribute("success", "保存成功");
 		return "redirect:/account/group/view";
 	}
 	
@@ -127,7 +127,7 @@ public class GroupController {
 	@RequestMapping("delete")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
 		accountManager.deleteGroups(ids);
-		redirectAttributes.addFlashAttribute("message", "删除" + ids.size() + "条信息成功");
+		redirectAttributes.addFlashAttribute("success", "删除" + ids.size() + "条信息成功");
 		return "redirect:/account/group/view";
 	}
 	

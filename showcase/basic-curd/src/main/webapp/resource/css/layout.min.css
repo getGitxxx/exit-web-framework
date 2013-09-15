@@ -20,8 +20,8 @@ body {
 	padding: 0 1px 1px;
 	min-height: 400px;
 }
-.shadow-layer {
-	height: 15px;
+#content-widget {
+	padding-top: 15px;
 }
 .content-container {
 	background-color: #FFFFFF;
@@ -48,6 +48,11 @@ body {
 	display: inline-block;
 }
 
+
+.border-black{
+    border-color: #323232;
+}
+
 .profile {
 	margin-bottom: 20px;
 	bottom:0px;
@@ -58,10 +63,22 @@ body {
 .heading-background{
 	background-image: url("../image/header-bg.png") !important;
 	height: 67px;
+	border-color: #323232 !important;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+    color: #FFFFFF;
+    position: relative;
+	z-index: 1010;
 }
-
-.incompatible {
+.pictrue {
+	width: 100px;
+	margin: 0 auto;
+}
+.server-error {
 	padding: 5% 20px;
 	width: 400px;
 	margin: 0 auto;
-} 
+}
+
+.server-error h1{
+	font-size: 100px;
+}

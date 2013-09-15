@@ -79,7 +79,7 @@ public class ResourceController {
 		}
 		
 		accountManager.saveResource(entity);
-		redirectAttributes.addFlashAttribute("message", "保存成功");
+		redirectAttributes.addFlashAttribute("success", "保存成功");
 		return "redirect:/account/resource/view";
 	}
 	
@@ -116,7 +116,7 @@ public class ResourceController {
 	@RequestMapping("delete")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
 		accountManager.deleteResources(ids);
-		redirectAttributes.addFlashAttribute("message", "删除" + ids.size() + "条信息成功");
+		redirectAttributes.addFlashAttribute("success", "删除" + ids.size() + "条信息成功");
 		return "redirect:/account/resource/view";
 	}
 	

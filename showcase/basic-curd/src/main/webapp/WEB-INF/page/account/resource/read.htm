@@ -1,35 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>编辑资源${entity.name!''}</title>
-<script type="text/javascript">
+<@override name="title">
+	编辑资源${entity.name!''}
+</@override>
 
-	$(document).ready(function(){
-		$("#selectAll").click(function(){
-			var checkbox = $(this),
-			children = checkbox.parents("table").find("tbody input[type='checkbox']");
-			
-			children.prop("checked",checkbox.is(":checked"));
-		});
-	});
-	
-</script>
-</head>
-<body>
-	
-  
+<@override name="body">
 	<div class="data-content">
 	
 	<ol class="breadcrumb">
-		<li><a href="${request.contextPath}/account/resource/view">资源管理</a></li>
+		<li><a href="${base}/account/resource/view">资源管理</a></li>
 		<li class="active">编辑资源</li>
 	</ol>
 	
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><span class="glyphicon glyphicon-link"></span> 资源管理</h3>
+			<h3 class="panel-title"><span class="glyphicon glyphicon-link"></span> 编辑资源</h3>
 		</div>
-		<form action="${request.contextPath}/account/resource/save" method="post">
+		<form action="${base}/account/resource/save" method="post">
 		
 			<input type="hidden" name="id" value="${entity.id!''}">
 			
@@ -116,7 +101,7 @@
 					<span class="glyphicon glyphicon-trash"></span> 重置
 				</button>
 				
-				<button type="button" class="btn btn-default" onclick="history.back()">
+				<button type="button" class="btn btn-default" onclick="history.back();">
 					<span class="glyphicon glyphicon-backward"></span> 返回
 				</button>
 				
@@ -124,6 +109,6 @@
 		</form>
 		
 	</div>
-</body>
-</html>
+</@override>
 
+<@extends name="*/basic/default.htm"/>

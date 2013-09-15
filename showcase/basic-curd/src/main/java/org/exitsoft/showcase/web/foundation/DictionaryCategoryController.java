@@ -76,7 +76,7 @@ public class DictionaryCategoryController {
 		}
 		
 		systemDictionaryManager.saveDictionaryCategory(entity);
-		redirectAttributes.addFlashAttribute("message", "保存成功");
+		redirectAttributes.addFlashAttribute("success", "保存成功");
 		return "redirect:/foundation/dictionary-category/view";
 	}
 	
@@ -115,7 +115,7 @@ public class DictionaryCategoryController {
 	@RequestMapping("delete")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
 		systemDictionaryManager.deleteDictionaryCategory(ids);
-		redirectAttributes.addFlashAttribute("message", "删除" + ids.size() + "条信息成功");
+		redirectAttributes.addFlashAttribute("success", "删除" + ids.size() + "条信息成功");
 		return "redirect:/foundation/dictionary-category/view";
 	}
 	

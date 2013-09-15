@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -101,6 +102,8 @@ public abstract class AuthorizationRealm extends AuthorizingRealm{
         addPermissions(info,authorizationInfo);
         //添加用户拥有的role
         addRoles(info,groupsList);
+        
+        SecurityUtils.getSubject().getSession().setAttribute("cvm", model);
         
         return info;
 	}

@@ -80,7 +80,7 @@ public class UserController {
 		entity.setGroupsList(accountManager.getGroups(groupId));
 		
 		accountManager.insertUser(entity);
-		redirectAttributes.addFlashAttribute("message", "新增成功");
+		redirectAttributes.addFlashAttribute("success", "新增成功");
 		
 		return "redirect:/account/user/view";
 	}
@@ -96,7 +96,7 @@ public class UserController {
 	@RequestMapping("delete")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
 		accountManager.deleteUsers(ids);
-		redirectAttributes.addFlashAttribute("message", "删除" + ids.size() + "条信息成功");
+		redirectAttributes.addFlashAttribute("success", "删除" + ids.size() + "条信息成功");
 		return "redirect:/account/user/view";
 	}
 	
@@ -117,7 +117,7 @@ public class UserController {
 		entity.setGroupsList(accountManager.getGroups(groupId));
 		
 		accountManager.updateUser(entity);
-		redirectAttributes.addFlashAttribute("message", "修改成功");
+		redirectAttributes.addFlashAttribute("success", "修改成功");
 		return "redirect:/account/user/view";
 	}
 	

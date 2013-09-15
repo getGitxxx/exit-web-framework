@@ -159,6 +159,10 @@
 		    <groupId>com.google.guava</groupId>
 		    <artifactId>guava</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+		</dependency>
 		<!-- commons end -->
 		
 		<!-- j2ee web start -->
@@ -204,11 +208,6 @@
 			<artifactId>freemarker</artifactId>
 		</dependency>
 		<!-- j2ee web end -->
-		
-		<dependency>
-		    <groupId>opensymphony</groupId>
-		    <artifactId>sitemesh</artifactId>
-		</dependency>
 		
 		<!-- jackson json start -->
 		<dependency>
