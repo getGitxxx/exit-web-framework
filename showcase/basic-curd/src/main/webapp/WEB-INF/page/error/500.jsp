@@ -9,9 +9,9 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
     
-    <link rel="stylesheet" type="text/css" href="resource/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="resource/css/bootstrap-theme.css" />
-    <link rel="stylesheet" type="text/css" href="resource/css/layout.min.css" />
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() + "/"%>resource/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() + "/"%>resource/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() + "/"%>resource/css/layout.min.css" />
     <!--[if IE 8]>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script type="text/javascript" src="resource/script/respond.min.js"></script>

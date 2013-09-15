@@ -9,9 +9,9 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
     
-    <link rel="stylesheet" type="text/css" href="resource/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="resource/css/bootstrap-theme.css" />
-    <link rel="stylesheet" type="text/css" href="resource/css/layout.min.css" />
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() + "/"%>resource/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() + "/"%>resource/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() + "/"%>resource/css/layout.min.css" />
     <!--[if IE 8]>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script type="text/javascript" src="resource/script/respond.min.js"></script>
@@ -36,7 +36,7 @@
 					    			<a class="btn btn-default" href="javascript:history.back()">
 										<span class="glyphicon glyphicon-backward"></span> 返回
 									</a>
-									<a class="btn btn-danger" href="/logout">
+									<a class="btn btn-danger" href="<%=request.getContextPath() + "/"%>/logout">
 										<span class="glyphicon glyphicon-log-in"></span> 从新登录
 									</a>
 					    		</p>
