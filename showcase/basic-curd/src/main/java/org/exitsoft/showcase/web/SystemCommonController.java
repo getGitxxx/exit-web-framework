@@ -3,7 +3,6 @@ package org.exitsoft.showcase.web;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.exitsoft.common.utils.CaptchaUtils;
@@ -39,7 +38,7 @@ public class SystemCommonController {
 	 * @return String
 	 */
 	@RequestMapping("/login")
-	public String login(HttpServletRequest request) {
+	public String login() {
 		
 		if (!SystemVariableUtils.isAuthenticated()) {
 			return "login";
