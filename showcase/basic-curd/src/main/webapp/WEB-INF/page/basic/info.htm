@@ -1,0 +1,23 @@
+<div class="clearfix">
+	<div class="profile">
+		<a class="thumbnail dropdown-toggle" data-toggle="dropdown" href="#">
+			<img src="${base}/resource/image/empty.png" />
+		</a>
+		<ul class="dropdown-menu" role="menu">
+			<li>
+				<a href="#" data-toggle="modal" data-target="#profile-seeting">
+					<span class="glyphicon glyphicon-file"></span> 系统设置
+				</a>
+			</li>
+			<li class="divider"></li>
+			<li>
+				<a href="${base}/logout">
+					<span class="glyphicon glyphicon-log-out"></span> 退出系统
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="user-info">
+		${Session["cvm"].user.username} <span class="name">${Session["cvm"].user.realname}</span>
+	</div>
+</div>

@@ -1,0 +1,95 @@
+<div class="modal fade" id="profile-seeting" role="dialog" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+     
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <h4 class="modal-title"><span class="glyphicon glyphicon-file"></span> 系统设置</h4>
+       </div>
+       
+       <div class="modal-body">
+       
+	       <ul class="nav nav-tabs tabs-left">
+			  <li class="active"><a href="#user-seeting" data-toggle="tab">用户设置</a></li>
+			  <li><a href="#password-seeting" data-toggle="tab">修改密码</a></li>
+			</ul>
+			<div class="tab-content">
+				
+				<div class="tab-pane fade in active" id="user-seeting">
+		          	<form action="changeProfile" method="post">
+		          		<div class="form-group">
+							<div class="pictrue">
+								<input class="form-control file-upload" type="file">
+								<a class="thumbnail" href="#">
+									<img src="${base}/resource/image/empty.png"/>
+								</a>
+							</div>
+						</div>
+						<div class="form-group">
+				   			<div class="row">
+				    			<div class="col-lg-6">
+									<label for="realname">真实姓名:</label> 
+									<input type="text" class="form-control required" name="realname" id="realname" value="${Session['cvm'].user.realname!''}">
+								</div>
+								<div class="col-lg-6">
+									<label for="email">电子邮箱:</label> 
+									<input type="text" class="form-control required" name="email" id="email"  value="${Session['cvm'].user.email!''}">
+								</div>
+				   			</div>
+			   			</div>
+						
+						<hr>
+						
+						<div class="text-right">
+							<button type="submit" class="btn btn-success">
+								<span class="glyphicon glyphicon-ok"></span> 保存
+							</button>
+							
+							<button type="reset" class="btn btn-danger">
+								<span class="glyphicon glyphicon-trash"></span> 重置
+							</button>
+						</div>
+						
+					</form>
+		        </div>
+	        
+		        <div class="tab-pane fade in" id="password-seeting">
+		        	<form action="changePassword" method="post">
+		        	
+						<div class="form-group">
+							<label for="oldPassword">旧密码:</label> 
+							<input type="password" class="form-control required" name="oldPassword" id="oldPassword" >
+						</div>
+						
+						<div class="form-group">
+							<label for="newPassword">新密码:</label> 
+							<input type="password" class="form-control required" name="newPassword" id="password" >
+						</div>
+						
+						<div class="form-group">
+							<label for=confirmPassword>新密码:</label> 
+							<input type="password" class="form-control required" name="confirmPassword" equalTo="#password" id="password" >
+						</div>
+						
+						<hr>
+						
+						<div class="text-right">
+							<button type="submit" class="btn btn-success">
+								<span class="glyphicon glyphicon-ok"></span> 保存
+							</button>
+							
+							<button type="reset" class="btn btn-danger">
+								<span class="glyphicon glyphicon-trash"></span> 重置
+							</button>
+						</div>
+						
+					</form>
+					
+	      		</div>
+			</div>
+      	
+      	</div>
+      	
+     </div>
+   </div>
+</div>
