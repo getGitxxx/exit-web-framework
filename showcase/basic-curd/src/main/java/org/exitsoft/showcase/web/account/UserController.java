@@ -1,15 +1,19 @@
 package org.exitsoft.showcase.web.account;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.exitsoft.orm.core.PropertyFilters;
+import org.exitsoft.common.spring.mvc.SpringMvcHolder;
 import org.exitsoft.orm.core.Page;
 import org.exitsoft.orm.core.PageRequest;
 import org.exitsoft.orm.core.PageRequest.Sort;
 import org.exitsoft.orm.core.PropertyFilter;
+import org.exitsoft.orm.core.PropertyFilters;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.common.enumeration.entity.GroupType;
@@ -17,6 +21,10 @@ import org.exitsoft.showcase.entity.account.User;
 import org.exitsoft.showcase.entity.foundation.DataDictionary;
 import org.exitsoft.showcase.service.account.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -59,6 +67,22 @@ public class UserController {
 		}
 		
 		return accountManager.searchUserPage(pageRequest, filters);
+	}
+	
+	@RequestMapping("get-portrait")
+	public ResponseEntity<byte[]> getPortrait(@ModelAttribute("entity")User entity) throws IOException {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.IMAGE_GIF);
+		
+		String path = SpringMvcHolder.getRealPath("") + File.separator + entity.getPortrait();
+		
+		File portrait = new File(path);
+		
+		if (!portrait.exists()) {
+			portrait = new File(SpringMvcHolder.getRealPath("") + File.separator + "portrait" + File.separator + "empty.jpg");
+		}
+		
+		return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(portrait), headers, HttpStatus.OK);
 	}
 	
 	

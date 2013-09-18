@@ -1,11 +1,17 @@
 package org.exitsoft.showcase.web;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.exitsoft.common.spring.mvc.SpringMvcHolder;
 import org.exitsoft.common.utils.CaptchaUtils;
+import org.exitsoft.common.utils.ImageUtils;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.entity.account.User;
 import org.exitsoft.showcase.service.account.AccountManager;
@@ -17,6 +23,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -62,13 +71,11 @@ public class SystemCommonController {
 	 * 
 	 * @return String
 	 */
-	@RequestMapping("/changePassword")
+	@RequestMapping("/change-password")
 	public String changePassword(String oldPassword,String newPassword,RedirectAttributes redirectAttributes) {
 		
-		if (accountManager.updateUserPassword(oldPassword,newPassword)) {
-			return "redirect:/logout";
-		}
-		redirectAttributes.addFlashAttribute("error", "旧密码不正确");
+		accountManager.updateUserPassword(oldPassword,newPassword);
+			
 		return "redirect:/index";
 		
 	}
@@ -79,16 +86,49 @@ public class SystemCommonController {
 	 * @param user 用户实体
 	 * 
 	 * @return String
+	 * @throws IOException 
 	 */
-	@RequestMapping("/changeProfile")
-	public String changeProfile(String realname,String email) {
+	@RequestMapping("/change-profile")
+	public String changeProfile(String realname,String email,@RequestParam(required = false)String portrait) throws IOException {
 		User entity = SystemVariableUtils.getCommonVariableModel().getUser();
 		
 		entity.setRealname(realname);
 		entity.setEmail(email);
 		
+		if (StringUtils.isNotEmpty(portrait)) {
+			
+			String path = SpringMvcHolder.getRealPath("");
+			
+			if (StringUtils.isEmpty(entity.getPortrait())) {
+				entity.setPortrait("portrait/" + entity.getUsername() + "-portrait-file");
+			}
+			
+			File portraitFile = new File(path + File.separator + entity.getPortrait());
+			
+			if(!portraitFile.exists()) {
+				portraitFile.createNewFile();
+			}
+			
+			File tempFile = new File(path + File.separator + "temp_upload" + File.separator + portrait);
+			
+			FileUtils.copyFile(tempFile, portraitFile);
+			
+		}
+		
 		accountManager.updateUser(entity);
 		return "redirect:/index";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/temp-upload")
+	public String tempUpload(@RequestParam("file")CommonsMultipartFile file) throws IllegalStateException, IOException {
+		String path = SpringMvcHolder.getRealPath("");
+		String name = "temp_upload_" + UUID.randomUUID().toString().replaceAll("-", "");
+		
+		File tempFile = new File(path + File.separator + "temp_upload" + File.separator + name);
+		ImageUtils.scale(file.getInputStream(), tempFile, 80, 80);
+		
+		return name;
 	}
 	
 	/**

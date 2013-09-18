@@ -63,21 +63,21 @@ public class AccountManager {
 	 * @param oldPassword 旧密码
 	 * @param newPassword 新密码
 	 * 
-	 * @return boolean
 	 */
-	public boolean updateUserPassword(String oldPassword, String newPassword) {
+	public void updateUserPassword(String oldPassword, String newPassword) {
 		User user = SystemVariableUtils.getCommonVariableModel().getUser();
 		
 		oldPassword = new SimpleHash("MD5", oldPassword.toCharArray()).toString();
-		if(user.getPassword().equals(oldPassword)) {
-			String temp = new SimpleHash("MD5",newPassword).toHex();
-			userDao.updatePassword(user.getId(),temp);
-			user.setPassword(temp); 
-			return true;
+		
+		if (!user.getPassword().equals(oldPassword)) {
+			throw new ServiceException("旧密码不正确.");
 		}
 		
-		return false;
+		String temp = new SimpleHash("MD5",newPassword).toHex();
+		userDao.updatePassword(user.getId(),temp);
+		user.setPassword(temp); 
 	}
+	
 	
 	/**
 	 * 通过id获取用户实体

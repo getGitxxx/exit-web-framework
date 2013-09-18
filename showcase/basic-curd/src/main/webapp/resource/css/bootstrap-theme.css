@@ -1,4 +1,4 @@
-div,a:focus {
+div, a:focus, .btn:focus {
 	outline: none;
 }
 
@@ -12,31 +12,14 @@ div,a:focus {
 .panel-default > .panel-heading {
     background-color: #4B4B4B;
     color: #FFFFFF;
+}
+
+.panel-default > .panel-heading {
     margin: -1px;
 }
 
 .panel .table {
     margin-bottom: 0px;
-}
-
-.btn-info {
-    border-color: #00ACDF;
-}
-
-.btn-primary {
-    border-color: #0070D1;
-}
-
-.btn-danger {
-    border-color: #DA0700;
-}
-
-.btn-success {
-    border-color: #469746;
-}
-
-.btn-warning {
-	border-color: #dc8100;
 }
 
 .table thead>tr>th {
@@ -141,6 +124,7 @@ div,a:focus {
 
 .modal-backdrop {
     background-color: #FFFFFF;
+    position: absolute;
 }
 
 .modal {

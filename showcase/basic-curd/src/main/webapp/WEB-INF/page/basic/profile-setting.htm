@@ -1,3 +1,24 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#file").change(function(){
+			
+			if (!/\.(jpg|jpeg|png)$/.test($(this).val())) {
+				alert("请选择图片类型的文件如：jpeg jpg png"); 
+				return ;
+			}
+			
+			$("#upload-form").submit();
+		});
+	});
+	
+	function onUploadSuccess(fileName) {
+		//IE8返回的fileName带有标签。/<[^>]*>/g这个表达式将该标签取出。
+		fileName = fileName.replace(/<[^>]*>/g,"");
+		$("#portrait").attr("src","${base}/temp_upload/" +fileName);
+		$("#portrait-field").val(fileName);
+	}
+	
+</script>
 <div class="modal fade" id="profile-seeting" role="dialog" aria-hidden="true">
    <div class="modal-dialog">
      <div class="modal-content">
@@ -13,18 +34,23 @@
 			  <li class="active"><a href="#user-seeting" data-toggle="tab">用户设置</a></li>
 			  <li><a href="#password-seeting" data-toggle="tab">修改密码</a></li>
 			</ul>
+			
 			<div class="tab-content">
 				
 				<div class="tab-pane fade in active" id="user-seeting">
-		          	<form action="changeProfile" method="post">
-		          		<div class="form-group">
-							<div class="pictrue">
-								<input class="form-control file-upload" type="file">
-								<a class="thumbnail" href="#">
-									<img src="${base}/resource/image/empty.png"/>
+	          		<div class="form-group">
+						<div class="pictrue">
+	          				<form action="${base}/temp-upload" method="post" onsuccess="onUploadSuccess" id="upload-form" data-ajax-submit="true" enctype="multipart/form-data">
+								<input id="file" name="file" class="form-control file-upload" type="file">
+								<a class="thumbnail">
+									<img id="portrait" src="${base}/account/user/get-portrait?id=${Session['cvm'].user.id}"/>
 								</a>
-							</div>
+							</form>
 						</div>
+					</div>
+					
+					<form action="${base}/change-profile" method="post">
+						<input type="hidden" id="portrait-field" name="portrait" >
 						<div class="form-group">
 				   			<div class="row">
 				    			<div class="col-lg-6">
@@ -33,7 +59,7 @@
 								</div>
 								<div class="col-lg-6">
 									<label for="email">电子邮箱:</label> 
-									<input type="text" class="form-control required" name="email" id="email"  value="${Session['cvm'].user.email!''}">
+									<input type="text" class="form-control email" name="email" id="email"  value="${Session['cvm'].user.email!''}">
 								</div>
 				   			</div>
 			   			</div>
@@ -49,12 +75,11 @@
 								<span class="glyphicon glyphicon-trash"></span> 重置
 							</button>
 						</div>
-						
 					</form>
 		        </div>
 	        
 		        <div class="tab-pane fade in" id="password-seeting">
-		        	<form action="changePassword" method="post">
+		        	<form action="${base}/change-password" method="post" >
 		        	
 						<div class="form-group">
 							<label for="oldPassword">旧密码:</label> 
@@ -63,12 +88,12 @@
 						
 						<div class="form-group">
 							<label for="newPassword">新密码:</label> 
-							<input type="password" class="form-control required" name="newPassword" id="password" >
+							<input type="password" class="form-control required" name="newPassword" id="newPassword" >
 						</div>
 						
 						<div class="form-group">
 							<label for=confirmPassword>新密码:</label> 
-							<input type="password" class="form-control required" name="confirmPassword" equalTo="#password" id="password" >
+							<input type="password" class="form-control required" name="confirmPassword" equalTo="#newPassword" id="confirmPassword" >
 						</div>
 						
 						<hr>

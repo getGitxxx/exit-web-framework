@@ -1,12 +1,10 @@
 package org.exitsoft.common.spring.mvc;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
  * spring mvc 上下文持有者，类似Struts2的ServletActionContext,
@@ -69,7 +67,7 @@ public abstract class SpringMvcHolder {
 	 * @return Object
 	 */
 	public static <T> T  getAttribute(String name,int scope) {
-		return (T) getNativeWebRequest().getAttribute(name, scope);
+		return (T) getServletRequestAttributes().getAttribute(name, scope);
 	}
 	
 	/**
@@ -80,38 +78,27 @@ public abstract class SpringMvcHolder {
 	 * @param scope 作用域,参考{@link RequestAttributes}
 	 */
 	public static void  addAttribute(String name,Object value, int scope) {
-		getNativeWebRequest().setAttribute(name, value, scope);
+		getServletRequestAttributes().setAttribute(name, value, scope);
 	}
 
 	/**
-	 * 获取NativeResponse
+	 * 获取HttpServletRequest
 	 * 
-	 * @param requiredType Response类型,如果为null返回当前默认的ServletResponse
 	 * 
-	 * @return {@link ServletResponse}
+	 * @return {@link HttpServletRequest}
 	 */
-	public static <T> T getNativeResponse(Class<T> requiredType) {
-		return getNativeWebRequest().getNativeResponse(requiredType);
-	}
-	/**
-	 * 获取NativeRequest
-	 * 
-	 * @param requiredType Request类型,如果为null返回当前默认的ServletRequest
-	 * 
-	 * @return {@link ServletRequest}
-	 */
-	public static <T> T  getNativeRequest(Class<T> requiredType) {
+	public static HttpServletRequest  getRequest() {
 		
-		return getNativeWebRequest().getNativeRequest(requiredType);
+		return getServletRequestAttributes().getRequest();
 	}
 	
 	/**
-	 * 获取spring mvc的本地web request
+	 * 获取spring mvc的ServletRequestAttributes
 	 * 
-	 * @return {@link NativeWebRequest}
+	 * @return {@link ServletRequestAttributes}
 	 */
-	public static NativeWebRequest getNativeWebRequest() {
-		return (NativeWebRequest) RequestContextHolder.currentRequestAttributes();
+	public static ServletRequestAttributes getServletRequestAttributes() {
+		return (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 	}
 	
 	/**
@@ -122,6 +109,6 @@ public abstract class SpringMvcHolder {
 	 * @return String
 	 */
 	public static String getRealPath(String path) {
-		return getNativeRequest(HttpServletRequest.class).getSession().getServletContext().getRealPath(path);
+		return getRequest().getSession().getServletContext().getRealPath(path);
 	}
 }
