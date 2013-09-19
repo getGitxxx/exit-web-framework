@@ -79,7 +79,7 @@ public class UserController {
 		File portrait = new File(path);
 		
 		if (!portrait.exists()) {
-			portrait = new File(SpringMvcHolder.getRealPath("") + File.separator + "portrait" + File.separator + "empty.jpg");
+			portrait = new File(SpringMvcHolder.getRealPath("") + File.separator + "portrait" + File.separator + "empty.png");
 		}
 		
 		return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(portrait), headers, HttpStatus.OK);

@@ -9,6 +9,11 @@
 			
 			$("#upload-form").submit();
 		});
+		
+		$("#profile-seeting").on('hidden.bs.modal', function () {
+			$("#portrait").attr("src","${base}/account/user/get-portrait?id=${Session['cvm'].user.id}&random=" + (Math.random()*24));
+			$(this).find("form").resetForm();
+		});
 	});
 	
 	function onUploadSuccess(fileName) {
