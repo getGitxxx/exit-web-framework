@@ -2,8 +2,8 @@
 	$(document).ready(function(){
 		$("#file").change(function(){
 			
-			if (!/\.(jpg|jpeg|png)$/.test($(this).val())) {
-				alert("请选择图片类型的文件如：jpeg jpg png"); 
+			if (!/\.(jpg|jpeg)$/.test($(this).val())) {
+				alert("请选择图片类型的文件如：jpeg jpg"); 
 				return ;
 			}
 			
@@ -11,7 +11,7 @@
 		});
 		
 		$("#profile-seeting").on('hidden.bs.modal', function () {
-			$("#portrait").attr("src","${base}/account/user/get-portrait?id=${Session['cvm'].user.id}&random=" + (Math.random()*24));
+			$("#portrait").attr("src","${base}/account/user/portrait?id=${Session['cvm'].user.id}&random=" + (Math.random()*24));
 			$(this).find("form").resetForm();
 		});
 	});
@@ -48,7 +48,7 @@
 	          				<form action="${base}/temp-upload" method="post" onsuccess="onUploadSuccess" id="upload-form" data-ajax-submit="true" enctype="multipart/form-data">
 								<input id="file" name="file" class="form-control file-upload" type="file">
 								<a class="thumbnail">
-									<img id="portrait" src="${base}/account/user/get-portrait?id=${Session['cvm'].user.id}"/>
+									<img id="portrait" src="${base}/account/user/portrait?id=${Session['cvm'].user.id}"/>
 								</a>
 							</form>
 						</div>

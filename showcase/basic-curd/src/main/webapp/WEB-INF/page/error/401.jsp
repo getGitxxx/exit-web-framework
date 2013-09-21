@@ -31,7 +31,7 @@
 					    		<p>&nbsp;</p> 
 					    		<h3>访问控制</h3> 
 					    		<hr> 
-					    		<p>你没有足够的权限做该操作.</a></p> 
+					    		<p>你没有足够的权限做该操作.</p> 
 					    		<p>
 					    			<a class="btn btn-default" href="javascript:history.back()">
 										<span class="glyphicon glyphicon-backward"></span> 返回

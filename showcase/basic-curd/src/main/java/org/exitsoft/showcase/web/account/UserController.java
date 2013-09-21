@@ -69,8 +69,8 @@ public class UserController {
 		return accountManager.searchUserPage(pageRequest, filters);
 	}
 	
-	@RequestMapping("get-portrait")
-	public ResponseEntity<byte[]> getPortrait(@ModelAttribute("entity")User entity) throws IOException {
+	@RequestMapping("portrait")
+	public ResponseEntity<byte[]> portrait(@ModelAttribute("entity")User entity) throws IOException {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.IMAGE_GIF);
 		

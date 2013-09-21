@@ -31,7 +31,7 @@
 					    		<p>&nbsp;</p> 
 					    		<h3>服务器错误</h3> 
 					    		<hr> 
-					    		<p>服务器出错，请稍后在试.</a></p> 
+					    		<p>服务器出错，请稍后在试.</p> 
 					    		<p>
 					    			<a class="btn btn-default" href="javascript:history.back()">
 										<span class="glyphicon glyphicon-backward"></span> 返回

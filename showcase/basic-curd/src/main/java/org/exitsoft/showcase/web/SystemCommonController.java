@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 /**
@@ -40,6 +39,11 @@ public class SystemCommonController {
 	
 	@Autowired
 	private AccountManager accountManager;
+	
+	/**
+	 * 上传临时文件夹名称
+	 */
+	public static String TEMP_UPLOAD_DIRECTORY = "temp_upload";
 	
 	/**
 	 * 登录C，返回登录页面。当C发现当前用户已经登录名且认真后，会自动跳转到index页面
@@ -72,11 +76,11 @@ public class SystemCommonController {
 	 * @return String
 	 */
 	@RequestMapping("/change-password")
-	public String changePassword(String oldPassword,String newPassword,RedirectAttributes redirectAttributes) {
+	public String changePassword(String oldPassword,String newPassword) {
 		
 		accountManager.updateUserPassword(oldPassword,newPassword);
 			
-		return "redirect:/index";
+		return "redirect:/logout";
 		
 	}
 	
@@ -109,25 +113,33 @@ public class SystemCommonController {
 				portraitFile.createNewFile();
 			}
 			
-			File tempFile = new File(path + File.separator + "temp_upload" + File.separator + portrait);
+			File tempFile = new File(path + File.separator + TEMP_UPLOAD_DIRECTORY + File.separator + portrait);
 			
 			FileUtils.copyFile(tempFile, portraitFile);
-			
+			tempFile.deleteOnExit();
 		}
 		
 		accountManager.updateUser(entity);
 		return "redirect:/index";
 	}
 	
+	/**
+	 * 文件上传的临时存放目录C，将上传上来的文件存储到webapp下杂temp_upload的文件夹中
+	 * 
+	 * @param file
+	 * @return String
+	 * 
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
 	@ResponseBody
 	@RequestMapping("/temp-upload")
 	public String tempUpload(@RequestParam("file")CommonsMultipartFile file) throws IllegalStateException, IOException {
 		String path = SpringMvcHolder.getRealPath("");
 		String name = "temp_upload_" + UUID.randomUUID().toString().replaceAll("-", "");
 		
-		File tempFile = new File(path + File.separator + "temp_upload" + File.separator + name);
+		File tempFile = new File(path + File.separator + TEMP_UPLOAD_DIRECTORY + File.separator + name);
 		ImageUtils.scale(file.getInputStream(), tempFile, 80, 80);
-		
 		return name;
 	}
 	

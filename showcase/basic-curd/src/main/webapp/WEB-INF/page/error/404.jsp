@@ -31,7 +31,7 @@
 					    		<p>&nbsp;</p> 
 					    		<h3>找不到页面</h3> 
 					    		<hr> 
-					    		<p>你访问的页面不存在或已经被删除.</a></p> 
+					    		<p>你访问的页面不存在或已经被删除.</p> 
 					    		<p>
 					    			<a class="btn btn-default" href="javascript:history.back()">
 										<span class="glyphicon glyphicon-backward"></span> 返回
