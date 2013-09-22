@@ -18,15 +18,19 @@
 	
 	function onUploadSuccess(fileName) {
 		
-		fileName = "${base}/temp_upload/" + fileName.replace(/<[^>]*>/g,"");
+		var path = "${base}/temp_upload/" + fileName.replace(/<[^>]*>/g,"");
 		var image = new Image();
-        image.src = fileName;
-        if (image.height > 80 || image.width > 80 ||　image.height < 80 || image.width < 80) {
-        	alert("请上传 80 * 80 像素的图片.");
-        } else{
-    		$("#portrait").attr("src",fileName);
-    		$("#portrait-field").val(fileName);
-        }
+		
+        $(image).load(function(){
+            if (image.height > 80 || image.width > 80 ||　image.height < 80 || image.width < 80) {
+            	alert("请上传 80 * 80 像素的图片.");
+            } else{
+        		$("#portrait").attr("src",path);
+        		$("#portrait-field").val(fileName);
+            }
+        });
+        
+        image.src = path;
 	}
 	
 </script>
