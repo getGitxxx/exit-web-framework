@@ -11,7 +11,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.exitsoft.common.spring.mvc.SpringMvcHolder;
 import org.exitsoft.common.utils.CaptchaUtils;
-import org.exitsoft.common.utils.ImageUtils;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.entity.account.User;
 import org.exitsoft.showcase.service.account.AccountManager;
@@ -139,7 +138,9 @@ public class SystemCommonController {
 		String name = "temp_upload_" + UUID.randomUUID().toString().replaceAll("-", "");
 		
 		File tempFile = new File(path + File.separator + TEMP_UPLOAD_DIRECTORY + File.separator + name);
-		ImageUtils.scale(file.getInputStream(), tempFile, 80, 80);
+		tempFile.mkdirs();
+		file.transferTo(tempFile);
+		
 		return name;
 	}
 	
@@ -161,7 +162,6 @@ public class SystemCommonController {
 		session.setAttribute(CaptchaAuthenticationFilter.DEFAULT_CAPTCHA_PARAM,captcha);
 		byte[] bs = outputStream.toByteArray();
 		outputStream.close();
-		
 		return new ResponseEntity<byte[]>(bs,headers, HttpStatus.OK);
 	}
 }

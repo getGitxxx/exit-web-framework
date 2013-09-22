@@ -2,8 +2,8 @@
 	$(document).ready(function(){
 		$("#file").change(function(){
 			
-			if (!/\.(jpg|jpeg)$/.test($(this).val())) {
-				alert("请选择图片类型的文件如：jpeg jpg"); 
+			if (!/\.(jpg|jpeg|gif|png|JPG|JPEG|GIF|PNG)$/.test($(this).val())) {
+				alert("请选择图片类型的文件如：jpg jpeg gif png"); 
 				return ;
 			}
 			
@@ -17,10 +17,16 @@
 	});
 	
 	function onUploadSuccess(fileName) {
-		//IE8返回的fileName带有标签。/<[^>]*>/g这个表达式将该标签取出。
-		fileName = fileName.replace(/<[^>]*>/g,"");
-		$("#portrait").attr("src","${base}/temp_upload/" +fileName);
-		$("#portrait-field").val(fileName);
+		
+		fileName = "${base}/temp_upload/" + fileName.replace(/<[^>]*>/g,"");
+		var image = new Image();
+        image.src = fileName;
+        if (image.height > 80 || image.width > 80 ||　image.height < 80 || image.width < 80) {
+        	alert("请上传 80 * 80 像素的图片.");
+        } else{
+    		$("#portrait").attr("src",fileName);
+    		$("#portrait-field").val(fileName);
+        }
 	}
 	
 </script>

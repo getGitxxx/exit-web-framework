@@ -37,7 +37,7 @@
 										<span class="glyphicon glyphicon-backward"></span> 返回
 									</a>
 									<a class="btn btn-danger" href="<%=request.getContextPath() + "/"%>/logout">
-										<span class="glyphicon glyphicon-log-in"></span> 从新登录
+										<span class="glyphicon glyphicon-log-in"></span> 重新登录
 									</a>
 					    		</p>
 					    	</div>
