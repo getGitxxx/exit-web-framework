@@ -1,20 +1,20 @@
 <@override name="title">
-	编辑数据字典${entity.name!''}
+	编辑字典类型${entity.name!''}
 </@override>
 
 <@override name="body">
 	<div class="data-content">
 	
 	<ol class="breadcrumb">
-		<li><a href="${base}/foundation/data-dictionary/view">数据字典管理</a></li>
-		<li class="active">编辑数据字典</li>
+		<li><a href="${base}/foundation/dictionary-category/view">字典类型管理</a></li>
+		<li class="active">编辑字典类型</li>
 	</ol>
 	
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><span class="glyphicon glyphicon-list-alt"></span> 数据字典管理</h3>
+			<h3 class="panel-title"><span class="glyphicon glyphicon-folder-close"></span> 字典类型管理</h3>
 		</div>
-		<form action="${base}/foundation/data-dictionary/save" method="post">
+		<form action="${base}/foundation/dictionary-category/save" method="post">
 		
 			<input type="hidden" name="id" value="${entity.id!''}">
 			
@@ -23,33 +23,24 @@
 				<div class="form-group">
 		   			<div class="row">
 		    			<div class="col-lg-6">
-							<label for="name">字典名称:</label>
+							<label for="name">类别名称:</label>
 							<input type="text" class="form-control required" id="name" name="name" value="${entity.name!''}">
 						</div>
 						<div class="col-lg-6">
-							<label for="value">字典值:</label>
-							<input type="text" class="form-control required" id="value" name="value" value="${entity.value!''}">
+							<label for="code">类别代码:</label>
+							<input type="text" class="form-control required" id="code" name="code" value="${entity.code!''}">
 						</div>
 		   			</div>
 	   			</div>
 	   			
 	   			<div class="form-group">
 		   			<div class="row">
-		    			<div class="col-lg-6">
-							<label for="type">值类型:</label>
-							<select class="form-control required" name="type" id="type">
-								<option value="">请选择...</option>
-				                <#list valueTypes as vt>
-				                	<option value="${vt.value}" <#if entity.type==vt.value> selected="selected" </#if> >${vt.name}</option>
-				                </#list>
-				           </select>
-						</div>
-						<div class="col-lg-6">
-							<label for="permission">所属类型:</label>
-							<select class="form-control required" height="150" search="true" name="categoryId" id="categoryId">
+						<div class="col-lg-12">
+							<label for="parentId">所属父类:</label>
+							<select class="form-control" height="150" search="true" name="parentId" id="parentId">
 								<option value="">请选择...</option>
 				                <#list categoriesList as cl>
-				                	<option value="${cl.id}" <#if entity.category?has_content && entity.category.id==cl.id> selected="selected" </#if> >${cl.name}</option>
+				                	<option value="${cl.id}" <#if entity.parentId==cl.id> selected="selected" </#if> >${cl.name}</option>
 				                </#list>
 				           </select>
 						</div>
@@ -87,6 +78,4 @@
 	</div>
 </@override>
 
-<@extends name="*/basic/default.htm"/>
-
-
+<@extends name="*/basic/default.html"/>

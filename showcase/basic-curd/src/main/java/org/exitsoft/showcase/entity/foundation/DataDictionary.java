@@ -130,7 +130,7 @@ public class DataDictionary extends UniversallyUniqueIdentifier{
 	 * @return {@link DictionaryCategory}
 	 */
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "FK_CATEGORY_ID",columnDefinition="char(32)",nullable=false)
+	@JoinColumn(name = "FK_CATEGORY_ID", nullable=false)
 	public DictionaryCategory getCategory() {
 		return category;
 	}

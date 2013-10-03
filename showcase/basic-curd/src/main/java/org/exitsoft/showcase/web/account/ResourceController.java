@@ -75,7 +75,8 @@ public class ResourceController {
 		if (StringUtils.isEmpty(parentId)) {
 			entity.setParent(null);
 		} else {
-			entity.setParent(accountManager.getResource(parentId));
+			Resource parent = accountManager.getResource(parentId);
+			entity.setParent(parent);
 		}
 		
 		accountManager.saveResource(entity);

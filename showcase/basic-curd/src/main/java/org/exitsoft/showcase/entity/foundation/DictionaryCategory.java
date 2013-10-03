@@ -143,7 +143,7 @@ public class DictionaryCategory extends UniversallyUniqueIdentifier{
 	 * @return {@link DictionaryCategory}
 	 */
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "FK_PARENT_ID",columnDefinition="char(32)")
+	@JoinColumn(name = "FK_PARENT_ID")
 	public DictionaryCategory getParent() {
 		return parent;
 	}

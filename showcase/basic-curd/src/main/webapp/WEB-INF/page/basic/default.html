@@ -33,7 +33,7 @@
 <body>
 
 	<@shiro.user>
-		<#include "profile-setting.htm" />
+		<#include "profile-setting.html" />
 	</@shiro.user>
 	
 	<div class="main-container">
@@ -42,7 +42,7 @@
 		
 			<div class="panel-heading large heading-background">
 			<@shiro.user>
-				<#include "info.htm" />
+				<#include "info.html" />
 			</@shiro.user>
 			</div>
 			
@@ -52,7 +52,7 @@
 						<div class="content-widget" id="content-widget">
 						
 							<@shiro.user>
-								<#include "navbar.htm" />
+								<#include "navbar.html" />
 							</@shiro.user>
 							
 							<@block name="body" />
