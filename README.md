@@ -39,8 +39,8 @@ exit-web-framework是对常用的java web开发封装实用功能来提高开发
 	[INFO] Final Memory: 6M/16M
 	[INFO] ------------------------------------------------------------------------
 ***
-该安装过程会将exit-web-framework中的exit-common和exit-orm生成jar包放入maven的.m2文件夹中,当然,这两个框架使用到的依赖jar包也会下载到.m2文件夹中.
 
+该安装过程会将exit-web-framework中的exit-common和exit-orm生成jar包放入maven的.m2文件夹中,当然,这两个框架使用到的依赖jar包也会下载到.m2文件夹中.
 
 ##### exitsoft common 简单说明
 
@@ -54,9 +54,7 @@ exit-web-framework是对常用的java web开发封装实用功能来提高开发
 
 在文件夹的shorcase里有一个basic-curd项目。该项目是对以上两个框架(exit-common和exit-orm)和其他技术的整合做的例子，通过该例子使用maven做了一个archetype基础模板。可以通过该archetype来生成一个新的项目。该文件在basic-curd\bin下面。
 
-项目使用了mysql数据库,在basic-curd文件夹中有一个database的文件夹里面有对应该项目使用的数据。导入之后可以通过
-basic-curd项目文件夹中的bin文件夹下的jetty.bat文件运行项目，也可以用eclipse.bat生成项目导入到开发工具中在运行。
-该工程下有一个基于jeety运行的java文件org.exitsoft.showcase.test.LaunchJetty.你也可以通过该文件运行整个项目.
+通过basic-curd项目文件夹中的bin/jetty.bat文件运行项目，也可以用eclipse.bat生成项目导入到开发工具中在运行。该工程下有一个基于jeety运行的java文件org.exitsoft.showcase.test.LaunchJetty.你也可以通过该文件运行整个项目.
 
 ##### 导入eclipse或者myeclipse
 在根目录下的bin目录有一个eclipse.bat和myeclipse.bat，点击eclipse.bat/myeclipse.bat会生成project，看见以下信息表示生成成功，可以直接导入eclipse/myclipse
