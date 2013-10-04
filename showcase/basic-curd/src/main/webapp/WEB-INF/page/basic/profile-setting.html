@@ -11,7 +11,7 @@
 		});
 		
 		$("#profile-seeting").on('hidden.bs.modal', function () {
-			$("#portrait").attr("src","${base}/account/user/portrait?id=${Session['cvm'].user.id}&random=" + (Math.random()*24));
+			$("#portrait").attr("src","${base}/account/user/portrait?id=${Session['sv'].user.id}&random=" + (Math.random()*24));
 			$(this).find("form").resetForm();
 		});
 	});
@@ -58,7 +58,7 @@
 	          				<form action="${base}/temp-upload" method="post" onsuccess="onUploadSuccess" id="upload-form" data-ajax-submit="true" enctype="multipart/form-data">
 								<input id="file" name="file" class="form-control file-upload" type="file">
 								<a class="thumbnail">
-									<img id="portrait" src="${base}/account/user/portrait?id=${Session['cvm'].user.id}"/>
+									<img id="portrait" src="${base}/account/user/portrait?id=${Session['sv'].user.id}"/>
 								</a>
 							</form>
 						</div>
@@ -70,11 +70,11 @@
 				   			<div class="row">
 				    			<div class="col-lg-6">
 									<label for="realname">真实姓名:</label> 
-									<input type="text" class="form-control required" name="realname" id="realname" value="${Session['cvm'].user.realname!''}">
+									<input type="text" class="form-control required" name="realname" id="realname" value="${Session['sv'].user.realname!''}">
 								</div>
 								<div class="col-lg-6">
 									<label for="email">电子邮箱:</label> 
-									<input type="text" class="form-control email" name="email" id="email"  value="${Session['cvm'].user.email!''}">
+									<input type="text" class="form-control email" name="email" id="email"  value="${Session['sv'].user.email!''}">
 								</div>
 				   			</div>
 			   			</div>

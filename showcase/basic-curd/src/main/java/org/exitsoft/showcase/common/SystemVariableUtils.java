@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
-import org.exitsoft.showcase.common.model.CommonVariableModel;
 import org.exitsoft.showcase.entity.foundation.DataDictionary;
 import org.exitsoft.showcase.service.foundation.SystemDictionaryManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,14 +96,14 @@ public class SystemVariableUtils {
 	/**
 	 * 获取当前安全模型
 	 * 
-	 * @return {@link CommonVariableModel}
+	 * @return {@link SessionVariable}
 	 */
-	public static CommonVariableModel getCommonVariableModel() {
+	public static SessionVariable getCommonVariableModel() {
 		
 		Subject subject = SecurityUtils.getSubject();
 		
-		if (subject != null && subject.getPrincipal() != null && subject.getPrincipal() instanceof CommonVariableModel) {
-			return (CommonVariableModel) subject.getPrincipal();
+		if (subject != null && subject.getPrincipal() != null && subject.getPrincipal() instanceof SessionVariable) {
+			return (SessionVariable) subject.getPrincipal();
 		}
 		
 		return null;

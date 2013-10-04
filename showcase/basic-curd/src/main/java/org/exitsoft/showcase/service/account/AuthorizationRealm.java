@@ -12,8 +12,8 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.exitsoft.common.utils.CollectionUtils;
+import org.exitsoft.showcase.common.SessionVariable;
 import org.exitsoft.showcase.common.enumeration.entity.ResourceType;
-import org.exitsoft.showcase.common.model.CommonVariableModel;
 import org.exitsoft.showcase.entity.account.Group;
 import org.exitsoft.showcase.entity.account.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,9 +83,9 @@ public abstract class AuthorizationRealm extends AuthorizingRealm{
         
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         
-        CommonVariableModel model = (CommonVariableModel) principals.getPrimaryPrincipal();
+        SessionVariable model = (SessionVariable) principals.getPrimaryPrincipal();
         
-        Assert.notNull(model, "找不到principals中的CommonVariableModel");
+        Assert.notNull(model, "找不到principals中的SessionVariable");
         
         String id = model.getUser().getId();
         
@@ -103,7 +103,7 @@ public abstract class AuthorizationRealm extends AuthorizingRealm{
         //添加用户拥有的role
         addRoles(info,groupsList);
         
-        SecurityUtils.getSubject().getSession().setAttribute("cvm", model);
+        SecurityUtils.getSubject().getSession().setAttribute("sv", model);
         
         return info;
 	}

@@ -1,4 +1,4 @@
-package org.exitsoft.showcase.common.model;
+package org.exitsoft.showcase.common;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.exitsoft.showcase.entity.account.User;
  * 
  */
 @SuppressWarnings("serial")
-public class CommonVariableModel implements Serializable {
+public class SessionVariable implements Serializable {
 	// 当前用户
 	private User user;
 
@@ -28,15 +28,15 @@ public class CommonVariableModel implements Serializable {
 	// 当前用户的菜单集合
 	private List<Resource> menusList;
 
-	public CommonVariableModel() {
+	public SessionVariable() {
 
 	}
 
-	public CommonVariableModel(User user) {
+	public SessionVariable(User user) {
 		this.user = user;
 	}
 
-	public CommonVariableModel(User user, List<Group> groupsList,List<Resource> authorizationInfo, List<Resource> menusList) {
+	public SessionVariable(User user, List<Group> groupsList,List<Resource> authorizationInfo, List<Resource> menusList) {
 		this.user = user;
 		this.groupsList = groupsList;
 		this.authorizationInfo = authorizationInfo;

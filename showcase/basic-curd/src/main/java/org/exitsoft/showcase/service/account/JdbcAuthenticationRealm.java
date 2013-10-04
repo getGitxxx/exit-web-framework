@@ -8,8 +8,8 @@ import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.exitsoft.showcase.common.SessionVariable;
 import org.exitsoft.showcase.common.enumeration.entity.State;
-import org.exitsoft.showcase.common.model.CommonVariableModel;
 import org.exitsoft.showcase.entity.account.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -48,7 +48,7 @@ public class JdbcAuthenticationRealm extends AuthorizationRealm{
         	 throw new DisabledAccountException("你的账户已被禁用,请联系管理员开通.");
         }
         
-        CommonVariableModel model = new CommonVariableModel(user);
+        SessionVariable model = new SessionVariable(user);
         
         return new SimpleAuthenticationInfo(model,user.getPassword(),getName());
 	}
