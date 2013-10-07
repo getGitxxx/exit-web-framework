@@ -5,8 +5,6 @@ exit-web-framework是对常用的java web开发封装实用功能来提高开发
 
 [相关帮助文档](https://github.com/exitsoft/exit-web-framework/wiki)
 
-[更新日志](https://github.com/exitsoft/exit-web-framework/wiki/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
-
 #### 初始化工作:
 
 ***
