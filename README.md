@@ -28,19 +28,23 @@ exit-web-framework是对常用的java web开发封装实用功能来提高开发
 	svn地址:https://github.com/exitsoft/exit-web-framework.git
 ***
 
-1. 点击根目录下的bin/install.bat文件进行安装,当看见该信息时表示安装成功:
+1. 点击根目录下的quick-start.bat文件进行安装,当看见以下信息时表示安装成功:
 
 ***
 	[INFO] ------------------------------------------------------------------------
 	[INFO] BUILD SUCCESS
 	[INFO] ------------------------------------------------------------------------
-	[INFO] Total time: 1.875s
-	[INFO] Finished at: Fri Jan 04 11:08:01 CST 2013
-	[INFO] Final Memory: 6M/16M
+	[INFO] Total time: 6.147s
+	[INFO] Finished at: Mon Oct 07 10:59:23 CST 2013
+	[INFO] Final Memory: 9M/156M
 	[INFO] ------------------------------------------------------------------------
+	[INFO] start basic curd app
+	[INFO] Please wait a moment. When you see "[INFO] Started Jetty Server", you can visit: http://localhost:8080/ to view the demo
 ***
 
-该安装过程会将exit-web-framework中的exit-common和exit-orm生成jar包放入maven的.m2文件夹中,当然,这两个框架使用到的依赖jar包也会下载到.m2文件夹中.
+你可以通过http://localhost:8080来访问项目
+
+该安装过程会将exit-web-framework中的exit-common和exit-orm生成jar包放入maven的.m2文件夹中（当然,这两个框架使用到的依赖jar包也会下载到.m2文件夹中）.同时也会初始化h2数据库和启动jetty，让执行完成后直接访问。
 
 ##### exitsoft common 简单说明
 
