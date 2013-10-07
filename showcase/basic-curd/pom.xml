@@ -304,10 +304,10 @@
 				<configuration>
 					<target>
 						<property file="src/main/resources/application.properties" />
-						<sql driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}" password="${jdbc.password}" onerror="continue"  encoding="${project.build.sourceEncoding}">
+						<sql src="src/main/resources/sql/h2.sql" driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}" password="${jdbc.password}" onerror="continue"  encoding="${project.build.sourceEncoding}">
 							<classpath refid="maven.runtime.classpath"/>
-							<transaction src="src/main/resources/sql/h2/schma.sql" />
-							<transaction src="src/main/resources/sql/h2/data.sql" />
+							<!-- <transaction src="src/main/resources/sql/h2/schma.sql" />
+							<transaction src="src/main/resources/sql/h2/data.sql" /> -->
 						</sql>
 					</target>
 				</configuration>
