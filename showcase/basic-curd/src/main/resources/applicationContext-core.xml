@@ -49,10 +49,6 @@
 		<property name="minEvictableIdleTimeMillis" value="3600000" />
 	</bean>
 	
-	<jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
-		<jdbc:script location="classpath:sql/h2.sql" />
-	</jdbc:initialize-database>
-	
 	<!-- Hibernate配置 -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />

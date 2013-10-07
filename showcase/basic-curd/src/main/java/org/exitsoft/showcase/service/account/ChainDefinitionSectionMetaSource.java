@@ -1,8 +1,5 @@
 package org.exitsoft.showcase.service.account;
 
-import java.util.Iterator;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.config.Ini;
 import org.apache.shiro.config.Ini.Section;
@@ -28,38 +25,6 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 	//shiro默认的链接定义
 	private String filterChainDefinitions;
 	
-	public Section getObject() throws BeansException {
-        
-        List<Resource> resources = accountManager.getAllResources();
-        List<Group> groups = accountManager.getAllGroup(GroupType.RoleGorup);
-        
-        Ini ini = new Ini();
-        //加载默认的url
-        ini.load(filterChainDefinitions);
-        Ini.Section section = ini.getSection(Ini.DEFAULT_SECTION_NAME);
-        //循环数据库资源的url
-        for (Iterator<Resource> it = resources.iterator(); it.hasNext();) {
-        	
-        	Resource resource = it.next();
-        	if(StringUtils.isNotEmpty(resource.getValue()) && StringUtils.isNotEmpty(resource.getPermission())) {
-        		section.put(resource.getValue(), resource.getPermission());
-        	}
-        	
-        }
-        
-        //循环数据库组的url
-        for (Iterator<Group> it = groups.iterator(); it.hasNext();) {
-        	
-        	Group group = it.next();
-        	if(StringUtils.isNotEmpty(group.getValue()) && StringUtils.isNotEmpty(group.getRole())) {
-        		section.put(group.getValue(), group.getRole());
-        	}
-        	
-        }
-        
-		return section;
-	}
-	
 	/**
 	 * 通过filterChainDefinitions对默认的链接过滤定义
 	 * 
@@ -68,17 +33,39 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 	public void setFilterChainDefinitions(String filterChainDefinitions) {
 		this.filterChainDefinitions = filterChainDefinitions;
 	}
-
-
 	
+	@Override
+	public Section getObject() throws BeansException {
+		Ini ini = new Ini();
+        //加载默认的url
+        ini.load(filterChainDefinitions);
+        Section section = ini.getSection(Ini.DEFAULT_SECTION_NAME);
+        //循环数据库资源的url
+        for (Resource resource : accountManager.getAllResources()) {
+        	if(StringUtils.isNotEmpty(resource.getValue()) && StringUtils.isNotEmpty(resource.getPermission())) {
+        		section.put(resource.getValue(), resource.getPermission());
+        	}
+        }
+        
+        //循环数据库组的url
+        for (Group group : accountManager.getAllGroup(GroupType.RoleGorup)) {
+        	if(StringUtils.isNotEmpty(group.getValue()) && StringUtils.isNotEmpty(group.getRole())) {
+        		section.put(group.getValue(), group.getRole());
+        	}
+        }
+        
+        return section;
+	}
+	
+	@Override
 	public Class<?> getObjectType() {
-		return this.getClass();
+		return Section.class;
 	}
-
-
 	
+	@Override
 	public boolean isSingleton() {
-		return false;
+		return true;
 	}
+
 	
 }
