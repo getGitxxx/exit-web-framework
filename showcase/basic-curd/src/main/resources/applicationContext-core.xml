@@ -81,6 +81,6 @@
 	</bean>
 	
 	<!-- 使用缓存annotation 配置 -->
-	<cache:annotation-driven cache-manager="ehCacheManager" proxy-target-class="true"/>
+	<cache:annotation-driven cache-manager="ehCacheManager" proxy-target-class="true" />
 	
 </beans>
