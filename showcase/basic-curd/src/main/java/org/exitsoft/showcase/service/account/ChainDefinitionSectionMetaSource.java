@@ -9,6 +9,7 @@ import org.exitsoft.showcase.entity.account.Resource;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author vincent
  *
  */
+@Transactional
 public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section>{
 
 	@Autowired
