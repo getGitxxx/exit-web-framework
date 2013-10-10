@@ -71,10 +71,5 @@
 	    <!-- shiro连接约束配置,在这里使用自定义的动态获取资源类 -->
 	    <property name="filterChainDefinitionMap" ref="chainDefinitionSectionMetaSource" />
 	</bean>
-    
-   	<!-- 启用shrio授权注解拦截方式  -->
-	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-	    <property name="securityManager" ref="securityManager" />
-	</bean>
 	
 </beans>

@@ -16,9 +16,8 @@
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 
 	<!-- 自动扫描且只扫描@Controller -->
-	<context:component-scan base-package="org.exitsoft.showcase" use-default-filters="false">
+	<context:component-scan base-package="org.exitsoft.showcase.web" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 
 	<mvc:view-controller path="/" view-name="redirect:/index" />
@@ -80,6 +79,11 @@
 		<property name="suffix" value=".html" />
 		<property name="requestContextAttribute" value="request" />
 		<property name="contentType" value="text/html;charset=UTF-8" />
+	</bean>
+	
+   	<!-- 启用shrio授权注解拦截方式  -->
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+	    <property name="securityManager" ref="securityManager" />
 	</bean>
 
 </beans>
