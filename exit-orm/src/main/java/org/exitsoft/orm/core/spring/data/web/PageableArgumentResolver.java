@@ -16,7 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.web.PageableDefaults;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.ServletRequestParameterPropertyValues;
@@ -94,8 +94,8 @@ public class PageableArgumentResolver implements WebArgumentResolver{
 
 		// search for PageableDefaults annotation
 		for (Annotation annotation : methodParameter.getParameterAnnotations()) {
-			if (annotation instanceof PageableDefaults) {
-				return getDefaultPageRequestFrom((PageableDefaults) annotation);
+			if (annotation instanceof PageableDefault) {
+				return getDefaultPageRequestFrom((PageableDefault) annotation);
 			}
 		}
 
@@ -105,17 +105,17 @@ public class PageableArgumentResolver implements WebArgumentResolver{
 		return new PageRequest(fallbackPagable.getPageNumber(), fallbackPagable.getPageSize(), fallbackPagable.getSort());
 	}
 
-	private static Pageable getDefaultPageRequestFrom(PageableDefaults defaults) {
+	private static Pageable getDefaultPageRequestFrom(PageableDefault defaults) {
 
 		// +1 is because we substract 1 later < why ??
-		int defaultPageNumber = defaults.pageNumber();
+		int defaultPageNumber = defaults.page();
 		int defaultPageSize = defaults.value();
 
 		if (defaults.sort().length == 0) {
 			return new PageRequest(defaultPageNumber, defaultPageSize);
 		}
 
-		return new PageRequest(defaultPageNumber, defaultPageSize, defaults.sortDir(), defaults.sort());
+		return new PageRequest(defaultPageNumber, defaultPageSize, defaults.direction(), defaults.sort());
 	}
 
 	/**

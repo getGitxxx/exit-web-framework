@@ -7,7 +7,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.exitsoft</groupId>
 	<artifactId>exit-web-framework-project</artifactId>
-	<version>1.2.0.SNAPSHOT</version>
+	<version>1.2.0-SNAPSHOT</version>
 	<name>exit web framework project</name>
 	<packaging>pom</packaging>
 	
