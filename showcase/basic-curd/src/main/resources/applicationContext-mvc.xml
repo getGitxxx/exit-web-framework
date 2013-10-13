@@ -64,6 +64,7 @@
 				<prop key="number_format">#.##</prop>
 			</props>
 		</property>
+		<!-- 将extends override block super指令配置到freemarker中，实现freemarker页面继承功能-->
 		<property name="freemarkerVariables">
 			<map>
 				<entry key="extends" value-ref="extendsDirective" />

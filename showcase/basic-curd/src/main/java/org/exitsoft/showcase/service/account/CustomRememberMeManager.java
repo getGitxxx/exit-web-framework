@@ -28,7 +28,7 @@ public class CustomRememberMeManager extends CookieRememberMeManager{
 	}
 	
 	/**
-	 * 重写父类方法，写入Cookie时，先把传过来的有效时间设置到cookie里面在序列化Identity
+	 * 重写父类方法，写入Cookie时，把传过来的有效时间设置到cookie里面在序列化Identity
 	 */
 	@Override
 	public void rememberIdentity(Subject subject, AuthenticationToken token,AuthenticationInfo authcInfo) {

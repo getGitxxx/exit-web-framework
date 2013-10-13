@@ -16,8 +16,6 @@ import org.exitsoft.common.utils.CollectionUtils;
 import org.exitsoft.common.utils.ConvertUtils;
 import org.exitsoft.common.utils.ReflectionUtils;
 import org.exitsoft.orm.annotation.StateDelete;
-import org.exitsoft.orm.enumeration.ExecuteMehtod;
-import org.exitsoft.orm.strategy.utils.ConvertCodeUtils;
 import org.hibernate.Criteria;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
@@ -105,36 +103,11 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	}
 	
 	/**
-	 * 对修改orm实体前的处理, 如果orm实体不为null返回true,并且将该orm实体进行转码,否则返回flase，
-	 * 
-	 * @param entity orm实体
-	 * @param executeMehtods 
-	 * 
-	 * @return boolean
-	 */
-	private boolean preproModifyEntity(T entity,ExecuteMehtod... executeMehtods) {
-		
-		if (entity == null) {
-			
-			return false;
-		}
-		
-		ConvertCodeUtils.convertObject(entity, executeMehtods);
-		
-		return true;
-	}
-	
-	
-	/**
 	 * 新增对象.
 	 * 
 	 * @param entity orm实体
 	 */
 	public void insert(T entity) {
-		
-		if (!preproModifyEntity(entity,ExecuteMehtod.Insert)) {
-			return ;
-		}
 		getSession().save(entity);
 	}
 	
@@ -160,9 +133,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	 * @param entity orm实体
 	 */
 	public void update(T entity) {
-		if (!preproModifyEntity(entity,ExecuteMehtod.Update)) {
-			return ;
-		}
 		getSession().update(entity);
 	}
 	
@@ -185,9 +155,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	 * @param entity orm实体
 	 */
 	public void save(T entity) {
-		if (!preproModifyEntity(entity, ExecuteMehtod.Save)) {
-			return ;
-		}
 		getSession().saveOrUpdate(entity);
 	}
 	
@@ -707,9 +674,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	 * @param entity 持久化实例
 	 */
 	public void merge(T entity) {
-		if (!preproModifyEntity(entity)) {
-			return ;
-		}
 		getSession().merge(entity);
 	}
 	
@@ -720,9 +684,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	 * @param entityName 持久化对象名称
 	 */
 	public void merge(String entityName,T entity) {
-		if (!preproModifyEntity(entity)) {
-			return ;
-		}
 		getSession().merge(entityName, entity);
 	}
 	
@@ -732,9 +693,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	 * @param entity 操作对象
 	 */
 	public void refresh(T entity) {
-		if (!preproModifyEntity(entity)) {
-			return ;
-		}
 		getSession().refresh(entity);
 	}
 	
@@ -745,9 +703,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	 * @param lockOptions Hibernate LockOptions
 	 */
 	public void refresh(T entity,LockOptions lockOptions) {
-		if (!preproModifyEntity(entity)) {
-			return ;
-		}
 		
 		if (lockOptions == null) {
 			refresh(entity);
@@ -762,9 +717,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	 * @param entity 操作对象
 	 */
 	public void evict(T entity) {
-		if (!preproModifyEntity(entity)) {
-			return ;
-		}
 		getSession().evict(entity);
 	}
 	
@@ -782,9 +734,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	 * @param replicationMode 创建策略
 	 */
 	public void replicate(T entity, ReplicationMode replicationMode) {
-		if (!preproModifyEntity(entity) || replicationMode == null) {
-			return ;
-		}
 		getSession().replicate(entity, replicationMode);
 	}
 	
@@ -796,9 +745,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	 * @param replicationMode 创建策略
 	 */
 	public void replicate(String entityName,T entity, ReplicationMode replicationMode) {
-		if (!preproModifyEntity(entity) || replicationMode == null) {
-			return ;
-		}
 		getSession().replicate(entityName,entity, replicationMode);
 	}
 	
@@ -809,9 +755,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	 * @param entity 瞬态的实例
 	 */
 	public void persist(T entity) {
-		if (!preproModifyEntity(entity)) {
-			return ;
-		}
 		getSession().persist(entity);
 	}
 	
@@ -823,9 +766,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	 * @param entityName 瞬态的实例名称
 	 */
 	public void persist(String entityName, T entity) {
-		if (!preproModifyEntity(entity)) {
-			return ;
-		}
 		getSession().persist(entityName,entity);
 	}
 	

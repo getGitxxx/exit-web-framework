@@ -12,8 +12,6 @@ import org.exitsoft.orm.core.PropertyFilter;
 import org.exitsoft.orm.core.RestrictionNames;
 import org.exitsoft.orm.core.spring.data.jpa.repository.BasicJpaRepository;
 import org.exitsoft.orm.core.spring.data.jpa.specification.Specifications;
-import org.exitsoft.orm.enumeration.ExecuteMehtod;
-import org.exitsoft.orm.strategy.utils.ConvertCodeUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -56,11 +54,9 @@ public class JpaSupportRepository<T, ID extends Serializable>  extends SimpleJpa
 	public <S extends T> S save(S entity) {
 		
 		if (entityInformation.isNew(entity)) {
-			ConvertCodeUtils.convertObject(entity,ExecuteMehtod.Save,ExecuteMehtod.Insert);
 			entityManager.persist(entity);
 			return entity;
 		} else {
-			ConvertCodeUtils.convertObject(entity,ExecuteMehtod.Save,ExecuteMehtod.Update);
 			return entityManager.merge(entity);
 		}
 	}
