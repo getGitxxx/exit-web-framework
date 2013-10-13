@@ -97,7 +97,6 @@ public class SystemDictionaryManager {
 	 * 
 	 * @return List
 	 */
-	@Cacheable(value=DataDictionary.FindByCateGoryCode)
 	public List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code,String ignoreValue) {
 		return dataDictionaryDao.findByQuery(DataDictionary.FindByCategoryCodeWithIgnoreValue, code.getCode(),ignoreValue);
 	}

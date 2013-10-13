@@ -264,16 +264,17 @@ public class AccountManager {
 	}
 	
 	/**
-	 * 并合子类资源到父类中
+	 * 并合子类资源到父类中，返回一个新的资源集合
 	 * 
 	 * @param list 资源集合
+	 * @param resourceType 不需要并合的资源类型
 	 */
-	public List<Resource> mergeResourcesToParent(List<Resource> list,ResourceType resourceType) {
+	public List<Resource> mergeResourcesToParent(List<Resource> list,ResourceType ignoreType) {
 		List<Resource> result = new ArrayList<Resource>();
 		
 		for (Resource r : list) {
-			if (r.getParent() == null && !StringUtils.equals(resourceType.getValue(),r.getType())) {
-				mergeResourcesToParent(list,r,resourceType);
+			if (r.getParent() == null && !StringUtils.equals(ignoreType.getValue(),r.getType())) {
+				mergeResourcesToParent(list,r,ignoreType);
 				result.add(r);
 			}
 		}
@@ -285,8 +286,10 @@ public class AccountManager {
 	 * 遍历list中的数据,如果数据的父类与parent相等，将数据加入到parent的children中
 	 * 
 	 * @param list 资源集合
+	 * @param parent 父类对象
+	 * @param ignoreType 不需要加入到parent的资源类型
 	 */
-	private void mergeResourcesToParent(List<Resource> list, Resource parent,ResourceType resourceType) {
+	private void mergeResourcesToParent(List<Resource> list, Resource parent,ResourceType ignoreType) {
 		if (!parent.getLeaf()) {
 			return ;
 		}
@@ -294,10 +297,10 @@ public class AccountManager {
 		parent.setChildren(new ArrayList<Resource>());
 		
 		for (Resource r: list) {
-			
-			if (!StringUtils.equals(r.getType(), resourceType.getValue()) && StringUtils.equals(r.getParentId(),parent.getId()) ) {
+			//这是一个递归过程，如果当前遍历的r资源的parentId等于parent父类对象的id，将会在次递归r对象。通过遍历list是否也存在r对象的子级。
+			if (!StringUtils.equals(r.getType(), ignoreType.getValue()) && StringUtils.equals(r.getParentId(),parent.getId()) ) {
 				r.setChildren(null);
-				mergeResourcesToParent(list,r,resourceType);
+				mergeResourcesToParent(list,r,ignoreType);
 				parent.getChildren().add(r);
 			}
 			
@@ -340,6 +343,7 @@ public class AccountManager {
 	
 	/**
 	 * 删除组实体
+	 * 
 	 * @param ids 组id
 	 */
 	@CacheEvict(value=ShiroAuthorizationCache,allEntries=true)

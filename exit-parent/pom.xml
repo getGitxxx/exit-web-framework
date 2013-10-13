@@ -9,7 +9,6 @@
 	<packaging>pom</packaging>
 
 	<name>exitsoft parent</name>
-	<url>http://maven.apache.org</url>
 
 	<properties>
 	

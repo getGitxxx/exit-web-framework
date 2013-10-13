@@ -34,7 +34,7 @@
 	       <form action="${base}/account/resource/view" method="post">
 		       <div class="modal-body">
 		       
-					<div class="form-group">
+					<div class="form-resource">
 			   			<div class="row">
 			    			<div class="col-lg-6">
 								<label for="filter_LIKES_name">资源名称:</label>
@@ -56,7 +56,7 @@
 			   			</div>
 		   			</div>
 		   			
-		   			<div class="form-group">
+		   			<div class="form-resource">
 			   			<div class="row">
 			    			<div class="col-lg-6">
 								<label for="filter_LIKES_value">拦截值:</label>
@@ -69,7 +69,7 @@
 			   			</div>
 		   			</div>
 		   			
-		   			<div class="form-group">
+		   			<div class="form-resource">
 			   			<div class="row">
 			    			<div class="col-lg-12">
 								<label for="filter_EQS_parent.id">所属父类:</label>
@@ -193,20 +193,31 @@
 				
 				<ul class="pagination pull-right">
 				
-					
-			        <li <#if !page.hasPrePage()>class="disabled"</#if>>
-			        	<a href="${base}/account/resource/view?pageNo=${page.prePage}">&laquo;</a>
-			        </li>
+					<#if !page.hasPrePage()>
+						<li class="disabled">
+				        	<a>&laquo;</a>
+				        </li>
+				    <#else>
+				        <li>
+				        	<a href="${base}/account/resource/view?pageNo=${page.prePage}">&laquo;</a>
+				        </li>
+			        </#if>
 
 			        <#list page.getSlider(page.pageSize) as index>
 		        		<li <#if page.pageNo == index>class="active"</#if>>
 		        			<a href="${base}/account/resource/view?pageNo=${index}">${index}</a>
 		        		</li>
 					</#list>
-	
-		            <li <#if !page.hasNextPage()>class="disabled"</#if>>
-		            	<a href="${base}/account/resource/view?pageNo=${page.nextPage}">&raquo;</a>
-		            </li>
+					
+					<#if !page.hasNextPage()>
+						<li class="disabled">
+				        	<a>&raquo;</a>
+				        </li>
+					<#else>
+						<li>
+			            	<a href="${base}/account/resource/view?pageNo=${page.nextPage}">&raquo;</a>
+			            </li>
+					</#if>
 		         
 				</ul>
 			</div>

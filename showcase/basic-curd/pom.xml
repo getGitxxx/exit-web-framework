@@ -13,7 +13,6 @@
 	<artifactId>exitsoft-basic-curd</artifactId>
 	<packaging>war</packaging>
 	<name>basic curd project</name>
-	<url>http://maven.apache.org</url>
 
 	<dependencies>
 
