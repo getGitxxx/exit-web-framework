@@ -18,7 +18,7 @@ public class LaunchJetty {
 	/**
 	 * 项目名称
 	 */
-	public static final String CONTEXT = "/basic-curd";
+	public static final String CONTEXT = "/exitsoft-basic-curd";
 
 	public static void main(String[] args) throws Exception {
 		Server server = JettyFactory.buildNormalServer(PORT, CONTEXT);
