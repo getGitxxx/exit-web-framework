@@ -1,46 +1,30 @@
-package org.exitsoft.common.mapper;
+package org.exitsoft.common.utils;
 
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 
 /**
- * 借助Cxf对Jax生成接口的工具类
+ * 借助Cxf对JaxWs生成接口的工具类
  * 
  * @author vincent
  *
  */
 @SuppressWarnings("unchecked")
-public class JaxWsFactoryBeanMapper {
+public class JaxWsFactoryUtils {
 	
 	//Ws代理工厂
-	private JaxWsProxyFactoryBean jaxWsProxyFactoryBean;
+	private static JaxWsProxyFactoryBean jaxWsProxyFactoryBean = new JaxWsProxyFactoryBean();
 	
 	//Ws动态客服端工厂
-	private JaxWsDynamicClientFactory jaxWsDynamicClientFactory = JaxWsDynamicClientFactory.newInstance();
-
-	/**
-	 * 共组奥方法
-	 */
-	public JaxWsFactoryBeanMapper() {
-		this.jaxWsProxyFactoryBean = new JaxWsProxyFactoryBean();
-	}
-	
-	/**
-	 * 创建实例
-	 * 
-	 * @return {@link JaxWsFactoryBeanMapper}
-	 */
-	public static JaxWsFactoryBeanMapper newInstance() {
-		return new JaxWsFactoryBeanMapper();
-	}
+	private static JaxWsDynamicClientFactory jaxWsDynamicClientFactory = JaxWsDynamicClientFactory.newInstance();
 	
 	/**
 	 * 根据serviceClass类型和ws地址,创建一个可以调用的接口类
 	 * 
 	 * <pre>
 	 * 例子:
-	 * WebService ws = JaxWsProxyFactoryBeanMapper.newInstance().getProxyFactoryBean(WebService.class,"http://192.168.0.63:8080/CXF_Server_01/cxf/WebService");
+	 * WebService ws = JaxWsProxyFactoryBeanMapper.getProxyFactoryBean(WebService.class,"http://192.168.0.63:8080/CXF_Server_01/cxf/WebService");
 	 * ws.method();
 	 * </pre>
 	 * 
@@ -59,7 +43,7 @@ public class JaxWsFactoryBeanMapper {
 	 * 执行web service方法
 	 * <pre>
 	 * 例子:
-	 * Object result = JaxWsProxyFactoryBeanMapper.newInstance().invokeDynamicMethod("http://192.168.0.63:8080/CXF_Server_01/cxf/WebService","method");
+	 * Object result = JaxWsProxyFactoryBeanMapper.invokeDynamicMethod("http://192.168.0.63:8080/CXF_Server_01/cxf/WebService","method");
 	 * System.out.println(result[0]);
 	 * </pre>
 	 * 
@@ -87,7 +71,7 @@ public class JaxWsFactoryBeanMapper {
 	}
 	
 	/**
-	 * 获取Jax代理工厂
+	 * 获取JaxWs代理工厂
 	 * 
 	 * @return {@link JaxWsProxyFactoryBean}
 	 */
@@ -96,7 +80,7 @@ public class JaxWsFactoryBeanMapper {
 	}
 
 	/**
-	 * 获取Jax动态客服端工厂
+	 * 获取JaxWs动态客服端工厂
 	 * 
 	 * @return {@link JaxWsDynamicClientFactory}
 	 */
