@@ -36,10 +36,10 @@ public enum FieldType {
 	B(Boolean.class);
 
 	//类型Class
-	private Class<?> clazz;
+	private Class<?> fieldClass;
 
-	private FieldType(Class<?> clazz) {
-		this.clazz = clazz;
+	private FieldType(Class<?> fieldClass) {
+		this.fieldClass = fieldClass;
 	}
 	
 	/**
@@ -48,6 +48,6 @@ public enum FieldType {
 	 * @return Class
 	 */
 	public Class<?> getValue() {
-		return clazz;
+		return fieldClass;
 	}
 }
