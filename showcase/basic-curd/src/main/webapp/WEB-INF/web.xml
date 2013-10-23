@@ -47,6 +47,14 @@
 	    </init-param>
 	</filter>
 	
+	<!-- gzip 压缩文件 filter -->
+	<filter>   
+        <filter-name>gzipFilter</filter-name>   
+        <filter-class>   
+            net.sf.ehcache.constructs.web.filter.GzipFilter   
+        </filter-class>   
+    </filter>
+	
 	<!-- spring mvc Servlet -->
 	<servlet>
 		<servlet-name>springMvc</servlet-name>
@@ -78,6 +86,27 @@
 	    <dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
+    
+	<filter-mapping>   
+        <filter-name>gzipFilter</filter-name>   
+        <url-pattern>*.css</url-pattern>   
+    </filter-mapping>   
+    <filter-mapping>   
+        <filter-name>gzipFilter</filter-name>   
+        <url-pattern>*.png</url-pattern>   
+    </filter-mapping>   
+    <filter-mapping>   
+        <filter-name>gzipFilter</filter-name>   
+        <url-pattern>*.gif</url-pattern>   
+    </filter-mapping>   
+    <filter-mapping>   
+        <filter-name>gzipFilter</filter-name>   
+        <url-pattern>*.jpg</url-pattern>   
+    </filter-mapping>  
+    <filter-mapping>   
+        <filter-name>gzipFilter</filter-name>   
+        <url-pattern>*.js</url-pattern>   
+    </filter-mapping>
 	
 	<servlet-mapping>
 		<servlet-name>springMvc</servlet-name>
