@@ -14,3 +14,5 @@ jetty:启动basic-curd项目，启动完成后通过http://localhost:8080访问
 
 reset-db:重置basic-curd项目的数据
 
+war:将项目打包成.war文件
+
