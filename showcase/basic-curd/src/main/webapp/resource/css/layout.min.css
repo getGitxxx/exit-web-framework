@@ -4,6 +4,7 @@ body {
 
 .main-container {
 	margin: 50px 25px 25px;
+	min-width: 800px;
 }
 
 .login-container {
