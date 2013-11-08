@@ -37,7 +37,7 @@ exit-web-framework是对常用的java web开发封装实用功能来提高开发
 	[INFO] Final Memory: 9M/156M
 	[INFO] ------------------------------------------------------------------------
 	[INFO] start basic curd app
-	[INFO] Please wait a moment. When you see "[INFO] Started Jetty Server", you can visit: http://localhost:8080/ to view the demo
+	[INFO] Please wait a moment. When you see "[INFO] Started Jetty Server", you can visit: http://localhost:8080/exitsoft-basic-curd/ to view the demo
 ***
 
 你可以通过http://localhost:8080来访问项目
