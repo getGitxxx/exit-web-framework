@@ -40,7 +40,7 @@ exit-web-framework是对常用的java web开发封装实用功能来提高开发
 	[INFO] Please wait a moment. When you see "[INFO] Started Jetty Server", you can visit: http://localhost:8080/exitsoft-basic-curd/ to view the demo
 ***
 
-你可以通过http://localhost:8080来访问项目
+你可以通过http://localhost:8080/exitsoft-basic-curd/来访问项目
 
 该安装过程会将exit-web-framework中的exit-common和exit-orm生成jar包放入maven的.m2文件夹中（当然,这两个框架使用到的依赖jar包也会下载到.m2文件夹中）.同时也会初始化h2数据库和启动jetty，让执行完成后直接访问。
 
