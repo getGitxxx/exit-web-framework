@@ -1,14 +1,10 @@
 package org.exitsoft.showcase.web.account;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.exitsoft.common.spring.mvc.SpringMvcHolder;
 import org.exitsoft.orm.core.Page;
 import org.exitsoft.orm.core.PageRequest;
 import org.exitsoft.orm.core.PageRequest.Sort;
@@ -21,10 +17,6 @@ import org.exitsoft.showcase.entity.account.User;
 import org.exitsoft.showcase.entity.foundation.DataDictionary;
 import org.exitsoft.showcase.service.account.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -68,23 +60,6 @@ public class UserController {
 		
 		return accountManager.searchUserPage(pageRequest, filters);
 	}
-	
-	@RequestMapping("portrait")
-	public ResponseEntity<byte[]> portrait(@ModelAttribute("entity")User entity) throws IOException {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.IMAGE_GIF);
-		
-		String path = SpringMvcHolder.getRealPath("") + File.separator + entity.getPortrait();
-		
-		File portrait = new File(path);
-		
-		if (!portrait.exists()) {
-			portrait = new File(SpringMvcHolder.getRealPath("") + File.separator + "portrait" + File.separator + "empty.png");
-		}
-		
-		return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(portrait), headers, HttpStatus.OK);
-	}
-	
 	
 	/**
 	 * 创建用户,创建成功后重定向到:account/user/view
@@ -153,7 +128,7 @@ public class UserController {
 	 * @return boolean 
 	 */
 	@ResponseBody
-	@RequestMapping("isUsernameUnique")
+	@RequestMapping("is-username-unique")
 	public String isUsernameUnique(String username) {
 		
 		return String.valueOf(accountManager.isUsernameUnique(username));

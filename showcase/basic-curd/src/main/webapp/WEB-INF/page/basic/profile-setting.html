@@ -1,4 +1,9 @@
 <script type="text/javascript">
+
+	function reloadPortrait() {
+		$("#info-portrait").attr("src","${base}/get-current-user-portrait?random=" + (Math.random()*24));
+	}
+	
 	$(document).ready(function(){
 		$("#file").change(function(){
 			
@@ -11,14 +16,19 @@
 		});
 		
 		$("#profile-seeting").on('hidden.bs.modal', function () {
-			$("#portrait").attr("src","${base}/account/user/portrait?id=${Session['sv'].user.id}&random=" + (Math.random()*24));
+			reloadPortrait();
 			$(this).find("form").resetForm();
 		});
 	});
 	
+	function onChangeProFileSuccess(result) {
+		$("#info-realname").html(result.realname);
+		reloadPortrait();
+	}
+	
 	function onUploadSuccess(fileName) {
 		
-		var path = "${base}/temp_upload/" + fileName.replace(/<[^>]*>/g,"");
+		var path = "${base}/get-temp-upload-file?name=" + fileName.replace(/<[^>]*>/g,"");
 		var image = new Image();
 		
         $(image).load(function(){
@@ -55,16 +65,21 @@
 				<div class="tab-pane fade in active" id="user-seeting">
 	          		<div class="form-group">
 						<div class="pictrue">
-	          				<form action="${base}/temp-upload" method="post" onsuccess="onUploadSuccess" id="upload-form" data-ajax-submit="true" enctype="multipart/form-data">
-								<input id="file" name="file" class="form-control file-upload" type="file">
-								<a class="thumbnail">
-									<img id="portrait" src="${base}/account/user/portrait?id=${Session['sv'].user.id}"/>
+							<a class="thumbnail">
+								<img id="portrait" src="${base}/get-current-user-portrait"/>
+							</a>
+						</div>
+						<center>
+							<form action="${base}/temp-upload" method="post" onsuccess="onUploadSuccess" id="upload-form" data-ajax-submit="true" enctype="multipart/form-data">
+								<a class="btn btn-primary upload-container">
+									<input type="file" id="file" name="file" class="upload-field" />
+									修改头像
 								</a>
 							</form>
-						</div>
+						</center>
 					</div>
 					
-					<form action="${base}/change-profile" method="post">
+					<form action="${base}/change-profile" method="post" data-ajax-submit="true" onsuccess="onChangeProFileSuccess">
 						<input type="hidden" id="portrait-field" name="portrait" >
 						<div class="form-group">
 				   			<div class="row">
@@ -82,6 +97,7 @@
 						<hr>
 						
 						<div class="text-right">
+							
 							<button type="submit" class="btn btn-success">
 								<span class="glyphicon glyphicon-ok"></span> 保存
 							</button>

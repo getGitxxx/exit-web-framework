@@ -14,7 +14,7 @@
 			org.hibernate.dialect.H2Dialect
 		</property>
 		<property name="connection.url">
-			jdbc:h2:mem:basic-curd;DB_CLOSE_DELAY=-1
+			jdbc:h2:mem:exitsoft-basic-curd;DB_CLOSE_DELAY=-1
 		</property>
 		 
 		<mapping class="org.exitsoft.showcase.entity.account.User" />

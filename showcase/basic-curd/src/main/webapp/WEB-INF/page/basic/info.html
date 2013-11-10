@@ -1,7 +1,7 @@
 <div class="clearfix">
 	<div class="profile">
 		<a class="thumbnail dropdown-toggle" data-toggle="dropdown" href="#">
-			<img id="portrait" src="${base}/account/user/portrait?id=${Session['sv'].user.id}" />
+			<img id="info-portrait" src="${base}/get-current-user-portrait" />
 		</a>
 		<ul class="dropdown-menu" role="menu">
 			<li>
@@ -18,6 +18,6 @@
 		</ul>
 	</div>
 	<div class="user-info">
-		${Session["sv"].user.username} <span class="name">${Session["sv"].user.realname}</span>
+		${Session["sv"].user.username} <span class="name" id="info-realname">${Session["sv"].user.realname}</span>
 	</div>
 </div>

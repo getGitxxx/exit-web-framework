@@ -4,6 +4,7 @@
 	xmlns:tx="http://www.springframework.org/schema/tx" 
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:task="http://www.springframework.org/schema/task" 
 	xmlns:cache="http://www.springframework.org/schema/cache" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd 
@@ -14,14 +15,20 @@
 	http://www.springframework.org/schema/aop 
 	http://www.springframework.org/schema/aop/spring-aop.xsd 
 	http://www.springframework.org/schema/cache 
-	http://www.springframework.org/schema/cache/spring-cache.xsd">
+	http://www.springframework.org/schema/cache/spring-cache.xsd 
+	http://www.springframework.org/schema/task 
+	http://www.springframework.org/schema/task/spring-task.xsd">
 
 	<description>Spring公共配置 </description>
 	
 	<!-- 定义受环境影响易变的变量 -->
 	<context:property-placeholder ignore-resource-not-found="true" location="classpath*:/application.properties" />
 	
+	<!-- 定义aop Aspect自动代理 -->
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	
+	<!-- 定义任务调用 -->
+	<task:annotation-driven proxy-target-class="true"/>
 	
 	<!-- 使用annotation 自动注册bean,并保证@Required,@Autowired的属性被注入 -->
 	<context:component-scan base-package="org.exitsoft.showcase">

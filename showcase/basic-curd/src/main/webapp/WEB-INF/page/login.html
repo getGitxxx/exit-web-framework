@@ -5,7 +5,7 @@
 <@override name="head">   
 	<script type="text/javascript">
 		function reloadCaptcha() {
-			$("#captchaImg").attr("src","getCaptcha?date = " + new Date() + Math.floor(Math.random()*24));
+			$("#captchaImg").attr("src","get-captcha?date = " + new Date() + Math.floor(Math.random()*24));
 		}
 	</script>
 </@override>
@@ -54,10 +54,10 @@
 								<input type="text" class="form-control required" title="请输入验证码" name="captcha" id="captcha" >
 								</div>
 								<div class="col-xs-2">
-									<img id="captchaImg" src="getCaptcha" />
+									<img id="captchaImg" src="get-captcha" />
 								</div>
 								<div class="col-xs-2">
-									<a class="btn btn-link" href="javascript:reloadValidateCode();">看不清?</a>
+									<a class="btn btn-link" href="javascript:reloadCaptcha();">看不清?</a>
 								</div>
 							</div>
 						</div>

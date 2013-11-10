@@ -195,7 +195,7 @@ public class User extends UniversallyUniqueIdentifier{
 	 * 
 	 * @return String
 	 */
-	@Column(length=32)
+	@Column(length=256)
 	public String getPortrait() {
 		return portrait;
 	}
