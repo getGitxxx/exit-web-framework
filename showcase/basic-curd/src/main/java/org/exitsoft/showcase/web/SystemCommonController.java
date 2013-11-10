@@ -95,39 +95,47 @@ public class SystemCommonController {
 	 * 修改用户头像C
 	 * 
 	 * @param request HttpServletRequest
+	 * @throws IOException 
 	 */
 	@ResponseBody
 	@RequestMapping("/change-portrait")
-	public Map<String, Object> changePortrait(HttpServletRequest request) {
+	public Map<String, Object> changePortrait(HttpServletRequest request) throws IOException {
 		//获取当前用户
 		User entity = SystemVariableUtils.getCommonVariableModel().getUser();
 		
 		Map<String, Object> result = Maps.newHashMap();
 		
-		try {
-			//获取传进来的流
-			InputStream is = request.getInputStream();
-			//读取流内容到ByteArrayOutputStream中
-			ByteArrayOutputStream bytestream = new ByteArrayOutputStream();
-			int ch;
-			while ((ch = is.read()) != -1) {
-				bytestream.write(ch);
-			}
-			
-			bytestream.close();
-			
-			File portraitFile = new File(fileUploadPath + entity.getId());
-			//如果当前用户没有创建头像，就创建头像
-			if (!portraitFile.exists()) {
-				portraitFile.createNewFile();
-			}
-			//拷贝到指定路径里
-			FileUtils.writeByteArrayToFile(portraitFile, bytestream.toByteArray());
-			//设置状态值，让FaustCplus再次触发jsfunc的js函数
-			result.put("status","success");
-		} catch (IOException e) {
-			e.printStackTrace();
+		//获取传进来的流
+		InputStream is = request.getInputStream();
+		//读取流内容到ByteArrayOutputStream中
+		ByteArrayOutputStream bytestream = new ByteArrayOutputStream();
+		int ch;
+		while ((ch = is.read()) != -1) {
+			bytestream.write(ch);
 		}
+		
+		bytestream.close();
+		
+		File uploadDirectory = new File(fileUploadPath);
+		
+		//如果没有创建上传文件夹就创建文件夹
+		if (!uploadDirectory.exists() || !uploadDirectory.isDirectory()) {
+			uploadDirectory.mkdirs();
+		}
+		
+		entity.setPortrait(fileUploadPath + entity.getId());
+		
+		File portraitFile = new File(fileUploadPath + entity.getId());
+		//如果当前用户没有创建头像，就创建头像
+		if (!portraitFile.exists()) {
+			portraitFile.createNewFile();
+		}
+		//拷贝到指定路径里
+		FileUtils.writeByteArrayToFile(portraitFile, bytestream.toByteArray());
+		accountManager.updateUser(entity);
+		//设置状态值，让FaustCplus再次触发jsfunc的js函数
+		result.put("status","success");
+		
 		return result;
 	}
 	

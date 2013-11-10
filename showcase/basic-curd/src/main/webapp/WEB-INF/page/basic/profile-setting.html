@@ -62,7 +62,7 @@
 								<param value="always" name="allowScriptAccess" />
 								<param value="transparent" name="wmode" />
 								<param value="#FFFFFF" name="bgcolor" />
-								<param value="pSize=300|300|80|80|60|60|40|40&jsfunc=uploadEvent&imgUrl=${base}/resource/image/portrait.png&pid=75642723&uploadSrc=true&showBrow=true&showCame=true&uploadUrl=${base}/change-portrait" name="flashvars" />
+								<param value="pSize=300|300|80|80|60|60|40|40&jsfunc=uploadEvent<#if Session['sv'].user.portrait??>&imgUrl=${base}/get-current-user-portrait</#if>&pid=75642723&uploadSrc=true&showBrow=true&showCame=true&uploadUrl=${base}/change-portrait" name="flashvars" />
 							</object>
 						</center>
 						<hr>
