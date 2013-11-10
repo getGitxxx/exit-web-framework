@@ -14,6 +14,10 @@
 		return 1;
 	}
 	
+	function onChangeProFileSuccess(result) {
+		$("#info-realname").html(result.realname);
+	}
+	
 	function changePortrait(){
 		$("#change-profile").addClass("hide");
 		$("#change-portrait").removeClass("hide");
