@@ -129,6 +129,10 @@ div, a:focus, .btn:focus {
     position: absolute;
 }
 
+.modal-dialog {
+	width:750px;
+}
+
 .modal {
 	overflow-y:auto;
 }

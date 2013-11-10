@@ -3,9 +3,10 @@ package org.exitsoft.showcase.web;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
-import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.MapUtils;
@@ -28,7 +29,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import com.google.common.collect.Maps;
 
 
 /**
@@ -47,10 +49,6 @@ public class SystemCommonController {
 	 * 空头像图片文件
 	 */
 	public final String EMPTY_PORTRAIT_PATH = "\\resource\\image\\empty.png";
-	
-	//上传临时文件夹路径
-	@Value("${file.upload.temp.path}")
-	private String fileUploadTempPath;
 	
 	//上传文件存放的真实路径
 	@Value("${file.upload.path}")
@@ -94,6 +92,46 @@ public class SystemCommonController {
 	}
 	
 	/**
+	 * 修改用户头像C
+	 * 
+	 * @param request HttpServletRequest
+	 */
+	@ResponseBody
+	@RequestMapping("/change-portrait")
+	public Map<String, Object> changePortrait(HttpServletRequest request) {
+		//获取当前用户
+		User entity = SystemVariableUtils.getCommonVariableModel().getUser();
+		
+		Map<String, Object> result = Maps.newHashMap();
+		
+		try {
+			//获取传进来的流
+			InputStream is = request.getInputStream();
+			//读取流内容到ByteArrayOutputStream中
+			ByteArrayOutputStream bytestream = new ByteArrayOutputStream();
+			int ch;
+			while ((ch = is.read()) != -1) {
+				bytestream.write(ch);
+			}
+			
+			bytestream.close();
+			
+			File portraitFile = new File(fileUploadPath + entity.getId());
+			//如果当前用户没有创建头像，就创建头像
+			if (!portraitFile.exists()) {
+				portraitFile.createNewFile();
+			}
+			//拷贝到指定路径里
+			FileUtils.writeByteArrayToFile(portraitFile, bytestream.toByteArray());
+			//设置状态值，让FaustCplus再次触发jsfunc的js函数
+			result.put("status","success");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/**
 	 * 修改个人信息C，修改成功将会重定向到主页
 	 * 
 	 * @param user 用户实体
@@ -111,63 +149,10 @@ public class SystemCommonController {
 		entity.setRealname(realname);
 		entity.setEmail(email);
 		
-		//如果存在头像文件,将替换原有的头像文件
-		if (StringUtils.isNotEmpty(portrait)) {
-			//判断是否当前用户为首次更改头像，如果是，将图片路径赋值到portrait中
-			if (StringUtils.isEmpty(entity.getPortrait())) {
-				entity.setPortrait(fileUploadPath + entity.getId());
-			}
-			//获取用户头像路径
-			File portraitFile = new File(entity.getPortrait());
-			//如果头像不不存在就创建头像文件
-			if (!portraitFile.exists()) {
-				portraitFile.createNewFile();
-			}
-			//获取临时头像文件
-			File tempFile = new File(fileUploadTempPath + portrait);
-			//复制文件到文件存放的真实路径中，不临时文件，由SystemScheduled类的deleteTempUploadFile来执行删除
-			FileUtils.copyFile(tempFile, portraitFile);
-		}
-		
 		accountManager.updateUser(entity);
 		SystemVariableUtils.getCommonVariableModel().setUser(entity);
 		
 		return MapUtils.toMap(new BeanResourceBundle(entity,new String[]{"realname"}));
-	}
-	
-	/**
-	 * 文件上传的临时存放目录C，将上传上来的文件存储到webapp下杂temp_upload的文件夹中
-	 * 
-	 * @param file
-	 * @return String
-	 * 
-	 * @throws IllegalStateException
-	 * @throws IOException
-	 */
-	@ResponseBody
-	@RequestMapping("/temp-upload")
-	public String tempUpload(@RequestParam("file")CommonsMultipartFile file) throws IllegalStateException, IOException {
-		String name = "temp_upload_" + UUID.randomUUID().toString().replaceAll("-", "");
-		
-		File tempFile = new File(fileUploadTempPath + name);
-		tempFile.mkdirs();
-		file.transferTo(tempFile);
-		
-		return name;
-	}
-	
-	/**
-	 * 通过名称获取临时文件
-	 * 
-	 * @param name 临时文件名称
-	 * 
-	 * @throws IOException
-	 */
-	@RequestMapping("/get-temp-upload-file")
-	public ResponseEntity<byte[]> getTempUploadFile(String name) throws IOException {
-		File tempFile = new File(fileUploadTempPath + name);
-		byte[] b = FileUtils.readFileToByteArray(tempFile);
-		return new ResponseEntity<byte[]>(b, HttpStatus.OK);
 	}
 	
 	/**

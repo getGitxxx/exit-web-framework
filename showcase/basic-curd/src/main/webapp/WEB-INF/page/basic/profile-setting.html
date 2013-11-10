@@ -2,47 +2,36 @@
 
 	function reloadPortrait() {
 		$("#info-portrait").attr("src","${base}/get-current-user-portrait?random=" + (Math.random()*24));
+		$("#portrait").attr("src","${base}/get-current-user-portrait?random=" + (Math.random()*24));
+	}
+
+	function uploadEvent(status){
+		if(status === "success") {
+			reloadPortrait();
+			return ;
+		} 
+		
+		return 1;
+	}
+	
+	function changePortrait(){
+		$("#change-profile").addClass("hide");
+		$("#change-portrait").removeClass("hide");
+	}
+	
+	function changeProfile(){
+		$("#change-profile").removeClass("hide");
+		$("#change-portrait").addClass("hide");
 	}
 	
 	$(document).ready(function(){
-		$("#file").change(function(){
-			
-			if (!/\.(jpg|jpeg|gif|png|JPG|JPEG|GIF|PNG)$/.test($(this).val())) {
-				alert("请选择图片类型的文件如：jpg jpeg gif png"); 
-				return ;
-			}
-			
-			$("#upload-form").submit();
-		});
 		
 		$("#profile-seeting").on('hidden.bs.modal', function () {
 			reloadPortrait();
+			changeProfile();
 			$(this).find("form").resetForm();
 		});
 	});
-	
-	function onChangeProFileSuccess(result) {
-		$("#info-realname").html(result.realname);
-		reloadPortrait();
-	}
-	
-	function onUploadSuccess(fileName) {
-		
-		var path = "${base}/get-temp-upload-file?name=" + fileName.replace(/<[^>]*>/g,"");
-		var image = new Image();
-		
-        $(image).load(function(){
-            if (image.height > 80 || image.width > 80 ||　image.height < 80 || image.width < 80) {
-            	alert("请上传 80 * 80 像素的图片.");
-            } else{
-        		$("#portrait").attr("src",path);
-        		$("#portrait-field").val(fileName);
-            }
-        });
-        
-        image.src = path;
-	}
-	
 </script>
 <div class="modal fade" id="profile-seeting" role="dialog" aria-hidden="true">
    <div class="modal-dialog">
@@ -63,50 +52,72 @@
 			<div class="tab-content">
 				
 				<div class="tab-pane fade in active" id="user-seeting">
-	          		<div class="form-group">
-						<div class="pictrue">
-							<a class="thumbnail">
-								<img id="portrait" src="${base}/get-current-user-portrait"/>
-							</a>
-						</div>
+					<div id="change-portrait" class="hide">
 						<center>
-							<form action="${base}/temp-upload" method="post" onsuccess="onUploadSuccess" id="upload-form" data-ajax-submit="true" enctype="multipart/form-data">
-								<a class="btn btn-primary upload-container">
-									<input type="file" id="file" name="file" class="upload-field" />
-									修改头像
-								</a>
-							</form>
+							<object id="faust-cplus" data="${base}/resource/swf/FaustCplus.swf" id="FaustCplus"
+								type="application/x-shockwave-flash" height="400" width="600">
+								<param value="false" name="menu" />
+								<param value="noScale" name="scale" />
+								<param value="true" name="allowFullscreen" />
+								<param value="always" name="allowScriptAccess" />
+								<param value="transparent" name="wmode" />
+								<param value="#FFFFFF" name="bgcolor" />
+								<param value="pSize=300|300|80|80|60|60|40|40&jsfunc=uploadEvent&imgUrl=${base}/resource/image/portrait.png&pid=75642723&uploadSrc=true&showBrow=true&showCame=true&uploadUrl=${base}/change-portrait" name="flashvars" />
+							</object>
 						</center>
-					</div>
-					
-					<form action="${base}/change-profile" method="post" data-ajax-submit="true" onsuccess="onChangeProFileSuccess">
-						<input type="hidden" id="portrait-field" name="portrait" >
-						<div class="form-group">
-				   			<div class="row">
-				    			<div class="col-xs-6">
-									<label for="realname">真实姓名:</label> 
-									<input type="text" class="form-control required" name="realname" id="realname" value="${Session['sv'].user.realname!''}">
-								</div>
-								<div class="col-xs-6">
-									<label for="email">电子邮箱:</label> 
-									<input type="text" class="form-control email" name="email" id="email"  value="${Session['sv'].user.email!''}">
-								</div>
-				   			</div>
-			   			</div>
-						
 						<hr>
-						
 						<div class="text-right">
 							
-							<button type="submit" class="btn btn-success">
-								<span class="glyphicon glyphicon-ok"></span> 保存
+							<button type="button" class="btn btn-success" onclick="$('#faust-cplus').get(0).jscall_updateAvatar();">
+								<span class="glyphicon glyphicon-ok"></span> 修改
 							</button>
 							
-							<button type="reset" class="btn btn-danger">
-								<span class="glyphicon glyphicon-trash"></span> 重置
+							<button type="button" class="btn btn-default" onclick="changeProfile();">
+								<span class="glyphicon glyphicon-backward"></span> 返回
 							</button>
 						</div>
-					</form>
+					</div>
+					
+					<div id="change-profile">
+						
+						<div class="form-group">
+							<div class="pictrue">
+								<a class="thumbnail" href="javascript:changePortrait();">
+									<img id="portrait" src="${base}/get-current-user-portrait"/>
+								</a>
+							</div>
+						</div>
+						
+						<form action="${base}/change-profile" method="post" data-ajax-submit="true" onsuccess="onChangeProFileSuccess">
+							<div class="form-group">
+					   			<div class="row">
+					    			<div class="col-xs-6">
+										<label for="realname">真实姓名:</label> 
+										<input type="text" class="form-control required" name="realname" id="realname" value="${Session['sv'].user.realname!''}">
+									</div>
+									<div class="col-xs-6">
+										<label for="email">电子邮箱:</label> 
+										<input type="text" class="form-control email" name="email" id="email"  value="${Session['sv'].user.email!''}">
+									</div>
+					   			</div>
+				   			</div>
+							
+							<hr>
+							
+							<div class="text-right">
+								
+								<button type="submit" class="btn btn-success">
+									<span class="glyphicon glyphicon-ok"></span> 保存
+								</button>
+								
+								<button type="reset" class="btn btn-danger">
+									<span class="glyphicon glyphicon-trash"></span> 重置
+								</button>
+							</div>
+						</form>
+						
+					</div>
+					
 		        </div>
 	        
 		        <div class="tab-pane fade in" id="password-seeting">
