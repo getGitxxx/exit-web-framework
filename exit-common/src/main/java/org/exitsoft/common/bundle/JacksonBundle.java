@@ -1,4 +1,4 @@
-package org.exitsoft.common.mapper;
+package org.exitsoft.common.bundle;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -26,9 +26,9 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
  *
  */
 @SuppressWarnings("unchecked")
-public class JacksonMapper {
+public class JacksonBundle {
 	
-	private static Logger logger = LoggerFactory.getLogger(JacksonMapper.class);
+	private static Logger logger = LoggerFactory.getLogger(JacksonBundle.class);
 	
 	private ObjectMapper mapper;
 
@@ -37,7 +37,7 @@ public class JacksonMapper {
 	 * 构造方法
 	 * 
 	 */
-	public JacksonMapper() {
+	public JacksonBundle() {
 		this(null);
 	}
 
@@ -45,7 +45,7 @@ public class JacksonMapper {
 	 * 构造方法，根据Jackson的{@link Include}类创建ObjectMapper
 	 * 
 	 */
-	public JacksonMapper(Include include) {
+	public JacksonBundle(Include include) {
 		mapper = new ObjectMapper();
 		if (include != null) {
 			mapper.setSerializationInclusion(include);
@@ -75,37 +75,37 @@ public class JacksonMapper {
      * 提示：其他类型的默认处理可以自定义{@link JsonSerializer}的{@link JsonSerializer#isEmpty(Object)}如果被重写，
      * 序列化json会调用该方法，根据返回值判断是否序列化
 	 * </p>
-	 * @return {@link JacksonMapper}
+	 * @return {@link JacksonBundle}
 	 */
-	public static JacksonMapper nonEmptyMapper() {
+	public static JacksonBundle nonEmptyMapper() {
 		
-		return new JacksonMapper(Include.NON_EMPTY);
+		return new JacksonBundle(Include.NON_EMPTY);
 	}
 	
 	/**
 	 * 创建不管任何值都序列化成json的ObjectMapper
 	 * 
-	 * @return {@link JacksonMapper}
+	 * @return {@link JacksonBundle}
 	 */
-	public static JacksonMapper alwaysMapper() {
-		return new JacksonMapper(Include.ALWAYS);
+	public static JacksonBundle alwaysMapper() {
+		return new JacksonBundle(Include.ALWAYS);
 	}
 	
 	/**
 	 * 创建序列化属性为非空(null)值的ObjectMapper
 	 * 
-	 * @return {@link JacksonMapper}
+	 * @return {@link JacksonBundle}
 	 */
-	public static JacksonMapper nonNullMapper() {
-		return new JacksonMapper(Include.NON_NULL);
+	public static JacksonBundle nonNullMapper() {
+		return new JacksonBundle(Include.NON_NULL);
 	}
 
 	/**
 	 * 创建只输出初始值被改变的属性到Json字符串的ObjectMapper, 最节约的存储方式。
 	 * @return
 	 */
-	public static JacksonMapper nonDefaultMapper() {
-		return new JacksonMapper(Include.NON_DEFAULT);
+	public static JacksonBundle nonDefaultMapper() {
+		return new JacksonBundle(Include.NON_DEFAULT);
 	}
 	
 	/** 
