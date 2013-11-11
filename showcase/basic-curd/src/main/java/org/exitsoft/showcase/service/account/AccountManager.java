@@ -65,7 +65,7 @@ public class AccountManager {
 	 * 
 	 */
 	public void updateUserPassword(String oldPassword, String newPassword) {
-		User user = SystemVariableUtils.getCommonVariableModel().getUser();
+		User user = SystemVariableUtils.getSessionVariable().getUser();
 		
 		oldPassword = new SimpleHash("MD5", oldPassword.toCharArray()).toString();
 		

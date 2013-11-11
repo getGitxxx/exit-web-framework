@@ -101,7 +101,7 @@ public class SystemCommonController {
 	@RequestMapping("/change-portrait")
 	public Map<String, Object> changePortrait(HttpServletRequest request) throws IOException {
 		//获取当前用户
-		User entity = SystemVariableUtils.getCommonVariableModel().getUser();
+		User entity = SystemVariableUtils.getSessionVariable().getUser();
 		
 		Map<String, Object> result = Maps.newHashMap();
 		
@@ -133,6 +133,7 @@ public class SystemCommonController {
 		//拷贝到指定路径里
 		FileUtils.writeByteArrayToFile(portraitFile, bytestream.toByteArray());
 		accountManager.updateUser(entity);
+		SystemVariableUtils.getSessionVariable().setUser(entity);
 		//设置状态值，让FaustCplus再次触发jsfunc的js函数
 		result.put("status","success");
 		
@@ -152,13 +153,13 @@ public class SystemCommonController {
 	@RequestMapping("/change-profile")
 	public Map<String, Object> changeProfile(String realname,String email,@RequestParam(required = false)String portrait) throws IOException {
 		//获取当前用户
-		User entity = SystemVariableUtils.getCommonVariableModel().getUser();
+		User entity = SystemVariableUtils.getSessionVariable().getUser();
 		
 		entity.setRealname(realname);
 		entity.setEmail(email);
 		
 		accountManager.updateUser(entity);
-		SystemVariableUtils.getCommonVariableModel().setUser(entity);
+		SystemVariableUtils.getSessionVariable().setUser(entity);
 		
 		return MapUtils.toMap(new BeanResourceBundle(entity,new String[]{"realname"}));
 	}
@@ -193,7 +194,7 @@ public class SystemCommonController {
 	@RequestMapping("/get-current-user-portrait")
 	public ResponseEntity<byte[]> getCurrentUserPortrait() throws IOException {
 		
-		String portrait = SystemVariableUtils.getCommonVariableModel().getUser().getPortrait();
+		String portrait = SystemVariableUtils.getSessionVariable().getUser().getPortrait();
 		
 		//如果头像为空，设置默认空头像
 		if (StringUtils.isEmpty(portrait)) {

@@ -98,7 +98,7 @@ public class SystemVariableUtils {
 	 * 
 	 * @return {@link SessionVariable}
 	 */
-	public static SessionVariable getCommonVariableModel() {
+	public static SessionVariable getSessionVariable() {
 		
 		Subject subject = SecurityUtils.getSubject();
 		
