@@ -23,7 +23,7 @@ public abstract class SpringMvcHolder {
 	 * @return Object
 	 */
 	public static <T> T getRequestAttribute(String name) {
-		return getAttribute(name, RequestAttributes.SCOPE_REQUEST);
+		return (T)getAttribute(name, RequestAttributes.SCOPE_REQUEST);
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public abstract class SpringMvcHolder {
 	 * @return Object
 	 */
 	public static <T> T getSessionAttribute(String name) {
-		return getAttribute(name, RequestAttributes.SCOPE_SESSION);
+		return (T)getAttribute(name, RequestAttributes.SCOPE_SESSION);
 	}
 	
 	/**
