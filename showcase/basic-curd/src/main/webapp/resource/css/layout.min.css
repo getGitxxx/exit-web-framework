@@ -55,7 +55,7 @@ body {
 }
 
 .profile {
-	margin-bottom: 20px;
+	/* margin-bottom: 20px; */
 	bottom:0px;
 	position: absolute;
 	box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);

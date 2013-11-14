@@ -1,4 +1,4 @@
-package org.exitsoft.showcase.entity.foundation;
+package org.exitsoft.showcase.entity.foundation.variable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

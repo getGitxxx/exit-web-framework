@@ -14,7 +14,7 @@ import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.common.enumeration.entity.GroupType;
 import org.exitsoft.showcase.entity.account.User;
-import org.exitsoft.showcase.entity.foundation.DataDictionary;
+import org.exitsoft.showcase.entity.foundation.variable.DataDictionary;
 import org.exitsoft.showcase.service.account.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

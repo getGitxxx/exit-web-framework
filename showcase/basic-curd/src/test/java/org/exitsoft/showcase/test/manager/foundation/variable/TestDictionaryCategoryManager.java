@@ -1,12 +1,12 @@
-package org.exitsoft.showcase.test.manager.foundation;
+package org.exitsoft.showcase.test.manager.foundation.variable;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.exitsoft.showcase.entity.foundation.DictionaryCategory;
-import org.exitsoft.showcase.service.foundation.SystemDictionaryManager;
+import org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory;
+import org.exitsoft.showcase.service.foundation.SystemVariableManager;
 import org.exitsoft.showcase.test.manager.ManagerTestCaseSupport;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class TestDictionaryCategoryManager extends ManagerTestCaseSupport {
 
 	@Autowired
-	private SystemDictionaryManager systemDictionaryManager;
+	private SystemVariableManager systemVariableManager;
 	
 	@Test
 	public void testSaveDictionaryCategory() {
@@ -30,7 +30,7 @@ public class TestDictionaryCategoryManager extends ManagerTestCaseSupport {
 		category.setRemark("*");
 		
 		int beforeRow = countRowsInTable("TB_DICTIONARY_CATEGORY");
-		systemDictionaryManager.saveDictionaryCategory(category);
+		systemVariableManager.saveDictionaryCategory(category);
 		int afterRow = countRowsInTable("TB_DICTIONARY_CATEGORY");
 		
 		assertEquals(afterRow, beforeRow + 1);
@@ -42,7 +42,7 @@ public class TestDictionaryCategoryManager extends ManagerTestCaseSupport {
 		int beforeRow = countRowsInTable("TB_DICTIONARY_CATEGORY");
 		List<String> ids = new ArrayList<String>();
 		ids.add("SJDK3849CKMS3849DJCK2039ZMSK0015");
-		systemDictionaryManager.deleteDictionaryCategory(ids);
+		systemVariableManager.deleteDictionaryCategory(ids);
 		int afterRow = countRowsInTable("TB_DICTIONARY_CATEGORY");
 		
 		assertEquals(beforeRow, afterRow + 1);
@@ -50,13 +50,13 @@ public class TestDictionaryCategoryManager extends ManagerTestCaseSupport {
 
 	@Test
 	public void testGetAllParentDictionaryCategories() {
-		List<DictionaryCategory> result = systemDictionaryManager.getAllParentDictionaryCategories();
+		List<DictionaryCategory> result = systemVariableManager.getAllParentDictionaryCategories();
 		assertEquals(3, result.size());
 	}
 
 	@Test
 	public void testGetAllDictionaryCategories() {
-		List<DictionaryCategory> result = systemDictionaryManager.getAllDictionaryCategories();
+		List<DictionaryCategory> result = systemVariableManager.getAllDictionaryCategories();
 		assertEquals(4, result.size());
 	}
 

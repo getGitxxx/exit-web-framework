@@ -11,8 +11,8 @@ import org.exitsoft.orm.core.Page;
 import org.exitsoft.orm.core.PageRequest;
 import org.exitsoft.orm.core.PageRequest.Sort;
 import org.exitsoft.orm.core.PropertyFilter;
-import org.exitsoft.showcase.entity.foundation.DictionaryCategory;
-import org.exitsoft.showcase.service.foundation.SystemDictionaryManager;
+import org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory;
+import org.exitsoft.showcase.service.foundation.SystemVariableManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,7 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class DictionaryCategoryController {
 	
 	@Autowired
-	private SystemDictionaryManager systemDictionaryManager;
+	private SystemVariableManager systemDictionaryManager;
 	
 	/**
 	 * 获取字典类别列表

@@ -40,7 +40,7 @@
 							<select class="form-control required" name="type" id="type">
 								<option value="">请选择...</option>
 				                <#list valueTypes as vt>
-				                	<option value="${vt.value}" <#if entity.type==vt.value> selected="selected" </#if> >${vt.name}</option>
+				                	<option value="${vt.value}" <#if entity.type?has_content && entity.type==vt.value> selected="selected" </#if> >${vt.name}</option>
 				                </#list>
 				           </select>
 						</div>

@@ -1,4 +1,4 @@
-package org.exitsoft.showcase.test.manager.foundation;
+package org.exitsoft.showcase.test.manager.foundation.variable;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,9 +9,9 @@ import org.apache.commons.collections.CollectionUtils;
 import org.exitsoft.common.type.FieldType;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
-import org.exitsoft.showcase.entity.foundation.DataDictionary;
-import org.exitsoft.showcase.entity.foundation.DictionaryCategory;
-import org.exitsoft.showcase.service.foundation.SystemDictionaryManager;
+import org.exitsoft.showcase.entity.foundation.variable.DataDictionary;
+import org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory;
+import org.exitsoft.showcase.service.foundation.SystemVariableManager;
 import org.exitsoft.showcase.test.manager.ManagerTestCaseSupport;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 	
 	@Autowired
-	private SystemDictionaryManager systemDictionaryManager;
+	private SystemVariableManager systemVariableManager;
 	
 	@Test
 	public void testGetDataDictionariesByCategoryCode() {
@@ -44,7 +44,7 @@ public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 		CollectionUtils.addAll(ids, new String[]{"SJDK3849CKMS3849DJCK2039ZMSK0018","SJDK3849CKMS3849DJCK2039ZMSK0019"});
 		
 		int beforeRow = countRowsInTable("TB_DATA_DICTIONARY");
-		systemDictionaryManager.deleteDataDictionary(ids);
+		systemVariableManager.deleteDataDictionary(ids);
 		int afterRow = countRowsInTable("TB_DATA_DICTIONARY");
 		
 		assertEquals(afterRow, beforeRow - 2);
@@ -53,7 +53,7 @@ public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 	@Test
 	public void testSaveDataDictionary() {
 		
-		DictionaryCategory category = systemDictionaryManager.getDictionaryCategory("SJDK3849CKMS3849DJCK2039ZMSK0015");
+		DictionaryCategory category = systemVariableManager.getDictionaryCategory("SJDK3849CKMS3849DJCK2039ZMSK0015");
 		
 		DataDictionary dataDictionary = new DataDictionary();
 		dataDictionary.setCategory(category);
@@ -63,7 +63,7 @@ public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 		dataDictionary.setRemark("*");
 		
 		int beforeRow = countRowsInTable("TB_DATA_DICTIONARY");
-		systemDictionaryManager.saveDataDictionary(dataDictionary);
+		systemVariableManager.saveDataDictionary(dataDictionary);
 		int afterRow = countRowsInTable("TB_DATA_DICTIONARY");
 		
 		assertEquals(afterRow, beforeRow + 1);

@@ -1,7 +1,7 @@
-package org.exitsoft.showcase.dao.foundation;
+package org.exitsoft.showcase.dao.foundation.variable;
 
 import org.exitsoft.orm.core.hibernate.support.HibernateSupportDao;
-import org.exitsoft.showcase.entity.foundation.DataDictionary;
+import org.exitsoft.showcase.entity.foundation.variable.DataDictionary;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -6,10 +6,10 @@ import org.exitsoft.orm.core.Page;
 import org.exitsoft.orm.core.PageRequest;
 import org.exitsoft.orm.core.PropertyFilter;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
-import org.exitsoft.showcase.dao.foundation.DataDictionaryDao;
-import org.exitsoft.showcase.dao.foundation.DictionaryCategoryDao;
-import org.exitsoft.showcase.entity.foundation.DataDictionary;
-import org.exitsoft.showcase.entity.foundation.DictionaryCategory;
+import org.exitsoft.showcase.dao.foundation.variable.DataDictionaryDao;
+import org.exitsoft.showcase.dao.foundation.variable.DictionaryCategoryDao;
+import org.exitsoft.showcase.entity.foundation.variable.DataDictionary;
+import org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class SystemDictionaryManager {
+public class SystemVariableManager {
 
 	//数据字典数据访问
 	@Autowired

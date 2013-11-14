@@ -12,8 +12,8 @@ import org.exitsoft.orm.core.PageRequest.Sort;
 import org.exitsoft.orm.core.PropertyFilter;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
-import org.exitsoft.showcase.entity.foundation.DataDictionary;
-import org.exitsoft.showcase.service.foundation.SystemDictionaryManager;
+import org.exitsoft.showcase.entity.foundation.variable.DataDictionary;
+import org.exitsoft.showcase.service.foundation.SystemVariableManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +33,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class DataDictionaryController {
 	
 	@Autowired
-	private SystemDictionaryManager systemDictionaryManager;
+	private SystemVariableManager systemDictionaryManager;
 	
 	/**
 	 * 获取数据字典列表

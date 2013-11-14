@@ -9,8 +9,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
-import org.exitsoft.showcase.entity.foundation.DataDictionary;
-import org.exitsoft.showcase.service.foundation.SystemDictionaryManager;
+import org.exitsoft.showcase.entity.foundation.variable.DataDictionary;
+import org.exitsoft.showcase.service.foundation.SystemVariableManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,13 +23,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class SystemVariableUtils {
 	
-	static public String DefaultDictionaryValue = "无";
+	static public String DEFAULT_DICTIONARY_VALUE = "无";
 	
-	static private SystemDictionaryManager systemDictionaryManager;
+	static private SystemVariableManager systemVariableManager;
 	
 	@Autowired
-	public void setSystemDictionaryManager(SystemDictionaryManager systemDictionaryManager) {
-		SystemVariableUtils.systemDictionaryManager = systemDictionaryManager;
+	public void setSystemVariableManager(SystemVariableManager systemDictionaryManager) {
+		SystemVariableUtils.systemVariableManager = systemDictionaryManager;
 	}
 	
 	/**
@@ -51,14 +51,14 @@ public class SystemVariableUtils {
 	public static String getDictionaryNameByValue(SystemDictionaryCode systemDictionaryCode,Object value) {
 		
 		if (value == null || systemDictionaryCode == null) {
-			return DefaultDictionaryValue;
+			return DEFAULT_DICTIONARY_VALUE;
 		}
 		
 		if (value instanceof String && StringUtils.isEmpty(value.toString())) {
-			return DefaultDictionaryValue;
+			return DEFAULT_DICTIONARY_VALUE;
 		}
 		
-		List<DataDictionary> dataDictionaries = systemDictionaryManager.getDataDictionariesByCategoryCode(systemDictionaryCode);
+		List<DataDictionary> dataDictionaries = systemVariableManager.getDataDictionariesByCategoryCode(systemDictionaryCode);
 		
 		for (Iterator<DataDictionary> iterator = dataDictionaries.iterator(); iterator.hasNext();) {
 			DataDictionary dataDictionary = iterator.next();
@@ -67,7 +67,7 @@ public class SystemVariableUtils {
 				return dataDictionary.getName();
 			}
 		}
-		return DefaultDictionaryValue; 
+		return DEFAULT_DICTIONARY_VALUE; 
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class SystemVariableUtils {
 	 * @return List
 	 */
 	public static List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code, String ignoreValue) {
-		return systemDictionaryManager.getDataDictionariesByCategoryCode(code, ignoreValue);
+		return systemVariableManager.getDataDictionariesByCategoryCode(code, ignoreValue);
 	}
 	
 	/**
@@ -90,7 +90,7 @@ public class SystemVariableUtils {
 	 * @return List
 	 */
 	public static List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code) {
-		return systemDictionaryManager.getDataDictionariesByCategoryCode(code);
+		return systemVariableManager.getDataDictionariesByCategoryCode(code);
 	}
 	
 	/**
