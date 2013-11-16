@@ -165,7 +165,7 @@ public class SystemCommonController {
 	}
 	
 	/**
-	 * 生成验证码
+	 * 生成验证码C
 	 * 
 	 * @throws IOException 
 	 */
@@ -185,7 +185,7 @@ public class SystemCommonController {
 	}
 	
 	/**
-	 * 获取当前用户头像
+	 * 获取当前用户头像C
 	 * 
 	 * @return {@link ResponseEntity}
 	 * 
@@ -206,5 +206,13 @@ public class SystemCommonController {
 		byte[] b = FileUtils.readFileToByteArray(f);
 		
 		return new ResponseEntity<byte[]>(b, HttpStatus.OK);
+	}
+	
+	/**
+	 * 没有权限C
+	 */
+	@RequestMapping("/unauthorized")
+	public String unauthorized() {
+		return "exception/401";
 	}
 }

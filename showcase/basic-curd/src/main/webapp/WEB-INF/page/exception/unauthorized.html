@@ -1,0 +1,23 @@
+<@override name="title">
+	401
+</@override>
+
+<@override name="body">
+	<div class="server-exception"> 
+   		<p><center><h1>401</h1></center></p> 
+   		<p>&nbsp;</p> 
+   		<h3>访问控制</h3> 
+   		<hr> 
+   		<p>你没有足够的权限做该操作.</p> 
+   		<p>
+   			<a class="btn btn-default" href="javascript:history.back()">
+				<span class="glyphicon glyphicon-backward"></span> 返回
+			</a>
+			<a class="btn btn-danger" href="${base}/logout">
+				<span class="glyphicon glyphicon-log-in"></span> 重新登录
+			</a>
+   		</p>
+   	</div>
+</@override>
+
+<@extends name="*/basic/default.html"/>

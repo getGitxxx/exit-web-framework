@@ -13,7 +13,9 @@ div, a:focus, .btn:focus {
     background-color: #4B4B4B;
     color: #FFFFFF;
 }
-
+.panel-default {
+	border-color: #bbb;
+}
 .panel-default > .panel-heading {
     margin: -1px;
 }

@@ -45,13 +45,25 @@
 	<!-- 使用默认的servlet handler -->
 	<mvc:default-servlet-handler />
 	
-	 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-    	<property name="maxUploadSize" value="512000" />
-    </bean>
+	<!-- 启动文件双穿Resolver -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 	
-	<bean id="blockDirective" class="org.exitsoft.common.freemarker.directive.BlockDirective"/>  
-    <bean id="extendsDirective" class="org.exitsoft.common.freemarker.directive.ExtendsDirective"/>  
-    <bean id="overrideDirective" class="org.exitsoft.common.freemarker.directive.OverrideDirective"/>  
+	<!-- 启动异常拦截器 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<map>
+			  <entry key="org.exitsoft.showcase.service.ServiceException" value="error/service-exception" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 定义块，可以被子模板用@override指令覆盖显示,没有被override则显示自身的内容 -->
+	<bean id="blockDirective" class="org.exitsoft.common.freemarker.directive.BlockDirective"/>
+	<!-- 继承其它模板，必须放在模板的最后面 -->
+    <bean id="extendsDirective" class="org.exitsoft.common.freemarker.directive.ExtendsDirective"/>
+    <!-- 重定义@block指令显示的内容 -->
+    <bean id="overrideDirective" class="org.exitsoft.common.freemarker.directive.OverrideDirective"/>
+    <!-- 在override中显示 super block的内容,类似java的 super关键字 -->
     <bean id="superDirective" class="org.exitsoft.common.freemarker.directive.SuperDirective" />
 
 	<!-- freemarker的格式和其他配置 -->
