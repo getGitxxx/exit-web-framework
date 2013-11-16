@@ -28,7 +28,7 @@
 			
 			<div class="panel-body">
 		        <div class="server-exception"> 
-		    		<p><center><font size="24"><span class="glyphicon glyphicon-trash"></span></font></p></center>
+		    		<p><center><h1><span class="glyphicon glyphicon-trash"></span></h1></p></center>
 		    		<h3>找不到页面</h3>
 		    		<hr>
 			   		<p>你访问的页面不存在或已经被删除.</p> 

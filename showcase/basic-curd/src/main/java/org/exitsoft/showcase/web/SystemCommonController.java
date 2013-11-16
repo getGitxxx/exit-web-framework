@@ -213,6 +213,6 @@ public class SystemCommonController {
 	 */
 	@RequestMapping("/unauthorized")
 	public String unauthorized() {
-		return "exception/401";
+		return "exception/unauthorized";
 	}
 }
