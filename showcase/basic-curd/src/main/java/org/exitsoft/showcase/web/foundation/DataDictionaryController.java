@@ -53,7 +53,7 @@ public class DataDictionaryController {
 			pageRequest.setOrderDir(Sort.DESC);
 		}
 		
-		request.setAttribute("valueTypes", SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.ValueType));
+		request.setAttribute("valueTypes", SystemVariableUtils.getVariables(SystemDictionaryCode.ValueType));
 		request.setAttribute("categoriesList", systemDictionaryManager.getAllDictionaryCategories());
 		
 		return systemDictionaryManager.searchDataDictionaryPage(pageRequest, filters);
@@ -97,7 +97,7 @@ public class DataDictionaryController {
 	@RequestMapping("read")
 	public String read(Model model) {
 		
-		model.addAttribute("valueTypes", SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.ValueType));
+		model.addAttribute("valueTypes", SystemVariableUtils.getVariables(SystemDictionaryCode.ValueType));
 		model.addAttribute("categoriesList", systemDictionaryManager.getAllDictionaryCategories());
 		
 		return "/foundation/data-dictionary/read";

@@ -48,7 +48,7 @@ public class ResourceController {
 		
 		List<PropertyFilter> filters = PropertyFilters.build(request,true);
 		
-		request.setAttribute("resourceType", SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.ResourceType));
+		request.setAttribute("resourceType", SystemVariableUtils.getVariables(SystemDictionaryCode.ResourceType));
 		request.setAttribute("resourcesList", accountManager.getAllResources());
 		
 		if (!pageRequest.isOrderBySetted()) {
@@ -95,7 +95,7 @@ public class ResourceController {
 	@RequestMapping("read")
 	public String read(@RequestParam(value = "id", required = false)String id,Model model) {
 		
-		model.addAttribute("resourceType", SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.ResourceType));
+		model.addAttribute("resourceType", SystemVariableUtils.getVariables(SystemDictionaryCode.ResourceType));
 		
 		if (StringUtils.isEmpty(id)) {
 			model.addAttribute("resourcesList", accountManager.getAllResources());

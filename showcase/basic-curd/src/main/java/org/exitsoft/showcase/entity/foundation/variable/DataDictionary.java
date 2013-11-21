@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -24,10 +23,7 @@ import org.exitsoft.showcase.entity.UniversallyUniqueIdentifier;
 @Entity
 @SuppressWarnings("serial")
 @Table(name="TB_DATA_DICTIONARY")
-@NamedQueries({
-	@NamedQuery(name=DataDictionary.FindByCateGoryCode,query="from DataDictionary dd where dd.category.code = ?1"),
-	@NamedQuery(name=DataDictionary.FindByCategoryCodeWithIgnoreValue,query="from DataDictionary dd where dd.category.code = ?1 and dd.value <> ?2")
-})
+@NamedQuery(name=DataDictionary.FindByCateGoryCode,query="from DataDictionary dd where dd.category.code = ?1")
 public class DataDictionary extends UniversallyUniqueIdentifier{
 	
 	public static final String FindByCateGoryCode = "findByCateGoryCode";

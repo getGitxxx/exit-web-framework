@@ -1,13 +1,12 @@
 package org.exitsoft.showcase.test.manager.foundation.variable;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.exitsoft.common.type.FieldType;
-import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.entity.foundation.variable.DataDictionary;
 import org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory;
@@ -15,6 +14,8 @@ import org.exitsoft.showcase.service.foundation.SystemVariableManager;
 import org.exitsoft.showcase.test.manager.ManagerTestCaseSupport;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.google.common.collect.Lists;
 
 /**
  * 测试数据字典管理所有方法
@@ -29,11 +30,13 @@ public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 	
 	@Test
 	public void testGetDataDictionariesByCategoryCode() {
-		
-		String valueNoCache = SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "1");
-		String valueCache = SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, "1");
-
-		assertEquals(valueCache.hashCode(), valueNoCache.hashCode());
+		List<DataDictionary> list = Lists.newArrayList();
+		list = systemVariableManager.getDataDictionariesByCategoryCode(SystemDictionaryCode.State);
+		assertEquals(list.size(),3);
+		list = systemVariableManager.getDataDictionariesByCategoryCode(SystemDictionaryCode.State, "1");
+		assertEquals(list.size(),2);
+		list = systemVariableManager.getDataDictionariesByCategoryCode(SystemDictionaryCode.State, "1","2","3");
+		assertEquals(list.size(),0);
 		
 	}
 	
@@ -69,6 +72,7 @@ public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 		assertEquals(afterRow, beforeRow + 1);
 		
 	}
+	
 	
 	
 }

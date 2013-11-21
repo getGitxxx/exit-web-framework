@@ -2,6 +2,9 @@ package org.exitsoft.showcase.service.foundation;
 
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Predicate;
+import org.apache.commons.lang3.ArrayUtils;
 import org.exitsoft.orm.core.Page;
 import org.exitsoft.orm.core.PageRequest;
 import org.exitsoft.orm.core.PropertyFilter;
@@ -81,24 +84,25 @@ public class SystemVariableManager {
 	 * 通过字典类别代码获取数据字典集合
 	 * 
 	 * @param code 字典列别
-	 * 
-	 * @return List
-	 */
-	@Cacheable(value=DataDictionary.FindByCateGoryCode)
-	public List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code) {
-		return dataDictionaryDao.findByQuery(DataDictionary.FindByCateGoryCode, code.getCode());
-	}
-	
-	/**
-	 * 通过字典类别代码获取数据字典集合
-	 * 
-	 * @param code 字典列别
 	 * @param ignoreValue 忽略字典的值
 	 * 
 	 * @return List
 	 */
-	public List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code,String ignoreValue) {
-		return dataDictionaryDao.findByQuery(DataDictionary.FindByCategoryCodeWithIgnoreValue, code.getCode(),ignoreValue);
+	@Cacheable(value=DataDictionary.FindByCateGoryCode)
+	public List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code,final String... ignoreValue) {
+		List<DataDictionary> result = dataDictionaryDao.findByQuery(DataDictionary.FindByCateGoryCode, code.getCode());
+		
+		CollectionUtils.filter(result, new Predicate() {
+			
+			@Override
+			public boolean evaluate(Object object) {
+				DataDictionary dd = (DataDictionary) object;
+				return !ArrayUtils.contains(ignoreValue, dd.getValue());
+			}
+			
+		});
+		
+		return result;
 	}
 	
 	//---------------------------------------字典类别管理---------------------------------------//

@@ -50,7 +50,7 @@ public class GroupController {
 		
 		List<PropertyFilter> filters = PropertyFilters.build(request,true);
 		
-		request.setAttribute("states", SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.State,"3"));
+		request.setAttribute("states", SystemVariableUtils.getVariables(SystemDictionaryCode.State,"3"));
 		request.setAttribute("groupsList", accountManager.getAllGroup(GroupType.RoleGorup));
 		
 		if (!pageRequest.isOrderBySetted()) {
@@ -105,7 +105,7 @@ public class GroupController {
 	public String read(@RequestParam(value = "id", required = false)String id,Model model) {
 		
 		model.addAttribute("resourcesList", accountManager.getAllResources());
-		model.addAttribute("states", SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.State,"3"));
+		model.addAttribute("states", SystemVariableUtils.getVariables(SystemDictionaryCode.State,"3"));
 		
 		if (StringUtils.isEmpty(id)) {
 			model.addAttribute("groupsList", accountManager.getAllGroup(GroupType.RoleGorup));

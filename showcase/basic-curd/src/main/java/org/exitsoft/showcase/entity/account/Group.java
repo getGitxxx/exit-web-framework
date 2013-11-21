@@ -304,6 +304,6 @@ public class Group extends UniversallyUniqueIdentifier{
 	 */
 	@Transient
 	public String getStateName() {
-		return SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.State, this.state);
+		return SystemVariableUtils.getName(SystemDictionaryCode.State, this.state);
 	}
 }

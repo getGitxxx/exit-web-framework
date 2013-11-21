@@ -48,7 +48,7 @@ public class SystemVariableUtils {
 	 * 
 	 * @return String
 	 */
-	public static String getDictionaryNameByValue(SystemDictionaryCode systemDictionaryCode,Object value) {
+	public static String getName(SystemDictionaryCode systemDictionaryCode,Object value) {
 		
 		if (value == null || systemDictionaryCode == null) {
 			return DEFAULT_DICTIONARY_VALUE;
@@ -78,19 +78,8 @@ public class SystemVariableUtils {
 	 * 
 	 * @return List
 	 */
-	public static List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code, String ignoreValue) {
+	public static List<DataDictionary> getVariables(SystemDictionaryCode code, String... ignoreValue) {
 		return systemVariableManager.getDataDictionariesByCategoryCode(code, ignoreValue);
-	}
-	
-	/**
-	 * 通过字典类别代码获取数据字典集合
-	 * 
-	 * @param code 字典类别
-	 * 
-	 * @return List
-	 */
-	public static List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code) {
-		return systemVariableManager.getDataDictionariesByCategoryCode(code);
 	}
 	
 	/**

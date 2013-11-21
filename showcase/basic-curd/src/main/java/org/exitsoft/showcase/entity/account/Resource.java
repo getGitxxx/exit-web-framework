@@ -295,7 +295,7 @@ public class Resource extends UniversallyUniqueIdentifier{
 	 */
 	@Transient
 	public String getTypeName() {
-		return SystemVariableUtils.getDictionaryNameByValue(SystemDictionaryCode.ResourceType, this.type);
+		return SystemVariableUtils.getName(SystemDictionaryCode.ResourceType, this.type);
 	}
 	
 }

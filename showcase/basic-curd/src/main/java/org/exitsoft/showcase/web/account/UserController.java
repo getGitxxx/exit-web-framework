@@ -51,7 +51,7 @@ public class UserController {
 		
 		List<PropertyFilter> filters = PropertyFilters.build(request, true);
 
-		request.setAttribute("states", SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.State,"3"));
+		request.setAttribute("states", SystemVariableUtils.getVariables(SystemDictionaryCode.State,"3"));
 		
 		if (!pageRequest.isOrderBySetted()) {
 			pageRequest.setOrderBy("id");
@@ -148,7 +148,7 @@ public class UserController {
 	public String read(@RequestParam(value = "id", required = false)String id,Model model) {
 		
 		List<DataDictionary> data =null;
-		data = SystemVariableUtils.getDataDictionariesByCategoryCode(SystemDictionaryCode.State,"3");
+		data = SystemVariableUtils.getVariables(SystemDictionaryCode.State,"3");
 		
 		model.addAttribute("states", data);
 		model.addAttribute("groupsList", accountManager.getAllGroup(GroupType.RoleGorup));
