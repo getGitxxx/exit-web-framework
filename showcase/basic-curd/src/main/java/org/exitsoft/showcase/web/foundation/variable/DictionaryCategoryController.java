@@ -1,5 +1,6 @@
-package org.exitsoft.showcase.web.foundation;
+package org.exitsoft.showcase.web.foundation.variable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,33 +11,30 @@ import org.exitsoft.orm.core.Page;
 import org.exitsoft.orm.core.PageRequest;
 import org.exitsoft.orm.core.PageRequest.Sort;
 import org.exitsoft.orm.core.PropertyFilter;
-import org.exitsoft.showcase.common.SystemVariableUtils;
-import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
-import org.exitsoft.showcase.entity.foundation.variable.DataDictionary;
+import org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory;
 import org.exitsoft.showcase.service.foundation.SystemVariableManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * 数据字典管理Controller
+ * 字典类别管理Controller
  * 
  * @author vincent
  *
  */
 @Controller
-@RequestMapping("/foundation/data-dictionary")
-public class DataDictionaryController {
+@RequestMapping("/foundation/dictionary-category")
+public class DictionaryCategoryController {
 	
 	@Autowired
 	private SystemVariableManager systemDictionaryManager;
 	
 	/**
-	 * 获取数据字典列表
+	 * 获取字典类别列表
 	 * 
 	 * @param pageRequest 分页实体信息
 	 * @param request HttpServlet请求
@@ -44,7 +42,7 @@ public class DataDictionaryController {
 	 * @return {@link Page}
 	 */
 	@RequestMapping("view")
-	public Page<DataDictionary> view(PageRequest pageRequest,HttpServletRequest request) {
+	public Page<DictionaryCategory> view(PageRequest pageRequest,HttpServletRequest request) {
 		
 		List<PropertyFilter> filters = PropertyFilters.build(request,true);
 		
@@ -53,59 +51,61 @@ public class DataDictionaryController {
 			pageRequest.setOrderDir(Sort.DESC);
 		}
 		
-		request.setAttribute("valueTypes", SystemVariableUtils.getVariables(SystemDictionaryCode.ValueType));
 		request.setAttribute("categoriesList", systemDictionaryManager.getAllDictionaryCategories());
 		
-		return systemDictionaryManager.searchDataDictionaryPage(pageRequest, filters);
+		return systemDictionaryManager.searchDictionaryCategoryPage(pageRequest, filters);
 	}
 	
 	/**
 	 * 
-	 * 保存数据字典,保存成功后重定向到:foundation/data-dictionary/view
+	 * 保存或更新字典类别,保存成功后重定向到:foundation/dictionary-category/view
 	 * 
 	 * @param entity 实体信息
-	 * @param categoryId 所对应的字典类别id
+	 * @param parentId 所对应的父类id
 	 * @param redirectAttributes spring mvc 重定向属性
 	 * 
 	 * @return String
-	 * 
 	 */
 	@RequestMapping("save")
-	public String save(@ModelAttribute("entity") DataDictionary entity,String categoryId,RedirectAttributes redirectAttributes) {
+	public String save(@ModelAttribute("entity") DictionaryCategory entity,String parentId,RedirectAttributes redirectAttributes) {
 		
-		if (StringUtils.isEmpty(categoryId)) {
-			entity.setCategory(null);
+		if (StringUtils.isEmpty(parentId)) {
+			entity.setParent(null);
 		} else {
-			entity.setCategory(systemDictionaryManager.getDictionaryCategory(categoryId));
+			entity.setParent(systemDictionaryManager.getDictionaryCategory(parentId));
 		}
 		
-		systemDictionaryManager.saveDataDictionary(entity);
+		systemDictionaryManager.saveDictionaryCategory(entity);
 		redirectAttributes.addFlashAttribute("success", "保存成功");
-		
-		return "redirect:/foundation/data-dictionary/view";
+		return "redirect:/foundation/dictionary-category/view";
 	}
 	
 	/**
 	 * 
-	 * 读取数据字典,返回foundation/data-dictionary/read.ftl页面
+	 * 读取字典类别,返回foundation/dictionary-category/read.ftl页面
 	 * 
-	 * @param model Spring mvc的Model接口，主要是将model的属性返回到页面中
+	 * @param request HttpServletRequest
 	 * 
 	 * @return String
-	 * 
 	 */
 	@RequestMapping("read")
-	public String read(Model model) {
+	public String read(HttpServletRequest request) {
 		
-		model.addAttribute("valueTypes", SystemVariableUtils.getVariables(SystemDictionaryCode.ValueType));
-		model.addAttribute("categoriesList", systemDictionaryManager.getAllDictionaryCategories());
+		List<PropertyFilter> filters = new ArrayList<PropertyFilter>();
+		String id = request.getParameter("id");
 		
-		return "/foundation/data-dictionary/read";
+		if (StringUtils.isNotEmpty(id)) {
+			filters.add(PropertyFilters.build("NES_id", id));
+		}
+		//展示父类下来框时，不要连自己也在下拉框里
+		request.setAttribute("categoriesList", systemDictionaryManager.getAllDictionaryCategories(filters));
+		
+		return "/foundation/dictionary-category/read";
 		
 	}
 	
 	/**
-	 * 通过主键id集合删除数据字典,删除成功后重定向到:foundation/data-dictionary/view
+	 * 通过主键id集合删除字典类别,删除成功后重定向到:foundation/dictionary-category/view
 	 * 
 	 * @param ids 主键id集合
 	 * @param redirectAttributes spring mvc 重定向属性
@@ -114,9 +114,9 @@ public class DataDictionaryController {
 	 */
 	@RequestMapping("delete")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
-		systemDictionaryManager.deleteDataDictionary(ids);
+		systemDictionaryManager.deleteDictionaryCategory(ids);
 		redirectAttributes.addFlashAttribute("success", "删除" + ids.size() + "条信息成功");
-		return "redirect:/foundation/data-dictionary/view";
+		return "redirect:/foundation/dictionary-category/view";
 	}
 	
 	/**
@@ -126,15 +126,14 @@ public class DataDictionaryController {
 	 * 
 	 */
 	@ModelAttribute("entity")
-	public DataDictionary bindingModel(@RequestParam(value = "id", required = false)String id) {
-		
-		DataDictionary dataDictionary = new DataDictionary();
+	public DictionaryCategory bindingModel(@RequestParam(value = "id", required = false)String id) {
+		DictionaryCategory dictionaryCategory = new DictionaryCategory();
 		
 		if (StringUtils.isNotEmpty(id)) {
-			dataDictionary = systemDictionaryManager.getDataDictionary(id);
+			dictionaryCategory = systemDictionaryManager.getDictionaryCategory(id);
 		}
 		
-		return dataDictionary;
+		return dictionaryCategory;
 	}
 	
 }

@@ -21,8 +21,12 @@
 		<mapping class="org.exitsoft.showcase.entity.account.Group" />
 		<mapping class="org.exitsoft.showcase.entity.account.Resource" />
 		
-		<mapping class="org.exitsoft.showcase.entity.foundation.DataDictionary"/>
-		<mapping class="org.exitsoft.showcase.entity.foundation.DictionaryCategory"/>
+		<mapping class="org.exitsoft.showcase.entity.foundation.variable.DataDictionary"/>
+		<mapping class="org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory"/>
+		
+		<mapping class="org.exitsoft.showcase.entity.foundation.audit.DataRecord"/>
+		<mapping class="org.exitsoft.showcase.entity.foundation.audit.OperatingRecord"/>
+		<mapping class="org.exitsoft.showcase.entity.foundation.audit.RecordParameter"/>
 	</session-factory>
 	
 	<!-- mysql factory -->
@@ -43,8 +47,12 @@
 		<mapping class="org.exitsoft.showcase.entity.account.Group" />
 		<mapping class="org.exitsoft.showcase.entity.account.Resource" />
 		
-		<mapping class="org.exitsoft.showcase.entity.foundation.DataDictionary"/>
-		<mapping class="org.exitsoft.showcase.entity.foundation.DictionaryCategory"/>
+		<mapping class="org.exitsoft.showcase.entity.foundation.variable.DataDictionary"/>
+		<mapping class="org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory"/>
+		
+		<mapping class="org.exitsoft.showcase.entity.foundation.audit.DataRecord"/>
+		<mapping class="org.exitsoft.showcase.entity.foundation.audit.OperatingRecord"/>
+		<mapping class="org.exitsoft.showcase.entity.foundation.audit.RecordParameter"/>
 	</session-factory> -->
 	
 </hibernate-configuration>

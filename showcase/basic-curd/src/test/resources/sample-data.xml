@@ -58,4 +58,8 @@
 	<TB_DATA_DICTIONARY id="SJDK3849CKMS3849DJCK2039ZMSK0025" name="角色组" type="S" value="03" remark="*" fk_category_id="SJDK3849CKMS3849DJCK2039ZMSK0017"/>
 	
 	<!-- system dictionary data end-->
+	
+	<!-- audit data start -->
+	<TB_OPERATING_RECORD id="SJDK3849CKMS3849DJCK2039ZMSK0026" fk_user_id="SJDK3849CKMS3849DJCK2039ZMSK0001" start_date="2013-11-21 20:54:00" operating_target="account/user/view" end_date="2013-11-21 20:55:00" ip="127.0.0.1" method="org.exitsoft.showcase.web.account.UserController.view(PageRequest, HttpServletRequest)" state="1"/>
+	<!-- audit data end -->
 </dataset>
