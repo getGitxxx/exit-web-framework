@@ -18,10 +18,6 @@
     <cache name="findByCateGoryCode" maxElementsInMemory="150" eternal="false" timeToLiveSeconds="36000" timeToIdleSeconds="3600" overflowToDisk="true">
     	<!-- <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicatePuts=false,replicateUpdatesViaCopy=false"/> -->
     </cache>
-    
-    <cache name="findByCategoryCodeWithIgnoreValue" maxElementsInMemory="150" eternal="false" timeToLiveSeconds="36000" timeToIdleSeconds="3600" overflowToDisk="true">
-    	<!-- <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicatePuts=false,replicateUpdatesViaCopy=false"/> -->
-    </cache>
      
     <cache name="shiroAuthorizationCache" maxElementsInMemory="300" eternal="false" timeToLiveSeconds="600" overflowToDisk="false">
     	<!-- <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicatePuts=false,replicateUpdatesViaCopy=false"/> -->

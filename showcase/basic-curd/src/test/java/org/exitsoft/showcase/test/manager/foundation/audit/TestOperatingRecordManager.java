@@ -42,7 +42,7 @@ public class TestOperatingRecordManager extends ManagerTestCaseSupport{
 	
 	@Test
 	@Transactional
-	public void testSaveOperatingRecord() {
+	public void testInsertOperatingRecord() {
 		OperatingRecord or = new OperatingRecord();
 		
 		or.setStartDate(new Date());
@@ -56,7 +56,7 @@ public class TestOperatingRecordManager extends ManagerTestCaseSupport{
 		or.setEndDate(new Date());
 		
 		int beforeRow = countRowsInTable("TB_OPERATING_RECORD");
-		systemAuditManager.saveOperatingRecord(or);
+		systemAuditManager.insertOperatingRecord(or);
 		getSessionFactory().getCurrentSession().flush();
 		int afterRow = countRowsInTable("TB_OPERATING_RECORD");
 		
@@ -79,6 +79,14 @@ public class TestOperatingRecordManager extends ManagerTestCaseSupport{
 		assertEquals(page.getTotalItems(), 1);
 		assertEquals(page.getTotalPages(), 1);
 		
+		filters = Lists.newArrayList(
+				PropertyFilters.build("EQS_ip", "127.0.0.1")
+		);
+		
+		page = systemAuditManager.searchOperatingRecordPage(request, filters);
+		
+		assertEquals(page.getTotalItems(), 1);
+		assertEquals(page.getTotalPages(), 1);
 	}
 	
 }

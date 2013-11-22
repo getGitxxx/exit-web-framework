@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title>basic curd admin : 500</title>
+    <title>basic curd admin : 404</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <meta http-equiv="Cache-Control" content="no-store" />
         <meta http-equiv="Pragma" content="no-cache" />

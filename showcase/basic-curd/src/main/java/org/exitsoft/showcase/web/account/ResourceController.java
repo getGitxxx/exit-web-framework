@@ -11,6 +11,7 @@ import org.exitsoft.orm.core.PageRequest;
 import org.exitsoft.orm.core.PageRequest.Sort;
 import org.exitsoft.orm.core.PropertyFilter;
 import org.exitsoft.showcase.common.SystemVariableUtils;
+import org.exitsoft.showcase.common.annotation.OperatingAudit;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.entity.account.Resource;
 import org.exitsoft.showcase.service.account.AccountManager;
@@ -69,6 +70,7 @@ public class ResourceController {
 	 * 
 	 * @return String
 	 */
+	@OperatingAudit
 	@RequestMapping("save")
 	public String save(@ModelAttribute("entity") Resource entity,String parentId,RedirectAttributes redirectAttributes) {
 		
@@ -114,6 +116,7 @@ public class ResourceController {
 	 * 
 	 * @return String
 	 */
+    @OperatingAudit
 	@RequestMapping("delete")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
 		accountManager.deleteResources(ids);

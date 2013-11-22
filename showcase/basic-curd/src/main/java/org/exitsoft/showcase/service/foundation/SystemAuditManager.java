@@ -40,8 +40,8 @@ public class SystemAuditManager {
 	 * 
 	 * @param entity 操作记录实体
 	 */
-	public void saveOperatingRecord(OperatingRecord entity) {
-		operatingRecordDao.save(entity);
+	public void insertOperatingRecord(OperatingRecord entity) {
+		operatingRecordDao.insert(entity);
 	}
 	
 	/**

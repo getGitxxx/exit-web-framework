@@ -16,6 +16,7 @@ import org.exitsoft.common.bundle.BeanResourceBundle;
 import org.exitsoft.common.spring.mvc.SpringMvcHolder;
 import org.exitsoft.common.utils.CaptchaUtils;
 import org.exitsoft.showcase.common.SystemVariableUtils;
+import org.exitsoft.showcase.common.annotation.OperatingAudit;
 import org.exitsoft.showcase.entity.account.User;
 import org.exitsoft.showcase.service.account.AccountManager;
 import org.exitsoft.showcase.service.account.CaptchaAuthenticationFilter;
@@ -82,6 +83,7 @@ public class SystemCommonController {
 	 * 
 	 * @return String
 	 */
+    @OperatingAudit
 	@RequestMapping("/change-password")
 	public String changePassword(String oldPassword,String newPassword) {
 		
@@ -98,6 +100,7 @@ public class SystemCommonController {
 	 * @throws IOException 
 	 */
 	@ResponseBody
+    @OperatingAudit
 	@RequestMapping("/change-portrait")
 	public Map<String, Object> changePortrait(HttpServletRequest request) throws IOException {
 		//获取当前用户
@@ -149,6 +152,7 @@ public class SystemCommonController {
 	 * @throws IOException 
 	 */
 	@ResponseBody
+    @OperatingAudit
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/change-profile")
 	public Map<String, Object> changeProfile(String realname,String email,@RequestParam(required = false)String portrait) throws IOException {

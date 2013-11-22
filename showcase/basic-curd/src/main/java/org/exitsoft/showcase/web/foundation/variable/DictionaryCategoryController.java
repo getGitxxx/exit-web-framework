@@ -11,6 +11,7 @@ import org.exitsoft.orm.core.Page;
 import org.exitsoft.orm.core.PageRequest;
 import org.exitsoft.orm.core.PageRequest.Sort;
 import org.exitsoft.orm.core.PropertyFilter;
+import org.exitsoft.showcase.common.annotation.OperatingAudit;
 import org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory;
 import org.exitsoft.showcase.service.foundation.SystemVariableManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  */
 @Controller
-@RequestMapping("/foundation/dictionary-category")
+@RequestMapping("/foundation/variable/dictionary-category")
 public class DictionaryCategoryController {
 	
 	@Autowired
@@ -58,7 +59,7 @@ public class DictionaryCategoryController {
 	
 	/**
 	 * 
-	 * 保存或更新字典类别,保存成功后重定向到:foundation/dictionary-category/view
+	 * 保存或更新字典类别,保存成功后重定向到:foundation/variable/dictionary-category/view
 	 * 
 	 * @param entity 实体信息
 	 * @param parentId 所对应的父类id
@@ -66,6 +67,7 @@ public class DictionaryCategoryController {
 	 * 
 	 * @return String
 	 */
+	@OperatingAudit
 	@RequestMapping("save")
 	public String save(@ModelAttribute("entity") DictionaryCategory entity,String parentId,RedirectAttributes redirectAttributes) {
 		
@@ -77,12 +79,12 @@ public class DictionaryCategoryController {
 		
 		systemDictionaryManager.saveDictionaryCategory(entity);
 		redirectAttributes.addFlashAttribute("success", "保存成功");
-		return "redirect:/foundation/dictionary-category/view";
+		return "redirect:/foundation/variable/dictionary-category/view";
 	}
 	
 	/**
 	 * 
-	 * 读取字典类别,返回foundation/dictionary-category/read.ftl页面
+	 * 读取字典类别,返回foundation/variable/dictionary-category/read.ftl页面
 	 * 
 	 * @param request HttpServletRequest
 	 * 
@@ -100,23 +102,24 @@ public class DictionaryCategoryController {
 		//展示父类下来框时，不要连自己也在下拉框里
 		request.setAttribute("categoriesList", systemDictionaryManager.getAllDictionaryCategories(filters));
 		
-		return "/foundation/dictionary-category/read";
+		return "/foundation/variable/dictionary-category/read";
 		
 	}
 	
 	/**
-	 * 通过主键id集合删除字典类别,删除成功后重定向到:foundation/dictionary-category/view
+	 * 通过主键id集合删除字典类别,删除成功后重定向到:foundation/variable/dictionary-category/view
 	 * 
 	 * @param ids 主键id集合
 	 * @param redirectAttributes spring mvc 重定向属性
 	 * 
 	 * @return String
 	 */
+	@OperatingAudit
 	@RequestMapping("delete")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
 		systemDictionaryManager.deleteDictionaryCategory(ids);
 		redirectAttributes.addFlashAttribute("success", "删除" + ids.size() + "条信息成功");
-		return "redirect:/foundation/dictionary-category/view";
+		return "redirect:/foundation/variable/dictionary-category/view";
 	}
 	
 	/**

@@ -8,7 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import org.exitsoft.showcase.common.SystemVariableUtils;
+import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.entity.foundation.BasicRecordProperty;
 
 /**
@@ -132,6 +135,16 @@ public class OperatingRecord extends BasicRecordProperty{
 	 */
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	
+	/**
+	 * 获取状态的中文名称
+	 * 
+	 * @return String
+	 */
+	@Transient
+	public String getStateName() {
+		return SystemVariableUtils.getName(SystemDictionaryCode.OperatingState, this.state);
 	}
 	
 }

@@ -26,7 +26,12 @@ public enum SystemDictionaryCode {
 	/**
 	 * 属性值类型
 	 */
-	ValueType("value-type");
+	ValueType("value-type"),
+	
+	/**
+	 * 操作状态类型
+	 */
+	OperatingState("operating-state");
 	
 	private String code;
 	

@@ -11,6 +11,7 @@ import org.exitsoft.orm.core.PageRequest;
 import org.exitsoft.orm.core.PageRequest.Sort;
 import org.exitsoft.orm.core.PropertyFilter;
 import org.exitsoft.showcase.common.SystemVariableUtils;
+import org.exitsoft.showcase.common.annotation.OperatingAudit;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.entity.foundation.variable.DataDictionary;
 import org.exitsoft.showcase.service.foundation.SystemVariableManager;
@@ -29,7 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  */
 @Controller
-@RequestMapping("/foundation/data-dictionary")
+@RequestMapping("/foundation/variable/data-dictionary")
 public class DataDictionaryController {
 	
 	@Autowired
@@ -61,7 +62,7 @@ public class DataDictionaryController {
 	
 	/**
 	 * 
-	 * 保存数据字典,保存成功后重定向到:foundation/data-dictionary/view
+	 * 保存数据字典,保存成功后重定向到:foundation/variable/data-dictionary/view
 	 * 
 	 * @param entity 实体信息
 	 * @param categoryId 所对应的字典类别id
@@ -70,6 +71,7 @@ public class DataDictionaryController {
 	 * @return String
 	 * 
 	 */
+	@OperatingAudit
 	@RequestMapping("save")
 	public String save(@ModelAttribute("entity") DataDictionary entity,String categoryId,RedirectAttributes redirectAttributes) {
 		
@@ -82,12 +84,12 @@ public class DataDictionaryController {
 		systemDictionaryManager.saveDataDictionary(entity);
 		redirectAttributes.addFlashAttribute("success", "保存成功");
 		
-		return "redirect:/foundation/data-dictionary/view";
+		return "redirect:/foundation/variable/data-dictionary/view";
 	}
 	
 	/**
 	 * 
-	 * 读取数据字典,返回foundation/data-dictionary/read.ftl页面
+	 * 读取数据字典,返回foundation/variable/data-dictionary/read.ftl页面
 	 * 
 	 * @param model Spring mvc的Model接口，主要是将model的属性返回到页面中
 	 * 
@@ -100,23 +102,24 @@ public class DataDictionaryController {
 		model.addAttribute("valueTypes", SystemVariableUtils.getVariables(SystemDictionaryCode.ValueType));
 		model.addAttribute("categoriesList", systemDictionaryManager.getAllDictionaryCategories());
 		
-		return "/foundation/data-dictionary/read";
+		return "/foundation/variable/data-dictionary/read";
 		
 	}
 	
 	/**
-	 * 通过主键id集合删除数据字典,删除成功后重定向到:foundation/data-dictionary/view
+	 * 通过主键id集合删除数据字典,删除成功后重定向到:foundation/variable/data-dictionary/view
 	 * 
 	 * @param ids 主键id集合
 	 * @param redirectAttributes spring mvc 重定向属性
 	 * 
 	 * @return String
 	 */
+	@OperatingAudit
 	@RequestMapping("delete")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
 		systemDictionaryManager.deleteDataDictionary(ids);
 		redirectAttributes.addFlashAttribute("success", "删除" + ids.size() + "条信息成功");
-		return "redirect:/foundation/data-dictionary/view";
+		return "redirect:/foundation/variable/data-dictionary/view";
 	}
 	
 	/**
