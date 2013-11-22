@@ -19,7 +19,7 @@ import org.exitsoft.common.utils.CollectionUtils;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.common.enumeration.entity.GroupType;
-import org.exitsoft.showcase.entity.UniversallyUniqueIdentifier;
+import org.exitsoft.showcase.entity.IdEntity;
 import org.hibernate.annotations.NamedQuery;
 
 /**
@@ -33,7 +33,7 @@ import org.hibernate.annotations.NamedQuery;
 @SuppressWarnings("serial")
 @NamedQuery(name=Group.UserGroups,
             query="select gl from User u left join u.groupsList gl  where u.id=?1 and gl.type= '03'")
-public class Group extends UniversallyUniqueIdentifier{
+public class Group extends IdEntity{
 
 	public static final String UserGroups = "userGroups";
 	

@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 
 import org.exitsoft.common.type.FieldType;
 import org.exitsoft.common.utils.ConvertUtils;
-import org.exitsoft.showcase.entity.UniversallyUniqueIdentifier;
+import org.exitsoft.showcase.entity.IdEntity;
 
 
 /**
@@ -24,11 +24,20 @@ import org.exitsoft.showcase.entity.UniversallyUniqueIdentifier;
 @SuppressWarnings("serial")
 @Table(name="TB_DATA_DICTIONARY")
 @NamedQuery(name=DataDictionary.FindByCateGoryCode,query="from DataDictionary dd where dd.category.code = ?1")
-public class DataDictionary extends UniversallyUniqueIdentifier{
+public class DataDictionary extends IdEntity{
 	
+	/**
+	 * 通过字典类别代码查询所有数据字典的NamedQuery名称
+	 */
 	public static final String FindByCateGoryCode = "findByCateGoryCode";
 	
-	public static final String FindByCategoryCodeWithIgnoreValue = "findByCategoryCodeWithIgnoreValue";
+	/**
+	 * 通过字典类别代码查询所有数据字典的缓存key名称,由于getDataDictionariesByCategoryCode方法带有可变参数
+	 * 所以必须要自定义Cacheable的key名称，该key名称的规则为当前传入的code参数的getCode值加上可变参数的值并
+	 * 于'-'分割。如:getDataDictionariesByCategoryCode(SystemDictionaryCode.Sate,"1","2","3");所生成key
+	 * 名称为:state-1-2-3
+	 */
+	public static final String FindByCateGoryCodeCacheKey = "#code.getCode()+'-'+T(org.apache.commons.lang3.StringUtils).join(#ignoreValue, '-')";
 	
 	//名称
 	private String name;

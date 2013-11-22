@@ -33,6 +33,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  */
 @Controller
+@OperatingAudit("用户管理")
 @RequestMapping("/account/user")
 public class UserController {
 	
@@ -72,8 +73,8 @@ public class UserController {
 	 * @return String
 	 * 
 	 */
-	@OperatingAudit
 	@RequestMapping("insert")
+	@OperatingAudit(function="创建用户")
 	public String insert(User entity,
 							   @RequestParam(required=false)List<String> groupId,
 							   RedirectAttributes redirectAttributes) {
@@ -94,8 +95,8 @@ public class UserController {
 	 * 
 	 * @return String
 	 */
-	@OperatingAudit
 	@RequestMapping("delete")
+	@OperatingAudit(function="删除用户")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
 		accountManager.deleteUsers(ids);
 		redirectAttributes.addFlashAttribute("success", "删除" + ids.size() + "条信息成功");
@@ -111,8 +112,8 @@ public class UserController {
 	 * 
 	 * @return String
 	 */
-	@OperatingAudit
 	@RequestMapping(value="update")
+	@OperatingAudit(function="更新用户")
 	public String update(@ModelAttribute("entity")User entity, 
 								 @RequestParam(required=false)List<String> groupId,
 								 RedirectAttributes redirectAttributes) {
@@ -140,7 +141,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 创建和更新使用的方法签名.如果链接没有?id=*会跳转到create.flt,如果存在跳转到read.ftl
+	 * 创建和更新使用的方法签名.如果链接没有?id=*会跳转到create.html,如果存在跳转到read.html
 	 * 
 	 * @param id 主键id
 	 * @param model Spring mvc的Model接口，主要是将model的属性返回到页面中

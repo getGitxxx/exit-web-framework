@@ -19,7 +19,7 @@ import javax.persistence.Transient;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.common.enumeration.entity.ResourceType;
-import org.exitsoft.showcase.entity.UniversallyUniqueIdentifier;
+import org.exitsoft.showcase.entity.IdEntity;
 import org.hibernate.annotations.NamedQuery;
 
 
@@ -33,7 +33,7 @@ import org.hibernate.annotations.NamedQuery;
 @Table(name="TB_RESOURCE")
 @SuppressWarnings("serial")
 @NamedQuery(name=Resource.UserResources,query="select rl from User u left join u.groupsList gl left join gl.resourcesList rl where u.id=?1 and gl.type= '03' order by rl.sort")
-public class Resource extends UniversallyUniqueIdentifier{
+public class Resource extends IdEntity{
 	/**
 	 * 通过用户id和资源类型获取该用户下的所有资源
 	 */

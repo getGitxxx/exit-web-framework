@@ -14,6 +14,8 @@ import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.entity.foundation.BasicRecordProperty;
 
+import com.google.common.collect.Lists;
+
 /**
  * 操作记录类，记录用户的操作信息
  * 
@@ -30,9 +32,13 @@ public class OperatingRecord extends BasicRecordProperty{
 	//操作的java方法
 	private String method;
 	//提交的参数值
-	private List<RecordParameter> recordParametersList;
+	private List<RecordParameter> recordParametersList = Lists.newArrayList();
 	//执行状态,1代表成，2代表执行时出现异常
 	private Integer state;
+	//模块名称
+	private String module;
+	//功能名称
+	private String function;
 	//描述
 	private String remark;
 	
@@ -116,6 +122,44 @@ public class OperatingRecord extends BasicRecordProperty{
 	 */
 	public void setState(Integer state) {
 		this.state = state;
+	}
+	
+	/**
+	 * 获取模块名称
+	 * 
+	 * @return String
+	 */
+	@Column(length=128)
+	public String getModule() {
+		return module;
+	}
+
+	/**
+	 * 设置模块名称
+	 * 
+	 * @param module 模块名称
+	 */
+	public void setModule(String module) {
+		this.module = module;
+	}
+
+	/**
+	 * 获取功能名称
+	 * 
+	 * @return String
+	 */
+	@Column(length=128)
+	public String getFunction() {
+		return function;
+	}
+
+	/**
+	 * 设置功能名称
+	 * 
+	 * @param function 功能名称
+	 */
+	public void setFunction(String function) {
+		this.function = function;
 	}
 
 	/**

@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.exitsoft.showcase.entity.UniversallyUniqueIdentifier;
+import org.exitsoft.showcase.entity.IdEntity;
 
 /**
  * 字典类别实体
@@ -24,7 +24,7 @@ import org.exitsoft.showcase.entity.UniversallyUniqueIdentifier;
 @Entity
 @SuppressWarnings("serial")
 @Table(name="TB_DICTIONARY_CATEGORY")
-public class DictionaryCategory extends UniversallyUniqueIdentifier{
+public class DictionaryCategory extends IdEntity{
 	
 	//名称
 	private String name;

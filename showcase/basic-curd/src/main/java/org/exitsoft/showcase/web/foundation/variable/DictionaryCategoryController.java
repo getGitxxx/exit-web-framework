@@ -28,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  */
 @Controller
+@OperatingAudit("字典类别管理")
 @RequestMapping("/foundation/variable/dictionary-category")
 public class DictionaryCategoryController {
 	
@@ -67,8 +68,8 @@ public class DictionaryCategoryController {
 	 * 
 	 * @return String
 	 */
-	@OperatingAudit
 	@RequestMapping("save")
+	@OperatingAudit(function="保存或更新字典类别")
 	public String save(@ModelAttribute("entity") DictionaryCategory entity,String parentId,RedirectAttributes redirectAttributes) {
 		
 		if (StringUtils.isEmpty(parentId)) {
@@ -84,7 +85,7 @@ public class DictionaryCategoryController {
 	
 	/**
 	 * 
-	 * 读取字典类别,返回foundation/variable/dictionary-category/read.ftl页面
+	 * 读取字典类别,返回foundation/variable/dictionary-category/read.html页面
 	 * 
 	 * @param request HttpServletRequest
 	 * 
@@ -114,8 +115,8 @@ public class DictionaryCategoryController {
 	 * 
 	 * @return String
 	 */
-	@OperatingAudit
 	@RequestMapping("delete")
+	@OperatingAudit(function="删除字典类别")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
 		systemDictionaryManager.deleteDictionaryCategory(ids);
 		redirectAttributes.addFlashAttribute("success", "删除" + ids.size() + "条信息成功");

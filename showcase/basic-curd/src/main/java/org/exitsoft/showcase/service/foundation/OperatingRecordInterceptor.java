@@ -9,6 +9,8 @@ import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+import org.exitsoft.common.utils.ConvertUtils;
 import org.exitsoft.common.utils.ReflectionUtils;
 import org.exitsoft.showcase.common.SessionVariable;
 import org.exitsoft.showcase.common.SystemVariableUtils;
@@ -49,56 +51,17 @@ public class OperatingRecordInterceptor implements HandlerInterceptor {
 		//获取方法名称
 		Method method = handlerMethod.getMethod();
 		//获取方法中是否存在@OperatingAudit注解
-		OperatingAudit auditHandler = ReflectionUtils.getAnnotation(method, OperatingAudit.class);
+		OperatingAudit operatingAudit = ReflectionUtils.getAnnotation(method, OperatingAudit.class);
 		//如果不存在，不做操作记录
-		if (auditHandler == null) {
+		if (operatingAudit == null) {
 			return true;
 		}
 		//创建操作记录
-		OperatingRecord record = createOperatingRecord(method,request);
+		OperatingRecord record = createOperatingRecord(method,request,operatingAudit);
 		//将操作记录对象放到request中，与方法名做ke，当afterCompletion执行后，会删除该attribute
 		request.setAttribute(method.getName(), record);
 		
 		return true;
-	}
-
-	/**
-	 * 通过method和request创建操作记录
-	 * 
-	 * @param method method
-	 * @param request request
-	 * 
-	 * @return {@link OperatingRecord}
-	 */
-	@SuppressWarnings("unchecked")
-	private OperatingRecord createOperatingRecord(Method method, HttpServletRequest request) {
-		
-		OperatingRecord record = new OperatingRecord();
-		record.setStartDate(new Date());
-		record.setIp(getIpAddress(request));
-		record.setMethod(method.getName());
-		record.setOperatingTarget(request.getRequestURI());
-		//获取当前SessionVariable，通过该变量获取当前用户
-		SessionVariable sessionVariable = SystemVariableUtils.getSessionVariable();
-		//如果SessionVariable等于null，表示用户未登录，但一样要记录操作
-		record.setUser(sessionVariable == null ? null : sessionVariable.getUser());
-		//获取本次提交的参数
-		Map<String, String> parameter = request.getParameterMap();
-		List<RecordParameter> recordParametersList = Lists.newArrayList();
-		//逐个循环参数和值添加到记录参数对象做，并且设置关联
-		for(Entry<String, String> entry : parameter.entrySet()) {
-			RecordParameter recordParameter = new RecordParameter();
-			
-			recordParameter.setName(entry.getKey());
-			recordParameter.setValue(entry.getValue());
-			recordParameter.setRecord(record);
-			
-			recordParametersList.add(recordParameter);
-		}
-		
-		record.setRecordParametersList(recordParametersList);
-		
-		return record;
 	}
 
 	@Override
@@ -142,6 +105,60 @@ public class OperatingRecordInterceptor implements HandlerInterceptor {
 	}
 	
 	/**
+	 * 通过method和request创建操作记录
+	 * 
+	 * @param method method
+	 * @param request request
+	 * 
+	 * @return {@link OperatingRecord}
+	 */
+	@SuppressWarnings("unchecked")
+	private OperatingRecord createOperatingRecord(Method method, HttpServletRequest request,OperatingAudit audit) {
+		
+		OperatingRecord record = new OperatingRecord();
+		record.setStartDate(new Date());
+		record.setIp(getIpAddress(request));
+		record.setMethod(method.getName());
+		record.setOperatingTarget(request.getRequestURI());
+		//获取当前SessionVariable，通过该变量获取当前用户
+		SessionVariable sessionVariable = SystemVariableUtils.getSessionVariable();
+		//如果SessionVariable等于null，表示用户未登录，但一样要记录操作
+		if (sessionVariable != null) {
+			record.setFkUserId(sessionVariable.getUser().getId());
+			record.setUsername(sessionVariable.getUser().getUsername());
+		}
+		
+		String function = audit.function();
+		String module = "";
+		
+		if (StringUtils.isEmpty(audit.value())) {
+			OperatingAudit classAnnotation = ReflectionUtils.getAnnotation(method.getDeclaringClass(),OperatingAudit.class);
+			module = classAnnotation == null ? "" : classAnnotation.value();
+		}
+		
+		record.setFunction(function);
+		record.setModule(module);
+		
+		//获取本次提交的参数
+		Map<String, Object> parameter = request.getParameterMap();
+		List<RecordParameter> recordParametersList = Lists.newArrayList();
+		//逐个循环参数和值添加到记录参数对象做，并且设置关联
+		for(Entry<String, Object> entry : parameter.entrySet()) {
+			RecordParameter recordParameter = new RecordParameter();
+			
+			recordParameter.setName(entry.getKey());
+			recordParameter.setValue(getParameterValue(entry.getValue()));
+			recordParameter.setRecord(record);
+			
+			recordParametersList.add(recordParameter);
+		}
+		
+		record.setRecordParametersList(recordParametersList);
+		
+		return record;
+	}
+	
+	/**
 	 * 通过Request 获取ip
 	 * 
 	 * @param request http servlet request
@@ -161,5 +178,20 @@ public class OperatingRecordInterceptor implements HandlerInterceptor {
 		}
 		return ip.trim();
 	}
-
+	
+	/**
+	 * 辅助方法，获取参数的真实值
+	 * 
+	 * @param value 参数值
+	 * 
+	 * @return String
+	 */
+	private String getParameterValue(Object value) {
+		//如果该值为数组，将值用逗号分割
+		if (value.getClass().isArray()) {
+			return StringUtils.join((Object[])value,",");
+		} else {
+			return ConvertUtils.convert(value);
+		}
+	}
 }

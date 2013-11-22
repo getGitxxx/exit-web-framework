@@ -88,7 +88,7 @@ public class SystemVariableManager {
 	 * 
 	 * @return List
 	 */
-	@Cacheable(value=DataDictionary.FindByCateGoryCode)
+	@Cacheable(value=DataDictionary.FindByCateGoryCode,key=DataDictionary.FindByCateGoryCodeCacheKey)
 	public List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code,final String... ignoreValue) {
 		List<DataDictionary> result = dataDictionaryDao.findByQuery(DataDictionary.FindByCateGoryCode, code.getCode());
 		

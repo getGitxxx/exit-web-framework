@@ -30,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  */
 @Controller
+@OperatingAudit("资源管理")
 @RequestMapping("/account/resource")
 public class ResourceController {
 
@@ -62,7 +63,7 @@ public class ResourceController {
 	
 	/**
 	 * 
-	 * 保存资源,保存成功后重定向到:account/resource/view
+	 * 保存或更新资源,保存成功后重定向到:account/resource/view
 	 * 
 	 * @param entity 实体信息
 	 * @param parentId 所对应的父类id
@@ -70,8 +71,8 @@ public class ResourceController {
 	 * 
 	 * @return String
 	 */
-	@OperatingAudit
 	@RequestMapping("save")
+	@OperatingAudit(function="保存或更新资源")
 	public String save(@ModelAttribute("entity") Resource entity,String parentId,RedirectAttributes redirectAttributes) {
 		
 		if (StringUtils.isEmpty(parentId)) {
@@ -88,7 +89,7 @@ public class ResourceController {
 	
 	/**
 	 * 
-	 * 读取资源信息,返回account/resource/read.ftl页面
+	 * 读取资源信息,返回account/resource/read.html页面
 	 * 
 	 * @param model Spring mvc的Model接口，主要是将model的属性返回到页面中
 	 * 
@@ -116,8 +117,8 @@ public class ResourceController {
 	 * 
 	 * @return String
 	 */
-    @OperatingAudit
 	@RequestMapping("delete")
+	@OperatingAudit(function="删除资源")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
 		accountManager.deleteResources(ids);
 		redirectAttributes.addFlashAttribute("success", "删除" + ids.size() + "条信息成功");

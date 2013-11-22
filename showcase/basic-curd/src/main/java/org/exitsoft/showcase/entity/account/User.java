@@ -16,7 +16,7 @@ import org.exitsoft.common.utils.CollectionUtils;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.common.enumeration.entity.State;
-import org.exitsoft.showcase.entity.UniversallyUniqueIdentifier;
+import org.exitsoft.showcase.entity.IdEntity;
 import org.hibernate.annotations.NamedQuery;
 
 /**
@@ -28,7 +28,7 @@ import org.hibernate.annotations.NamedQuery;
 @Table(name="TB_USER")
 @SuppressWarnings("serial")
 @NamedQuery(name=User.UpdatePassword,query="update User u set u.password = ?1 where u.id = ?2")
-public class User extends UniversallyUniqueIdentifier{
+public class User extends IdEntity{
 	
 	/**
 	 * 更新用户密码NamedQuery

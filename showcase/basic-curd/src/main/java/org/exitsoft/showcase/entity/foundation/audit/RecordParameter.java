@@ -7,12 +7,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.exitsoft.showcase.entity.UniversallyUniqueIdentifier;
+import org.exitsoft.showcase.entity.IdEntity;
 
 @Entity
 @SuppressWarnings("serial")
 @Table(name="TB_RECORD_PARAMETER")
-public class RecordParameter extends UniversallyUniqueIdentifier{
+public class RecordParameter extends IdEntity{
 	
 	//参数名称
 	private String name;

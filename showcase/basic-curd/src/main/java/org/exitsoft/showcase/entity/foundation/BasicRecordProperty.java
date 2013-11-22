@@ -3,13 +3,9 @@ package org.exitsoft.showcase.entity.foundation;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
-import org.exitsoft.showcase.entity.UniversallyUniqueIdentifier;
-import org.exitsoft.showcase.entity.account.User;
+import org.exitsoft.showcase.entity.IdEntity;
 
 /**
  * 基础操作记录属性,该类仅仅是一个父类，提供给audit包下的类去扩展自己的属性
@@ -19,10 +15,12 @@ import org.exitsoft.showcase.entity.account.User;
  */
 @MappedSuperclass
 @SuppressWarnings("serial")
-public class BasicRecordProperty extends UniversallyUniqueIdentifier{
+public class BasicRecordProperty extends IdEntity{
 	
+	//操作人名称
+	private String username;
 	//操作人
-	private User user;
+	private String fkUserId;
 	//操作开始时间
 	private Date startDate;
 	//操作结束时间
@@ -30,27 +28,49 @@ public class BasicRecordProperty extends UniversallyUniqueIdentifier{
 	//操作目标
 	private String operatingTarget;
 	
+	/**
+	 * 构造方法
+	 */
 	public BasicRecordProperty() {
 		
 	}
 	
 	/**
-	 * 获取操作人
+	 * 获取操作人名称
 	 * 
-	 * @return {@link User}
+	 * @return String
 	 */
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "FK_USER_ID", nullable=false)
-	public User getUser() {
-		return user;
+	@Column(length=32)
+	public String getUsername() {
+		return username;
 	}
 
 	/**
-	 * 设置操作人
-	 * @param user
+	 * 设置操作人名称
+	 * 
+	 * @param username 操作人名称
 	 */
-	public void setUser(User user) {
-		this.user = user;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	/**
+	 * 获取操作人主键ID
+	 * 
+	 * @return String
+	 */
+	@Column(length=32)
+	public String getFkUserId() {
+		return fkUserId;
+	}
+	
+	/**
+	 * 设置操作人主键ID
+	 * 
+	 * @param fkUserId 操作人主键ID
+	 */
+	public void setFkUserId(String fkUserId) {
+		this.fkUserId = fkUserId;
 	}
 
 	/**

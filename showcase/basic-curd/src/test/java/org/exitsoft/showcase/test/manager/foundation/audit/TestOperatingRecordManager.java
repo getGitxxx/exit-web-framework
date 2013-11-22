@@ -36,7 +36,7 @@ public class TestOperatingRecordManager extends ManagerTestCaseSupport{
 		
 		OperatingRecord or = systemAuditManager.getOperatingRecord("SJDK3849CKMS3849DJCK2039ZMSK0026");
 		
-		assertEquals(or.getUser().getId(),"SJDK3849CKMS3849DJCK2039ZMSK0001");
+		assertEquals(or.getFkUserId(),"SJDK3849CKMS3849DJCK2039ZMSK0001");
 		
 	}
 	
@@ -51,8 +51,8 @@ public class TestOperatingRecordManager extends ManagerTestCaseSupport{
 		or.setOperatingTarget("account/user/view");
 		or.setState(OperatingState.Success.getValue());
 		
-		OperatingRecord temp = systemAuditManager.getOperatingRecord("SJDK3849CKMS3849DJCK2039ZMSK0026");
-		or.setUser(temp.getUser());
+		or.setFkUserId("SJDK3849CKMS3849DJCK2039ZMSK0026");
+		or.setUsername("admin");
 		or.setEndDate(new Date());
 		
 		int beforeRow = countRowsInTable("TB_OPERATING_RECORD");
@@ -68,9 +68,7 @@ public class TestOperatingRecordManager extends ManagerTestCaseSupport{
 		PageRequest request = new PageRequest();
 		
 		List<PropertyFilter> filters = Lists.newArrayList(
-			PropertyFilters.build("EQS_user.username", "admin"),
-			PropertyFilters.build("LIKES_user.realname", "管理"),
-			PropertyFilters.build("EQI_user.state", "1"),
+			PropertyFilters.build("LIKES_username", "admin"),
 			PropertyFilters.build("EQS_ip", "127.0.0.1")
 		);
 		
@@ -79,14 +77,6 @@ public class TestOperatingRecordManager extends ManagerTestCaseSupport{
 		assertEquals(page.getTotalItems(), 1);
 		assertEquals(page.getTotalPages(), 1);
 		
-		filters = Lists.newArrayList(
-				PropertyFilters.build("EQS_ip", "127.0.0.1")
-		);
-		
-		page = systemAuditManager.searchOperatingRecordPage(request, filters);
-		
-		assertEquals(page.getTotalItems(), 1);
-		assertEquals(page.getTotalPages(), 1);
 	}
 	
 }

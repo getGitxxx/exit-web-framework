@@ -32,6 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  */
 @Controller
+@OperatingAudit("组管理")
 @RequestMapping("/account/group")
 public class GroupController {
 	
@@ -66,7 +67,7 @@ public class GroupController {
 	
 	/**
 	 * 
-	 * 保存组,保存成功后重定向到:account/group/view
+	 * 保存或更新组,保存成功后重定向到:account/group/view
 	 * 
 	 * @param entity 实体信息
 	 * @param request HttpServletRequest
@@ -74,8 +75,8 @@ public class GroupController {
 	 * 
 	 * @return String
 	 */
-	@OperatingAudit
 	@RequestMapping("save")
+	@OperatingAudit(function="保存或更新组")
 	public String save(@ModelAttribute("entity") Group entity,HttpServletRequest request,RedirectAttributes redirectAttributes) {
 		
 		String parentId = request.getParameter("parentId");
@@ -97,7 +98,7 @@ public class GroupController {
 	
 	/**
 	 * 
-	 * 读取组信息,返回account/group/read.ftl页面
+	 * 读取组信息,返回account/group/read.html页面
 	 * 
 	 * @param model Spring mvc的Model接口，主要是将model的属性返回到页面中
 	 * 
@@ -126,8 +127,8 @@ public class GroupController {
 	 * 
 	 * @return String
 	 */
-	@OperatingAudit
 	@RequestMapping("delete")
+	@OperatingAudit(function="删除组")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
 		accountManager.deleteGroups(ids);
 		redirectAttributes.addFlashAttribute("success", "删除" + ids.size() + "条信息成功");

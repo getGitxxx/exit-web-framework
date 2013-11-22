@@ -6,16 +6,18 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.exitsoft.orm.core.Page;
 import org.exitsoft.orm.core.PageRequest;
+import org.exitsoft.orm.core.PageRequest.Sort;
 import org.exitsoft.orm.core.PropertyFilter;
 import org.exitsoft.orm.core.PropertyFilters;
-import org.exitsoft.orm.core.PageRequest.Sort;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.entity.foundation.audit.OperatingRecord;
 import org.exitsoft.showcase.service.foundation.SystemAuditManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 操作记录管理Controller
@@ -53,4 +55,20 @@ public class OperatingRecordController {
 		return systemAuditManager.searchOperatingRecordPage(pageRequest, filters);
 	}
 	
+	/**
+	 * 
+	 * 读取操作记录,返回foundation/audit/operating-record/read.html页面
+	 * 
+	 * @param id 操作记录主键id
+	 * @param model Spring mvc的Model接口，主要是将model的属性返回到页面中
+	 * 
+	 * @return String
+	 * 
+	 */
+	@RequestMapping("read")
+	public String read(Model model, @RequestParam("id")String id) {
+		model.addAttribute("entity",systemAuditManager.getOperatingRecord(id));
+		return "/foundation/audit/operating-record/read";
+		
+	}
 }

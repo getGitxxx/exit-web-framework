@@ -30,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  */
 @Controller
+@OperatingAudit("数据字典管理")
 @RequestMapping("/foundation/variable/data-dictionary")
 public class DataDictionaryController {
 	
@@ -62,7 +63,7 @@ public class DataDictionaryController {
 	
 	/**
 	 * 
-	 * 保存数据字典,保存成功后重定向到:foundation/variable/data-dictionary/view
+	 * 保存或更新数据字典,保存成功后重定向到:foundation/variable/data-dictionary/view
 	 * 
 	 * @param entity 实体信息
 	 * @param categoryId 所对应的字典类别id
@@ -71,8 +72,8 @@ public class DataDictionaryController {
 	 * @return String
 	 * 
 	 */
-	@OperatingAudit
 	@RequestMapping("save")
+	@OperatingAudit(function="保存或更新数据字典")
 	public String save(@ModelAttribute("entity") DataDictionary entity,String categoryId,RedirectAttributes redirectAttributes) {
 		
 		if (StringUtils.isEmpty(categoryId)) {
@@ -89,7 +90,7 @@ public class DataDictionaryController {
 	
 	/**
 	 * 
-	 * 读取数据字典,返回foundation/variable/data-dictionary/read.ftl页面
+	 * 读取数据字典,返回foundation/variable/data-dictionary/read.html页面
 	 * 
 	 * @param model Spring mvc的Model接口，主要是将model的属性返回到页面中
 	 * 
@@ -114,8 +115,8 @@ public class DataDictionaryController {
 	 * 
 	 * @return String
 	 */
-	@OperatingAudit
 	@RequestMapping("delete")
+	@OperatingAudit(function="删除数据字典")
 	public String delete(@RequestParam("ids")List<String> ids,RedirectAttributes redirectAttributes) {
 		systemDictionaryManager.deleteDataDictionary(ids);
 		redirectAttributes.addFlashAttribute("success", "删除" + ids.size() + "条信息成功");

@@ -18,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @MappedSuperclass
 @SuppressWarnings("serial")
-public class UniversallyUniqueIdentifier implements Serializable{
+public class IdEntity implements Serializable{
 	
 	protected String id;
 	

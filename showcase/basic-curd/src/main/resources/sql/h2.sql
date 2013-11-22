@@ -21,7 +21,7 @@ create table TB_RESOURCE (id varchar(32) not null, permission varchar(64), remar
 create table TB_USER (id varchar(32) not null, email varchar(128), password varchar(32) not null, portrait varchar(256), realname varchar(64) not null, state integer not null, username varchar(32) not null, primary key (id));
 
 --创建审计表
-create table tb_operating_record (id varchar(32) not null, end_date timestamp not null, operating_target varchar(512) not null, start_date timestamp not null, ip varchar(64) not null, method varchar(256) not null, remark varchar(512), state integer not null, fk_user_id varchar(32) not null, primary key (id));
+create table tb_operating_record (id varchar(32) not null, end_date timestamp not null, fk_user_id varchar(32), operating_target varchar(512) not null, start_date timestamp not null, username varchar(32), function varchar(128), ip varchar(64) not null, method varchar(256) not null, module varchar(128), remark varchar(512), state integer not null, primary key (id));
 create table tb_record_parameter (id varchar(32) not null, name varchar(32) not null, value varchar(512) not null, fk_record_id varchar(32) not null, primary key (id));
 
 --创建所有表关联
@@ -37,7 +37,6 @@ alter table TB_GROUP_RESOURCE add constraint FK_3tjs4wt3vvoibo1fvcvog5srd foreig
 alter table TB_GROUP_USER add constraint FK_7k068ltfepa1q75qtmvxuawk foreign key (fk_user_id) references TB_USER;
 alter table TB_GROUP_USER add constraint FK_rgmkki7dggfag6ow6eivljmwv foreign key (fk_group_id) references TB_GROUP;
 alter table TB_RESOURCE add constraint FK_k2heqvi9muk4cjyyd53r9y37x foreign key (fk_parent_id) references TB_RESOURCE;
-alter table TB_OPERATING_RECORD add constraint FK_j2kne6lllqsg2pvj4fpxptq4t foreign key (fk_user_id) references TB_USER;
 alter table TB_RECORD_PARAMETER add constraint FK_6tsjrad76yki1ji619t83r54y foreign key (fk_record_id) references TB_OPERATING_RECORD;
 
 --插入字典类别数据
@@ -45,6 +44,7 @@ INSERT INTO TB_DICTIONARY_CATEGORY VALUES ('402881e437d467d80137d46fc0e50001', '
 INSERT INTO TB_DICTIONARY_CATEGORY VALUES ('402881e437d467d80137d4709b9c0002', 'resource-type', '资源类型', null, null);
 INSERT INTO TB_DICTIONARY_CATEGORY VALUES ('402881e437d467d80137d4712ca70003', 'group-type', '组类型', null, null);
 INSERT INTO TB_DICTIONARY_CATEGORY VALUES ('402881e437d47b250137d485274b0004', 'value-type', '值类型', null, null);
+INSERT INTO TB_DICTIONARY_CATEGORY VALUES ('402881e437d47b250137d485274b0005', 'operating-state', '操作状态', null, null);
 
 --插入数据字典数据
 INSERT INTO TB_DATA_DICTIONARY VALUES ('402881e437d47b250137d481b6920001', '启用', null, 'I', '1', '402881e437d467d80137d46fc0e50001');
@@ -61,6 +61,8 @@ INSERT INTO TB_DATA_DICTIONARY VALUES ('402881e437d49e430137d4a61cec0004', '资�
 INSERT INTO TB_DATA_DICTIONARY VALUES ('402881e437d49e430137d4a6f1aa0005', '部门', null, 'S', '02', '402881e437d467d80137d4712ca70003');
 INSERT INTO TB_DATA_DICTIONARY VALUES ('402881e437d49e430137d4a7783d0006', '机构', null, 'S', '01', '402881e437d467d80137d4712ca70003');
 INSERT INTO TB_DATA_DICTIONARY VALUES ('402881e437d49e430137d4a7ba1a0007', '权限组', null, 'S', '03', '402881e437d467d80137d4712ca70003');
+INSERT INTO TB_DATA_DICTIONARY VALUES ('402881e437d49e430137d4a7783d0008', '成功', null, 'I', '1', '402881e437d47b250137d485274b0005');
+INSERT INTO TB_DATA_DICTIONARY VALUES ('402881e437d49e430137d4a7ba1a0009', '失败', null, 'I', '2', '402881e437d47b250137d485274b0005');
 
 --插入组数据
 INSERT INTO TB_GROUP VALUES ('402881c4408c7d2301408c86b7a80001', '普通用户', null, '1', '03', null, null, null);
