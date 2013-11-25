@@ -80,6 +80,16 @@ public abstract class SpringMvcHolder {
 	public static void  addAttribute(String name,Object value, int scope) {
 		getServletRequestAttributes().setAttribute(name, value, scope);
 	}
+	
+	/**
+	 * 根据作用域和名称，删除Attribute
+	 * 
+	 * @param name attribute名称
+	 * @param scope 作用域,参考{@link RequestAttributes}
+	 */
+	public static void removeAttribute(String name,int scope) {
+		getServletRequestAttributes().removeAttribute(name, scope);
+	}
 
 	/**
 	 * 获取HttpServletRequest
