@@ -167,7 +167,7 @@ public class OperatingRecord extends BasicRecordProperty{
 	 * 
 	 * @return String
 	 */
-	@Column(length=512)
+	@Column(length=4000)
 	public String getRemark() {
 		return remark;
 	}

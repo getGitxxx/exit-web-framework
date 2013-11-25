@@ -61,19 +61,19 @@
 							<th>值</th>
 			            </tr>
 		            </thead>
+			        <tbody>
 		            <#if entity.recordParametersList?size == 0>
 		            <tr><td colspan="3">本次操作没有传入参数</td></tr>
 		            <#else>
 			            <#list entity.recordParametersList as r>
-			            <tbody>
 			            	<tr>
 								<td>${r_index + 1}</td>
 								<td>${r.name!""}</td>
 								<td>${r.value!""}</td>
 							</tr>
-			           </tbody>
 			           </#list>
 		           </#if>
+		           </tbody>
 		        </table>
         	</div>
         	

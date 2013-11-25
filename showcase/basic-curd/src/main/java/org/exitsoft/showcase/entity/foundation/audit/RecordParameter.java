@@ -51,7 +51,7 @@ public class RecordParameter extends IdEntity{
 	 * 
 	 * @return String
 	 */
-	@Column(length=512,nullable=false)
+	@Column(length=3072,nullable=false)
 	public String getValue() {
 		return value;
 	}

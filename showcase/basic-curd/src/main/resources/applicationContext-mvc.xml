@@ -40,11 +40,6 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-	
-	<!-- 使用自定拦截器来做操作记录支持 -->
-	<mvc:interceptors>
-		<bean class="org.exitsoft.showcase.service.foundation.OperatingRecordInterceptor" />
-    </mvc:interceptors>
 
 	<!-- spring mvc 的资源路径 -->
 	<mvc:resources mapping="/resource/**" location="/resource/" />
@@ -59,7 +54,7 @@
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<map>
-			  <entry key="org.exitsoft.showcase.service.ServiceException" value="error/service-exception" />
+			  <entry key="org.exitsoft.showcase.service.ServiceException" value="exception/service-exception" />
 			</map>
 		</property>
 	</bean>
