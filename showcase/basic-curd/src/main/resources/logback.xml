@@ -12,7 +12,7 @@
 	<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
 	
 	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>logs/vcs-admin.log</file>
+		<file>logs/exitsoft-basic-curd.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>logs/exitsoft-basic-curd-%d{yyyy-MM-dd}.log</fileNamePattern>
 		</rollingPolicy>
