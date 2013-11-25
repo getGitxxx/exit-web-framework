@@ -122,12 +122,6 @@ public class OperatingRecordAspect {
 		
 		OperatingRecord record = SpringMvcHolder.getAttribute(method.getName(), RequestAttributes.SCOPE_REQUEST);
 		
-		if(record == null) {
-			return ;
-		}
-		//删除属性
-		SpringMvcHolder.removeAttribute(method.getName(), RequestAttributes.SCOPE_REQUEST);
-		
 		record.setEndDate(new Date());
 		record.setState(OperatingState.Success.getValue());
 		
@@ -144,15 +138,11 @@ public class OperatingRecordAspect {
 		
 		OperatingRecord record = SpringMvcHolder.getAttribute(method.getName(), RequestAttributes.SCOPE_REQUEST);
 		
-		if(record == null) {
-			return ;
-		}
-		//删除属性
-		SpringMvcHolder.removeAttribute(method.getName(), RequestAttributes.SCOPE_REQUEST);
-		
 		record.setEndDate(new Date());
 		record.setState(OperatingState.Fail.getValue());
 		record.setRemark(e.getMessage());
+		
+		e.printStackTrace();
 		
 		systemAuditManager.insertOperatingRecord(record);
 	}

@@ -29,7 +29,7 @@
 							<th>开始时间</th>
 							<th>结束时间</th>
 							<th>执行状态</th>
-							<th>描述</th>
+							
 			            </tr>
 		            </thead>
 		            <tbody>
@@ -43,7 +43,10 @@
 							<td>${entity.startDate!""}</td>
 							<td>${entity.endDate!""}</td>
 							<td>${entity.stateName}</td>
-							<td>${entity.remark!""}</td>
+						</tr>
+						<tr>
+							<td>描述</td>
+							<td colspan="8">${entity.remark!""}</td>
 						</tr>
 		           </tbody>
 		        </table>
