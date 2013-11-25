@@ -37,6 +37,7 @@ public class TestOperatingRecordManager extends ManagerTestCaseSupport{
 		OperatingRecord or = systemAuditManager.getOperatingRecord("SJDK3849CKMS3849DJCK2039ZMSK0026");
 		
 		assertEquals(or.getFkUserId(),"SJDK3849CKMS3849DJCK2039ZMSK0001");
+		assertEquals(or.getRemark(),"test remark");
 		
 	}
 	

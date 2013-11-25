@@ -105,13 +105,12 @@
 						<th>开始时间</th>
 						<th>结束时间</th>
 						<th>执行状态</th>
-						<th>描述</th>
 						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
 					<#if page.result?size == 0>
-						<tr><td colspan="11"> 找不到要查询的记录 </td></tr>
+						<tr><td colspan="10"> 找不到要查询的记录 </td></tr>
 						<#else>
 						<#list page.result as r>
 						<tr>
@@ -124,7 +123,6 @@
 							<td>${r.startDate!""}</td>
 							<td>${r.endDate!""}</td>
 							<td>${r.stateName}</td>
-							<td>${r.remark!""}</td>
 							<td>
 								<@shiro.hasPermission name="data-dictionary:read">
 								<a class="btn btn-default btn-sm" href="${base}/foundation/audit/operating-record/read?id=${r.id}">

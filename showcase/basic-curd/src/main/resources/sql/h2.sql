@@ -21,7 +21,7 @@ create table TB_RESOURCE (id varchar(32) not null, permission varchar(64), remar
 create table TB_USER (id varchar(32) not null, email varchar(128), password varchar(32) not null, portrait varchar(256), realname varchar(64) not null, state integer not null, username varchar(32) not null, primary key (id));
 
 --创建审计表
-create table tb_operating_record (id varchar(32) not null, end_date timestamp not null, fk_user_id varchar(32), operating_target varchar(512) not null, start_date timestamp not null, username varchar(32), function varchar(128), ip varchar(64) not null, method varchar(256) not null, module varchar(128), remark varchar(4000), state integer not null, primary key (id));
+create table tb_operating_record (id varchar(32) not null, end_date timestamp not null, fk_user_id varchar(32), operating_target varchar(512) not null, start_date timestamp not null, username varchar(32), function varchar(128), ip varchar(64) not null, method varchar(256) not null, module varchar(128), remark clob, state integer not null, primary key (id));
 create table tb_record_parameter (id varchar(32) not null, name varchar(32) not null, value varchar(3072) not null, fk_record_id varchar(32) not null, primary key (id));
 
 --创建所有表关联

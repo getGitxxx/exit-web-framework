@@ -1,5 +1,8 @@
 package org.exitsoft.showcase.service.foundation;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.List;
@@ -130,19 +133,26 @@ public class OperatingRecordAspect {
 	
 	/**
 	 * 在Controller出现异常时，设置错误信息在保存操作记录实体
+	 * @throws IOException 
 	 * 
 	 */
 	@AfterThrowing(pointcut="controller()",throwing="e")
-	public void doAfterThrowing(JoinPoint joinPoint, Exception e) {
+	public void doAfterThrowing(JoinPoint joinPoint, Exception e) throws IOException {
 		Method method = ((MethodSignature)joinPoint.getSignature()).getMethod();
 		
 		OperatingRecord record = SpringMvcHolder.getAttribute(method.getName(), RequestAttributes.SCOPE_REQUEST);
 		
 		record.setEndDate(new Date());
 		record.setState(OperatingState.Fail.getValue());
-		record.setRemark(e.getMessage());
 		
-		e.printStackTrace();
+		StringWriter outputStream = new StringWriter();
+		PrintWriter printWriter = new PrintWriter(outputStream);
+		
+		e.printStackTrace(printWriter);
+		record.setRemark(outputStream.toString());
+		
+		outputStream.close();
+		printWriter.close();
 		
 		systemAuditManager.insertOperatingRecord(record);
 	}

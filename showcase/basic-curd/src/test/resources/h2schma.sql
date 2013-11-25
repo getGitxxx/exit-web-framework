@@ -8,7 +8,6 @@ alter table tb_group_user drop constraint FK_rgmkki7dggfag6ow6eivljmwv
 alter table tb_record_parameter drop constraint FK_6tsjrad76yki1ji619t83r54y
 alter table tb_resource drop constraint FK_k2heqvi9muk4cjyyd53r9y37x
 drop table tb_data_dictionary if exists
-drop table tb_data_record if exists
 drop table tb_dictionary_category if exists
 drop table tb_group if exists
 drop table tb_group_resource if exists
@@ -18,12 +17,11 @@ drop table tb_record_parameter if exists
 drop table tb_resource if exists
 drop table tb_user if exists
 create table tb_data_dictionary (id varchar(32) not null, name varchar(256) not null, remark varchar(512), type varchar(1) not null, value varchar(32) not null, fk_category_id varchar(32) not null, primary key (id))
-create table tb_data_record (id varchar(32) not null, end_date timestamp not null, fk_user_id varchar(32), operating_target varchar(512) not null, start_date timestamp not null, username varchar(32), primary key (id))
 create table tb_dictionary_category (id varchar(32) not null, code varchar(128) not null, name varchar(256) not null, remark varchar(512), fk_parent_id varchar(32), primary key (id))
 create table tb_group (id varchar(32) not null, name varchar(32) not null, remark varchar(512), role varchar(64), state integer not null, type varchar(2) not null, value varchar(256), fk_parent_id varchar(32), primary key (id))
 create table tb_group_resource (fk_resource_id varchar(32) not null, fk_group_id varchar(32) not null)
 create table tb_group_user (fk_group_id varchar(32) not null, fk_user_id varchar(32) not null)
-create table tb_operating_record (id varchar(32) not null, end_date timestamp not null, fk_user_id varchar(32), operating_target varchar(512) not null, start_date timestamp not null, username varchar(32), function varchar(128), ip varchar(64) not null, method varchar(256) not null, module varchar(128), remark varchar(4000), state integer not null, primary key (id))
+create table tb_operating_record (id varchar(32) not null, end_date timestamp not null, fk_user_id varchar(32), operating_target varchar(512) not null, start_date timestamp not null, username varchar(32), function varchar(128), ip varchar(64) not null, method varchar(256) not null, module varchar(128), remark clob, state integer not null, primary key (id))
 create table tb_record_parameter (id varchar(32) not null, name varchar(32) not null, value varchar(3072) not null, fk_record_id varchar(32) not null, primary key (id))
 create table tb_resource (id varchar(32) not null, icon varchar(32), name varchar(32) not null, permission varchar(64), remark varchar(512), sort integer not null, type varchar(2) not null, value varchar(256), fk_parent_id varchar(32), primary key (id))
 create table tb_user (id varchar(32) not null, email varchar(128), password varchar(32) not null, portrait varchar(256), realname varchar(64) not null, state integer not null, username varchar(32) not null, primary key (id))

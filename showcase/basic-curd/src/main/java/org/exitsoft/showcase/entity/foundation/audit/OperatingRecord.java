@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -167,7 +168,7 @@ public class OperatingRecord extends BasicRecordProperty{
 	 * 
 	 * @return String
 	 */
-	@Column(length=4000)
+	@Lob
 	public String getRemark() {
 		return remark;
 	}
