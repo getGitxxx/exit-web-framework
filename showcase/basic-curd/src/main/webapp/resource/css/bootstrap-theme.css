@@ -20,6 +20,15 @@ div, a:focus, .btn:focus {
     margin: -1px;
 }
 
+.panel-default > .panel-body {
+	overflow: auto;
+}
+
+.panel-default > .panel-body > .table thead > tr > th, .table tbody > tr > th, .table thead > tr > td, .table tbody > tr > td {
+	word-break: keep-all;
+	white-space:nowrap;
+}
+
 .panel .table {
     margin-bottom: 0px;
 }
@@ -147,4 +156,12 @@ div, a:focus, .btn:focus {
 
 .modal-footer {
     padding: 15px 10px;
+}
+
+.no-padding {
+	padding: 0px;
+}
+
+.no-margin {
+	margin: 0px;
 }

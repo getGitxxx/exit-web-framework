@@ -41,6 +41,7 @@ import com.google.common.collect.Maps;
  *
  */
 @Controller
+@OperatingAudit("系统管理")
 public class SystemCommonController {
 	
 	@Autowired
@@ -83,7 +84,7 @@ public class SystemCommonController {
 	 * 
 	 * @return String
 	 */
-    @OperatingAudit
+    @OperatingAudit(function="修改密码")
 	@RequestMapping("/change-password")
 	public String changePassword(String oldPassword,String newPassword) {
 		
@@ -100,7 +101,6 @@ public class SystemCommonController {
 	 * @throws IOException 
 	 */
 	@ResponseBody
-    @OperatingAudit
 	@RequestMapping("/change-portrait")
 	public Map<String, Object> changePortrait(HttpServletRequest request) throws IOException {
 		//获取当前用户
@@ -152,7 +152,7 @@ public class SystemCommonController {
 	 * @throws IOException 
 	 */
 	@ResponseBody
-    @OperatingAudit
+    @OperatingAudit(function="改修个人信息")
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/change-profile")
 	public Map<String, Object> changeProfile(String realname,String email,@RequestParam(required = false)String portrait) throws IOException {

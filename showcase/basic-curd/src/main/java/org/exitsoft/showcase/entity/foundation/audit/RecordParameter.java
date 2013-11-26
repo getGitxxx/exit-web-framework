@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -51,7 +52,7 @@ public class RecordParameter extends IdEntity{
 	 * 
 	 * @return String
 	 */
-	@Column(length=3072,nullable=false)
+	@Lob
 	public String getValue() {
 		return value;
 	}
