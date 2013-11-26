@@ -9,9 +9,9 @@ import org.exitsoft.showcase.service.foundation.OperatingRecordAspect;
 import org.exitsoft.showcase.web.account.UserController;
 
 /**
- * 操作审计注解，通过该注解，在Controller中的类或方法中使用，当调用到该方法时
+ * 操作审计注解，通过该注解，在类或方法中使用，当调用到该方法时
  * 会引起一次aop，就是{@link OperatingRecordAspect}类，通过该类在调用
- * 之前，和之后都会做一次记录，并个把所有的记录存储在TB_OPERATING_RECORD
+ * 之后都会做一次记录，并个把所有的记录存储在TB_OPERATING_RECORD
  * 表中，详细例子:{@link UserController}
  * 
  * @author vincent

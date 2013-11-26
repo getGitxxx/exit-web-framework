@@ -20,7 +20,7 @@ import com.google.common.collect.Lists;
 /**
  * 操作记录类，记录用户的操作信息
  * 
- * @author 陈小菠
+ * @author vincent
  *
  */
 @Entity
