@@ -10,6 +10,12 @@ import javax.persistence.Table;
 
 import org.exitsoft.showcase.entity.IdEntity;
 
+/**
+ * 操作记录参数类，记录用户的操作时所提交的参数
+ * 
+ * @author vincent
+ *
+ */
 @Entity
 @SuppressWarnings("serial")
 @Table(name="TB_RECORD_PARAMETER")
