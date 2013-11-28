@@ -2,19 +2,18 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost_3306
-Source Server Version : 50614
+Source Server Version : 50519
 Source Host           : localhost:3306
 Source Database       : exitsoft-basic-curd
 
 Target Server Type    : MYSQL
-Target Server Version : 50614
+Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2013-11-11 11:28:35
+Date: 2013-11-28 15:34:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
 -- ----------------------------
 -- Table structure for `tb_data_dictionary`
 -- ----------------------------
@@ -154,6 +153,8 @@ INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0022', '402
 INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0023', '402881c4408c7d2301408c870ed10002');
 INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0024', '402881c4408c7d2301408c870ed10002');
 INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0025', '402881c4408c7d2301408c870ed10002');
+INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0026', '402881c4408c7d2301408c870ed10002');
+INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0027', '402881c4408c7d2301408c870ed10002');
 
 -- ----------------------------
 -- Table structure for `tb_group_user`
@@ -176,6 +177,48 @@ INSERT INTO `tb_group_user` VALUES ('402881c4408c7d2301408c86b7a80001', '1790912
 INSERT INTO `tb_group_user` VALUES ('402881c4408c7d2301408c86b7a80001', '17909124407b8d7901407be4996c0006');
 INSERT INTO `tb_group_user` VALUES ('402881c4408c7d2301408c86b7a80001', '17909124407b8d7901407be4996c0007');
 INSERT INTO `tb_group_user` VALUES ('402881c4408c7d2301408c870ed10002', '17909124407b8d7901407be4996c0004');
+
+-- ----------------------------
+-- Table structure for `tb_operating_record`
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_operating_record`;
+CREATE TABLE `tb_operating_record` (
+  `id` varchar(32) NOT NULL,
+  `end_date` datetime NOT NULL,
+  `fk_user_id` varchar(32) DEFAULT NULL,
+  `operating_target` varchar(512) NOT NULL,
+  `start_date` datetime NOT NULL,
+  `username` varchar(32) DEFAULT NULL,
+  `function` varchar(128) DEFAULT NULL,
+  `ip` varchar(64) NOT NULL,
+  `method` varchar(256) NOT NULL,
+  `module` varchar(128) DEFAULT NULL,
+  `remark` longtext,
+  `state` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_operating_record
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `tb_record_parameter`
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_record_parameter`;
+CREATE TABLE `tb_record_parameter` (
+  `id` varchar(32) NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `value` longtext,
+  `fk_record_id` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_6tsjrad76yki1ji619t83r54y` (`fk_record_id`),
+  CONSTRAINT `FK_6tsjrad76yki1ji619t83r54y` FOREIGN KEY (`fk_record_id`) REFERENCES `tb_operating_record` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_record_parameter
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `tb_resource`
@@ -223,6 +266,8 @@ INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0022', 'perms[dat
 INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0023', 'perms[data-dictionary:delete]', null, '21', '删除数据字典', '02', '/foundation/data-dictionary/delete/**', 'SJDK3849CKMS3849DJCK2039ZMSK0018', null);
 INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0024', 'perms[data-dictionary:read]', null, '22', '查看数据字典', '02', '/foundation/data-dictionary/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0018', null);
 INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0025', 'perms[dictionary-category:read]', '', '24', '查看字典类别', '02', '/foundation/dictionary-category/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0019', '');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0026', 'perms[operating-record:view]', null, '25', '操作记录管理', '01', '/foundation/audit/operating-record/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0017', 'glyphicon-eye-open');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0027', 'perms[operating-record:read]', null, '26', '查看操作日志', '02', '/foundation/audit/operating-record/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0026', null);
 
 -- ----------------------------
 -- Table structure for `tb_user`
