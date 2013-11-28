@@ -58,11 +58,11 @@
 		   			<div class="form-group">
 			   			<div class="row">
 			    			<div class="col-xs-12">
-								<label for="filter_EQI_state">值类型:</label>
+								<label for="filter_EQI_state">执行状态:</label>
 								<select class="form-control" name="filter_EQI_state" id="filter_EQI_state">
 									<option value="">全部</option>
 					           		<#list operatingState as os>
-					                	<option value="${os.value}" <#if RequestParameters.filter_EQS_state?has_content && RequestParameters.filter_EQS_state == os.value>selected="selected"</#if> >${os.name}</option>
+					                	<option value="${os.value}" <#if RequestParameters.filter_EQI_state?has_content && RequestParameters.filter_EQI_state == os.value>selected="selected"</#if> >${os.name}</option>
 					                </#list>
 					           </select>
 							</div>

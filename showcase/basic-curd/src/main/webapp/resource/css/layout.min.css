@@ -10,7 +10,7 @@ body {
 .login-container {
 	margin: 0 auto;
     padding: 7% 0;
-    width: 350px;
+    width: 400px;
 }
 
 .content-widget {
@@ -79,24 +79,6 @@ body {
     width: 90px;
 }
 
-.upload-container {
-	position: relative;
-	overflow: hidden;
-}
-
-.upload-container .upload-field {
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 140px;
-	cursor:pointer;
-	font-size: 100px; 
-	opacity: 0; 
-	/* filter: alpha(opacity = 0); */ 
-	cursor: pointer;
-}
-
 .ribbon {
 	background: url(../image/ribbon.png) no-repeat center top;
 	background-size: 73px 103px;
@@ -119,6 +101,15 @@ body {
 	border: 1px solid transparent;
 	border-radius: 500px;
 	text-align: center;
+}
+
+.ribbon > a > span {
+	margin-top: 5px;
+}
+
+.ribbon > a:hover {
+	border-color: #800;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
 }
 
 .server-exception {
