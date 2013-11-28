@@ -37,14 +37,9 @@
 							<label for="password">登录密码:</label> 
 							<input type="password" class="form-control required" value="admin" name="password" id="password" >
 						</div>
-						<div class="form-group">
-							<label for="rememberMe">记住我:</label> 
-							<select class="form-control" name="rememberMe" id="rememberMe">
-								<option value="">无</option>
-								<option value="25200">在一周内</option>
-								<option value="2592000">在一个月内</option>
-								<option value="31536000">在一个年内</option>
-							</select>
+						<div class="checkbox">
+							<input type="checkbox" name="rememberMe" id="rememberMe">
+							<label for="rememberMe">记住我</label>
 						</div>
 						<#if Session.showCaptcha?has_content && Session.showCaptcha == true>
 						<div class="form-group">
