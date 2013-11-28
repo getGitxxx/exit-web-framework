@@ -58,15 +58,6 @@
 			</map>
 		</property>
 	</bean>
-	
-	<!-- 定义块，可以被子模板用@override指令覆盖显示,没有被override则显示自身的内容 -->
-	<bean id="blockDirective" class="org.exitsoft.common.freemarker.directive.BlockDirective"/>
-	<!-- 继承其它模板，必须放在模板的最后面 -->
-    <bean id="extendsDirective" class="org.exitsoft.common.freemarker.directive.ExtendsDirective"/>
-    <!-- 重定义@block指令显示的内容 -->
-    <bean id="overrideDirective" class="org.exitsoft.common.freemarker.directive.OverrideDirective"/>
-    <!-- 在override中显示 super block的内容,类似java的 super关键字 -->
-    <bean id="superDirective" class="org.exitsoft.common.freemarker.directive.SuperDirective" />
 
 	<!-- freemarker的格式和其他配置 -->
 	<bean id="freemarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
@@ -80,15 +71,6 @@
 				<prop key="date_format">yyyy-MM-dd</prop>
 				<prop key="number_format">#.##</prop>
 			</props>
-		</property>
-		<!-- 将extends override block super指令配置到freemarker中，实现freemarker页面继承功能-->
-		<property name="freemarkerVariables">
-			<map>
-				<entry key="extends" value-ref="extendsDirective" />
-				<entry key="override" value-ref="overrideDirective" />
-				<entry key="block" value-ref="blockDirective" />
-				<entry key="super" value-ref="superDirective" />
-			</map>
 		</property>
 	</bean>
 

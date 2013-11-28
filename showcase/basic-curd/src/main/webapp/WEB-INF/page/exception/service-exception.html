@@ -1,8 +1,10 @@
-<@override name="title">
-	500
-</@override>
+<#include "*/basic/default.html"/>
 
-<@override name="body">
+<#macro title>
+	500
+</#macro>
+
+<#macro body>
 	<div class="server-exception"> 
    		<p><center><h1><span class="glyphicon glyphicon-exclamation-sign"></span></h1></center></p>
    		<h3>操作失败</h3> 
@@ -17,6 +19,5 @@
 			</a>
    		</p>
    	</div>
-</@override>
+</#macro>
 
-<@extends name="*/basic/default.html"/>

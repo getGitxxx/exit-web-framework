@@ -1,8 +1,10 @@
-<@override name="title">
-	401
-</@override>
+<#include "*/basic/default.html"/>
 
-<@override name="body">
+<#macro title>
+	401
+</#macro>
+
+<#macro body>
 	<div class="server-exception"> 
    		<p><center><h1><span class="glyphicon glyphicon-ban-circle"></span></h1></p></center>
    		<h3>访问控制</h3> 
@@ -17,6 +19,5 @@
 			</a>
    		</p>
    	</div>
-</@override>
+</#macro>
 
-<@extends name="*/basic/default.html"/>

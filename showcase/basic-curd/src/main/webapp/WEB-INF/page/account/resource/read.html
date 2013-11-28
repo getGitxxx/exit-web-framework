@@ -1,8 +1,10 @@
-<@override name="title">
-	编辑资源${entity.name!''}
-</@override>
+<#include "*/basic/default.html"/>
 
-<@override name="body">
+<#macro title>
+	编辑资源${entity.name!''}
+</#macro>
+
+<#macro body>
 	<div class="data-content">
 	
 	<ol class="breadcrumb">
@@ -109,6 +111,6 @@
 		</form>
 		
 	</div>
-</@override>
+</#macro>
 
-<@extends name="*/basic/default.html"/>
+

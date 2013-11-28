@@ -1,8 +1,10 @@
-<@override name="title">
-	编辑组${entity.name!''}
-</@override>
+<#include "*/basic/default.html"/>
 
-<@override name="head">
+<#macro title>
+	编辑组${entity.name!''}
+</#macro>
+
+<#macro head>
 	<script type="text/javascript">
 
 		$(document).ready(function(){
@@ -15,9 +17,9 @@
 		});
 		
 	</script>
-</@override>
+</#macro>
 
-<@override name="body">
+<#macro body>
 	<div class="data-content">
 	
 	<ol class="breadcrumb">
@@ -179,6 +181,6 @@
 		</form>
 		
 	</div>
-</@override>
+</#macro>
 
-<@extends name="*/basic/default.html"/>
+

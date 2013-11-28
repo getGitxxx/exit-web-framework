@@ -1,8 +1,10 @@
-<@override name="title">
-	编辑字典类型${entity.name!''}
-</@override>
+<#include "*/basic/default.html"/>
 
-<@override name="body">
+<#macro title>
+	编辑字典类型${entity.name!''}
+</#macro>
+
+<#macro body>
 	<div class="data-content">
 	
 	<ol class="breadcrumb">
@@ -76,6 +78,6 @@
 		</form>
 		
 	</div>
-</@override>
+</#macro>
 
-<@extends name="*/basic/default.html"/>
+

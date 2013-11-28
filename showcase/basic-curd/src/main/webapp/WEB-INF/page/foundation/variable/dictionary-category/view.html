@@ -1,8 +1,10 @@
-<@override name="title">
-	字典类型管理
-</@override>
+<#include "*/basic/default.html"/>
 
-<@override name="head">
+<#macro title>
+	字典类型管理
+</#macro>
+
+<#macro head>
 	<script type="text/javascript">
 
 		$(document).ready(function(){
@@ -21,9 +23,9 @@
 		});
 		
 	</script>
-</@override>
+</#macro>
 
-<@override name="body">
+<#macro body>
 	<div class="modal fade" id="search-modal" role="dialog" aria-hidden="true">
 	   <div class="modal-dialog">
 	     <div class="modal-content">
@@ -179,6 +181,6 @@
 			</div>
 		</form>
 	</div>
-</@override>
+</#macro>
 
-<@extends name="*/basic/default.html"/>
+

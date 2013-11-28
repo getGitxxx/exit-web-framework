@@ -1,8 +1,10 @@
-<@override name="title">   
-	首页
-</@override>
+<#include "*/basic/default.html"/>
 
-<@override name="body">   
+<#macro title>
+	首页
+</#macro>
+
+<#macro body>   
 	<div class="data-content">
 	
 		<ol class="breadcrumb">
@@ -29,6 +31,11 @@
     		<li>
     			<p>
     				删除CustomRememberMeManager类。<span class="label label-danger">delete</span>
+    			</p>
+    		</li>
+    		<li>
+    			<p>
+    				将<a href="https://code.google.com/p/rapid-framework/">rapid-framework</a>的freemarker继承代码删除，使用原生的宏来实现继承功能。<span class="label label-danger">delete</span>
     			</p>
     		</li>
     		<li>
@@ -126,6 +133,4 @@
 	    	<hr>
 		
 	</div>
-</@override>
-
-<@extends name="*/basic/default.html"/>
+</#macro>

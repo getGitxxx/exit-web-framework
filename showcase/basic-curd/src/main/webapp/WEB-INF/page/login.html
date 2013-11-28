@@ -1,16 +1,18 @@
-<@override name="title">   
-	用户登录
-</@override>
+<#include "*/basic/default.html"/>
 
-<@override name="head">   
+<#macro title>
+	用户登录
+</#macro>
+
+<#macro title>   
 	<script type="text/javascript">
 		function reloadCaptcha() {
 			$("#captchaImg").attr("src","get-captcha?date = " + new Date() + Math.floor(Math.random()*24));
 		}
 	</script>
-</@override>
+</#macro>
 
-<@override name="body">
+<#macro body>
 	<div class="data-content">
 		<div class="login-container">
 			<div class="panel panel-default">
@@ -70,6 +72,6 @@
 			</div>
 		</div>
 	</div>
-</@override>
+</#macro>
 
-<@extends name="*/basic/default.html"/>
+
