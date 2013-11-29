@@ -97,7 +97,7 @@ public class BeanResourceBundle extends ResourceBundle{
 		PropertyDescriptor[] propertyDescriptors = BeanUtils.getPropertyDescriptors(bean.getClass());
 		//逐个遍历bean的属性
 		for (PropertyDescriptor pd : propertyDescriptors) {
-			//如果该属性没有get/set方法，将不做转黄
+			//如果该属性没有get/set方法，将不做转换
 			if ((pd.getWriteMethod() == null) || pd.getReadMethod() == null) {
 				continue;
 			}
@@ -105,7 +105,7 @@ public class BeanResourceBundle extends ResourceBundle{
 			String key = pd.getName();
 			
 			/*
-			 * 判断该属性是否能够添加的map，判断条件如下:
+			 * 判断该属性是否能够添加到map中，判断条件如下:
 			 * 1.该属性必须存在include属性中
 			 * 2.该属性不能存在exclude属性中
 			 * 3.如果ignoreNullValue为true,该属性的值不能为null值

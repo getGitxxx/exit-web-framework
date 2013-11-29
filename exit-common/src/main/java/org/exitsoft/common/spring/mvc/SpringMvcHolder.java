@@ -35,6 +35,15 @@ public abstract class SpringMvcHolder {
 	public static void addRequestAttribute(String name,Object value) {
 		addAttribute(name, value, RequestAttributes.SCOPE_REQUEST);
 	}
+	
+	/**
+	 * 删除request attribute
+	 * 
+	 * @param name 属性名称
+	 */
+	public void removeRequestAttribute(String name) {
+		removeAttribute(name, RequestAttributes.SCOPE_REQUEST);
+	}
 
 	/**
 	 * 获取sessiont attribute
@@ -57,6 +66,14 @@ public abstract class SpringMvcHolder {
 		addAttribute(name, value, RequestAttributes.SCOPE_SESSION);
 	}
 	
+	/**
+	 * 删除session attribute
+	 * 
+	 * @param name 属性名称
+	 */
+	public void removeSessionAttribute(String name) {
+		removeAttribute(name, RequestAttributes.SCOPE_SESSION);
+	}
 	
 	/**
 	 * 根据作用域,获取Attribute
