@@ -14,7 +14,7 @@ import org.apache.commons.lang3.Validate;
  * 封装各种格式的编码解码工具类.
  * 
  * 
- * @author vincent
+ * @author calvin
  */
 public class EncodeUtils {
 	

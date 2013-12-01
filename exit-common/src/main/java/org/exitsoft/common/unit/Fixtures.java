@@ -26,7 +26,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 /**
  * 基于DBUnit初始化测试数据到H2数据库的工具类.
- * @author vincent
+ * 
+ * @author calvin
  */
 public abstract class Fixtures {
 
