@@ -22,7 +22,7 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
 /**
  * jackson 工具类
  * 
- * @author calvin
+ * @author vincent
  *
  */
 @SuppressWarnings("unchecked")

@@ -19,33 +19,9 @@ public class LaunchJetty {
 	 * 项目名称
 	 */
 	public static final String CONTEXT = "/exitsoft-basic-curd";
-	public static final String ACTIVE_PROFILE = "spring.profiles.active";
-	public static final String[] TLD_JAR_NAMES = new String[] { "spring-webmvc", "shiro-web" };
 
 	public static void main(String[] args) throws Exception {
-		
-		System.setProperty(ACTIVE_PROFILE, "development");
-		// 启动Jetty
-		Server server = JettyFactory.createServerInSource(PORT, CONTEXT);
-		JettyFactory.setTldJarNames(server, TLD_JAR_NAMES);
-
-		try {
-			System.out.println("[HINT] Don't forget to set -XX:MaxPermSize=128m");
-
-			server.start();
-			System.out.println("Server running at http://localhost:" + PORT + CONTEXT);
-			System.out.println("[HINT] Hit Enter to reload the application quickly");
-
-			// 等待用户输入回车重载应用.
-			while (true) {
-				char c = (char) System.in.read();
-				if (c == '\n') {
-					JettyFactory.reloadContext(server);
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
+		Server server = JettyFactory.buildNormalServer(PORT, CONTEXT);
+		server.start();
 	}
 }

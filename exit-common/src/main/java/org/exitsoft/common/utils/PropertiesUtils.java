@@ -17,7 +17,7 @@ import org.springframework.util.PropertiesPersister;
 /**
  * Properties文件工具类.
  * 
- * @author calvin
+ * @author vincent
  */
 public abstract class PropertiesUtils {
 
