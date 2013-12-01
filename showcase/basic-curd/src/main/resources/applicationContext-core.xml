@@ -5,6 +5,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" 
 	xmlns:cache="http://www.springframework.org/schema/cache" 
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd 
 	http://www.springframework.org/schema/tx 
@@ -13,13 +14,12 @@
 	http://www.springframework.org/schema/context/spring-context.xsd 
 	http://www.springframework.org/schema/aop 
 	http://www.springframework.org/schema/aop/spring-aop.xsd 
+	http://www.springframework.org/schema/jdbc 
+	http://www.springframework.org/schema/jdbc/spring-jdbc.xsd 
 	http://www.springframework.org/schema/cache 
 	http://www.springframework.org/schema/cache/spring-cache.xsd ">
 
 	<description>Spring公共配置 </description>
-	
-	<!-- 定义受环境影响易变的变量 -->
-	<context:property-placeholder ignore-resource-not-found="true" location="classpath*:/application.properties" />
 	
 	<!-- 定义aop Aspect自动代理 -->
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
@@ -28,24 +28,6 @@
 	<context:component-scan base-package="org.exitsoft.showcase">
 		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect" />
 	</context:component-scan>
-
-	<!-- 数据源配置,使用应用内的DBCP数据库连接池 -->
-	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
-		<!-- 链接信息 -->
-		<property name="driverClassName" value="${jdbc.driver}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-
-		<!-- 连接池信息 -->
-        <property name="initialSize" value="${jdbc.initialSize}" />
-        <property name="maxActive" value="${jdbc.maxActive}" />
-        <property name="maxIdle" value="${jdbc.maxIdle}" />
-        <property name="minIdle" value="${jdbc.minIdle}" />
-		<property name="defaultAutoCommit" value="false" />
-		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
-		<property name="minEvictableIdleTimeMillis" value="3600000" />
-	</bean>
 	
 	<!-- Hibernate配置 -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -84,4 +66,46 @@
 	<!-- 使用缓存annotation 配置 -->
 	<cache:annotation-driven cache-manager="ehCacheManager" proxy-target-class="true" />
 	
+
+	<!-- 生产环境profile -->
+	<beans profile="development">
+		<!-- 定义受环境影响易变的变量 -->
+		<context:property-placeholder ignore-resource-not-found="true" location="classpath*:/application.properties" />
+		
+		<!-- 数据源配置,使用应用内的DBCP数据库连接池 -->
+		<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+			<!-- 链接信息 -->
+			<property name="driverClassName" value="${jdbc.driver}" />
+			<property name="url" value="${jdbc.url}" />
+			<property name="username" value="${jdbc.username}" />
+			<property name="password" value="${jdbc.password}" />
+	
+			<!-- 连接池信息 -->
+	        <property name="initialSize" value="${jdbc.initialSize}" />
+	        <property name="maxActive" value="${jdbc.maxActive}" />
+	        <property name="maxIdle" value="${jdbc.maxIdle}" />
+	        <property name="minIdle" value="${jdbc.minIdle}" />
+			<property name="defaultAutoCommit" value="false" />
+			<property name="timeBetweenEvictionRunsMillis" value="3600000" />
+			<property name="minEvictableIdleTimeMillis" value="3600000" />
+		</bean>
+	</beans>
+	
+	<!-- 测试环境profile -->
+	<beans profile="test">
+		<!-- 定义受环境影响易变的变量 -->
+		<context:property-placeholder ignore-resource-not-found="true" location="classpath*:/application.test.properties" />
+		<!-- 数据源配置,使用应用内的DBCP数据库连接池 -->
+		<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+			<!-- Connection Info -->
+			<property name="driverClassName" value="${jdbc.driver}" />
+			<property name="url" value="${jdbc.url}" />
+			<property name="username" value="${jdbc.username}" />
+			<property name="password" value="${jdbc.password}" />
+		</bean>
+		
+		<jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
+			<jdbc:script location="classpath:h2schma.sql" />
+		</jdbc:initialize-database>
+	</beans>
 </beans>
