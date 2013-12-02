@@ -32,16 +32,15 @@ public class TestGroupManager extends ManagerTestCaseSupport{
 	@Test
 	@Transactional(readOnly=true)
 	public void testGetGroup() {
-		Group group = accountManager.getGroup("SJDK3849CKMS3849DJCK2039ZMSK0003");
-		assertEquals(group.getName(), "用户角色");
-		assertEquals(group.getChildren().size(),3);
+		Group group = accountManager.getGroup("SJDK3849CKMS3849DJCK2039ZMSK0002");
+		assertEquals(group.getName(), "超级管理员");
 	}
 
 	@Test
 	public void testGetGroupsListOfString() {
-		List<String> ids = Lists.newArrayList("SJDK3849CKMS3849DJCK2039ZMSK0004",
-						   					  "SJDK3849CKMS3849DJCK2039ZMSK0005",
-						   					  "SJDK3849CKMS3849DJCK2039ZMSK0006");
+		List<String> ids = Lists.newArrayList("402881c4408c7d2301408c86b7a80001",
+						   					  "402881c4408c7d2301408c870ed10002",
+						   					  "SJDK3849CKMS3849DJCK2039ZMSK0002");
 		
 		List<Group> result = accountManager.getGroups(ids);
 		
@@ -67,10 +66,10 @@ public class TestGroupManager extends ManagerTestCaseSupport{
 	@Test
 	public void testDeleteGroups() {
 		int before = countRowsInTable("tb_group");
-		accountManager.deleteGroups(Lists.newArrayList("SJDK3849CKMS3849DJCK2039ZMSK0003"));
+		accountManager.deleteGroups(Lists.newArrayList("402881c4408c7d2301408c870ed10002"));
 		int after = countRowsInTable("tb_group");
 		
-		assertEquals(before - 4, after);
+		assertEquals(before - 1, after);
 	}
 
 	@Test
@@ -78,29 +77,29 @@ public class TestGroupManager extends ManagerTestCaseSupport{
 		PageRequest request = new PageRequest();
 		
 		List<PropertyFilter> filters = Lists.newArrayList(
-				PropertyFilters.build("LIKES_name", "角色"),
+				PropertyFilters.build("LIKES_name", "员"),
 				PropertyFilters.build("EQS_type", "03")
 		);
 		
 		Page<Group> page = accountManager.searchGroupPage(request, filters);
 		
-		assertEquals(page.getTotalItems(), 4);
+		assertEquals(page.getTotalItems(), 2);
 		assertEquals(page.getTotalPages(), 1);
 	}
 
 	@Test
 	public void testGetAllGroupGroupType() {
 		List<Group> result = accountManager.getAllGroup(GroupType.RoleGorup);
-		assertEquals(result.size(), 4);
-		
-		result = accountManager.getAllGroup(GroupType.RoleGorup,"SJDK3849CKMS3849DJCK2039ZMSK0004","SJDK3849CKMS3849DJCK2039ZMSK0004");
 		assertEquals(result.size(), 3);
+		
+		result = accountManager.getAllGroup(GroupType.RoleGorup,"402881c4408c7d2301408c870ed10002","SJDK3849CKMS3849DJCK2039ZMSK0002");
+		assertEquals(result.size(), 1);
 	}
 
 	@Test
 	public void testGetUserGroups() {
 		List<Group> result = accountManager.getUserGroups("SJDK3849CKMS3849DJCK2039ZMSK0001");
-		assertEquals(result.size(), 4);
+		assertEquals(result.size(), 1);
 	}
 	
 }

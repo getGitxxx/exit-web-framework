@@ -41,7 +41,7 @@ public class TestDictionaryCategoryManager extends ManagerTestCaseSupport {
 		
 		int beforeRow = countRowsInTable("TB_DICTIONARY_CATEGORY");
 		List<String> ids = new ArrayList<String>();
-		ids.add("SJDK3849CKMS3849DJCK2039ZMSK0015");
+		ids.add("402881e437d47b250137d485274b0005");
 		systemVariableManager.deleteDictionaryCategory(ids);
 		int afterRow = countRowsInTable("TB_DICTIONARY_CATEGORY");
 		
@@ -51,13 +51,13 @@ public class TestDictionaryCategoryManager extends ManagerTestCaseSupport {
 	@Test
 	public void testGetAllParentDictionaryCategories() {
 		List<DictionaryCategory> result = systemVariableManager.getAllParentDictionaryCategories();
-		assertEquals(3, result.size());
+		assertEquals(5, result.size());
 	}
 
 	@Test
 	public void testGetAllDictionaryCategories() {
 		List<DictionaryCategory> result = systemVariableManager.getAllDictionaryCategories();
-		assertEquals(4, result.size());
+		assertEquals(5, result.size());
 	}
 
 }

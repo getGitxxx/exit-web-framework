@@ -278,10 +278,16 @@
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<configuration>
-			      <webAppConfig>
-			      	<contextPath>/${project.artifactId}</contextPath>
-			      </webAppConfig>
-                </configuration>
+					<systemProperties>
+						<systemProperty>
+							<name>spring.profiles.active</name>
+							<value>development</value>
+						</systemProperty>
+					</systemProperties>
+					<webAppConfig>
+						<contextPath>/${project.artifactId}</contextPath>
+					</webAppConfig>
+				</configuration>
 			</plugin>
 			
 			<plugin>

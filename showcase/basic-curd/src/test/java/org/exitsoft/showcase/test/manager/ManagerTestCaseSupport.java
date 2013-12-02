@@ -1,18 +1,20 @@
 package org.exitsoft.showcase.test.manager;
 
-import java.util.HashMap;
-
 import javax.sql.DataSource;
 
-import org.exitsoft.common.unit.Fixtures;
 import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.jdbc.JdbcTestUtils;
 
 /**
  * 业务单元测试基类
@@ -20,20 +22,22 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author vincent
  *
  */
+@ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/applicationContext-core-test.xml")
+@ContextConfiguration("/applicationContext-core.xml")
 public class ManagerTestCaseSupport {
 	
 	private DataSource dataSource;
 	
-	private NamedParameterJdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
+	private ResourceLoader resourceLoader = new DefaultResourceLoader();
 	
 	private SessionFactory sessionFactory;
 	
 	@Autowired
 	public void setDataSource(DataSource dataSource) throws Exception {
 		this.dataSource = dataSource;
-		this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
 	@Autowired
@@ -53,7 +57,7 @@ public class ManagerTestCaseSupport {
 	 * @return int
 	 */
 	protected int countRowsInTable(String tableName) {
-		return jdbcTemplate.queryForObject("SELECT COUNT(0) FROM " + tableName,new HashMap<String, Object>(),Integer.class);
+		return jdbcTemplate.queryForObject("SELECT COUNT(0) FROM " + tableName,Integer.class);
 	}
 	
 	/**
@@ -64,7 +68,22 @@ public class ManagerTestCaseSupport {
 	 */
 	@Before
 	public void install() throws Exception {
-		Fixtures.reloadData(dataSource, "/sample-data.xml");
+		executeScript(dataSource,"classpath:data/h2/cleanup-data.sql","classpath:data/h2/insert-data.sql");
+	}
+	
+	/**
+	 * 批量执行sql文件
+	 * 
+	 * @param dataSource　dataSource
+	 * @param sqlResourcePaths sql文件路径
+	 * 
+	 * @throws DataAccessException
+	 */
+	public void executeScript(DataSource dataSource, String... sqlResourcePaths) throws DataAccessException {
+
+		for (String sqlResourcePath : sqlResourcePaths) {
+			JdbcTestUtils.executeSqlScript(jdbcTemplate, resourceLoader, sqlResourcePath, true);
+		}
 	}
 	
 	@Test

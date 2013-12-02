@@ -32,8 +32,8 @@ public class TestResourceManager extends ManagerTestCaseSupport{
 	@Test
 	@Transactional(readOnly=true)
 	public void testGetResource() {
-		Resource resource = accountManager.getResource("SJDK3849CKMS3849DJCK2039ZMSK0007");
-		assertEquals(resource.getName(), "系统管理");
+		Resource resource = accountManager.getResource("SJDK3849CKMS3849DJCK2039ZMSK0003");
+		assertEquals(resource.getName(), "权限管理");
 		assertEquals(resource.getChildren().size(), 3);
 	}
 
@@ -61,7 +61,7 @@ public class TestResourceManager extends ManagerTestCaseSupport{
 		);
 		Page<Resource> page = accountManager.searchResourcePage(request, filters);
 		
-		assertEquals(page.getTotalItems(), 5);
+		assertEquals(page.getTotalItems(), 8);
 		assertEquals(page.getTotalPages(), 1);
 	}
 
@@ -85,10 +85,10 @@ public class TestResourceManager extends ManagerTestCaseSupport{
 	public void testDeleteResources() {
 		
 		int before = countRowsInTable("tb_resource");
-		accountManager.deleteResources(Lists.newArrayList("SJDK3849CKMS3849DJCK2039ZMSK0007"));
+		accountManager.deleteResources(Lists.newArrayList("SJDK3849CKMS3849DJCK2039ZMSK0004"));
 		int after = countRowsInTable("tb_resource");
 		
-		assertEquals(before - 4, after);
+		assertEquals(before - 5, after);
 	}
 
 	@Test
@@ -106,16 +106,16 @@ public class TestResourceManager extends ManagerTestCaseSupport{
 	@Test
 	public void testGetAllResources() {
 		List<Resource> result = accountManager.getAllResources();
-		assertEquals(result.size(), 8);
+		assertEquals(result.size(), 25);
 		
-		result = accountManager.getAllResources("SJDK3849CKMS3849DJCK2039ZMSK0007","SJDK3849CKMS3849DJCK2039ZMSK0008");
-		assertEquals(result.size(), 6);
+		result = accountManager.getAllResources("SJDK3849CKMS3849DJCK2039ZMSK0006","SJDK3849CKMS3849DJCK2039ZMSK0007");
+		assertEquals(result.size(), 23);
 	}
 	
 	@Test
 	public void testGetUserResources() {
 		List<Resource> result = accountManager.getUserResources("SJDK3849CKMS3849DJCK2039ZMSK0001");
-		assertEquals(result.size(), 8);
+		assertEquals(result.size(), 25);
 	}
 
 	@Test

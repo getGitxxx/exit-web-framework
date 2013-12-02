@@ -44,7 +44,7 @@ public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 	public void testDeleteDataDictionary() {
 		
 		List<String> ids = new ArrayList<String>();
-		CollectionUtils.addAll(ids, new String[]{"SJDK3849CKMS3849DJCK2039ZMSK0018","SJDK3849CKMS3849DJCK2039ZMSK0019"});
+		CollectionUtils.addAll(ids, new String[]{"402881e437d47b250137d481b6920001","402881e437d47b250137d481dda30002"});
 		
 		int beforeRow = countRowsInTable("TB_DATA_DICTIONARY");
 		systemVariableManager.deleteDataDictionary(ids);
@@ -56,7 +56,7 @@ public class TestDataDictionaryManager extends ManagerTestCaseSupport{
 	@Test
 	public void testSaveDataDictionary() {
 		
-		DictionaryCategory category = systemVariableManager.getDictionaryCategory("SJDK3849CKMS3849DJCK2039ZMSK0015");
+		DictionaryCategory category = systemVariableManager.getDictionaryCategory("402881e437d467d80137d46fc0e50001");
 		
 		DataDictionary dataDictionary = new DataDictionary();
 		dataDictionary.setCategory(category);

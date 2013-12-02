@@ -41,13 +41,13 @@ public class TestUserManager extends ManagerTestCaseSupport{
 		PageRequest request = new PageRequest();
 		
 		List<PropertyFilter> filters = Lists.newArrayList(
-				PropertyFilters.build("LIKES_realname", "管理员"),
+				PropertyFilters.build("LIKES_username", "es"),
 				PropertyFilters.build("EQI_state", "1")
 		);
 		
 		Page<User> page = accountManager.searchUserPage(request, filters);
 		
-		assertEquals(page.getTotalItems(), 2);
+		assertEquals(page.getTotalItems(), 4);
 		assertEquals(page.getTotalPages(), 1);
 	}
 
@@ -84,7 +84,7 @@ public class TestUserManager extends ManagerTestCaseSupport{
 		entity = accountManager.getUser("SJDK3849CKMS3849DJCK2039ZMSK0001");
 		
 		assertEquals(entity.getUsername(), "admin");
-		assertEquals(entity.getPassword(), "123456");
+		assertEquals(entity.getPassword(), "21232f297a57a5a743894a0e4a801fc3");
 		assertEquals(entity.getRealname(), "vincent");
 	}
 
@@ -106,7 +106,7 @@ public class TestUserManager extends ManagerTestCaseSupport{
 	public void testGetUserByUsername() {
 		User entity = accountManager.getUserByUsername("admin");
 		assertEquals(entity.getUsername(), "admin");
-		assertEquals(entity.getRealname(), "系统管理员");
+		assertEquals(entity.getRealname(), "vincent.chen");
 	}
 	
 }
