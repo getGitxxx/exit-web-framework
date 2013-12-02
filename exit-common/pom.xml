@@ -133,6 +133,19 @@
 		    <artifactId>cxf-rt-core</artifactId>
 		    <optional>true</optional>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			 <optional>true</optional>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-remote-driver</artifactId>
+			 <optional>true</optional>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-xjc</artifactId>

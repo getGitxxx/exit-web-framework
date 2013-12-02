@@ -66,6 +66,8 @@
 	<!-- 使用缓存annotation 配置 -->
 	<cache:annotation-driven cache-manager="ehCacheManager" proxy-target-class="true" />
 	
+	<bean class="org.exitsoft.common.spring.SpringContextHolder"></bean>
+	
 	<beans profile="development">
 	
 		<!-- 定义受环境影响易变的变量 -->

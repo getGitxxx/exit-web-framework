@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -38,7 +39,7 @@ public abstract class PropertiesUtils {
 	 * 
 	 * @see org.springframework.beans.factory.config.PropertyPlaceholderConfigurer
 	 */
-	public static Properties loadProperties(String... resourcesPaths) throws IOException {
+	public static Properties loadProperties(String... resourcesPaths) {
 		Properties props = new Properties();
 
 		for (String location : resourcesPaths) {
@@ -53,9 +54,7 @@ public abstract class PropertiesUtils {
 			} catch (IOException ex) {
 				logger.info("Could not load properties from classpath:" + location + ": " + ex.getMessage());
 			} finally {
-				if (is != null) {
-					is.close();
-				}
+				IOUtils.closeQuietly(is);
 			}
 		}
 		return props;

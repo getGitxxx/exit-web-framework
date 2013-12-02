@@ -29,6 +29,7 @@ public class LaunchJetty {
 		JettyFactory.setTldJarNames(server, TLD_JAR_NAMES);
 
 		try {
+			System.out.println("[HINT] Don't forget to set -XX:MaxPermSize=128m");
 			server.start();
 			System.out.println("Server running at http://localhost:" + PORT + CONTEXT);
 			System.out.println("[HINT] Hit Enter to reload the application quickly");
