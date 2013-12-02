@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2005-2012 springside.org.cn
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package org.exitsoft.common.unit;
 
 import org.eclipse.jetty.server.Server;
@@ -6,7 +11,7 @@ import org.eclipse.jetty.webapp.WebAppContext;
 /**
  * 创建Jetty Server的工厂类.
  * 
- * @author vincent
+ * @author calvin
  */
 public class JettyFactory {
 	/**

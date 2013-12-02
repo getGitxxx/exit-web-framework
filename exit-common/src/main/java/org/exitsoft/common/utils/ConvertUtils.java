@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2005-2012 springside.org.cn
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package org.exitsoft.common.utils;
 
 import java.util.Date;
@@ -7,7 +12,7 @@ import org.apache.commons.beanutils.converters.DateConverter;
 /**
  * 类型转换工具类
  * 
- * @author vincent
+ * @author calvin
  *
  */
 public class ConvertUtils extends org.apache.commons.beanutils.ConvertUtils{

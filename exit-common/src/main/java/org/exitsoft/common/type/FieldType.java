@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2005-2012 springside.org.cn
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package org.exitsoft.common.type;
 
 import java.util.Date;
@@ -5,7 +10,8 @@ import java.util.Date;
 /**
  * 属性数据类型
  * S代表String,I代表Integer,L代表Long, N代表Double, D代表Date,B代表Boolean
- * @author vincent
+ * 
+ * @author calvin
  * 
  */
 public enum FieldType {
