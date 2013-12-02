@@ -31,6 +31,19 @@ public class TestUserManagerFunction extends FunctionTestCaseSupport{
 		
 		//打开创建用户页面
 		s.click(By.xpath("//a[@href='/exitsoft-basic-curd/account/user/read']"));
+		//填写表单
+		s.type(By.id("username"), "test_user");
+		//s.type(By.id("realname"), "测试用户");
+		s.type(By.id("password"), "123456");
+		//s.type(By.id("confirmPassword"), "123456");
+		//s.type(By.id("state"), "1");
+		s.type(By.id("email"), "test_user@exitsoft.com");
+		
+		s.click(By.xpath("//button[@type='submit']"));
+		WebElement element = s.findElement(By.className("alert alert-success fade in")).findElement(By.tagName("span"));
+		assertEquals(element.getText(),"新增成功");
+		//准确的是6条记录在列表中，因为已经添加了一条
+		assertEquals(trs.size() + 1 ,s.findElement(By.tagName("table")).findElements(By.xpath("//tbody//tr")));
 	}
 	
 }
