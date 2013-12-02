@@ -8,6 +8,7 @@ import org.exitsoft.common.unit.JettyFactory;
 import org.exitsoft.common.unit.selenium.Selenium2;
 import org.exitsoft.common.unit.selenium.WebDriverFactory;
 import org.exitsoft.showcase.test.LaunchJetty;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -49,6 +50,7 @@ public class FunctionTestCaseSupport {
 		}
 		
 		if (s == null) {
+			System.setProperty ( "webdriver.firefox.bin" , "E:/Firefox/firefox.exe" );
 			WebDriver driver = WebDriverFactory.createDriver(SELENIUM_DRIVER);
 			s = new Selenium2(driver, URL);
 			s.setStopAtShutdown();
@@ -59,7 +61,6 @@ public class FunctionTestCaseSupport {
 		s.open("/");
 		s.click(By.xpath("//button[@type='submit']"));
 	}
-	
 	/**
 	 * 批量执行sql文件
 	 * 
