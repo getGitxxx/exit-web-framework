@@ -91,7 +91,7 @@
 							</div>
 						</div>
 						
-						<form action="${base}/change-profile" method="post" data-ajax-submit="true" onsuccess="onChangeProFileSuccess">
+						<form action="${base}/change-profile" id="change-profile-form" method="post" data-ajax-submit="true" onsuccess="onChangeProFileSuccess">
 							<div class="form-group">
 					   			<div class="row">
 					    			<div class="col-xs-6">
@@ -124,7 +124,7 @@
 		        </div>
 	        
 		        <div class="tab-pane fade in" id="password-seeting">
-		        	<form action="${base}/change-password" method="post" >
+		        	<form action="${base}/change-password" id="change-password-form" method="post" >
 		        	
 						<div class="form-group">
 							<label for="oldPassword">旧密码:</label> 
