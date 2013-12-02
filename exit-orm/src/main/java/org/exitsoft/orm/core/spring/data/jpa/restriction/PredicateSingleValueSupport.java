@@ -1,3 +1,18 @@
+/*
+ * Copyright 2002-2012 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.exitsoft.orm.core.spring.data.jpa.restriction;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -7,7 +22,7 @@ import javax.persistence.criteria.Predicate;
 import org.exitsoft.orm.core.MatchValue;
 import org.exitsoft.orm.core.PropertyFilter;
 import org.exitsoft.orm.core.spring.data.jpa.PredicateBuilder;
-import org.exitsoft.orm.core.spring.data.jpa.specification.SpecificationModel;
+import org.exitsoft.orm.core.spring.data.jpa.specification.SpecificationEntity;
 import org.exitsoft.orm.core.spring.data.jpa.specification.Specifications;
 
 
@@ -41,7 +56,7 @@ public abstract class PredicateSingleValueSupport implements PredicateBuilder{
 	 * (non-Javadoc)
 	 * @see org.exitsoft.orm.core.spring.data.jpa.PredicateBuilder#build(org.exitsoft.orm.core.PropertyFilter, javax.persistence.criteria.Root, javax.persistence.criteria.CriteriaQuery, javax.persistence.criteria.CriteriaBuilder)
 	 */
-	public Predicate build(PropertyFilter filter,SpecificationModel model) {
+	public Predicate build(PropertyFilter filter,SpecificationEntity entity) {
 
 		String matchValue = filter.getMatchValue();
 		Class<?> FieldType = filter.getFieldType();
@@ -51,18 +66,18 @@ public abstract class PredicateSingleValueSupport implements PredicateBuilder{
 		Predicate predicate = null;
 		
 		if (matchValueModel.hasOrOperate()) {
-			predicate = model.getBuilder().disjunction();
+			predicate = entity.getBuilder().disjunction();
 		} else {
-			predicate = model.getBuilder().conjunction();
+			predicate = entity.getBuilder().conjunction();
 		}
 		
 		for (Object value : matchValueModel.getValues()) {
 			if (filter.hasMultiplePropertyNames()) {
 				for (String propertyName:filter.getPropertyNames()) {
-					predicate.getExpressions().add(build(propertyName, value, model));
+					predicate.getExpressions().add(build(propertyName, value, entity));
 				}
 			} else {
-				predicate.getExpressions().add(build(filter.getSinglePropertyName(), value, model));
+				predicate.getExpressions().add(build(filter.getSinglePropertyName(), value, entity));
 			}
 		}
 		
@@ -73,9 +88,9 @@ public abstract class PredicateSingleValueSupport implements PredicateBuilder{
 	 * (non-Javadoc)
 	 * @see org.exitsoft.orm.core.spring.data.jpa.PredicateBuilder#build(java.lang.String, java.lang.Object, org.exitsoft.orm.core.spring.data.jpa.JpaBuilderModel)
 	 */
-	public Predicate build(String propertyName, Object value,SpecificationModel model) {
+	public Predicate build(String propertyName, Object value,SpecificationEntity entity) {
 		
-		return build(Specifications.getPath(propertyName, model.getRoot()),value,model.getBuilder());
+		return build(Specifications.getPath(propertyName, entity.getRoot()),value,entity.getBuilder());
 	}
 	
 	/**

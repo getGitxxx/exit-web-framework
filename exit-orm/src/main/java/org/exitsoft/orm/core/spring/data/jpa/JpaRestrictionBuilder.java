@@ -1,3 +1,18 @@
+/*
+ * Copyright 2002-2012 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.exitsoft.orm.core.spring.data.jpa;
 
 import java.util.HashMap;
@@ -17,7 +32,7 @@ import org.exitsoft.orm.core.spring.data.jpa.restriction.support.LtRestriction;
 import org.exitsoft.orm.core.spring.data.jpa.restriction.support.NeRestriction;
 import org.exitsoft.orm.core.spring.data.jpa.restriction.support.NinRestriction;
 import org.exitsoft.orm.core.spring.data.jpa.restriction.support.RLikeRestriction;
-import org.exitsoft.orm.core.spring.data.jpa.specification.SpecificationModel;
+import org.exitsoft.orm.core.spring.data.jpa.specification.SpecificationEntity;
 
 /**
  * jpa约束捆绑者，将所有的{@link PredicateBuilder}实现类添加到{@link PropertyFilters#getRestrictionsMap()}中，
@@ -64,12 +79,12 @@ public class JpaRestrictionBuilder{
 	 * 
 	 * @return {@link Predicate}
 	 */
-	public static Predicate getRestriction(PropertyFilter filter,SpecificationModel model) {
+	public static Predicate getRestriction(PropertyFilter filter,SpecificationEntity entity) {
 		if (!predicateBuilders.containsKey(filter.getRestrictionName())) {
 			throw new IllegalArgumentException("找不到约束名:" + filter.getRestrictionName());
 		}
 		PredicateBuilder predicateBuilder  = predicateBuilders.get(filter.getRestrictionName());
-		return predicateBuilder.build(filter,model);
+		return predicateBuilder.build(filter,entity);
 	}
 
 	/**
@@ -82,12 +97,12 @@ public class JpaRestrictionBuilder{
 	 * 
 	 * @return {@link Predicate}
 	 */
-	public static Predicate getRestriction(String propertyName, Object value,String restrictionName,SpecificationModel model) {
+	public static Predicate getRestriction(String propertyName, Object value,String restrictionName,SpecificationEntity entity) {
 		if (!predicateBuilders.containsKey(restrictionName)) {
 			throw new IllegalArgumentException("找不到约束名:" + restrictionName);
 		}
 		PredicateBuilder predicateBuilder  = predicateBuilders.get(restrictionName);
-		return predicateBuilder.build(propertyName, value, model);
+		return predicateBuilder.build(propertyName, value, entity);
 	}
 
 	/**
