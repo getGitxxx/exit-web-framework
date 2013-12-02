@@ -654,7 +654,14 @@
 					<artifactId>maven-clean-plugin</artifactId>
 					<version>2.5</version>
 				</plugin>
-
+				
+				<!-- 增加更多的Source和Test Source目录插件 -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>1.8</version>
+				</plugin>
+				
 				<!-- install插件 -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
