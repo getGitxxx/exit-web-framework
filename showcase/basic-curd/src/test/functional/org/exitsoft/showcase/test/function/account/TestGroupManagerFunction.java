@@ -40,7 +40,7 @@ public class TestGroupManagerFunction extends FunctionTestCaseSupport{
 		//选中所有复选框
 		s.check(s.findElement(By.id("selectAll")));
 		
-		s.type(By.name("remark"),"这个一个测试添加的组记录");
+		s.type(By.xpath("//form[@id='save-group-form']//textarea[@name='remark']"),"这个一个测试添加的组记录");
 		//提交表单，页面验证不通过
 		s.click(By.xpath("//div[@class='panel-footer']//button[@type='submit']"));
 		//设置最后的一个值
