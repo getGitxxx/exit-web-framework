@@ -54,7 +54,7 @@ exit-web-framework是对常用的java web开发封装实用功能来提高开发
 
 ##### 项目功能演示例子
 
-在文件夹的shorcase里有一个basic-curd项目。该项目是对以上两个框架(exit-common和exit-orm)和其他技术的整合做的例子，通过该例子使用maven做了一个archetype基础模板。可以通过该archetype来生成一个新的项目。该文件在basic-curd\bin下面。
+在文件夹的shorcase里有一个basic-curd项目。该项目是对以上两个框架(exit-common和exit-orm)和其他技术的整合做的例子，通过该例子使用maven做了一个archetype基础模板。可以通过该archetype来生成一个新的项目。该文件在basic-curd\bin下面的archetype-generate.bat。
 
 通过basic-curd项目文件夹中的bin/jetty.bat文件运行项目，也可以用eclipse.bat生成项目导入到开发工具中在运行。该工程下有一个基于jeety运行的java文件org.exitsoft.showcase.test.LaunchJetty.你也可以通过该文件运行整个项目.
 
@@ -65,17 +65,16 @@ exit-web-framework是对常用的java web开发封装实用功能来提高开发
 	[INFO] ------------------------------------------------------------------------
 	[INFO] Reactor Summary:
 	[INFO]
-	[INFO] exitsoft parend ................................... SUCCESS [0.797s]
-	[INFO] exitsoft common jar ............................... SUCCESS [55.718s]
-	[INFO] exitsoft orm jar .................................. SUCCESS [5.579s]
-	[INFO] vcs admin panel ................................... SUCCESS [5.734s]
-	[INFO] vcs admin panel use jpa ........................... SUCCESS [0.203s]
-	[INFO] exit web framework project ........................ SUCCESS [0.313s]
+	[INFO] exitsoft parent ................................... SUCCESS [0.552s]
+	[INFO] exitsoft common jar ............................... SUCCESS [2:21.572s]
+	[INFO] exitsoft orm jar .................................. SUCCESS [6.828s]
+	[INFO] basic curd project ................................ SUCCESS [1:07.878s]
+	[INFO] exit web framework project ........................ SUCCESS [0.644s]
 	[INFO] ------------------------------------------------------------------------
 	[INFO] BUILD SUCCESS
 	[INFO] ------------------------------------------------------------------------
-	[INFO] Total time: 1:08.828s
-	[INFO] Finished at: Fri Jan 04 11:11:00 CST 2013
-	[INFO] Final Memory: 9M/22M
+	[INFO] Total time: 3:39.025s
+	[INFO] Finished at: Wed Dec 04 14:50:14 CST 2013
+	[INFO] Final Memory: 10M/25M
 	[INFO] ------------------------------------------------------------------------
 ***
