@@ -1,4 +1,4 @@
-package org.exitsoft.showcase.test.function.account;
+package org.exitsoft.showcase.test.function.foundation.variable;
 
 import static org.junit.Assert.*;
 
@@ -11,41 +11,33 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 /**
- * 测试组管理功能
+ * 测试字典类别管理功能
  * 
  * @author vincent
  *
  */
-public class TestGroupManagerFunction extends FunctionTestCaseSupport{
+public class TestDictionaryCategoryManagerFunction extends FunctionTestCaseSupport{
 	
 	@Test
 	public void doTest() {
 		s.open("/");
 		//通过点击，进入功能模块
-		s.click(By.id("SJDK3849CKMS3849DJCK2039ZMSK0003"));
-		s.click(By.id("SJDK3849CKMS3849DJCK2039ZMSK0009"));
+		s.click(By.id("SJDK3849CKMS3849DJCK2039ZMSK0017"));
+		s.click(By.id("SJDK3849CKMS3849DJCK2039ZMSK0019"));
 		
 		//获取table中的所有操作前的tr
 		List<WebElement> beforeTrs = s.findElements(By.xpath("//table//tbody//tr"));
 		//断言所有tr是否等于期望值
-		assertEquals(beforeTrs.size(), 3);
+		assertEquals(beforeTrs.size(), 5);
 		
 		//打开添加页面
-		s.click(By.xpath("//a[@href='/exitsoft-basic-curd/account/group/read']"));
+		s.click(By.xpath("//a[@href='/exitsoft-basic-curd/foundation/variable/dictionary-category/read']"));
 		//填写表单
-		s.type(By.xpath("//form[@id='save-group-form']//input[@name='name']"), "test_group");
-		s.type(By.xpath("//form[@id='save-group-form']//input[@name='value']"), "/admin/**");
-		s.type(By.xpath("//form[@id='save-group-form']//input[@name='role']"), "role[admin]");
-		s.getSelect(By.xpath("//form[@id='save-group-form']//select[@name='parentId']")).selectByValue("402881c4408c7d2301408c86b7a80001");
-		//选中所有复选框
-		s.check(s.findElement(By.id("selectAll")));
+		s.type(By.xpath("//form[@id='save-dictionary-category-form']//input[@name='name']"), "test_dictionary_category");
+		s.type(By.xpath("//form[@id='save-dictionary-category-form']//input[@name='code']"), "test-code");
 		
-		s.type(By.xpath("//form[@id='save-group-form']//textarea[@name='remark']"),"这是一个测试添加的组记录");
+		s.type(By.xpath("//form[@id='save-dictionary-category-form']//textarea[@name='remark']"),"这是一个测试添加的字典类别记录");
 		//提交表单，页面验证不通过
-		s.click(By.xpath("//div[@class='panel-footer']//button[@type='submit']"));
-		//设置最后的一个值
-		s.getSelect(By.xpath("//form[@id='save-group-form']//select[@name='state']")).selectByValue("1");
-		//验证通过，提交表单
 		s.click(By.xpath("//div[@class='panel-footer']//button[@type='submit']"));
 		
 		//返回成功信息
@@ -58,17 +50,9 @@ public class TestGroupManagerFunction extends FunctionTestCaseSupport{
 		assertEquals(aflterTrs.size(), beforeTrs.size() + 1);
 		
 		//点击编辑功能
-		s.findElement(By.xpath("//table//tbody//tr//*[text()='test_group']//..//a")).click();
+		s.findElement(By.xpath("//table//tbody//tr//*[text()='test_dictionary_category']//..//a")).click();
 		//填写表单
-		s.type(By.xpath("//form[@id='save-group-form']//input[@name='name']"), "test_group_modify");
-		s.getSelect(By.xpath("//form[@id='save-group-form']//select[@name='state']")).selectByValue("2");
-		s.getSelect(By.xpath("//form[@id='save-group-form']//select[@name='parentId']")).selectByValue("402881c4408c7d2301408c870ed10002");
-		//选中所有复选框
-		for (WebElement element : s.findElements(By.name("resourceId"))) {
-			s.uncheck(element);
-		}
-		
-		s.type(By.name("remark"),"");
+		s.type(By.xpath("//form[@id='save-dictionary-category-form']//input[@name='name']"), "test_dictionary_category_modify");
 		//提交表单
 		s.click(By.xpath("//div[@class='panel-footer']//button[@type='submit']"));
 		
@@ -81,7 +65,7 @@ public class TestGroupManagerFunction extends FunctionTestCaseSupport{
 		assertEquals(aflterTrs.size(), beforeTrs.size() + 1);
 		
 		//选中删除的记录
-		s.check(By.xpath("//table//tbody//tr//*[text()='test_group_modify']//..//input"));
+		s.check(By.xpath("//table//tbody//tr//*[text()='test_dictionary_category_modify']//..//input"));
 		//提交删除表单
 		s.click(By.xpath("//div[@class='panel-footer']//*[@type='submit']"));
 		Alert alert = s.getDriver().switchTo().alert();
@@ -100,8 +84,8 @@ public class TestGroupManagerFunction extends FunctionTestCaseSupport{
 		s.waitForVisible(By.id("search-modal"));
 		
 		//设置查询条件值
-		s.type(By.id("filter_LIKES_name"), "超级");
-		s.getSelect(By.name("filter_EQI_state")).selectByValue("1");
+		s.type(By.id("filter_LIKES_name"), "操作");
+		s.type(By.id("filter_EQS_code"), "operating-state");
 		//查询
 		s.click(By.xpath("//div[@class='modal-footer']//button[@type='submit']"));
 		
