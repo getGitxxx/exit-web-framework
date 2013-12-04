@@ -31,7 +31,7 @@ import org.exitsoft.common.type.FieldType;
  * <pre>
  * &#064;Entity
  * &#064;Table(name="tb_user")
- * &#064;StateDelete(propertyName = "state",type = CategoryType.S,value="2")
+ * &#064;StateDelete(propertyName = "state",type = FieldType.S,value="2")
  * public class User{
  * 	private String username;
  * 	private String state;
