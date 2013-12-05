@@ -22,7 +22,6 @@ create table TB_USER (id varchar(32) not null, email varchar(128), password varc
 
 --创建审计表
 create table TB_OPERATING_RECORD (id varchar(32) not null, end_date timestamp not null, fk_user_id varchar(32), operating_target varchar(512) not null, start_date timestamp not null, username varchar(32), function varchar(128), ip varchar(64) not null, method varchar(256) not null, module varchar(128), remark clob, state integer not null, primary key (id));
-create table TB_RECORD_PARAMETER (id varchar(32) not null, name varchar(32) not null, value clob not null, fk_record_id varchar(32) not null, primary key (id));
 
 --创建所有表关联
 alter table TB_DICTIONARY_CATEGORY add constraint UK_9qkei4dxobl1lm4oa0ys8c3nr unique (code);
@@ -37,7 +36,6 @@ alter table TB_GROUP_RESOURCE add constraint FK_3tjs4wt3vvoibo1fvcvog5srd foreig
 alter table TB_GROUP_USER add constraint FK_7k068ltfepa1q75qtmvxuawk foreign key (fk_user_id) references TB_USER;
 alter table TB_GROUP_USER add constraint FK_rgmkki7dggfag6ow6eivljmwv foreign key (fk_group_id) references TB_GROUP;
 alter table TB_RESOURCE add constraint FK_k2heqvi9muk4cjyyd53r9y37x foreign key (fk_parent_id) references TB_RESOURCE;
-alter table TB_RECORD_PARAMETER add constraint FK_6tsjrad76yki1ji619t83r54y foreign key (fk_record_id) references TB_OPERATING_RECORD;
 
 --插入字典类别数据
 INSERT INTO TB_DICTIONARY_CATEGORY VALUES ('402881e437d467d80137d46fc0e50001', 'state', '状态', null, null);

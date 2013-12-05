@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -27,12 +26,9 @@ import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.annotation.OperatingAudit;
 import org.exitsoft.showcase.common.enumeration.entity.OperatingState;
 import org.exitsoft.showcase.entity.foundation.audit.OperatingRecord;
-import org.exitsoft.showcase.entity.foundation.audit.RecordParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
-
-import com.google.common.collect.Lists;
 
 /**
  * 操作记录Aspect,当执行某个Controller时会判断该Controller是否存在OperatingAudit
@@ -96,19 +92,24 @@ public class OperatingRecordAspect {
 		
 		//获取本次提交的参数
 		Map<String, Object> parameter = request.getParameterMap();
-		List<RecordParameter> recordParametersList = Lists.newArrayList();
-		//逐个循环参数和值添加到记录参数对象做，并且设置关联
-		for(Entry<String, Object> entry : parameter.entrySet()) {
-			RecordParameter recordParameter = new RecordParameter();
-			
-			recordParameter.setName(entry.getKey());
-			recordParameter.setValue(getParameterValue(entry.getValue()));
-			recordParameter.setRecord(record);
-			
-			recordParametersList.add(recordParameter);
-		}
 		
-		record.setRecordParametersList(recordParametersList);
+		if (parameter.size() > 0) {
+
+			StringBuffer sb = new StringBuffer("<h2>request参数</h2>").append("<hr>");
+			//逐个循环参数和值添加到操作记录参数的描述字段中
+			for(Entry<String, Object> entry : parameter.entrySet()) {
+				sb.append("<p>").
+				   append(entry.getKey()).
+				   append(":").
+				   append("<strong class='text-info'>").
+				   append(getParameterValue(entry.getValue())).
+				   append("</strong>").
+				   append("</p>");
+			}
+			
+			sb.append("<hr>");
+			request.setAttribute("remark", sb);
+		}
 		
 		request.setAttribute(method.getName(), record);
 		
@@ -124,9 +125,11 @@ public class OperatingRecordAspect {
 		Method method = ((MethodSignature)joinPoint.getSignature()).getMethod();
 		
 		OperatingRecord record = SpringMvcHolder.getAttribute(method.getName(), RequestAttributes.SCOPE_REQUEST);
+		StringBuffer sb = SpringMvcHolder.getAttribute("remark", RequestAttributes.SCOPE_REQUEST);
 		
 		record.setEndDate(new Date());
 		record.setState(OperatingState.Success.getValue());
+		record.setRemark(sb.toString());
 		
 		systemAuditManager.insertOperatingRecord(record);
 	}
@@ -138,18 +141,28 @@ public class OperatingRecordAspect {
 	 */
 	@AfterThrowing(pointcut="controller()",throwing="e")
 	public void doAfterThrowing(JoinPoint joinPoint, Exception e) throws IOException {
-		Method method = ((MethodSignature)joinPoint.getSignature()).getMethod();
+		MethodSignature signature = ((MethodSignature)joinPoint.getSignature());
+		Method method = signature.getMethod();
 		
 		OperatingRecord record = SpringMvcHolder.getAttribute(method.getName(), RequestAttributes.SCOPE_REQUEST);
 		
 		record.setEndDate(new Date());
 		record.setState(OperatingState.Fail.getValue());
 		
+		StringBuffer sb = SpringMvcHolder.getAttribute("remark", RequestAttributes.SCOPE_REQUEST);
+		
 		StringWriter outputStream = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(outputStream);
 		
 		e.printStackTrace(printWriter);
-		record.setRemark(outputStream.toString());
+		
+		String message = StringUtils.replace(outputStream.toString(), ">", "&gt;");
+		message = StringUtils.replace(message, "<", "&lt;");
+		message = StringUtils.replace(message, "\r\n", "<br>");
+		
+		sb.append("<h2>异常信息</h2>").append("<hr>").append(message).append("<hr>");
+		
+		record.setRemark(sb.toString());
 		
 		outputStream.close();
 		printWriter.close();

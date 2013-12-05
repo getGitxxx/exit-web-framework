@@ -335,6 +335,11 @@
 					</target>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+			    <groupId>org.codehaus.sonar</groupId>
+			    <artifactId>sonar-maven3-plugin</artifactId>
+			</plugin>
 
 			<!-- eclipse插件 -->
 			<plugin>

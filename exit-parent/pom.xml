@@ -675,7 +675,13 @@
 					<artifactId>maven-deploy-plugin</artifactId>
 					<version>2.7</version>
 				</plugin>
-
+				
+				<plugin>
+				    <groupId>org.codehaus.sonar</groupId>
+				    <artifactId>sonar-maven3-plugin</artifactId>
+				    <version>3.7.3</version>
+				</plugin>
+				
 				<!-- eclipse插件,设定下载Source并屏蔽.svn文件 -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
