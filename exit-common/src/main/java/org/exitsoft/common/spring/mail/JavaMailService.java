@@ -119,7 +119,7 @@ public class JavaMailService {
 	 * @param attachment 附件，该附件为一个map，将key来做文件名，value来做文件的形式发送出去
 	 */
 	public void send(final String sendTo,final String sendFrom,final String subject,final String content,final Map<String, File> attachment) {
-		if (this.executor == null) {
+		if (this.executor != null) {
 			this.executor.execute(new Runnable() {
 				@Override
 				public void run() {
