@@ -8,7 +8,8 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath*:/applicationContext-core.xml,
-			classpath*:/applicationContext-shiro.xml
+			classpath*:/applicationContext-shiro.xml,
+			classpath*:/applicationContext-mail.xml
 		</param-value>
 		<param-name>spring.profiles.default</param-name>
 		<param-name>development</param-name>

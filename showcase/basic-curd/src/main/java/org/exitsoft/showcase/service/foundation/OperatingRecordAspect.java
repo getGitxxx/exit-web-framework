@@ -1,6 +1,5 @@
 package org.exitsoft.showcase.service.foundation;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
@@ -11,12 +10,9 @@ import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.exitsoft.common.spring.mvc.SpringMvcHolder;
 import org.exitsoft.common.utils.ConvertUtils;
@@ -28,7 +24,6 @@ import org.exitsoft.showcase.common.enumeration.entity.OperatingState;
 import org.exitsoft.showcase.entity.foundation.audit.OperatingRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestAttributes;
 
 /**
  * 操作记录Aspect,当执行某个Controller时会判断该Controller是否存在OperatingAudit
@@ -48,29 +43,47 @@ public class OperatingRecordAspect {
 	private SystemAuditManager systemAuditManager;
 	
 	/**
-	 * 空方法，用于pointcut在多处时更好的规范aop的切面方向
+	 * 在带有OperatingAudit注解的方法中监控执行过程
 	 */
-	@Pointcut("@annotation(org.exitsoft.showcase.common.annotation.OperatingAudit)")
-	private void controller(){}
-	
-	/**
-	 * 在Controller调用前，构造操作记录实体
-	 * 
-	 */
-	@Before("controller()")
 	@SuppressWarnings("unchecked")
-	public void doBefore(JoinPoint joinPoint) {
-		HttpServletRequest request = SpringMvcHolder.getRequest();
+	@Around("@annotation(org.exitsoft.showcase.common.annotation.OperatingAudit)")
+	public Object doAround(ProceedingJoinPoint point) throws Throwable {
 		
-		Method method = ((MethodSignature)joinPoint.getSignature()).getMethod();
+		Method method = ((MethodSignature)point.getSignature()).getMethod();
 		
 		OperatingAudit audit = ReflectionUtils.getAnnotation(method, OperatingAudit.class);
 		
 		OperatingRecord record = new OperatingRecord();
 		record.setStartDate(new Date());
-		record.setIp(getIpAddress(request));
 		record.setMethod(method.getName());
-		record.setOperatingTarget(request.getRequestURI());
+
+		HttpServletRequest request = SpringMvcHolder.getRequest();
+		StringBuffer sb = new StringBuffer();
+		
+		if(request != null) {
+			record.setIp(getIpAddress(request));
+			record.setOperatingTarget(request.getRequestURI());
+			//获取本次提交的参数
+			Map<String, Object> parameter = request.getParameterMap();
+			
+			if (parameter.size() > 0) {
+
+				sb.append("<h2>request参数</h2>").append("<hr>");
+				//逐个循环参数和值添加到操作记录参数的描述字段中
+				for(Entry<String, Object> entry : parameter.entrySet()) {
+					sb.append("<p>").
+					   append(entry.getKey()).
+					   append(":").
+					   append("<strong class='text-info'>").
+					   append(getParameterValue(entry.getValue())).
+					   append("</strong>").
+					   append("</p>");
+				}
+				
+				sb.append("<hr>");
+			}
+		}
+		
 		//获取当前SessionVariable，通过该变量获取当前用户
 		SessionVariable sessionVariable = SystemVariableUtils.getSessionVariable();
 		//如果SessionVariable等于null，表示用户未登录，但一样要记录操作
@@ -90,84 +103,34 @@ public class OperatingRecordAspect {
 		record.setFunction(function);
 		record.setModule(module);
 		
-		//获取本次提交的参数
-		Map<String, Object> parameter = request.getParameterMap();
+		Object reaultValue = null;
 		
-		if (parameter.size() > 0) {
-
-			StringBuffer sb = new StringBuffer("<h2>request参数</h2>").append("<hr>");
-			//逐个循环参数和值添加到操作记录参数的描述字段中
-			for(Entry<String, Object> entry : parameter.entrySet()) {
-				sb.append("<p>").
-				   append(entry.getKey()).
-				   append(":").
-				   append("<strong class='text-info'>").
-				   append(getParameterValue(entry.getValue())).
-				   append("</strong>").
-				   append("</p>");
-			}
+		try {
+			reaultValue = point.proceed();
+			record.setState(OperatingState.Success.getValue());
+		} catch (Throwable e) {
+			record.setState(OperatingState.Fail.getValue());
 			
-			sb.append("<hr>");
-			request.setAttribute("remark", sb);
+			StringWriter outputStream = new StringWriter();
+			PrintWriter printWriter = new PrintWriter(outputStream);
+			
+			e.printStackTrace(printWriter);
+			
+			String message = StringUtils.replace(outputStream.toString(), ">", "&gt;");
+			message = StringUtils.replace(message, "<", "&lt;");
+			message = StringUtils.replace(message, "\r\n", "<br>");
+			
+			sb.append("<h2>异常信息</h2>").append("<hr>").append(message).append("<hr>");
+			request.setAttribute("record", record);
+			throw e;
+		} finally {
+			record.setEndDate(new Date());
+			record.setRemark(sb.toString());
+			systemAuditManager.insertOperatingRecord(record);
 		}
 		
-		request.setAttribute(method.getName(), record);
+		return reaultValue;
 		
-	}
-	
-	/**
-	 * 在Controller完成后，保存操作记录实体
-	 * 
-	 */
-	@After("controller()")
-	public void doAfter(JoinPoint joinPoint) {
-		
-		Method method = ((MethodSignature)joinPoint.getSignature()).getMethod();
-		
-		OperatingRecord record = SpringMvcHolder.getAttribute(method.getName(), RequestAttributes.SCOPE_REQUEST);
-		StringBuffer sb = SpringMvcHolder.getAttribute("remark", RequestAttributes.SCOPE_REQUEST);
-		
-		record.setEndDate(new Date());
-		record.setState(OperatingState.Success.getValue());
-		record.setRemark(sb.toString());
-		
-		systemAuditManager.insertOperatingRecord(record);
-	}
-	
-	/**
-	 * 在Controller出现异常时，设置错误信息在保存操作记录实体
-	 * @throws IOException 
-	 * 
-	 */
-	@AfterThrowing(pointcut="controller()",throwing="e")
-	public void doAfterThrowing(JoinPoint joinPoint, Exception e) throws IOException {
-		MethodSignature signature = ((MethodSignature)joinPoint.getSignature());
-		Method method = signature.getMethod();
-		
-		OperatingRecord record = SpringMvcHolder.getAttribute(method.getName(), RequestAttributes.SCOPE_REQUEST);
-		
-		record.setEndDate(new Date());
-		record.setState(OperatingState.Fail.getValue());
-		
-		StringBuffer sb = SpringMvcHolder.getAttribute("remark", RequestAttributes.SCOPE_REQUEST);
-		
-		StringWriter outputStream = new StringWriter();
-		PrintWriter printWriter = new PrintWriter(outputStream);
-		
-		e.printStackTrace(printWriter);
-		
-		String message = StringUtils.replace(outputStream.toString(), ">", "&gt;");
-		message = StringUtils.replace(message, "<", "&lt;");
-		message = StringUtils.replace(message, "\r\n", "<br>");
-		
-		sb.append("<h2>异常信息</h2>").append("<hr>").append(message).append("<hr>");
-		
-		record.setRemark(sb.toString());
-		
-		outputStream.close();
-		printWriter.close();
-		
-		systemAuditManager.insertOperatingRecord(record);
 	}
 	
 	/**

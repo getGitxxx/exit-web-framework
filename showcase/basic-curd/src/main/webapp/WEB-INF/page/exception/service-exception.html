@@ -4,6 +4,16 @@
 	500
 </#macro>
 
+<#macro head>
+	<script type="text/javascript">
+		function sendError(id) {
+			$.post("/foundation/audit/operating-record/send-error",{id:id},function(data){
+				
+			});
+		}
+	</script>
+</#macro>
+
 <#macro body>
 	<div class="server-exception"> 
    		<p><center><h1><span class="glyphicon glyphicon-exclamation-sign"></span></h1></center></p>
@@ -11,12 +21,12 @@
    		<hr> 
    		<p>原因:${exception.message}</p> 
    		<p>
-   			<a class="btn btn-default" href="javascript:history.back()">
-				<span class="glyphicon glyphicon-backward"></span> 返回
-			</a>
-			<a class="btn btn-danger" href="mailto:es.chenxiaobo@gamil.com">
-				<span class="glyphicon glyphicon-phone-alt"></span> 发送错误报告
-			</a>
+   			<button type="button" class="btn btn-default" onclick="history.back();">
+   				<span class="glyphicon glyphicon-backward"></span> 返回
+   			</button>
+   			<button type="button" class="btn btn-danger" onclick="sendError('${record.id}');">
+   				<span class="glyphicon glyphicon-phone-alt"></span> 发送错误报告
+   			</button>
    		</p>
    	</div>
 </#macro>
