@@ -25,7 +25,6 @@
 		<mapping class="org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory"/>
 		
 		<mapping class="org.exitsoft.showcase.entity.foundation.audit.OperatingRecord"/>
-		<mapping class="org.exitsoft.showcase.entity.foundation.audit.RecordParameter"/>
 	</session-factory>
 	
 	<!-- mysql factory -->
@@ -50,7 +49,6 @@
 		<mapping class="org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory"/>
 		
 		<mapping class="org.exitsoft.showcase.entity.foundation.audit.OperatingRecord"/>
-		<mapping class="org.exitsoft.showcase.entity.foundation.audit.RecordParameter"/>
 	</session-factory> -->
 	
 </hibernate-configuration>

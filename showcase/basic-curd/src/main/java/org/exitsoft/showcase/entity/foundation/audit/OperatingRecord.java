@@ -1,5 +1,7 @@
 package org.exitsoft.showcase.entity.foundation.audit;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
@@ -8,7 +10,7 @@ import javax.persistence.Transient;
 
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
-import org.exitsoft.showcase.entity.foundation.BasicRecordProperty;
+import org.exitsoft.showcase.entity.IdEntity;
 
 /**
  * 操作记录类，记录用户的操作信息
@@ -19,8 +21,18 @@ import org.exitsoft.showcase.entity.foundation.BasicRecordProperty;
 @Entity
 @SuppressWarnings("serial")
 @Table(name="TB_OPERATING_RECORD")
-public class OperatingRecord extends BasicRecordProperty{
+public class OperatingRecord extends IdEntity{
 	
+	//操作人名称
+	private String username;
+	//操作人
+	private String fkUserId;
+	//操作开始时间
+	private Date startDate;
+	//操作结束时间
+	private Date endDate;
+	//操作目标
+	private String operatingTarget;
 	//ip地址
 	private String ip;
 	//操作的java方法
@@ -39,6 +51,101 @@ public class OperatingRecord extends BasicRecordProperty{
 	 */
 	public OperatingRecord() {
 		
+	}
+	
+	/**
+	 * 获取操作人名称
+	 * 
+	 * @return String
+	 */
+	@Column(length=32)
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * 设置操作人名称
+	 * 
+	 * @param username 操作人名称
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	/**
+	 * 获取操作人主键ID
+	 * 
+	 * @return String
+	 */
+	@Column(length=32)
+	public String getFkUserId() {
+		return fkUserId;
+	}
+	
+	/**
+	 * 设置操作人主键ID
+	 * 
+	 * @param fkUserId 操作人主键ID
+	 */
+	public void setFkUserId(String fkUserId) {
+		this.fkUserId = fkUserId;
+	}
+
+	/**
+	 * 获取操作开始时间
+	 * 
+	 * @return Date
+	 */
+	@Column(nullable=false)
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	/**
+	 * 设置操作开始时间
+	 * 
+	 * @param startDate 操作开始时间
+	 */
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	/**
+	 * 获取操作结束时间
+	 * 
+	 * @return Date
+	 */
+	@Column(nullable=false)
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	/**
+	 * 设置操作结束时间
+	 * 
+	 * @param endDate 操作结束时间
+	 */
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	/**
+	 * 获取操作目标
+	 * 
+	 * @return String
+	 */
+	@Column(length=512,nullable=false)
+	public String getOperatingTarget() {
+		return operatingTarget;
+	}
+
+	/**
+	 * 设置操作目标
+	 * 
+	 * @param operatingTarget 操作目标
+	 */
+	public void setOperatingTarget(String operatingTarget) {
+		this.operatingTarget = operatingTarget;
 	}
 
 	/**

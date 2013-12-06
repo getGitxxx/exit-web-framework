@@ -9,5 +9,4 @@ delete from TB_GROUP;
 delete from TB_RESOURCE;
 delete from TB_USER;
 
-delete from TB_RECORD_PARAMETER;
 delete from TB_OPERATING_RECORD;
