@@ -1,6 +1,5 @@
 package org.exitsoft.showcase.web.foundation.audit;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -17,14 +16,13 @@ import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.entity.foundation.audit.OperatingRecord;
 import org.exitsoft.showcase.service.foundation.SystemAuditManager;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import freemarker.template.TemplateException;
 
 /**
  * 操作记录管理Controller
@@ -91,13 +89,18 @@ public class OperatingRecordController {
 	 */
 	@ResponseBody
 	@RequestMapping("send-error")
-	public String sendError(@RequestParam("id")String id) throws IOException, TemplateException {
-		
+	public String sendError(@RequestParam("id")String id) {
+
 		OperatingRecord value = systemAuditManager.getOperatingRecord(id);
+		Hibernate.initialize(value);
 		Map<String, OperatingRecord> model = Collections.singletonMap("entity", value);
 		
-		javaMailService.sendMailByTemplate("basic.curd.manager@gmail.com", "basic-curd-project", 
-				"异常错误报告", "operating-mail-template.ftl", null, model);
+		try {
+			javaMailService.sendByTemplate("27637461@qq.com", "basic-curd-project", 
+						"异常错误报告", "operating-mail-template.ftl", null, model);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "发送成功";
 	}

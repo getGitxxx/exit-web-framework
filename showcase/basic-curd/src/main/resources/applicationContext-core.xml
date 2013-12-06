@@ -27,6 +27,7 @@
 	<!-- 使用annotation 自动注册bean,并保证@Required,@Autowired的属性被注入 -->
 	<context:component-scan base-package="org.exitsoft.showcase">
 		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 
 	<!-- Hibernate配置 -->
@@ -66,6 +67,7 @@
 	<!-- 使用缓存annotation 配置 -->
 	<cache:annotation-driven cache-manager="ehCacheManager" proxy-target-class="true" />
 	
+	<!-- 启动spring上下文持有者，帮组在某些方法直接获取spring bean 对象-->
 	<bean class="org.exitsoft.common.spring.SpringContextHolder"></bean>
 	
 	<beans profile="development">
@@ -82,10 +84,10 @@
 			<property name="password" value="${jdbc.password}" />
 	
 			<!-- 连接池信息 -->
-	        <property name="initialSize" value="${jdbc.initialSize}" />
-	        <property name="maxActive" value="${jdbc.maxActive}" />
-	        <property name="maxIdle" value="${jdbc.maxIdle}" />
-	        <property name="minIdle" value="${jdbc.minIdle}" />
+	        <property name="initialSize" value="${jdbc.initial_size}" />
+	        <property name="maxActive" value="${jdbc.max_active}" />
+	        <property name="maxIdle" value="${jdbc.max_idle}" />
+	        <property name="minIdle" value="${jdbc.min_idle}" />
 			<property name="defaultAutoCommit" value="false" />
 			<property name="timeBetweenEvictionRunsMillis" value="3600000" />
 			<property name="minEvictableIdleTimeMillis" value="3600000" />
