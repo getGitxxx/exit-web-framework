@@ -342,11 +342,6 @@ public class TestBasicHibernateDao {
 	}
 
 	@Test
-	public void testEntityCount() {
-		assertEquals(userDao.entityCount(), 8);
-	}
-
-	@Test
 	public void testDistinctQuery() {
 		List<User> data = Lists.newArrayList();
 		

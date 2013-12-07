@@ -73,6 +73,11 @@ public class TestHibernateSupportDao {
 	public void install() throws Exception {
 		Fixtures.reloadData(dataSource, "/sample-data.xml");
 	}
+
+	@Test
+	public void testEntityCount() {
+		assertEquals(userDao.entityCount(), 8);
+	}
 	
 	@Test
 	public void testFind() {

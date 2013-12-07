@@ -397,15 +397,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 		setOrderToCriteria(c, orders);
 		return c.list();
 	}
-	
-	/**
-	 * 获取实体的总记录数
-	 * 
-	 * @return int
-	 */
-	public int entityCount() {
-		return countHqlResult("from " + getEntityName() + " " + DEFAULT_ALIAS).intValue();
-	}
 
 	/**
 	 * 根据Criterion可变数组创建Criteria对象

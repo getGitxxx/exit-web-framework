@@ -43,6 +43,8 @@ import org.hibernate.internal.CriteriaImpl;
 import org.hibernate.transform.ResultTransformer;
 import org.springframework.util.Assert;
 
+import com.google.common.collect.Lists;
+
 /**
  * {@link BasicHibernateDao}基础扩展类。包含对{@link PropertyFilter}的支持。或其他查询的支持
  * 
@@ -60,6 +62,16 @@ public class HibernateSupportDao<T,PK extends Serializable> extends BasicHiberna
 
 	public HibernateSupportDao(Class entityClass){
 		super(entityClass);
+	}
+
+	
+	/**
+	 * 获取实体的总记录数
+	 * 
+	 * @return int
+	 */
+	public long entityCount(PropertyFilter...filters) {
+		return countCriteriaResult(createCriteria(Lists.newArrayList(filters)));
 	}
 
 	/**
