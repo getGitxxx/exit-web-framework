@@ -78,3 +78,5 @@ exit-web-framework是对常用的java web开发封装实用功能来提高开发
 	[INFO] Final Memory: 10M/25M
 	[INFO] ------------------------------------------------------------------------
 ***
+
+注意:过于旧版本的的eclipse和myeclipse在导入项目时如果发现有错,请检查工具是否已经配置了maven的仓库路径.具体查看在工具的:window->preferences,然后进入到Java->Build Path->Classpath Variables查看左边是否存在M2_REPO,如果不存在,点击New按钮,Name:M2_REPO,Path:你仓库的位置.如:C:\Users\feng\.m2\repository
