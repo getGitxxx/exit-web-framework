@@ -253,6 +253,15 @@ public class AccountManager {
 	}
 	
 	/**
+	 * 获取资源实体的总记录数
+	 * 
+	 * @return long
+	 */
+	public long getResourceCount() {
+		return resourceDao.entityCount();
+	}
+	
+	/**
 	 * 通过用户id获取该用户下的所有资源
 	 * 
 	 * @param userId 用户id

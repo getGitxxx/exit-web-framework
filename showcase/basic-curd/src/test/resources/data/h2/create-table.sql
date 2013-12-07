@@ -1,13 +1,3 @@
---删除所有表
-drop table TB_DATA_DICTIONARY if exists;
-drop table TB_DICTIONARY_CATEGORY if exists;
-drop table TB_GROUP if exists;
-drop table TB_GROUP_RESOURCE if exists;
-drop table TB_GROUP_USER if exists;
-drop table TB_RESOURCE if exists;
-drop table TB_USER if exists;
-drop table TB_OPERATING_RECORD if exists;
-
 --创建系统字典表
 create table TB_DATA_DICTIONARY (id varchar(32) not null, name varchar(256) not null, remark varchar(512), type varchar(1) not null, value varchar(32) not null, fk_category_id varchar(32) not null, primary key (id));
 create table TB_DICTIONARY_CATEGORY (id varchar(32) not null, code varchar(128) not null, name varchar(256) not null, remark varchar(512), fk_parent_id varchar(32), primary key (id));

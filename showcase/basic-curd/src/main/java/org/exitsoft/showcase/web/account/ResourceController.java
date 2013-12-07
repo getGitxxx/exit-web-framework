@@ -96,12 +96,15 @@ public class ResourceController {
 	 * @return String
 	 */
 	@RequestMapping("read")
-	public String read(@RequestParam(value = "id", required = false)String id,Model model) {
+	public String read(@RequestParam(value = "id", required = false)String id,
+					   Model model,
+					   @ModelAttribute("entity")Resource entity) {
 		
 		model.addAttribute("resourceType", SystemVariableUtils.getVariables(SystemDictionaryCode.ResourceType));
 		
 		if (StringUtils.isEmpty(id)) {
 			model.addAttribute("resourcesList", accountManager.getAllResources());
+			entity.setSort(accountManager.getResourceCount() + 1);
 		} else {
 			model.addAttribute("resourcesList", accountManager.getAllResources(id));
 		}
@@ -135,8 +138,6 @@ public class ResourceController {
 	public Resource bindingModel(@RequestParam(value = "id", required = false)String id) {
 		
 		Resource resource = new Resource();
-		
-		resource.setSort(accountManager.getAllResources().size() + 1);
 		
 		if (StringUtils.isNotEmpty(id)) {
 			resource = accountManager.getResource(id);

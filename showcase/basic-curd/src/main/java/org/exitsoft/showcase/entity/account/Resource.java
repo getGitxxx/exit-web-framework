@@ -51,7 +51,7 @@ public class Resource extends IdEntity{
 	//父类
 	private Resource parent;
 	//顺序值
-	private Integer sort;
+	private Long sort;
 	//子类
 	private List<Resource> children = new ArrayList<Resource>();
 	//备注
@@ -136,7 +136,7 @@ public class Resource extends IdEntity{
 	 * @return Integer
 	 */
 	@Column(nullable=false)
-	public Integer getSort() {
+	public Long getSort() {
 		return sort;
 	}
 
@@ -145,7 +145,7 @@ public class Resource extends IdEntity{
 	 * 
 	 * @param sort 顺序值
 	 */
-	public void setSort(Integer sort) {
+	public void setSort(Long sort) {
 		this.sort = sort;
 	}
 
