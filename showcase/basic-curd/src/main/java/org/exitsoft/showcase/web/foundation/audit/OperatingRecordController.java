@@ -18,6 +18,7 @@ import org.exitsoft.showcase.entity.foundation.audit.OperatingRecord;
 import org.exitsoft.showcase.service.foundation.SystemAuditManager;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,8 @@ public class OperatingRecordController {
 	private SystemAuditManager systemAuditManager;
 	@Autowired
 	private JavaMailService javaMailService;
+	@Value("${mail.exception.receive}")
+	private String mailReceive;
 	
 	/**
 	 * 获取操作记录列表
@@ -96,7 +99,7 @@ public class OperatingRecordController {
 		Map<String, OperatingRecord> model = Collections.singletonMap("entity", value);
 		
 		try {
-			javaMailService.sendByTemplate("27637461@qq.com", "basic-curd-project", 
+			javaMailService.sendByTemplate(mailReceive, "basic-curd-project", 
 						"异常错误报告", "operating-mail-template.ftl", null, model);
 		} catch (Exception e) {
 			e.printStackTrace();
