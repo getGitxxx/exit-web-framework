@@ -70,6 +70,7 @@
 	<!-- 启动spring上下文持有者，帮组在某些方法直接获取spring bean 对象-->
 	<bean class="org.exitsoft.common.spring.SpringContextHolder"></bean>
 	
+	<!-- 开发环境使用的dataSource和配置文件 -->
 	<beans profile="development">
 	
 		<!-- 定义受环境影响易变的变量 -->
@@ -95,6 +96,7 @@
 	
 	</beans>
 	
+	<!-- 测试环境使用的dataSource和配置文件 -->
 	<beans profile="test">
 	
 		<!-- 定义受环境影响易变的变量 -->
@@ -109,6 +111,7 @@
 			<property name="password" value="${jdbc.password}" />
 		</bean>
 		
+		<!-- 运行测试环境时创建表都h2数据库 -->
 		<jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
 			<jdbc:script location="classpath:data/h2/create-table.sql" />
 		</jdbc:initialize-database>
