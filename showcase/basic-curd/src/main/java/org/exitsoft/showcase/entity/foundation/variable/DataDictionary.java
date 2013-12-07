@@ -21,10 +21,14 @@ import org.exitsoft.showcase.entity.IdEntity;
  *
  */
 @Entity
-@SuppressWarnings("serial")
 @Table(name="TB_DATA_DICTIONARY")
 @NamedQuery(name=DataDictionary.FindByCateGoryCode,query="from DataDictionary dd where dd.category.code = ?1")
 public class DataDictionary extends IdEntity{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * 通过字典类别代码查询所有数据字典的NamedQuery名称

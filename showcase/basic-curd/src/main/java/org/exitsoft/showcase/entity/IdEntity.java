@@ -17,8 +17,12 @@ import org.hibernate.annotations.GenericGenerator;
  *
  */
 @MappedSuperclass
-@SuppressWarnings("serial")
 public class IdEntity implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	protected String id;
 	

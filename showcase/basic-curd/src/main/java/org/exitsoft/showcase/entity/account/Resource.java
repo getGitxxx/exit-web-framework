@@ -31,9 +31,14 @@ import org.hibernate.annotations.NamedQuery;
  */
 @Entity
 @Table(name="TB_RESOURCE")
-@SuppressWarnings("serial")
 @NamedQuery(name=Resource.UserResources,query="select rl from User u left join u.groupsList gl left join gl.resourcesList rl where u.id=?1 and gl.type= '03' order by rl.sort")
 public class Resource extends IdEntity{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * 通过用户id和资源类型获取该用户下的所有资源
 	 */
