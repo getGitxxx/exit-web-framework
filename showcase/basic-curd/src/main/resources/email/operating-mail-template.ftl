@@ -12,7 +12,6 @@
 			<th>开始时间</th>
 			<th>结束时间</th>
 			<th>执行状态</th>
-			
         </tr>
     </thead>
     <tbody>
