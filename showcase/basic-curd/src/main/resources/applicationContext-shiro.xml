@@ -53,7 +53,7 @@
 		</property>
 	</bean>
 	
-    <beans profile="development">
+    <beans profile="dev">
 		<!-- 将shiro与spring集合 -->
 		<bean id="shiroSecurityFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 			<property name="filters">

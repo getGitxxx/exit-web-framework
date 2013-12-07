@@ -322,7 +322,7 @@
 					<systemProperties>
 						<systemProperty>
 							<name>spring.profiles.active</name>
-							<value>development</value>
+							<value>dev</value>
 						</systemProperty>
 					</systemProperties>
 					<webAppConfig>

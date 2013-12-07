@@ -71,7 +71,7 @@
 	<bean class="org.exitsoft.common.spring.SpringContextHolder"></bean>
 	
 	<!-- 开发环境使用的dataSource和配置文件 -->
-	<beans profile="development">
+	<beans profile="dev">
 	
 		<!-- 定义受环境影响易变的变量 -->
 		<context:property-placeholder ignore-resource-not-found="true" location="classpath*:/application.properties" />

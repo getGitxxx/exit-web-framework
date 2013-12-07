@@ -24,7 +24,7 @@ public class LaunchJetty {
 	public static final String ACTIVE_PROFILE = "spring.profiles.active";
 
 	public static void main(String[] args) throws Exception {
-		System.setProperty(ACTIVE_PROFILE, "development");
+		System.setProperty(ACTIVE_PROFILE, "dev");
 		Server server = JettyFactory.createServerInSource(PORT, CONTEXT);
 		JettyFactory.setTldJarNames(server, TLD_JAR_NAMES);
 

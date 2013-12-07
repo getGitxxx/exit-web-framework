@@ -12,6 +12,12 @@
 			classpath*:/applicationContext-mail.xml
 		</param-value>
 	</context-param>
+	
+	<!-- 开发环境配置 -->
+	<context-param>
+		<param-name>spring.profiles.default</param-name>
+		<param-value>dev</param-value>
+	</context-param>
 
 	<!-- Filter 定义 -->
 	<!-- Character Encoding filter -->
