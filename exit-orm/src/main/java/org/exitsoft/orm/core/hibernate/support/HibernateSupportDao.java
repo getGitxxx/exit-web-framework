@@ -68,10 +68,10 @@ public class HibernateSupportDao<T,PK extends Serializable> extends BasicHiberna
 	/**
 	 * 获取实体的总记录数
 	 * 
-	 * @return int
+	 * @return long
 	 */
 	public long entityCount(PropertyFilter...filters) {
-		return countCriteriaResult(createCriteria(Lists.newArrayList(filters)));
+		return (Long) createCriteria(Lists.newArrayList(filters)).setProjection(Projections.rowCount()).uniqueResult();
 	}
 
 	/**
