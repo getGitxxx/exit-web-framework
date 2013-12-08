@@ -25,9 +25,6 @@ import org.exitsoft.showcase.entity.IdEntity;
 @Table(name="TB_DICTIONARY_CATEGORY")
 public class DictionaryCategory extends IdEntity{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	//名称

@@ -19,11 +19,9 @@ import org.hibernate.annotations.GenericGenerator;
 @MappedSuperclass
 public class IdEntity implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
+	//主键Id
 	protected String id;
 	
 	/**

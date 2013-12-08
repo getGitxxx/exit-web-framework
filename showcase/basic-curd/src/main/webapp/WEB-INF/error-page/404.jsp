@@ -15,7 +15,7 @@
     <!--[if IE 8]>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script type="text/javascript" src="resource/script/respond.min.js"></script>
-        <![endif]-->
+    <![endif]-->
 </head>
 <body>
 	<div class="main-container">

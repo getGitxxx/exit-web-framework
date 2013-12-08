@@ -14,8 +14,11 @@ import org.exitsoft.showcase.entity.account.User;
  * @author vincent
  * 
  */
-@SuppressWarnings("serial")
 public class SessionVariable implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+
 	// 当前用户
 	private User user;
 

@@ -22,9 +22,6 @@ import org.exitsoft.showcase.entity.IdEntity;
 @Table(name="TB_OPERATING_RECORD")
 public class OperatingRecord extends IdEntity{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	//操作人名称

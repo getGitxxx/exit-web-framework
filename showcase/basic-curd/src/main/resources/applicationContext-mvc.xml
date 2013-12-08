@@ -52,11 +52,7 @@
 	
 	<!-- 启动异常Resolver -->
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="exceptionMappings">
-			<map>
-			  <entry key="org.exitsoft.showcase.service.ServiceException" value="exception/service-exception" />
-			</map>
-		</property>
+		<property name="defaultErrorView" value="exception/defaule-error" />
 	</bean>
 
 	<!-- freemarker的格式和其他配置 -->

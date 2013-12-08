@@ -34,9 +34,6 @@ import org.hibernate.annotations.NamedQuery;
 @NamedQuery(name=Resource.UserResources,query="select rl from User u left join u.groupsList gl left join gl.resourcesList rl where u.id=?1 and gl.type= '03' order by rl.sort")
 public class Resource extends IdEntity{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	/**

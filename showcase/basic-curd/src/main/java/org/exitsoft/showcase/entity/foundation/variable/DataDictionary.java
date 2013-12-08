@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -22,16 +21,12 @@ import org.exitsoft.showcase.entity.IdEntity;
  */
 @Entity
 @Table(name="TB_DATA_DICTIONARY")
-@NamedQuery(name=DataDictionary.FindByCateGoryCode,query="from DataDictionary dd where dd.category.code = ?1")
 public class DataDictionary extends IdEntity{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * 通过字典类别代码查询所有数据字典的NamedQuery名称
+	 * 通过字典类别代码查询所有数据字典的缓存key名称
 	 */
 	public static final String FindByCateGoryCode = "findByCateGoryCode";
 	

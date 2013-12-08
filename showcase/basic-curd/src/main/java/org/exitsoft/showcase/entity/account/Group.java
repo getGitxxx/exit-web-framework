@@ -34,11 +34,11 @@ import org.hibernate.annotations.NamedQuery;
             query="select gl from User u left join u.groupsList gl  where u.id=?1 and gl.type= '03'")
 public class Group extends IdEntity{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 获取用户所有组集合NamedQuery
+	 */
 	public static final String UserGroups = "userGroups";
 	
 	//名称

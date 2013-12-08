@@ -2,9 +2,6 @@ package org.exitsoft.showcase.service.foundation;
 
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Predicate;
-import org.apache.commons.lang3.ArrayUtils;
 import org.exitsoft.orm.core.Page;
 import org.exitsoft.orm.core.PageRequest;
 import org.exitsoft.orm.core.PropertyFilter;
@@ -89,20 +86,9 @@ public class SystemVariableManager {
 	 * @return List
 	 */
 	@Cacheable(value=DataDictionary.FindByCateGoryCode,key=DataDictionary.FindByCateGoryCodeCacheKey)
-	public List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code,final String... ignoreValue) {
-		List<DataDictionary> result = dataDictionaryDao.findByQuery(DataDictionary.FindByCateGoryCode, code.getCode());
+	public List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code,String... ignoreValue) {
 		
-		CollectionUtils.filter(result, new Predicate() {
-			
-			@Override
-			public boolean evaluate(Object object) {
-				DataDictionary dd = (DataDictionary) object;
-				return !ArrayUtils.contains(ignoreValue, dd.getValue());
-			}
-			
-		});
-		
-		return result;
+		return dataDictionaryDao.getByCategoryCode(code, ignoreValue);
 	}
 	
 	//---------------------------------------字典类别管理---------------------------------------//

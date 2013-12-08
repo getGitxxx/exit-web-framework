@@ -46,7 +46,6 @@
 			<value>
 				/login = captchaAuthc
 				/logout = logout
-				/resources/** = anon
 				/index = perms[security:index]
 				/changePassword = perms[security:change-password]
 			</value>
@@ -90,7 +89,6 @@
 				<value>
 					/login = authc
 					/logout = logout
-					/resources/** = anon
 					/index = perms[security:index]
 					/changePassword = perms[security:change-password]
 				</value>
