@@ -1,4 +1,4 @@
-package org.exitsoft.showcase.test.function;
+package org.exitsoft.showcase.test.founction;
 
 import javax.sql.DataSource;
 

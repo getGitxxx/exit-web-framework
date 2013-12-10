@@ -1,11 +1,11 @@
-package org.exitsoft.showcase.test.function.account;
+package org.exitsoft.showcase.test.founction.account;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.exitsoft.showcase.test.function.FunctionTestCaseSupport;
+import org.exitsoft.showcase.test.founction.FunctionTestCaseSupport;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
