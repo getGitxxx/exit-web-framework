@@ -14,7 +14,7 @@
 		<h3>更新日志</h3>
 		<hr>
 		
-		<h3>1.x.0</h3>
+		<h3>1.2.0.RELEASE</h3>
 	    <hr>
 	    
 	    <ul>
@@ -31,11 +31,6 @@
     		<li>
     			<p>
     				删除CustomRememberMeManager类。<span class="label label-danger">delete</span>
-    			</p>
-    		</li>
-    		<li>
-    			<p>
-    				将<a href="https://code.google.com/p/rapid-framework/">rapid-framework</a>的freemarker继承代码删除，使用原生的宏来实现继承功能。<span class="label label-info">enhancement</span>
     			</p>
     		</li>
     		<li>
@@ -65,7 +60,7 @@
     		</li>
     		<li>
     			<p>
-    				借助spring JavaMailSender 实现一个Java邮件服务类,当出现ServiceException后通过界面的"发送错误报告"来演示邮件发送<span class="label label-success">new feature</span>
+    				借助spring JavaMailSender 实现一个Java邮件服务类,当出现服务器内部异常后通过界面的"发送错误报告"来演示邮件发送<span class="label label-success">new feature</span>
     			</p>
     		</li>
     		<li>
@@ -73,9 +68,29 @@
     				添加SimpleMappingExceptionResolver来管理spring mvc异常，当出现异常时候跳转到exception/defaule-error.html<span class="label label-success">new feature</span>
     			</p>
     		</li>
+			<li>
+				<p>
+					使用spring profiles来划分开发环境和测试环境使用的资源<span class="label label-info">enhancement</span>
+				</p>
+			</li>
+    		<li>
+    			<p>
+    				将<a href="https://code.google.com/p/rapid-framework/">rapid-framework</a>的freemarker继承代码删除，使用原生的宏来实现继承功能。<span class="label label-info">enhancement</span>
+    			</p>
+    		</li>
+			<li>
+				<p>
+					第三方版本升级:spring->3.2.5.RELEASE、hibernate->4.2.7.Final、cxf->2.7.7、jackson->2.2.3<span class="label label-info">enhancement</span>
+				</p>
+			</li>
+			<li>
+				<p>
+					升级Bootstrap到3.0.3<span class="label label-info">enhancement</span>
+				</p>
+			</li>
     	</ul>
     	
-		<h3>1.1.0</h3>
+		<h3>1.1.0.RELEASE</h3>
 	    	<hr>
 	    	<ul>
 	    		<li>

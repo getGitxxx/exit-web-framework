@@ -15,14 +15,12 @@
  */
 package org.exitsoft.common.utils;
 
-import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
-
-import com.google.common.collect.Maps;
 
 /**
  * 借助Cxf对JaxWs生成接口的工具类
@@ -40,7 +38,7 @@ public class JaxWsFactoryUtils {
 	private static JaxWsDynamicClientFactory jaxWsDynamicClientFactory = JaxWsDynamicClientFactory.newInstance();
 	
 	//记录动态客户端的map，如果存在将不会创建。
-	private static Map<String, Client> clientMap = Maps.newHashMap();
+	private static ConcurrentHashMap<String, Client> clientMap = new ConcurrentHashMap<String, Client>();
 	
 	/**
 	 * 根据serviceClass类型和ws地址,创建一个可以调用的接口类

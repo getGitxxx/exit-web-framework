@@ -5,7 +5,7 @@ if not exist generated-sources (md generated-sources)
 
 cd generated-sources
 
-call mvn archetype:generate -DarchetypeCatalog=local -DarchetypeGroupId=org.exitsoft.showcase -DarchetypeArtifactId=exitsoft-basic-curd-archetype -DarchetypeVersion=1.2.0-SNAPSHOT
+call mvn archetype:generate -DarchetypeCatalog=local -DarchetypeGroupId=org.exitsoft.showcase -DarchetypeArtifactId=exitsoft-basic-curd-archetype -DarchetypeVersion=1.2.0.RELEASE
 
 cd ..
 

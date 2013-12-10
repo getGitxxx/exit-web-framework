@@ -25,7 +25,6 @@ call mvn antrun:run
 
 echo [INFO] start basic curd app
 
-set MAVEN_OPTS=%MAVEN_OPTS% -XX:MaxPermSize=128m
 start "basic curd" mvn clean jetty:run
 
 echo [INFO] Please wait a moment. When you see "[INFO] Started Jetty Server", you can visit: http://localhost:8080/exitsoft-basic-curd/ to view the demo
