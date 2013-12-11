@@ -25,11 +25,6 @@ public class DataDictionary extends IdEntity{
 	
 	private static final long serialVersionUID = 1L;
 	
-	/**
-	 * 通过字典类别代码查询所有数据字典的缓存key名称
-	 */
-	public static final String FindByCateGoryCode = "findByCateGoryCode";
-	
 	//名称
 	private String name;
 	//值

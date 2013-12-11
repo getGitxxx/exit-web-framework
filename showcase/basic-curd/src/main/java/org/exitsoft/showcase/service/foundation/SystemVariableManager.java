@@ -11,7 +11,6 @@ import org.exitsoft.showcase.dao.foundation.variable.DictionaryCategoryDao;
 import org.exitsoft.showcase.entity.foundation.variable.DataDictionary;
 import org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,7 +49,6 @@ public class SystemVariableManager {
 	 * 
 	 * @param entity 数据字典实体
 	 */
-	@CacheEvict(value=DataDictionary.FindByCateGoryCode,allEntries=true)
 	public void saveDataDictionary(DataDictionary entity) {
 		dataDictionaryDao.save(entity);
 	}
@@ -60,7 +58,6 @@ public class SystemVariableManager {
 	 * 
 	 * @param ids 数据字典id集合
 	 */
-	@CacheEvict(value=DataDictionary.FindByCateGoryCode,allEntries=true)
 	public void deleteDataDictionary(List<String> ids) {
 		dataDictionaryDao.deleteAll(ids);
 	}
@@ -85,12 +82,11 @@ public class SystemVariableManager {
 	 * 
 	 * @return List
 	 */
-	@Cacheable(value=DataDictionary.FindByCateGoryCode,
-			   key="#code.getCode() + '-' + " +
-			   		"T(org.apache.commons.lang3.StringUtils)." +
-			   		"join(#ignoreValue, '-')")
+	@Cacheable(value="findByCateGoryCode",
+               key="#code.getCode() + '-' + " +
+                   "T(org.apache.commons.lang3.StringUtils)." +
+                   "join(#ignoreValue, '-')")
 	public List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code,String... ignoreValue) {
-		
 		return dataDictionaryDao.getByCategoryCode(code, ignoreValue);
 	}
 	
