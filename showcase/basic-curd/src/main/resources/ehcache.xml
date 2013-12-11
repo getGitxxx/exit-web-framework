@@ -27,7 +27,7 @@
     
      <!-- shiro认证的缓存名称 -->
     <cache name="shiroAuthorizationCache" maxElementsInMemory="300" eternal="false" timeToLiveSeconds="600" overflowToDisk="false">
-    	<!-- <cacheEventListenerFactory class="net.sf.ehcache.distribution." properties="replicateAsynchronously=true,replicatePuts=false,replicateUpdatesViaCopy=false"/> -->
+    	<!-- <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true,replicatePuts=false,replicateUpdatesViaCopy=false"/> -->
     </cache>
      
 </ehcache>
