@@ -50,11 +50,6 @@ public class AccountManager {
 	@Autowired
 	private GroupDao groupDao;
 	
-	/**
-	 * shrio授权缓存key
-	 */
-	private final String ShiroAuthorizationCache = "shiroAuthorizationCache";
-	
 	//------------------------------用户管理-----------------------------------//
 	
 	/**
@@ -122,7 +117,6 @@ public class AccountManager {
 	 * 
 	 * @param entity 用户实体
 	 */
-	@CacheEvict(value=ShiroAuthorizationCache,allEntries=true)
 	public void updateUser(User entity) {
 		userDao.update(entity);
 	}
@@ -345,7 +339,7 @@ public class AccountManager {
 	 * 
 	 * @param entity 组实体
 	 */
-	@CacheEvict(value=ShiroAuthorizationCache,allEntries=true)
+	@CacheEvict(value="shiroAuthorizationCache",allEntries=true)
 	public void saveGroup(Group entity) {
 		groupDao.save(entity);
 	}
@@ -355,7 +349,7 @@ public class AccountManager {
 	 * 
 	 * @param ids 组id
 	 */
-	@CacheEvict(value=ShiroAuthorizationCache,allEntries=true)
+	@CacheEvict(value="shiroAuthorizationCache",allEntries=true)
 	public void deleteGroups(List<String> ids) {
 		groupDao.deleteAll(ids);
 	}

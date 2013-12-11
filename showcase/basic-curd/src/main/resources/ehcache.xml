@@ -20,7 +20,7 @@
     </cache>
      
     <cache name="shiroAuthorizationCache" maxElementsInMemory="300" eternal="false" timeToLiveSeconds="600" overflowToDisk="false">
-    	<!-- <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicatePuts=false,replicateUpdatesViaCopy=false"/> -->
+    	<!-- <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicatePuts=true,replicateUpdatesViaCopy=false"/> -->
     </cache>
      
 </ehcache>
