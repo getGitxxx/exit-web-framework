@@ -224,7 +224,8 @@ public class CaptchaAuthenticationFilter extends FormAuthenticationFilter{
 		
 		session.removeAttribute(getLoginNumKeyAttribute());
 		session.removeAttribute(getSessionShowCaptchaKeyAttribute());
-		
+
+		session.setAttribute("sv", subject.getPrincipal());
 		return super.onLoginSuccess(token, subject, request, response);
 	}
 	

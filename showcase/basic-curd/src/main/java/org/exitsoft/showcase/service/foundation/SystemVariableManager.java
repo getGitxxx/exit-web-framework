@@ -85,7 +85,10 @@ public class SystemVariableManager {
 	 * 
 	 * @return List
 	 */
-	@Cacheable(value=DataDictionary.FindByCateGoryCode,key=DataDictionary.FindByCateGoryCodeCacheKey)
+	@Cacheable(value=DataDictionary.FindByCateGoryCode,
+			   key="#code.getCode() + '-' + " +
+			   		"T(org.apache.commons.lang3.StringUtils)." +
+			   		"join(#ignoreValue, '-')")
 	public List<DataDictionary> getDataDictionariesByCategoryCode(SystemDictionaryCode code,String... ignoreValue) {
 		
 		return dataDictionaryDao.getByCategoryCode(code, ignoreValue);

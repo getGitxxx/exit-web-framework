@@ -59,6 +59,12 @@ public class AccountManager {
 	 * @param newPassword 新密码
 	 * 
 	 */
+	//当修改成功后将shiro的认证缓存也更新，包正下次登录也不需要在次查询数据库
+	@CacheEvict(value="shiroAuthenticationCache",
+			  	key="T(org.exitsoft.showcase.common.SystemVariableUtils)." +
+					"getSessionVariable()." +
+					"getUser()." +
+					"getUsername()")
 	public void updateUserPassword(String oldPassword, String newPassword) {
 		User user = SystemVariableUtils.getSessionVariable().getUser();
 		
@@ -117,6 +123,8 @@ public class AccountManager {
 	 * 
 	 * @param entity 用户实体
 	 */
+	//当更新后将shiro的认证缓存也更新，保证shiro和当前的用户一致
+	@CacheEvict(value="shiroAuthenticationCache",key="#entity.getUsername()")
 	public void updateUser(User entity) {
 		userDao.update(entity);
 	}

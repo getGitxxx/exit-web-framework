@@ -21,7 +21,12 @@
 			</bean>
 		</property>
 		<property name="defaultPermissionString" value="security:change-password,security:index" />
+		<!-- 授权缓存名称 -->
     	<property name="authorizationCacheName" value="shiroAuthorizationCache" />
+    	<!-- 启用认证缓存，当用户登录一次后将不在查询数据库来获取用户信息，直接在从缓存获取 -->
+    	<property name="authenticationCachingEnabled" value="true" />
+    	<!-- 认证缓存名称 -->
+    	<property name="authenticationCacheName" value="shiroAuthenticationCache" />
 	</bean>
 	
 	<!-- shiro 的缓存管理,使用spring的ehCacheManagerFactory,

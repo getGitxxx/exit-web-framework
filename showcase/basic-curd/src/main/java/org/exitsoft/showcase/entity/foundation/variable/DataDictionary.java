@@ -30,14 +30,6 @@ public class DataDictionary extends IdEntity{
 	 */
 	public static final String FindByCateGoryCode = "findByCateGoryCode";
 	
-	/**
-	 * 通过字典类别代码查询所有数据字典的缓存key名称,由于getDataDictionariesByCategoryCode方法带有可变参数
-	 * 所以必须要自定义Cacheable的key名称，该key名称的规则为当前传入的code参数的getCode值加上可变参数的值并
-	 * 于'-'分割。如:getDataDictionariesByCategoryCode(SystemDictionaryCode.Sate,"1","2","3");所生成key
-	 * 名称为:state-1-2-3
-	 */
-	public static final String FindByCateGoryCodeCacheKey = "#code.getCode()+'-'+T(org.apache.commons.lang3.StringUtils).join(#ignoreValue, '-')";
-	
 	//名称
 	private String name;
 	//值

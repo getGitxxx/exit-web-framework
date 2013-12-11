@@ -14,13 +14,20 @@
 	<cacheManagerPeerListenerFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory" /> -->
 	
     <defaultCache maxElementsInMemory="10000" eternal="false"  timeToIdleSeconds="300" timeToLiveSeconds="600" overflowToDisk="true"/>
-        
+    
+    <!-- 通过字典类别代码查询所有数据字典的缓存名称 -->
     <cache name="findByCateGoryCode" maxElementsInMemory="150" eternal="false" timeToLiveSeconds="36000" timeToIdleSeconds="3600" overflowToDisk="true">
     	<!-- <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicatePuts=false,replicateUpdatesViaCopy=false"/> -->
     </cache>
      
+    <!-- shiro授权的缓存名称 -->
     <cache name="shiroAuthorizationCache" maxElementsInMemory="300" eternal="false" timeToLiveSeconds="600" overflowToDisk="false">
-    	<!-- <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicatePuts=true,replicateUpdatesViaCopy=false"/> -->
+    	<!-- <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true,replicatePuts=false,replicateUpdatesViaCopy=false"/> -->
+    </cache>
+    
+     <!-- shiro认证的缓存名称 -->
+    <cache name="shiroAuthorizationCache" maxElementsInMemory="300" eternal="false" timeToLiveSeconds="600" overflowToDisk="false">
+    	<!-- <cacheEventListenerFactory class="net.sf.ehcache.distribution." properties="replicateAsynchronously=true,replicatePuts=false,replicateUpdatesViaCopy=false"/> -->
     </cache>
      
 </ehcache>
