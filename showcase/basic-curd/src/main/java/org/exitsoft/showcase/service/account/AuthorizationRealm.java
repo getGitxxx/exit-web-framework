@@ -38,7 +38,7 @@ public abstract class AuthorizationRealm extends AuthorizingRealm{
 	/**
 	 * 设置默认permission
 	 * 
-	 * @param defaultPermissionString permission 如果存在多个值，使用逗号","使用逗号分割
+	 * @param defaultPermissionString permission 如果存在多个值，使用逗号","分割
 	 */
 	public void setDefaultPermissionString(String defaultPermissionString) {
 		String[] perms = StringUtils.split(defaultPermissionString,",");
@@ -48,7 +48,7 @@ public abstract class AuthorizationRealm extends AuthorizingRealm{
 	/**
 	 * 设置默认role
 	 * 
-	 * @param defaultRoleString role 如果存在多个值，使用逗号","使用逗号分割
+	 * @param defaultRoleString role 如果存在多个值，使用逗号","分割
 	 */
 	public void setDefaultRoleString(String defaultRoleString) {
 		String[] roles = StringUtils.split(defaultRoleString,",");
