@@ -40,6 +40,12 @@ public class DataDictionary extends IdEntity{
 		
 	}
 	
+	public DataDictionary(String name, String value, String type) {
+		this.name = name;
+		this.value = value;
+		this.type = type;
+	}
+
 	/**
 	 * 获取名称
 	 * 

@@ -17,8 +17,8 @@ import javax.persistence.Transient;
 
 import org.exitsoft.common.utils.CollectionUtils;
 import org.exitsoft.showcase.common.SystemVariableUtils;
-import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.common.enumeration.entity.GroupType;
+import org.exitsoft.showcase.common.enumeration.entity.State;
 import org.exitsoft.showcase.entity.IdEntity;
 import org.hibernate.annotations.NamedQuery;
 
@@ -308,6 +308,6 @@ public class Group extends IdEntity{
 	 */
 	@Transient
 	public String getStateName() {
-		return SystemVariableUtils.getName(SystemDictionaryCode.State, this.state);
+		return SystemVariableUtils.getName(State.class, this.state);
 	}
 }

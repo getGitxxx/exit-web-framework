@@ -5,14 +5,18 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
+import org.exitsoft.showcase.common.enumeration.ValueEnum;
 import org.exitsoft.showcase.entity.foundation.variable.DataDictionary;
 import org.exitsoft.showcase.service.foundation.SystemVariableManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.google.common.collect.Lists;
 
 /**
  * 系统变量工具类
@@ -69,6 +73,38 @@ public class SystemVariableUtils {
 		}
 		return DEFAULT_DICTIONARY_VALUE; 
 	}
+	
+	/**
+	 * 通过字典枚举获取字典名称
+	 * 
+	 * @param enumClass 字典枚举class
+	 * @param value 值
+	 * 
+	 * @return String
+	 */
+	public static String getName(Class<? extends Enum<? extends ValueEnum<?>>> enumClass,Object value) {
+		
+		if (value == null || enumClass == null) {
+			return DEFAULT_DICTIONARY_VALUE;
+		}
+		
+		if (value instanceof String && StringUtils.isEmpty(value.toString())) {
+			return DEFAULT_DICTIONARY_VALUE;
+		}
+	
+		Enum<?>[] values = enumClass.getEnumConstants();
+		
+		for (Enum<?> o : values) {
+			ValueEnum<?> ve = (ValueEnum<?>) o;
+			
+			if (StringUtils.equals(ve.getValue().toString(), value.toString())) {
+				return ve.getName();
+			}
+			
+		}
+		
+		return DEFAULT_DICTIONARY_VALUE;
+	}
 
 	/**
 	 * 通过字典类别代码获取数据字典集合
@@ -80,6 +116,32 @@ public class SystemVariableUtils {
 	 */
 	public static List<DataDictionary> getVariables(SystemDictionaryCode code, String... ignoreValue) {
 		return systemVariableManager.getDataDictionariesByCategoryCode(code, ignoreValue);
+	}
+	
+	/**
+	 * 通过字典枚举获取数据字典集合
+	 * 
+	 * @param enumClass 字典枚举 class
+	 * @param ignoreValue 忽略字典的值
+	 * 
+	 * @return List
+	 */
+	public static List<DataDictionary> getVariables(Class<? extends Enum<? extends ValueEnum<?>>> enumClass, Object... ignoreValue) {
+		List<DataDictionary> result = Lists.newArrayList();
+		Enum<?>[] values = enumClass.getEnumConstants();
+		
+		for (Enum<?> o : values) {
+			ValueEnum<?> ve = (ValueEnum<?>) o;
+			Object value = ve.getValue();
+			//判断是否该值的字段要忽略
+			if(!ArrayUtils.contains(ignoreValue,value)) {
+				String type = value.getClass().getSimpleName();
+				result.add(new DataDictionary(ve.getName(),value.toString(),StringUtils.substring(type, 0,1)));
+			}
+			
+		}
+		
+		return result;
 	}
 	
 	/**

@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.exitsoft.showcase.common.SystemVariableUtils;
-import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
+import org.exitsoft.showcase.common.enumeration.entity.OperatingState;
 import org.exitsoft.showcase.entity.IdEntity;
 
 /**
@@ -269,7 +269,7 @@ public class OperatingRecord extends IdEntity{
 	 */
 	@Transient
 	public String getStateName() {
-		return SystemVariableUtils.getName(SystemDictionaryCode.OperatingState, this.state);
+		return SystemVariableUtils.getName(OperatingState.class, this.state);
 	}
 	
 }

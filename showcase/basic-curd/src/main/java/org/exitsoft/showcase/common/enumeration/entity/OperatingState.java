@@ -1,12 +1,14 @@
 package org.exitsoft.showcase.common.enumeration.entity;
 
+import org.exitsoft.showcase.common.enumeration.ValueEnum;
+
 /**
  * 操作状态
  * 
  * @author vincent
  *
  */
-public enum OperatingState {
+public enum OperatingState implements ValueEnum<Integer>{
 	/**
 	 * 成功
 	 */

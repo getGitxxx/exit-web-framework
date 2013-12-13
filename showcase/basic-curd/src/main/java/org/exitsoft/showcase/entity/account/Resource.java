@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.exitsoft.showcase.common.SystemVariableUtils;
-import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.common.enumeration.entity.ResourceType;
 import org.exitsoft.showcase.entity.IdEntity;
 import org.hibernate.annotations.NamedQuery;
@@ -297,7 +296,7 @@ public class Resource extends IdEntity{
 	 */
 	@Transient
 	public String getTypeName() {
-		return SystemVariableUtils.getName(SystemDictionaryCode.ResourceType, this.type);
+		return SystemVariableUtils.getName(ResourceType.class, this.type);
 	}
 	
 }

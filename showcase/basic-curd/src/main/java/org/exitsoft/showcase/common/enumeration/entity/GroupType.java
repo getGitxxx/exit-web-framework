@@ -1,16 +1,14 @@
 package org.exitsoft.showcase.common.enumeration.entity;
 
+import org.exitsoft.showcase.common.enumeration.ValueEnum;
+
 /**
  * 组类型
- * 
- * 机构类型 = Organization,
- * 部门类型 = Department,
- * 角色组 = RoleGorup,
  * 
  * @author vincent
  *
  */
-public enum GroupType {
+public enum GroupType implements ValueEnum<String>{
 
 	/**
 	 * 机构类型

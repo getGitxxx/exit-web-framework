@@ -12,8 +12,8 @@ import org.exitsoft.orm.core.PropertyFilter;
 import org.exitsoft.orm.core.PropertyFilters;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.annotation.OperatingAudit;
-import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.common.enumeration.entity.GroupType;
+import org.exitsoft.showcase.common.enumeration.entity.State;
 import org.exitsoft.showcase.entity.account.User;
 import org.exitsoft.showcase.entity.foundation.variable.DataDictionary;
 import org.exitsoft.showcase.service.account.AccountManager;
@@ -53,7 +53,7 @@ public class UserController {
 		
 		List<PropertyFilter> filters = PropertyFilters.build(request, true);
 
-		request.setAttribute("states", SystemVariableUtils.getVariables(SystemDictionaryCode.State,"3"));
+		request.setAttribute("states", SystemVariableUtils.getVariables(State.class,3));
 		
 		if (!pageRequest.isOrderBySetted()) {
 			pageRequest.setOrderBy("id");
@@ -153,7 +153,7 @@ public class UserController {
 	public String read(@RequestParam(value = "id", required = false)String id,Model model) {
 		
 		List<DataDictionary> data =null;
-		data = SystemVariableUtils.getVariables(SystemDictionaryCode.State,"3");
+		data = SystemVariableUtils.getVariables(State.class,3);
 		
 		model.addAttribute("states", data);
 		model.addAttribute("groupsList", accountManager.getAllGroup(GroupType.RoleGorup));

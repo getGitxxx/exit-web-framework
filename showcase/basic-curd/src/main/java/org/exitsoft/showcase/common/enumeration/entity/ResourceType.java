@@ -1,12 +1,14 @@
 package org.exitsoft.showcase.common.enumeration.entity;
 
+import org.exitsoft.showcase.common.enumeration.ValueEnum;
+
 /**
  * 资源类型枚举
  * 
  * @author vincent
  *
  */
-public enum ResourceType {
+public enum ResourceType implements ValueEnum<String>{
 	
 	/**
 	 * 菜单类型，该类型为用户可以见的

@@ -5,14 +5,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
-import org.exitsoft.orm.core.PropertyFilters;
 import org.exitsoft.orm.core.Page;
 import org.exitsoft.orm.core.PageRequest;
 import org.exitsoft.orm.core.PageRequest.Sort;
 import org.exitsoft.orm.core.PropertyFilter;
+import org.exitsoft.orm.core.PropertyFilters;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.annotation.OperatingAudit;
-import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
+import org.exitsoft.showcase.common.enumeration.entity.ResourceType;
 import org.exitsoft.showcase.entity.account.Resource;
 import org.exitsoft.showcase.service.account.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,7 @@ public class ResourceController {
 		
 		List<PropertyFilter> filters = PropertyFilters.build(request,true);
 		
-		request.setAttribute("resourceType", SystemVariableUtils.getVariables(SystemDictionaryCode.ResourceType));
+		request.setAttribute("resourceType", SystemVariableUtils.getVariables(ResourceType.class));
 		request.setAttribute("resourcesList", accountManager.getAllResources());
 		
 		if (!pageRequest.isOrderBySetted()) {
@@ -100,7 +100,7 @@ public class ResourceController {
 					   Model model,
 					   @ModelAttribute("entity")Resource entity) {
 		
-		model.addAttribute("resourceType", SystemVariableUtils.getVariables(SystemDictionaryCode.ResourceType));
+		model.addAttribute("resourceType", SystemVariableUtils.getVariables(ResourceType.class));
 		
 		if (StringUtils.isEmpty(id)) {
 			model.addAttribute("resourcesList", accountManager.getAllResources());

@@ -13,7 +13,7 @@ import org.exitsoft.orm.core.PageRequest.Sort;
 import org.exitsoft.orm.core.PropertyFilter;
 import org.exitsoft.orm.core.PropertyFilters;
 import org.exitsoft.showcase.common.SystemVariableUtils;
-import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
+import org.exitsoft.showcase.common.enumeration.entity.OperatingState;
 import org.exitsoft.showcase.entity.foundation.audit.OperatingRecord;
 import org.exitsoft.showcase.service.foundation.SystemAuditManager;
 import org.hibernate.Hibernate;
@@ -60,7 +60,7 @@ public class OperatingRecordController {
 			pageRequest.setOrderDir(Sort.DESC);
 		}
 		
-		request.setAttribute("operatingState", SystemVariableUtils.getVariables(SystemDictionaryCode.OperatingState));
+		request.setAttribute("operatingState", SystemVariableUtils.getVariables(OperatingState.class));
 		
 		return systemAuditManager.searchOperatingRecordPage(pageRequest, filters);
 	}

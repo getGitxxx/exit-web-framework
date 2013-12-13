@@ -6,15 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.exitsoft.common.utils.ServletUtils;
-import org.exitsoft.orm.core.PropertyFilters;
 import org.exitsoft.orm.core.Page;
 import org.exitsoft.orm.core.PageRequest;
 import org.exitsoft.orm.core.PageRequest.Sort;
 import org.exitsoft.orm.core.PropertyFilter;
+import org.exitsoft.orm.core.PropertyFilters;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.annotation.OperatingAudit;
-import org.exitsoft.showcase.common.enumeration.SystemDictionaryCode;
 import org.exitsoft.showcase.common.enumeration.entity.GroupType;
+import org.exitsoft.showcase.common.enumeration.entity.State;
 import org.exitsoft.showcase.entity.account.Group;
 import org.exitsoft.showcase.service.account.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ public class GroupController {
 		
 		List<PropertyFilter> filters = PropertyFilters.build(request,true);
 		
-		request.setAttribute("states", SystemVariableUtils.getVariables(SystemDictionaryCode.State,"3"));
+		request.setAttribute("states", SystemVariableUtils.getVariables(State.class,3));
 		request.setAttribute("groupsList", accountManager.getAllGroup(GroupType.RoleGorup));
 		
 		if (!pageRequest.isOrderBySetted()) {
@@ -108,7 +108,7 @@ public class GroupController {
 	public String read(@RequestParam(value = "id", required = false)String id,Model model) {
 		
 		model.addAttribute("resourcesList", accountManager.getAllResources());
-		model.addAttribute("states", SystemVariableUtils.getVariables(SystemDictionaryCode.State,"3"));
+		model.addAttribute("states", SystemVariableUtils.getVariables(State.class,3));
 		
 		if (StringUtils.isEmpty(id)) {
 			model.addAttribute("groupsList", accountManager.getAllGroup(GroupType.RoleGorup));

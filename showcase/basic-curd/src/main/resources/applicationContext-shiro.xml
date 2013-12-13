@@ -81,6 +81,11 @@
 	<beans profile="test">
 		<!-- 将shiro与spring集合 -->
 		<bean id="shiroSecurityFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+			<property name="filters">
+				<map>
+					<entry key="captchaAuthc" value-ref="captchaAuthenticationFilter" />
+				</map>
+			</property>
 			<!-- shiro的核心安全接口 -->
 	    	<property name="securityManager" ref="securityManager" />
 	    	<!-- 要求登录时的链接 该连接是org.exitsoft.showcase.web.SystemCommonController.login()方法-->
@@ -92,7 +97,7 @@
 		    <!-- 默认的连接配置 -->
 			<property name="filterChainDefinitions">
 				<value>
-					/login = authc
+					/login = captchaAuthc
 					/logout = logout
 					/index = perms[security:index]
 					/changePassword = perms[security:change-password]
