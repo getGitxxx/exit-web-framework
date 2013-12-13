@@ -16,6 +16,7 @@
 package org.exitsoft.common.spring.mvc;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -132,6 +133,26 @@ public abstract class SpringMvcHolder {
 	public static HttpServletRequest  getRequest() {
 		
 		return getServletRequestAttributes().getRequest();
+	}
+	
+	/**
+	 * 获取 http session
+	 * 
+	 * @return {@link HttpSession}
+	 */
+	public static HttpSession getSession() {
+		return getSession(false);
+	}
+	
+	/**
+	 * 获取 http session
+	 * 
+	 * @param create true to create a new session for this request if necessary; false to return null if there's no current session
+	 * 
+	 * @return {@link HttpSession}
+	 */
+	public static HttpSession getSession(boolean create) {
+		return getRequest().getSession(create);
 	}
 	
 	/**
