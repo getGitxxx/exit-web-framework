@@ -19,6 +19,7 @@ import javax.persistence.Transient;
 import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.entity.ResourceType;
 import org.exitsoft.showcase.entity.IdEntity;
+import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
 
@@ -30,7 +31,12 @@ import org.hibernate.annotations.NamedQuery;
  */
 @Entity
 @Table(name="TB_RESOURCE")
-@NamedQuery(name=Resource.UserResources,query="select rl from User u left join u.groupsList gl left join gl.resourcesList rl where u.id=?1 and gl.type= '03' order by rl.sort")
+@NamedQueries({
+	@NamedQuery(name=Resource.UserResources,
+				query="select rl from User u left join u.groupsList gl left join gl.resourcesList rl where u.id=?1 and gl.type= '03' order by rl.sort"),
+	@NamedQuery(name=Resource.LeafTureNotAssociated,
+				query="from Resource r where r.leaf = 1 and (select count(sr) from Resource sr where sr.parent.id = r.id) = 0")
+})
 public class Resource extends IdEntity{
 	
 	private static final long serialVersionUID = 1L;
@@ -40,6 +46,11 @@ public class Resource extends IdEntity{
 	 */
 	public static final String UserResources = "userResources";
 	
+	/**
+	 * 获取所有资源的leaf = true 并且没有子类的资源
+	 */
+	public static final String LeafTureNotAssociated = "leafTureNotAssociated";
+	
 	//名称
 	private String name;
 	//action url
@@ -48,6 +59,8 @@ public class Resource extends IdEntity{
 	private Resource parent;
 	//顺序值
 	private Long sort;
+	//是否包含叶子节点
+	private boolean leaf;
 	//子类
 	private List<Resource> children = new ArrayList<Resource>();
 	//备注
@@ -145,6 +158,25 @@ public class Resource extends IdEntity{
 		this.sort = sort;
 	}
 
+	
+	/**
+	 * 获取当前资源是否包含叶子节点,如果是返回ture，否则返回false
+	 * 
+	 * @return boolean
+	 */
+	public Boolean getLeaf() {
+		return this.leaf;
+	}
+	
+	/**
+	 * 设置当前资源是否包含叶子节点,
+	 * 
+	 * @return boolean ture表示是，否则返回false
+	 */
+	public void setLeaf(boolean leaf) {
+		this.leaf = leaf;
+	}
+
 	/**
 	 * 获取子类资源
 	 * 
@@ -182,16 +214,6 @@ public class Resource extends IdEntity{
 	 */
 	public void setRemark(String remark) {
 		this.remark = remark;
-	}
-	
-	/**
-	 * 获取当前实体是否是为根节点,如果是返回ture，否则返回false
-	 * 
-	 * @return boolean
-	 */
-	@Transient
-	public Boolean getLeaf() {
-		return this.children != null && this.getChildren().size() > 0;
 	}
 	
 	/**

@@ -92,18 +92,6 @@ public class TestResourceManager extends ManagerTestCaseSupport{
 	}
 
 	@Test
-	public void testGetAllParentMenuResources() {
-		List<Resource> result = accountManager.getAllParentMenuResources();
-		assertEquals(result.size(), 2);
-	}
-
-	@Test
-	public void testGetAllParentResources() {
-		List<Resource> result = accountManager.getAllParentMenuResources();
-		assertEquals(result.size(), 2);
-	}
-
-	@Test
 	public void testGetAllResources() {
 		List<Resource> result = accountManager.getAllResources();
 		assertEquals(result.size(), 25);
@@ -124,5 +112,7 @@ public class TestResourceManager extends ManagerTestCaseSupport{
 		List<Resource> result = accountManager.getUserResources("SJDK3849CKMS3849DJCK2039ZMSK0001");
 		result = accountManager.mergeResourcesToParent(result, ResourceType.Security);
 		assertEquals(result.size(), 2);
+		assertEquals(result.get(0).getChildren().size(),3);
+		assertEquals(result.get(1).getChildren().size(),3);
 	}
 }

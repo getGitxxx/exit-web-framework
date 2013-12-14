@@ -26,8 +26,6 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.google.common.collect.Lists;
-
 /**
  * 账户管理业务逻辑
  * 
@@ -202,8 +200,17 @@ public class AccountManager {
 	 * @param entity 资源实体
 	 */
 	public void saveResource(Resource entity) {
-		entity.setSort(resourceDao.entityCount() + 1);
+		
+		if(entity.getSort() == null) {
+			entity.setSort(resourceDao.entityCount() + 1);
+		}
+		
+		if (entity.getParent() != null) {
+			entity.getParent().setLeaf(true);
+		}
+		
 		resourceDao.save(entity);
+		resourceDao.refreshAllLeaf();
 	}
 	
 	/**
@@ -213,29 +220,7 @@ public class AccountManager {
 	 */
 	public void deleteResources(List<String> ids) {
 		resourceDao.deleteAll(ids);
-	}
-	
-	/**
-	 * 获取所有菜单类型父类资源
-	 * 
-	 * @return List
-	 */
-	public List<Resource> getAllParentMenuResources() {
-		List<PropertyFilter> filters = Lists.newArrayList(
-				PropertyFilters.build("EQS_parent.id", null),
-				PropertyFilters.build("EQS_type", ResourceType.Menu.getValue())
-		);
-
-		return resourceDao.findByPropertyFilter(filters);
-	}
-	
-	/**
-	 * 获取所有父类资源
-	 * 
-	 * @return List
-	 */
-	public List<Resource> getAllParentResources() {
-		return resourceDao.findByProperty("parent.id", null);
+		resourceDao.refreshAllLeaf();
 	}
 	
 	/**
@@ -404,7 +389,7 @@ public class AccountManager {
 	 * @return List
 	 */
 	public List<Group> getUserGroups(String userId) {
-		return groupDao.findByQuery(Group.UserGroups, userId);
+		return groupDao.getUserGorups(userId);
 	}
 
 }

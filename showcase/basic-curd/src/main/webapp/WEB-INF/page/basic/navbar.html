@@ -10,16 +10,16 @@
 			<#list Session["sv"].menusList as m>
 				<li class="dropdown">
 					<a id="${m.id}" href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<span class="glyphicon ${m.icon} center-block"></span>
+						<span class="glyphicon ${m.icon!'glyphicon-file'} center-block"></span>
 						<span class="nav-title">${m.name}</span>
 					</a>
-					<#if m.children?size gt 0>
+					<#if m.leaf>
 						<ul class="dropdown-menu">
 							
 							<#list m.children as c>
 							<li>
 								<a id="${c.id}" href="${base}/${c.value?substring(1,c.value?length - 3)}">
-									<span class="glyphicon ${c.icon}"> </span> ${c.name}
+									<span class="glyphicon ${c.icon!'glyphicon-file'}"> </span> ${c.name}
 								</a>
 							</li>
 							</#list>

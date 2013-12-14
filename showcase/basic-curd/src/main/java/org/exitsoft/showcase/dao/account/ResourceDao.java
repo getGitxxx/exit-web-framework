@@ -25,6 +25,18 @@ public class ResourceDao extends HibernateSupportDao<Resource, String>{
 	public List<Resource> getUserResources(String userId) {
 		return distinct(Resource.UserResources, userId);
 	}
+	
+	/**
+	 * 刷新一次Resource的leaf字段，如果该leaf = 1 并且该资源没有子类，把该资源的leaf改成0
+	 */
+	public void refreshAllLeaf() {
+		List<Resource> list = findByQuery(Resource.LeafTureNotAssociated);
+		for (Resource entity : list) {
+			entity.setLeaf(false);
+			save(entity);
+		}
+		
+	}
 
 	
 }

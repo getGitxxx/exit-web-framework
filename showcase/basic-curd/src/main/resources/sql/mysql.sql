@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost_3306
-Source Server Version : 50614
+Source Server Version : 50519
 Source Host           : localhost:3306
 Source Database       : exitsoft-basic-curd
 
 Target Server Type    : MYSQL
-Target Server Version : 50614
+Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2013-12-08 17:01:03
+Date: 2013-12-14 13:11:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,6 +32,22 @@ CREATE TABLE `tb_data_dictionary` (
 -- ----------------------------
 -- Records of tb_data_dictionary
 -- ----------------------------
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d47b250137d481b6920001', '启用', null, 'I', '1', '402881e437d467d80137d46fc0e50001');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d47b250137d481dda30002', '禁用', null, 'I', '2', '402881e437d467d80137d46fc0e50001');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d47b250137d481f23a0003', '删除', null, 'I', '3', '402881e437d467d80137d46fc0e50001');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d47b250137d4870b230005', 'String', null, 'S', 'S', '402881e437d47b250137d485274b0004');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d47b250137d487328e0006', 'Integer', null, 'S', 'I', '402881e437d47b250137d485274b0004');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d47b250137d487a3af0007', 'Long', null, 'S', 'L', '402881e437d47b250137d485274b0004');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d47b250137d487e23a0008', 'Double', null, 'S', 'N', '402881e437d47b250137d485274b0004');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d47b250137d488416d0009', 'Date', null, 'S', 'D', '402881e437d47b250137d485274b0004');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d47b250137d4885686000a', 'Boolean', null, 'S', 'B', '402881e437d47b250137d485274b0004');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d49e430137d4a5e8570003', '菜单类型', null, 'S', '01', '402881e437d467d80137d4709b9c0002');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d49e430137d4a61cec0004', '资源类型', null, 'S', '02', '402881e437d467d80137d4709b9c0002');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d49e430137d4a6f1aa0005', '部门', null, 'S', '02', '402881e437d467d80137d4712ca70003');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d49e430137d4a7783d0006', '机构', null, 'S', '01', '402881e437d467d80137d4712ca70003');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d49e430137d4a7783d0008', '成功', null, 'I', '1', '402881e437d47b250137d485274b0005');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d49e430137d4a7ba1a0007', '权限组', null, 'S', '03', '402881e437d467d80137d4712ca70003');
+INSERT INTO `tb_data_dictionary` VALUES ('402881e437d49e430137d4a7ba1a0009', '失败', null, 'I', '2', '402881e437d47b250137d485274b0005');
 
 -- ----------------------------
 -- Table structure for tb_dictionary_category
@@ -49,6 +65,11 @@ CREATE TABLE `tb_dictionary_category` (
 -- ----------------------------
 -- Records of tb_dictionary_category
 -- ----------------------------
+INSERT INTO `tb_dictionary_category` VALUES ('402881e437d467d80137d46fc0e50001', 'state', '状态', null, null);
+INSERT INTO `tb_dictionary_category` VALUES ('402881e437d467d80137d4709b9c0002', 'resource-type', '资源类型', null, null);
+INSERT INTO `tb_dictionary_category` VALUES ('402881e437d467d80137d4712ca70003', 'group-type', '组类型', null, null);
+INSERT INTO `tb_dictionary_category` VALUES ('402881e437d47b250137d485274b0004', 'value-type', '值类型', null, null);
+INSERT INTO `tb_dictionary_category` VALUES ('402881e437d47b250137d485274b0005', 'operating-state', '操作状态', null, null);
 
 -- ----------------------------
 -- Table structure for tb_group
@@ -109,7 +130,6 @@ INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0023', 'SJD
 INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0024', 'SJDK3849CKMS3849DJCK2039ZMSK0002');
 INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0025', 'SJDK3849CKMS3849DJCK2039ZMSK0002');
 INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0026', 'SJDK3849CKMS3849DJCK2039ZMSK0002');
-INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0027', 'SJDK3849CKMS3849DJCK2039ZMSK0002');
 INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0003', '402881c4408c7d2301408c86b7a80001');
 INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0004', '402881c4408c7d2301408c86b7a80001');
 INSERT INTO `tb_group_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0008', '402881c4408c7d2301408c86b7a80001');
@@ -146,6 +166,46 @@ INSERT INTO `tb_group_user` VALUES ('402881c4408c7d2301408c86b7a80001', '1790912
 INSERT INTO `tb_group_user` VALUES ('402881c4408c7d2301408c870ed10002', '17909124407b8d7901407be4996c0004');
 
 -- ----------------------------
+-- Table structure for tb_operating_record
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_operating_record`;
+CREATE TABLE `tb_operating_record` (
+  `id` varchar(32) NOT NULL,
+  `end_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fk_user_id` varchar(32) DEFAULT NULL,
+  `operating_target` varchar(512) NOT NULL,
+  `start_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `username` varchar(32) DEFAULT NULL,
+  `function` varchar(128) DEFAULT NULL,
+  `ip` varchar(64) NOT NULL,
+  `method` varchar(256) NOT NULL,
+  `module` varchar(128) DEFAULT NULL,
+  `remark` text,
+  `state` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_operating_record
+-- ----------------------------
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef31bf0142ef32ec180001', '2013-12-14 11:42:41', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/save', '2013-12-14 11:42:41', 'admin', '保存或更新资源', '127.0.0.1', 'save', '资源管理', '<h2>request参数</h2><hr><p>id:<strong class=\'text-info\'></strong></p><p>icon:<strong class=\'text-info\'></strong></p><p>parentId:<strong class=\'text-info\'></strong></p><p>sort:<strong class=\'text-info\'>26</strong></p><p>remark:<strong class=\'text-info\'>test</strong></p><p>name:<strong class=\'text-info\'>test_parent</strong></p><p>value:<strong class=\'text-info\'>/parent/**</strong></p><p>permission:<strong class=\'text-info\'>perms[parent:parent]</strong></p><p>type:<strong class=\'text-info\'>01</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef31bf0142ef33657e0003', '2013-12-14 11:43:12', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/save', '2013-12-14 11:43:12', 'admin', '保存或更新资源', '127.0.0.1', 'save', '资源管理', '<h2>request参数</h2><hr><p>id:<strong class=\'text-info\'></strong></p><p>icon:<strong class=\'text-info\'></strong></p><p>parentId:<strong class=\'text-info\'>4028817c42ef31bf0142ef32ebcf0000</strong></p><p>sort:<strong class=\'text-info\'>27</strong></p><p>remark:<strong class=\'text-info\'></strong></p><p>name:<strong class=\'text-info\'>test_sub</strong></p><p>value:<strong class=\'text-info\'>/sub/**</strong></p><p>permission:<strong class=\'text-info\'>perms[parent:sub]</strong></p><p>type:<strong class=\'text-info\'>01</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef31bf0142ef3421cf0004', '2013-12-14 11:44:00', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/save', '2013-12-14 11:44:00', 'admin', '保存或更新资源', '127.0.0.1', 'save', '资源管理', '<h2>request参数</h2><hr><p>id:<strong class=\'text-info\'>4028817c42ef31bf0142ef32ebcf0000</strong></p><p>icon:<strong class=\'text-info\'></strong></p><p>parentId:<strong class=\'text-info\'>4028817c42ef31bf0142ef33654b0002</strong></p><p>sort:<strong class=\'text-info\'>26</strong></p><p>remark:<strong class=\'text-info\'>test</strong></p><p>name:<strong class=\'text-info\'>test_parent</strong></p><p>value:<strong class=\'text-info\'>/parent/**</strong></p><p>permission:<strong class=\'text-info\'>perms[parent:parent]</strong></p><p>type:<strong class=\'text-info\'>01</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef31bf0142ef348ab60005', '2013-12-14 11:44:27', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/save', '2013-12-14 11:44:27', 'admin', '保存或更新资源', '127.0.0.1', 'save', '资源管理', '<h2>request参数</h2><hr><p>id:<strong class=\'text-info\'>4028817c42ef31bf0142ef32ebcf0000</strong></p><p>icon:<strong class=\'text-info\'></strong></p><p>parentId:<strong class=\'text-info\'></strong></p><p>sort:<strong class=\'text-info\'>26</strong></p><p>remark:<strong class=\'text-info\'>test</strong></p><p>name:<strong class=\'text-info\'>test_parent</strong></p><p>value:<strong class=\'text-info\'>/parent/**</strong></p><p>permission:<strong class=\'text-info\'>perms[parent:parent]</strong></p><p>type:<strong class=\'text-info\'>01</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef31bf0142ef35082d0006', '2013-12-14 11:44:59', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/save', '2013-12-14 11:44:59', 'admin', '保存或更新资源', '127.0.0.1', 'save', '资源管理', '<h2>request参数</h2><hr><p>id:<strong class=\'text-info\'>4028817c42ef31bf0142ef32ebcf0000</strong></p><p>icon:<strong class=\'text-info\'></strong></p><p>parentId:<strong class=\'text-info\'>4028817c42ef31bf0142ef33654b0002</strong></p><p>sort:<strong class=\'text-info\'>26</strong></p><p>remark:<strong class=\'text-info\'>test</strong></p><p>name:<strong class=\'text-info\'>test_parent</strong></p><p>value:<strong class=\'text-info\'>/parent/**</strong></p><p>permission:<strong class=\'text-info\'>perms[parent:parent]</strong></p><p>type:<strong class=\'text-info\'>01</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef31bf0142ef35271a0007', '2013-12-14 11:45:07', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/save', '2013-12-14 11:45:07', 'admin', '保存或更新资源', '127.0.0.1', 'save', '资源管理', '<h2>request参数</h2><hr><p>id:<strong class=\'text-info\'>4028817c42ef31bf0142ef32ebcf0000</strong></p><p>icon:<strong class=\'text-info\'></strong></p><p>parentId:<strong class=\'text-info\'></strong></p><p>sort:<strong class=\'text-info\'>26</strong></p><p>remark:<strong class=\'text-info\'>test</strong></p><p>name:<strong class=\'text-info\'>test_parent</strong></p><p>value:<strong class=\'text-info\'>/parent/**</strong></p><p>permission:<strong class=\'text-info\'>perms[parent:parent]</strong></p><p>type:<strong class=\'text-info\'>01</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef71c60142ef72e3060000', '2013-12-14 12:52:33', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/delete', '2013-12-14 12:52:33', 'admin', '删除资源', '127.0.0.1', 'delete', '资源管理', '<h2>request参数</h2><hr><p>ids:<strong class=\'text-info\'>4028817c42ef31bf0142ef33654b0002</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef71c60142ef7b88620002', '2013-12-14 13:01:59', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/save', '2013-12-14 13:01:59', 'admin', '保存或更新资源', '127.0.0.1', 'save', '资源管理', '<h2>request参数</h2><hr><p>id:<strong class=\'text-info\'></strong></p><p>icon:<strong class=\'text-info\'></strong></p><p>parentId:<strong class=\'text-info\'></strong></p><p>sort:<strong class=\'text-info\'>27</strong></p><p>remark:<strong class=\'text-info\'></strong></p><p>name:<strong class=\'text-info\'>test_sub</strong></p><p>value:<strong class=\'text-info\'></strong></p><p>permission:<strong class=\'text-info\'></strong></p><p>type:<strong class=\'text-info\'>01</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef71c60142ef7be2650003', '2013-12-14 13:02:22', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/save', '2013-12-14 13:02:22', 'admin', '保存或更新资源', '127.0.0.1', 'save', '资源管理', '<h2>request参数</h2><hr><p>id:<strong class=\'text-info\'>4028817c42ef71c60142ef7b882e0001</strong></p><p>icon:<strong class=\'text-info\'></strong></p><p>parentId:<strong class=\'text-info\'>4028817c42ef31bf0142ef32ebcf0000</strong></p><p>sort:<strong class=\'text-info\'>27</strong></p><p>remark:<strong class=\'text-info\'></strong></p><p>name:<strong class=\'text-info\'>test_sub</strong></p><p>value:<strong class=\'text-info\'></strong></p><p>permission:<strong class=\'text-info\'></strong></p><p>type:<strong class=\'text-info\'>01</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef71c60142ef7c32fc0004', '2013-12-14 13:02:43', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/delete', '2013-12-14 13:02:43', 'admin', '删除资源', '127.0.0.1', 'delete', '资源管理', '<h2>request参数</h2><hr><p>ids:<strong class=\'text-info\'>4028817c42ef71c60142ef7b882e0001</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef7d180142ef7e07b40001', '2013-12-14 13:04:43', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/save', '2013-12-14 13:04:43', 'admin', '保存或更新资源', '127.0.0.1', 'save', '资源管理', '<h2>request参数</h2><hr><p>id:<strong class=\'text-info\'></strong></p><p>icon:<strong class=\'text-info\'></strong></p><p>parentId:<strong class=\'text-info\'>4028817c42ef31bf0142ef32ebcf0000</strong></p><p>sort:<strong class=\'text-info\'>27</strong></p><p>remark:<strong class=\'text-info\'></strong></p><p>name:<strong class=\'text-info\'>test_sub</strong></p><p>value:<strong class=\'text-info\'></strong></p><p>permission:<strong class=\'text-info\'></strong></p><p>type:<strong class=\'text-info\'>01</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef7d180142ef7e2b730002', '2013-12-14 13:04:52', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/delete', '2013-12-14 13:04:52', 'admin', '删除资源', '127.0.0.1', 'delete', '资源管理', '<h2>request参数</h2><hr><p>ids:<strong class=\'text-info\'>4028817c42ef7d180142ef7e07700000</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef80fd0142ef8167eb0001', '2013-12-14 13:08:24', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/save', '2013-12-14 13:08:24', 'admin', '保存或更新资源', '127.0.0.1', 'save', '资源管理', '<h2>request参数</h2><hr><p>id:<strong class=\'text-info\'></strong></p><p>icon:<strong class=\'text-info\'></strong></p><p>parentId:<strong class=\'text-info\'>4028817c42ef31bf0142ef32ebcf0000</strong></p><p>sort:<strong class=\'text-info\'>27</strong></p><p>remark:<strong class=\'text-info\'></strong></p><p>name:<strong class=\'text-info\'>test_sub</strong></p><p>value:<strong class=\'text-info\'></strong></p><p>permission:<strong class=\'text-info\'></strong></p><p>type:<strong class=\'text-info\'>01</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef80fd0142ef81a3ff0002', '2013-12-14 13:08:40', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/save', '2013-12-14 13:08:40', 'admin', '保存或更新资源', '127.0.0.1', 'save', '资源管理', '<h2>request参数</h2><hr><p>id:<strong class=\'text-info\'>4028817c42ef31bf0142ef32ebcf0000</strong></p><p>icon:<strong class=\'text-info\'></strong></p><p>parentId:<strong class=\'text-info\'>4028817c42ef80fd0142ef8167910000</strong></p><p>sort:<strong class=\'text-info\'>26</strong></p><p>remark:<strong class=\'text-info\'>test</strong></p><p>name:<strong class=\'text-info\'>test_parent</strong></p><p>value:<strong class=\'text-info\'>/parent/**</strong></p><p>permission:<strong class=\'text-info\'>perms[parent:parent]</strong></p><p>type:<strong class=\'text-info\'>01</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef80fd0142ef81eb9d0003', '2013-12-14 13:08:58', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/delete', '2013-12-14 13:08:58', 'admin', '删除资源', '127.0.0.1', 'delete', '资源管理', '<h2>request参数</h2><hr><p>ids:<strong class=\'text-info\'>4028817c42ef31bf0142ef32ebcf0000</strong></p><hr>', '1');
+INSERT INTO `tb_operating_record` VALUES ('4028817c42ef80fd0142ef824a3f0004', '2013-12-14 13:09:22', 'SJDK3849CKMS3849DJCK2039ZMSK0001', '/exitsoft-basic-curd/account/resource/delete', '2013-12-14 13:09:22', 'admin', '删除资源', '127.0.0.1', 'delete', '资源管理', '<h2>request参数</h2><hr><p>ids:<strong class=\'text-info\'>SJDK3849CKMS3849DJCK2039ZMSK0027</strong></p><hr>', '1');
+
+-- ----------------------------
 -- Table structure for tb_resource
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_resource`;
@@ -153,43 +213,44 @@ CREATE TABLE `tb_resource` (
   `id` varchar(32) NOT NULL,
   `permission` varchar(64) DEFAULT NULL,
   `remark` varchar(512) DEFAULT NULL,
-  `sort` int(11) NOT NULL,
+  `sort` bigint(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `type` varchar(2) NOT NULL,
   `value` varchar(256) DEFAULT NULL,
   `fk_parent_id` varchar(32) DEFAULT NULL,
   `icon` varchar(32) DEFAULT NULL,
+  `leaf` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_resource
 -- ----------------------------
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0003', null, null, '1', '权限管理', '01', '#', null, 'glyphicon-briefcase');
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0004', 'perms[user:view]', null, '2', '用户管理', '01', '/account/user/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0003', 'glyphicon-user');
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0005', 'perms[user:create]', null, '3', '创建用户', '02', '/account/user/insert/**', 'SJDK3849CKMS3849DJCK2039ZMSK0004', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0006', 'perms[user:update]', null, '4', '修改用户', '02', '/account/user/update/**', 'SJDK3849CKMS3849DJCK2039ZMSK0004', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0007', 'perms[user:delete]', null, '5', '删除用户', '02', '/account/user/delete/**', 'SJDK3849CKMS3849DJCK2039ZMSK0004', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0008', 'perms[user:read]', null, '6', '查看用户', '02', '/account/user/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0004', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0009', 'perms[group:view]', null, '7', '组管理', '01', '/account/group/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0003', 'glyphicon-briefcase');
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0010', 'perms[resource:view]', null, '8', '资源管理', '01', '/account/resource/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0003', 'glyphicon-link');
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0011', 'perms[group:save]', null, '9', '创建和编辑组', '02', '/account/group/save/**', 'SJDK3849CKMS3849DJCK2039ZMSK0009', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0012', 'perms[group:read]', null, '10', '查看组', '02', '/account/group/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0009', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0013', 'perms[group:delete]', null, '11', '删除组', '02', '/account/group/delete/**', 'SJDK3849CKMS3849DJCK2039ZMSK0009', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0014', 'perms[resource:save]', null, '12', '创建和编辑资源', '02', '/account/resource/save/**', 'SJDK3849CKMS3849DJCK2039ZMSK0010', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0015', 'perms[resource:read]', null, '13', '查看资源', '02', '/account/resource/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0010', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0016', 'perms[resource:delete]', null, '14', '删除资源', '02', '/account/resource/delete/**', 'SJDK3849CKMS3849DJCK2039ZMSK0010', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0017', null, null, '15', '系统管理', '01', '#', null, 'glyphicon-cog');
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0018', 'perms[data-dictionary:view]', '', '22', '数据字典管理', '01', '/foundation/variable/data-dictionary/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0017', 'glyphicon-list-alt');
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0019', 'perms[dictionary-category:view]', null, '17', '字典类别管理', '01', '/foundation/variable/dictionary-category/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0017', 'glyphicon-folder-close');
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0020', 'perms[dictionary-category:save]', null, '18', '创建和编辑字典类别', '02', '/foundation/variable/dictionary-category/save/**', 'SJDK3849CKMS3849DJCK2039ZMSK0019', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0021', 'perms[dictionary-category:delete]', null, '19', '删除字典类别', '02', '/foundation/variable/dictionary-category/delete/**', 'SJDK3849CKMS3849DJCK2039ZMSK0019', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0022', 'perms[data-dictionary:save]', null, '20', '创建和编辑数据字典', '02', '/foundation/variable/data-dictionary/save/**', 'SJDK3849CKMS3849DJCK2039ZMSK0018', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0023', 'perms[data-dictionary:delete]', null, '21', '删除数据字典', '02', '/foundation/variable/data-dictionary/delete/**', 'SJDK3849CKMS3849DJCK2039ZMSK0018', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0024', 'perms[data-dictionary:read]', null, '22', '查看数据字典', '02', '/foundation/variable/data-dictionary/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0018', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0025', 'perms[dictionary-category:read]', '', '24', '查看字典类别', '02', '/foundation/variable/dictionary-category/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0019', null);
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0026', 'perms[operating-record:view]', null, '25', '操作记录管理', '01', '/foundation/audit/operating-record/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0017', 'glyphicon-eye-open');
-INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0027', 'perms[operating-record:read]', '', '26', '查看操作日志', '02', '/foundation/audit/operating-record/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0026', null);
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0003', null, null, '1', '权限管理', '01', '#', null, 'glyphicon-briefcase', '1');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0004', 'perms[user:view]', null, '2', '用户管理', '01', '/account/user/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0003', 'glyphicon-user', '1');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0005', 'perms[user:create]', null, '3', '创建用户', '02', '/account/user/insert/**', 'SJDK3849CKMS3849DJCK2039ZMSK0004', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0006', 'perms[user:update]', null, '4', '修改用户', '02', '/account/user/update/**', 'SJDK3849CKMS3849DJCK2039ZMSK0004', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0007', 'perms[user:delete]', null, '5', '删除用户', '02', '/account/user/delete/**', 'SJDK3849CKMS3849DJCK2039ZMSK0004', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0008', 'perms[user:read]', null, '6', '查看用户', '02', '/account/user/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0004', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0009', 'perms[group:view]', null, '7', '组管理', '01', '/account/group/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0003', 'glyphicon-briefcase', '1');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0010', 'perms[resource:view]', null, '8', '资源管理', '01', '/account/resource/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0003', 'glyphicon-link', '1');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0011', 'perms[group:save]', null, '9', '创建和编辑组', '02', '/account/group/save/**', 'SJDK3849CKMS3849DJCK2039ZMSK0009', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0012', 'perms[group:read]', null, '10', '查看组', '02', '/account/group/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0009', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0013', 'perms[group:delete]', null, '11', '删除组', '02', '/account/group/delete/**', 'SJDK3849CKMS3849DJCK2039ZMSK0009', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0014', 'perms[resource:save]', null, '12', '创建和编辑资源', '02', '/account/resource/save/**', 'SJDK3849CKMS3849DJCK2039ZMSK0010', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0015', 'perms[resource:read]', null, '13', '查看资源', '02', '/account/resource/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0010', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0016', 'perms[resource:delete]', null, '14', '删除资源', '02', '/account/resource/delete/**', 'SJDK3849CKMS3849DJCK2039ZMSK0010', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0017', null, null, '15', '系统管理', '01', '#', null, 'glyphicon-cog', '1');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0018', 'perms[data-dictionary:view]', '', '16', '数据字典管理', '01', '/foundation/variable/data-dictionary/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0017', 'glyphicon-list-alt', '1');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0019', 'perms[dictionary-category:view]', null, '17', '字典类别管理', '01', '/foundation/variable/dictionary-category/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0017', 'glyphicon-folder-close', '1');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0020', 'perms[dictionary-category:save]', null, '18', '创建和编辑字典类别', '02', '/foundation/variable/dictionary-category/save/**', 'SJDK3849CKMS3849DJCK2039ZMSK0019', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0021', 'perms[dictionary-category:delete]', null, '19', '删除字典类别', '02', '/foundation/variable/dictionary-category/delete/**', 'SJDK3849CKMS3849DJCK2039ZMSK0019', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0022', 'perms[data-dictionary:save]', null, '20', '创建和编辑数据字典', '02', '/foundation/variable/data-dictionary/save/**', 'SJDK3849CKMS3849DJCK2039ZMSK0018', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0023', 'perms[data-dictionary:delete]', null, '21', '删除数据字典', '02', '/foundation/variable/data-dictionary/delete/**', 'SJDK3849CKMS3849DJCK2039ZMSK0018', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0024', 'perms[data-dictionary:read]', null, '22', '查看数据字典', '02', '/foundation/variable/data-dictionary/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0018', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0025', 'perms[dictionary-category:read]', '', '23', '查看字典类别', '02', '/foundation/variable/dictionary-category/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0019', null, '0');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0026', 'perms[operating-record:view]', null, '24', '操作记录管理', '01', '/foundation/audit/operating-record/view/**', 'SJDK3849CKMS3849DJCK2039ZMSK0017', 'glyphicon-eye-open', '1');
+INSERT INTO `tb_resource` VALUES ('SJDK3849CKMS3849DJCK2039ZMSK0027', 'perms[operating-record:read]', '', '25', '查看操作日志', '02', '/foundation/audit/operating-record/read/**', 'SJDK3849CKMS3849DJCK2039ZMSK0026', null, '0');
 
 -- ----------------------------
 -- Table structure for tb_user
