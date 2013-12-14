@@ -89,10 +89,10 @@ public class TestGroupManager extends ManagerTestCaseSupport{
 
 	@Test
 	public void testGetAllGroupGroupType() {
-		List<Group> result = accountManager.getAllGroup(GroupType.RoleGorup);
+		List<Group> result = accountManager.getGroup(GroupType.RoleGorup);
 		assertEquals(result.size(), 3);
 		
-		result = accountManager.getAllGroup(GroupType.RoleGorup,"402881c4408c7d2301408c870ed10002","SJDK3849CKMS3849DJCK2039ZMSK0002");
+		result = accountManager.getGroup(GroupType.RoleGorup,"402881c4408c7d2301408c870ed10002","SJDK3849CKMS3849DJCK2039ZMSK0002");
 		assertEquals(result.size(), 1);
 	}
 

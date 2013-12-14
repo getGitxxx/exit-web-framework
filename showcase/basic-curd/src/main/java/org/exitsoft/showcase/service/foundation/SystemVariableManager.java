@@ -120,15 +120,6 @@ public class SystemVariableManager {
 	}
 	
 	/**
-	 * 获取所有父类字典类别
-	 * 
-	 * @return List
-	 */
-	public List<DictionaryCategory> getAllParentDictionaryCategories() {
-		return dictionaryCategoryDao.findByProperty("parent.id", null);
-	}
-	
-	/**
 	 * 获取字典类别分页对象
 	 * 
 	 * @param request 分页参数请求
@@ -145,7 +136,7 @@ public class SystemVariableManager {
 	 * 
 	 * @return List
 	 */
-	public List<DictionaryCategory> getAllDictionaryCategories() {
+	public List<DictionaryCategory> getDictionaryCategories() {
 		return dictionaryCategoryDao.getAll();
 	}
 	
@@ -156,7 +147,7 @@ public class SystemVariableManager {
 	 * 
 	 * @return List
 	 */
-	public List<DictionaryCategory> getAllDictionaryCategories(List<PropertyFilter> filters) {
+	public List<DictionaryCategory> getDictionaryCategories(List<PropertyFilter> filters) {
 		return dictionaryCategoryDao.findByPropertyFilter(filters);
 	}
 

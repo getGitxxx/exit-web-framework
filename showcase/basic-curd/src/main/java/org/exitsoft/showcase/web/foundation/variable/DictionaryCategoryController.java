@@ -53,7 +53,7 @@ public class DictionaryCategoryController {
 			pageRequest.setOrderDir(Sort.DESC);
 		}
 		
-		request.setAttribute("categoriesList", systemDictionaryManager.getAllDictionaryCategories());
+		request.setAttribute("categoriesList", systemDictionaryManager.getDictionaryCategories());
 		
 		return systemDictionaryManager.searchDictionaryCategoryPage(pageRequest, filters);
 	}
@@ -101,7 +101,7 @@ public class DictionaryCategoryController {
 			filters.add(PropertyFilters.build("NES_id", id));
 		}
 		//展示父类下来框时，不要连自己也在下拉框里
-		request.setAttribute("categoriesList", systemDictionaryManager.getAllDictionaryCategories(filters));
+		request.setAttribute("categoriesList", systemDictionaryManager.getDictionaryCategories(filters));
 		
 		return "/foundation/variable/dictionary-category/read";
 		

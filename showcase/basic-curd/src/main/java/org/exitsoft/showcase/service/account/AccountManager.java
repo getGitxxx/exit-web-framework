@@ -230,7 +230,7 @@ public class AccountManager {
 	 * 
 	 * @return List
 	 */
-	public List<Resource> getAllResources(String... ignoreIdValue) {
+	public List<Resource> getResources(String... ignoreIdValue) {
 		
 		if(ArrayUtils.isNotEmpty(ignoreIdValue)) {
 			return resourceDao.findByProperty("id", ignoreIdValue, RestrictionNames.NIN);
@@ -368,7 +368,7 @@ public class AccountManager {
 	 * 
 	 * @return List
 	 */
-	public List<Group> getAllGroup(GroupType groupType,String... ignoreIdValue) {
+	public List<Group> getGroup(GroupType groupType,String... ignoreIdValue) {
 		
 		List<PropertyFilter> filters = new ArrayList<PropertyFilter>();
 		

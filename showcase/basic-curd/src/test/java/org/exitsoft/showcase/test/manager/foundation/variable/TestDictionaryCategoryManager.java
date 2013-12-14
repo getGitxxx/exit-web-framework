@@ -49,14 +49,8 @@ public class TestDictionaryCategoryManager extends ManagerTestCaseSupport {
 	}
 
 	@Test
-	public void testGetAllParentDictionaryCategories() {
-		List<DictionaryCategory> result = systemVariableManager.getAllParentDictionaryCategories();
-		assertEquals(5, result.size());
-	}
-
-	@Test
 	public void testGetAllDictionaryCategories() {
-		List<DictionaryCategory> result = systemVariableManager.getAllDictionaryCategories();
+		List<DictionaryCategory> result = systemVariableManager.getDictionaryCategories();
 		assertEquals(5, result.size());
 	}
 

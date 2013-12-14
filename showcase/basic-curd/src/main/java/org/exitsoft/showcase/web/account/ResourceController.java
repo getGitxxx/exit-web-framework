@@ -51,7 +51,7 @@ public class ResourceController {
 		List<PropertyFilter> filters = PropertyFilters.build(request,true);
 		
 		request.setAttribute("resourceType", SystemVariableUtils.getVariables(ResourceType.class));
-		request.setAttribute("resourcesList", accountManager.getAllResources());
+		request.setAttribute("resourcesList", accountManager.getResources());
 		
 		if (!pageRequest.isOrderBySetted()) {
 			pageRequest.setOrderBy("sort");
@@ -103,10 +103,10 @@ public class ResourceController {
 		model.addAttribute("resourceType", SystemVariableUtils.getVariables(ResourceType.class));
 		
 		if (StringUtils.isEmpty(id)) {
-			model.addAttribute("resourcesList", accountManager.getAllResources());
+			model.addAttribute("resourcesList", accountManager.getResources());
 			entity.setSort(accountManager.getResourceCount() + 1);
 		} else {
-			model.addAttribute("resourcesList", accountManager.getAllResources(id));
+			model.addAttribute("resourcesList", accountManager.getResources(id));
 		}
 		
 		return "account/resource/read";

@@ -93,10 +93,10 @@ public class TestResourceManager extends ManagerTestCaseSupport{
 
 	@Test
 	public void testGetAllResources() {
-		List<Resource> result = accountManager.getAllResources();
+		List<Resource> result = accountManager.getResources();
 		assertEquals(result.size(), 25);
 		
-		result = accountManager.getAllResources("SJDK3849CKMS3849DJCK2039ZMSK0006","SJDK3849CKMS3849DJCK2039ZMSK0007");
+		result = accountManager.getResources("SJDK3849CKMS3849DJCK2039ZMSK0006","SJDK3849CKMS3849DJCK2039ZMSK0007");
 		assertEquals(result.size(), 23);
 	}
 	

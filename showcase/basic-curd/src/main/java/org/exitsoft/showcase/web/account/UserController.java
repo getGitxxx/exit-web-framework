@@ -156,7 +156,7 @@ public class UserController {
 		data = SystemVariableUtils.getVariables(State.class,3);
 		
 		model.addAttribute("states", data);
-		model.addAttribute("groupsList", accountManager.getAllGroup(GroupType.RoleGorup));
+		model.addAttribute("groupsList", accountManager.getGroup(GroupType.RoleGorup));
 		
 		if (StringUtils.isEmpty(id)) {
 			return "account/user/create";

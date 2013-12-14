@@ -56,7 +56,7 @@ public class DataDictionaryController {
 		}
 		
 		request.setAttribute("valueTypes", SystemVariableUtils.getVariables(SystemDictionaryCode.ValueType));
-		request.setAttribute("categoriesList", systemDictionaryManager.getAllDictionaryCategories());
+		request.setAttribute("categoriesList", systemDictionaryManager.getDictionaryCategories());
 		
 		return systemDictionaryManager.searchDataDictionaryPage(pageRequest, filters);
 	}
@@ -101,7 +101,7 @@ public class DataDictionaryController {
 	public String read(Model model) {
 		
 		model.addAttribute("valueTypes", SystemVariableUtils.getVariables(SystemDictionaryCode.ValueType));
-		model.addAttribute("categoriesList", systemDictionaryManager.getAllDictionaryCategories());
+		model.addAttribute("categoriesList", systemDictionaryManager.getDictionaryCategories());
 		
 		return "/foundation/variable/data-dictionary/read";
 		

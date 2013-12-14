@@ -327,15 +327,6 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 		ClassMetadata meta = sessionFactory.getClassMetadata(entityClass);
 		return meta.getEntityName();
 	}
-
-	/**
-	 * 获取全部对象.
-	 * 
-	 * @return List
-	 */
-	public List<T> getAll() {
-		return createCriteria().list();
-	}
 	
 	/**
 	 * 通过HQL查询全部
@@ -394,7 +385,9 @@ public class BasicHibernateDao<T,PK extends Serializable> {
 	 */
 	public List<T> getAll(Order ...orders) {
 		Criteria c = createCriteria();
-		setOrderToCriteria(c, orders);
+		if(ArrayUtils.isNotEmpty(orders)) {
+			setOrderToCriteria(c, orders);
+		}
 		return c.list();
 	}
 

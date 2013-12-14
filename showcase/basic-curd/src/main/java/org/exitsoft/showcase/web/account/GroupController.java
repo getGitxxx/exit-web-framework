@@ -53,7 +53,7 @@ public class GroupController {
 		List<PropertyFilter> filters = PropertyFilters.build(request,true);
 		
 		request.setAttribute("states", SystemVariableUtils.getVariables(State.class,3));
-		request.setAttribute("groupsList", accountManager.getAllGroup(GroupType.RoleGorup));
+		request.setAttribute("groupsList", accountManager.getGroup(GroupType.RoleGorup));
 		
 		if (!pageRequest.isOrderBySetted()) {
 			pageRequest.setOrderBy("id");
@@ -107,13 +107,13 @@ public class GroupController {
 	@RequestMapping("read")
 	public String read(@RequestParam(value = "id", required = false)String id,Model model) {
 		
-		model.addAttribute("resourcesList", accountManager.getAllResources());
+		model.addAttribute("resourcesList", accountManager.getResources());
 		model.addAttribute("states", SystemVariableUtils.getVariables(State.class,3));
 		
 		if (StringUtils.isEmpty(id)) {
-			model.addAttribute("groupsList", accountManager.getAllGroup(GroupType.RoleGorup));
+			model.addAttribute("groupsList", accountManager.getGroup(GroupType.RoleGorup));
 		} else {
-			model.addAttribute("groupsList", accountManager.getAllGroup(GroupType.RoleGorup,id));
+			model.addAttribute("groupsList", accountManager.getGroup(GroupType.RoleGorup,id));
 		}
 		
 		return "account/group/read";
