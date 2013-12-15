@@ -60,7 +60,7 @@ public class HibernateSupportDao<T,PK extends Serializable> extends BasicHiberna
 
 	}
 
-	public HibernateSupportDao(Class entityClass){
+	public HibernateSupportDao(Class<T> entityClass){
 		super(entityClass);
 	}
 

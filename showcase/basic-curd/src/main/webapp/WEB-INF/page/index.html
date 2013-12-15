@@ -14,6 +14,27 @@
 		<h3>更新日志</h3>
 		<hr>
 		
+		<h3>1.x.0</h3>
+	    <hr>
+	    
+	    <ul>
+    		<li>
+    			<p>
+    				增强shiro,添加认证缓存,当用户多次登录时不在读取数据库,而是读取缓存。当用户更新信息或修改密码时，同时将缓存的数据清空，让shiro重新获取用户的认证信息<span class="label label-info">enhancement</span>
+    			</p>
+    		</li>
+    		<li>
+    			<p>
+    				对资源实体的自身关联一对多的性能进行优化<span class="label label-info">enhancement</span>
+    			</p>
+    		</li>
+    		<li>
+    			<p>
+    				对SystemVariableUtils工具类添加两个方法，当项目存在系统字典的枚举时，可以通过枚举类来获取字典信息，而不是从数据库获取<span class="label label-info">enhancement</span>
+    			</p>
+    		</li>
+    	</ul>
+    	
 		<h3>1.2.0.RELEASE</h3>
 	    <hr>
 	    

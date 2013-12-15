@@ -21,6 +21,8 @@ import org.exitsoft.showcase.common.enumeration.entity.GroupType;
 import org.exitsoft.showcase.common.enumeration.entity.State;
 import org.exitsoft.showcase.entity.IdEntity;
 import org.hibernate.annotations.NamedQuery;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 /**
  * 组实体
@@ -29,6 +31,7 @@ import org.hibernate.annotations.NamedQuery;
  *
  */
 @Entity
+@Audited
 @Table(name="TB_GROUP")
 @NamedQuery(name=Group.UserGroups,
             query="select gl from User u left join u.groupsList gl  where u.id=?1 and gl.type= '03'")
@@ -133,6 +136,7 @@ public class Group extends IdEntity{
 	 * 
 	 * @return List
 	 */
+	@NotAudited
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name = "TB_GROUP_USER", joinColumns = { @JoinColumn(name = "FK_GROUP_ID") }, inverseJoinColumns = { @JoinColumn(name = "FK_USER_ID") })
 	public List<User> getMembersList() {
@@ -153,6 +157,7 @@ public class Group extends IdEntity{
 	 * 
 	 * @return List
 	 */
+	@NotAudited
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name = "TB_GROUP_RESOURCE", joinColumns = { @JoinColumn(name = "FK_GROUP_ID") }, inverseJoinColumns = { @JoinColumn(name = "FK_RESOURCE_ID") })
 	public List<Resource> getResourcesList() {

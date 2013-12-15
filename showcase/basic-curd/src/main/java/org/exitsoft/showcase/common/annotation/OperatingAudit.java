@@ -22,13 +22,13 @@ import org.exitsoft.showcase.web.account.UserController;
 public @interface OperatingAudit {
 	
 	/**
-	 * 模块名称，默认为""值，可以在Controller类中说明该Controller是什么模块
+	 * 模块名称，默认为""值，可以在类中说明该类是什么模块
 	 * 
 	 */
 	String value() default "";
 	
 	/**
-	 * 功能名称 默认为""值，主要是在Controller的方法中说明该方法是什么功能
+	 * 功能名称 默认为""值，主要是在类的方法中说明该方法是什么功能
 	 * 
 	 */
 	String function() default "";

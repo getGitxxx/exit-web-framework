@@ -21,6 +21,8 @@ import org.exitsoft.showcase.common.enumeration.entity.ResourceType;
 import org.exitsoft.showcase.entity.IdEntity;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 
 /**
@@ -30,6 +32,7 @@ import org.hibernate.annotations.NamedQuery;
  *
  */
 @Entity
+@Audited
 @Table(name="TB_RESOURCE")
 @NamedQueries({
 	@NamedQuery(name=Resource.UserResources,
@@ -239,6 +242,7 @@ public class Resource extends IdEntity{
 	 * 
 	 * @return List
 	 */
+	@NotAudited
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name = "TB_GROUP_RESOURCE", joinColumns = { @JoinColumn(name = "FK_RESOURCE_ID") }, inverseJoinColumns = { @JoinColumn(name = "FK_GROUP_ID") })
 	public List<Group> getGroupsList() {

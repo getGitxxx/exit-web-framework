@@ -4,7 +4,7 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<!-- h2 factory -->
-	<session-factory>
+	<!-- <session-factory>
 		<property name="connection.driver_class">
 			org.h2.Driver
 		</property>
@@ -25,10 +25,10 @@
 		<mapping class="org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory"/>
 		
 		<mapping class="org.exitsoft.showcase.entity.foundation.audit.OperatingRecord"/>
-	</session-factory>
+	</session-factory> -->
 	
 	<!-- mysql factory -->
-	<!-- <session-factory>
+	<session-factory>
 		<property name="connection.driver_class">
 			com.mysql.jdbc.Driver
 		</property>
@@ -49,6 +49,6 @@
 		<mapping class="org.exitsoft.showcase.entity.foundation.variable.DictionaryCategory"/>
 		
 		<mapping class="org.exitsoft.showcase.entity.foundation.audit.OperatingRecord"/>
-	</session-factory> -->
+	</session-factory>
 	
 </hibernate-configuration>

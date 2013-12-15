@@ -15,7 +15,7 @@
 			org.hibernate.dialect.H2Dialect
 		</property>
 		<property name="connection.url">
-			jdbc:h2:mem:vcs-core-test
+			jdbc:h2:mem:exitsoft-orm
 		</property>
 		
 		<mapping class="org.exitsoft.orm.test.entity.User" />

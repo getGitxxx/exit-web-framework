@@ -1,11 +1,14 @@
-package org.exitsoft.orm.test;
+package org.exitsoft.orm.test.jpa;
 
-import com.google.common.collect.Lists;
+import java.util.List;
+
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
 import org.exitsoft.common.unit.Fixtures;
 import org.exitsoft.orm.core.PropertyFilters;
 import org.exitsoft.orm.core.spring.data.jpa.specification.Specifications;
 import org.exitsoft.orm.test.entity.User;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,14 +25,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-import java.util.List;
+import com.google.common.collect.Lists;
 
 @Transactional
-@TransactionConfiguration(transactionManager="jpaTransactionManager")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext-test.xml")
+@TransactionConfiguration(transactionManager="jpaTransactionManager")
 public class TestJpaSupportRepository {
 	
 	private SimpleJpaRepository<User, String> dao;
@@ -40,21 +41,10 @@ public class TestJpaSupportRepository {
 	@Autowired
 	private EntityManagerFactory entityManagerFactory;
 	
-	private static DataSource dataSourceHandler;
-	
 	@Before
 	public void install() throws Exception {
-		if (dataSourceHandler == null) {
-			Fixtures.loadData(dataSource, "/sample-data.xml");
-			dataSourceHandler = dataSource;
-		}
+		Fixtures.reloadData(dataSource, "/sample-data.xml");
 		dao = new SimpleJpaRepository<User, String>(User.class, entityManagerFactory.createEntityManager());
-	}
-	
-	@AfterClass
-	public static void uninstall() throws Exception {
-		Fixtures.deleteData(dataSourceHandler, "/sample-data.xml");
-		dataSourceHandler = null;
 	}
 	
 	@Test

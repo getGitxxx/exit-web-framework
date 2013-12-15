@@ -12,8 +12,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.exitsoft.orm.annotation.StateDelete;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 @Entity
+@Audited
 @Table(name = "TB_ACCOUNT_USER")
 @StateDelete(propertyName = "state", value = "3")
 @NamedQueries({
@@ -117,6 +120,7 @@ public class User extends UniversallyUniqueIdentifier {
 	 * 
 	 * @return {@link Role}
 	 */
+	@NotAudited
 	@ManyToMany
 	@JoinTable(name = "TB_ACCOUNT_USER_ROLE", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })
 	public List<Role> getRoleList() {

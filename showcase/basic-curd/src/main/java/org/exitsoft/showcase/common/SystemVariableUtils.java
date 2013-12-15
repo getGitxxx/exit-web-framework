@@ -136,7 +136,12 @@ public class SystemVariableUtils {
 			//判断是否该值的字段要忽略
 			if(!ArrayUtils.contains(ignoreValue,value)) {
 				String type = value.getClass().getSimpleName();
-				result.add(new DataDictionary(ve.getName(),value.toString(),StringUtils.substring(type, 0,1)));
+				if(type.equals("Date")) {
+					type = "D";
+				} else  if (type.equals("Double")) {
+					type = "N";
+				}
+				result.add(new DataDictionary(ve.getName(),value.toString(),StringUtils.substring(type, 0, 1)));
 			}
 			
 		}
