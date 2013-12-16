@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 
 import org.exitsoft.common.unit.Fixtures;
 import org.exitsoft.orm.test.entity.User;
-import org.exitsoft.orm.test.simple.BasicHiberanteDaoSimple;
+import org.exitsoft.orm.test.simple.hibernate.BasicHiberanteDaoSimple;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.junit.Before;
@@ -22,10 +22,12 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+@Transactional
 @ActiveProfiles("hibernate")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext-test.xml")

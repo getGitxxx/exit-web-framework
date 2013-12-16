@@ -17,8 +17,6 @@ import org.exitsoft.showcase.common.SystemVariableUtils;
 import org.exitsoft.showcase.common.enumeration.entity.State;
 import org.exitsoft.showcase.entity.IdEntity;
 import org.hibernate.annotations.NamedQuery;
-import org.hibernate.envers.Audited;
-import org.hibernate.envers.NotAudited;
 
 /**
  * 用户类
@@ -26,7 +24,6 @@ import org.hibernate.envers.NotAudited;
  *
  */
 @Entity
-@Audited
 @Table(name="TB_USER")
 @NamedQuery(name=User.UpdatePassword,query="update User u set u.password = ?1 where u.id = ?2")
 public class User extends IdEntity{
@@ -158,7 +155,6 @@ public class User extends IdEntity{
 	 * 
 	 * @return List
 	 */
-	@NotAudited
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name = "TB_GROUP_USER", joinColumns = { @JoinColumn(name = "FK_USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "FK_GROUP_ID") })
 	public List<Group> getGroupsList() {

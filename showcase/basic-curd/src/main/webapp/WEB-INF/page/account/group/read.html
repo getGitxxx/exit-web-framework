@@ -49,7 +49,7 @@
 							<select class="form-control required" name="state" id="state">
 								<option value="">请选择...</option>
 				           		<#list states as d>
-					           		<option value="${d.value}" <#if entity.state == d.value?number >selected="selected"</#if> >
+					           		<option value="${d.value}" <#if entity.state == d.readValue >selected="selected"</#if> >
 										${d.name}
 					                </option>
 				           		</#list>
