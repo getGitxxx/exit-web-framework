@@ -1,6 +1,6 @@
 package org.exitsoft.orm.test.hibernate;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -10,9 +10,8 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.exitsoft.common.unit.Fixtures;
-import org.exitsoft.orm.core.hibernate.support.BasicHibernateDao;
-import org.exitsoft.orm.core.hibernate.support.HibernateSupportDao;
 import org.exitsoft.orm.test.entity.User;
+import org.exitsoft.orm.test.simple.BasicHiberanteDaoSimple;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.junit.Before;
@@ -20,19 +19,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-@Transactional
+@ActiveProfiles("hibernate")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext-test.xml")
 public class TestBasicHibernateDao {
 
-	private BasicHibernateDao<User, String> userDao;
+	@Autowired
+	private BasicHiberanteDaoSimple userDao;
 	
 	private SessionFactory sessionFactory;
 	
@@ -59,8 +59,6 @@ public class TestBasicHibernateDao {
 
 	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
-		userDao = new HibernateSupportDao<User, String>(User.class);
-		userDao.setSessionFactory(sessionFactory);
 		this.sessionFactory = sessionFactory;
 	}
 	
